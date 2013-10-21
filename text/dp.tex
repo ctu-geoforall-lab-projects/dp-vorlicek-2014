@@ -1,0 +1,192 @@
+\documentclass[11pt,a4paper,titlepage,oneside]{book}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{rotating}
+
+
+%\usepackage{titlesec}
+%\titleformat{\chapter}{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+%\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+
+\begin{document}
+
+%nastavení fancy stylu
+\lhead{\includegraphics[height=0.5cm]{obrazky/lev.jpg} {ČVUT v~Praze}}
+\rhead{\leftmark}
+\cfoot{\thepage}
+\setlength{\headheight}{24pt}
+
+\pagestyle{empty}	%%vypne číslování
+
+\begin{titlepage} %% titulní strana 1(bez lva)
+	\begin{center}
+		{\huge ČESKÉ VYSOKÉ UČENÍ TECHNICKÉ} \\ [0.25cm]
+		{\LARGE FAKULTA STAVEBNÍ}
+		\\[9cm]		
+		{\Huge DIPLOMOVÁ PRÁCE}
+		\\[9cm]
+		{\Large Praha 2013 \hspace{\stretch{1}} Chrudoš VORLÍČEK}
+	\end{center}
+\end{titlepage}
+
+\begin{titlepage} %%titulní strana 2 (se lvem)
+	\begin{center}
+		{\huge ČESKÉ VYSOKÉ UČENÍ TECHNICKÉ} \\
+		{\LARGE FAKULTA STAVEBNÍ \\ [0.25cm]OBOR GEOINFORMATIKA}
+		\\[1cm]
+		\begin{figure}[!h]
+		\begin{center}
+		\includegraphics[height=5cm]{obrazky/lev.jpg}
+		\\[1cm]
+		\end{center}
+		\end{figure}							
+		{\Huge DIPLOMOVÁ PRÁCE \\ [0.25cm]}
+		{\LARGE \uppercase {Prototyp turistického systému zaloŽeného na datech OpenStreetMap}}
+		\\[3.5cm]
+		{\Large Vedoucí práce: Ing. Martin LANDA, Ph.D. \\[0.25cm] Katedra geomatiky}
+		\\[1cm]
+		{\Large Praha 2013 \hspace{\stretch{1}} Chrudoš VORLÍČEK}
+	\end{center}
+\end{titlepage}
+
+\newpage %%zadání
+	\begin{center}
+		\vspace*{15cm}
+		{\Large ZDE VLOŽIT LIST ZADÁNÍ}
+	\end{center}
+
+%% Abstrakt
+\begin{flushleft}
+	\chapter*{}
+	\section*{ABSTRAKT}
+	\paragraph{} Hlavním tématem této práce je tvorba webové turistické aplikace za použití dat OpenStreetMap, jeho napojení na sociální síť Facebook a přidávání dat přímo do OpenStreetMap. Součástí práce je i stručné shrnutí existujích řešení, popsání užitých technologií a jejich výhod a nevýhod.
+	\section*{KLÍČOVÁ SLOVA}
+	{\sc{OpenStreetMap, OSM, Turistický systém, Facebook, Nette}}
+	\section*{ABSTRACT}
+	\paragraph{}
+	\section*{KEYWORDS}
+	{\sc{}}
+\end{flushleft}
+
+\newpage %%Prohlášení
+	\vspace*{15cm}
+	\section*{\Large PROHLÁŠENÍ}
+		\paragraph{}Prohlašuji, že jsem diplomovou práci na téma \uv{Prototyp turistického systému založeného na datech OpenStreetMap} vypracoval samostatně a že veškerou použitou literaturu a podkladové materiály uvádím v~seznamu zdrojů.\\[1cm]
+	V~Praze dne ....................... \hspace{\stretch{1}}................................. \\
+	\hspace*{\stretch{1}} {(podpis autora)\hspace{0.25cm} }
+	
+\newpage %%Poděkování
+	\vspace*{15cm}
+	\section*{\Large PODĚKOVÁNÍ}
+	\paragraph{}
+		
+\renewcommand{\baselinestretch}{1.5} %nastaví mezery
+\newpage %%Obsah
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{5}
+
+	\tableofcontents
+
+\newpage %%Obrázky a tabulky
+	\listoffigures
+	\listoftables
+
+
+\newpage %%Samotný text
+%%Úvod
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
+	\paragraph{} V součastné době je možné najít množství mapových portálů, které poskytují informace z mnoha odvětví lidské činnosti. Od jednoduchých mapových aplikacích určených k vyhledávání cest z jednoho místa na druhé až po řešení poskytující prostorové informace z několika zdrojů s možností provádět nad těmito daty analýzy. 
+	\paragraph{} Pro potřeby turistů jsou k dispozici různě sofistikované webové aplikace poskytující rozdílné možnosti vyhledávání a užívání map.
+
+	\paragraph{Hlavní cíle:}
+	\begin{itemize}
+		\item vytvoření turistického mapového portálu nad daty OSM
+		\item propojení aplikace se sociální sítí Facebook
+		\item možnost přidávání dat do OSM
+	\end{itemize}
+
+
+
+%%Mapový server
+\pagestyle{fancy}
+\chapter{Existující řešení}
+	\section{Google Mapy}
+		\begin{itemize}
+			\item možnost přidávání fotek + komentáře k nim (Panoramio)
+			\item možnost importu KML do googleEarth
+			\item chybí cyklostezky a turistické trasy
+			\item vyhledávání míst
+			\item spíš pro navigaci ve městě a po silnicích
+		\end{itemize}
+
+	\section{Mapy.cz}
+		\begin{itemize}
+			\item turistické a cykloturistické trasy
+			\item profil trasy
+			\item vyhledávání cest po značených trasách - možnost exportu
+			\item vyhledávání míst
+			\item měření vzdáleností
+		\end{itemize}
+
+	\section{Výletník}
+		\begin{itemize}
+			\item podklad google mapy
+			\item vyhledávání v okolí (bod + vzdálenost)
+			\item turistické cíle - celá škála možností (bodová vrstva)
+			\item ubytování a služby
+			\item chybí trasy
+			\item na portálu jsou tipy na výlet a akce, co se dějou
+		\end{itemize}
+	
+	\section{Lonvia's Hiking Map}
+		\begin{itemize}
+			\item data OSM + z toho plynoucí výhody i nevýhody
+			\item celý svět
+			\item možnost exportu dat
+			\item informace o trasách
+			\item různé druhy map (hiking, cycling, mountain cycling, inline skating)
+			\item vyhledávání míst
+			\item chybí vyhledávání tras ale existující externí služby, které poskytují i profil trasy
+		\end{itemize}
+ 
+
+\chapter{Použité technologie}
+	\section{Programovací jazyky}
+		\subsection{Server--side -- PHP}
+			
+		\subsection{User--side -- JavaScript (LeafLet, jQuery)}
+	\section{Databáze -- PostGIS}
+	\section{Grafický design -- bootstrap \cite{bootstrap}}
+
+\chapter{Vývoj aplikace}
+		\begin{itemize}
+			\item import dat pomocí osm2pgsql
+			\item data z \url{http://download.geofabrik.de/europe/czech-republic.html}
+			\item doplnění o tabulku uživatelů -- přidávají pouze reg. uživatelé
+			\item základní vzhled webové stránky - základní styl bootstrapu
+			\item přihlašování uživatelů
+		\end{itemize}
+
+	%závěr
+	\chapter{Zhodnocení}
+		\paragraph{}
+
+%%Užitá literatura
+\newpage
+\addcontentsline{toc}{chapter}{Reference}
+\begin{thebibliography}{50}
+	\bibitem{bootstrap}Bootstrap \url{http://getbootstrap.com}
+\end{thebibliography}
+
+
+
+\end{document}
