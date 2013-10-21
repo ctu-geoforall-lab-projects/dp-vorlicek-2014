@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.10.7)  14 OCT 2013 00:05
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.10.7)  21 OCT 2013 16:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -504,7 +504,7 @@ LaTeX Info: Redefining \nameref on input line 18.
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<obrazky/lev.jpg, id=71, 266.9975pt x 190.7125pt>
+<obrazky/lev.jpg, id=83, 266.9975pt x 190.7125pt>
 File: obrazky/lev.jpg Graphic file (type jpg)
  <use obrazky/lev.jpg>
 Package pdftex.def Info: obrazky/lev.jpg used on input line 46.
@@ -589,33 +589,55 @@ Overfull \hbox (15.07793pt too wide) in paragraph at lines 173--174
 rik . de / europe / czech-[]republic . html$[] 
  []
 
+
+Overfull \hbox (9.35016pt too wide) in paragraph at lines 183--184
+\OT1/cmr/m/n/10.95 Zde se vy-sky-tuje probl^^Sem, proto^^Tze toto lze na-sta-vi
+t pouze p^^Tri prvn^^S^^Pm p^^Trihl^^Sa^^Tsen^^S^^P
+ []
+
 [12
 
 ]
+File: obrazky/lev.jpg Graphic file (type jpg)
+ <use obrazky/lev.jpg>
+Package pdftex.def Info: obrazky/lev.jpg used on input line 187.
+(pdftex.def)             Requested size: 19.91394pt x 14.22636pt.
+ [13]
 Kapitola 4.
-[13
+[14
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 192.
- [14
+Underfull \hbox (badness 7576) in paragraph at lines 196--197
+[][]\OT1/cmr/m/n/10.95 SULC, Mi-lan. Fb-Tools []$\OT1/cmtt/m/n/10.95 http : / /
+ addons . nette . org / cs / fb-[]tools$[]
+ []
+
+
+Underfull \hbox (badness 6001) in paragraph at lines 197--198
+[]\OT1/cmr/m/n/10.95 Facebook de-ve-lo-pers - Lo-gin Re-fe-rence. []$\OT1/cmtt/
+m/n/10.95 https : / / developers .
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 202.
+[15
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 192.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 202.
  (./dp.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 192.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 192.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 202.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 202.
 Package rerunfilecheck Info: File `dp.out' has not changed.
-(rerunfilecheck)             Checksum: 00DEC1D6F111B1F2CD57FA5E873B84ED;959.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 192.
+(rerunfilecheck)             Checksum: F1C2ADC1246EBADF54301D532E2D252C;1168.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 202.
  ) 
 Here is how much of TeX's memory you used:
- 5952 strings out of 493485
- 84781 string characters out of 3143526
- 170399 words of memory out of 3000000
- 9144 multiletter control sequences out of 15000+200000
- 9877 words of font info for 35 fonts, out of 3000000 for 9000
+ 5972 strings out of 493485
+ 85042 string characters out of 3143526
+ 172494 words of memory out of 3000000
+ 9153 multiletter control sequences out of 15000+200000
+ 10223 words of font info for 36 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,15n,43p,399b,396s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,15n,43p,459b,396s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
@@ -623,11 +645,12 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmtt10.pfb>
-Output written on dp.pdf (16 pages, 141443 bytes).
+/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmtt10.pfb>
+Output written on dp.pdf (17 pages, 158087 bytes).
 PDF statistics:
- 218 PDF objects out of 1000 (max. 8388607)
- 189 compressed objects within 2 object streams
- 49 named destinations out of 1000 (max. 500000)
- 126 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 257 PDF objects out of 1000 (max. 8388607)
+ 225 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

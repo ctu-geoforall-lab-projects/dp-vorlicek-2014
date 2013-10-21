@@ -11,5 +11,8 @@
 \BOOKMARK [1][-]{section.2.2}{Datab\341ze \205 PostGIS}{chapter.2}% 11
 \BOOKMARK [1][-]{section.2.3}{Grafick\375 design \205 bootstrap bootstrap}{chapter.2}% 12
 \BOOKMARK [0][-]{chapter.3}{V\375voj aplikace}{}% 13
-\BOOKMARK [0][-]{chapter.4}{Zhodnocen\355}{}% 14
-\BOOKMARK [0][-]{section*.19}{Reference}{}% 15
+\BOOKMARK [1][-]{section.3.1}{Propojen\355 s Facebookem}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.1.1}{Pou\236it\351 pluginy}{section.3.1}% 15
+\BOOKMARK [2][-]{subsection.3.1.2}{Pr\341va}{section.3.1}% 16
+\BOOKMARK [0][-]{chapter.4}{Zhodnocen\355}{}% 17
+\BOOKMARK [0][-]{section*.22}{Reference}{}% 18

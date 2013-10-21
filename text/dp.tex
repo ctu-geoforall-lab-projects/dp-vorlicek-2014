@@ -176,6 +176,13 @@
 			\item přihlašování uživatelů
 		\end{itemize}
 
+		\section{Propojení s Facebookem}
+			\subsection{Použité pluginy}
+				\paragraph{} Pro propojení sociální sítě Facebook s vyvíjenou aplikací byl použit plugin pro Nette\cite{nette20login} od Jakuba Marka. Tento plugin značně usnadnil tvorbu přihlašování. Dalším pluginem, který byl použit, je FbTools\cite{FbTools} od Milana Šulce. Tento plugin poskytuje funkcionality běžně dostupné na Facebooku, např. tlačítko \textit{Líbí se mi} nebo vlákno s \textit{komentáři}.
+			\subsection{Práva}
+				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlášení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy.
+				\paragraph{} Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo nazvané \textit{publish\_actions}. Tato práva nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
+
 	%závěr
 	\chapter{Zhodnocení}
 		\paragraph{}
@@ -184,7 +191,10 @@
 \newpage
 \addcontentsline{toc}{chapter}{Reference}
 \begin{thebibliography}{50}
-	\bibitem{bootstrap}Bootstrap \url{http://getbootstrap.com}
+	\bibitem{bootstrap}Bootstrap \url{http://getbootstrap.com} 21.10.2013 [online].
+	\bibitem{nette20login}MAREK, Jakub. Přihlašování v Nette Frameworku \url{http://github.com/janmarek/nette20login} 21.10.2013 [online].
+	\bibitem{FbTools} ŠULC, Milan. FbTools \url{http://addons.nette.org/cs/fb-tools} 21.10.2013 [online].
+	\bibitem{FbApiPrava} Facebook developers - Login Reference. \url{https://developers.facebook.com/docs/reference/login/#permissions} 21.10.2013 [online].
 \end{thebibliography}
 
 
