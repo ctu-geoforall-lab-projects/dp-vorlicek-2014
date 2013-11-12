@@ -1,0 +1,16 @@
+{var $robots = noindex}
+{block title}Přihlášení{/block}
+
+{block #content}
+
+<h1>Přihlášení</h1>
+
+{control signInForm}
+<a href="{$fbUrl}"><img  src="{$basePath}/images/fb_login.png"></a>
+
+
+<br>
+<h5>Nemáte účet a nechcete se přihlásit přes Facebook?</h5>
+Registrujte se <a n:href="User:registration">zde</a>.
+<h5>Zapomněli jste heslo?</h5>
+Nechte si poslat <a n:href="User:passwdReset">nové</a>.

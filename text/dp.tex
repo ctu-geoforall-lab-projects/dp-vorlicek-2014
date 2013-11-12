@@ -1,0 +1,232 @@
+\documentclass[11pt,a4paper,titlepage,oneside]{book}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{rotating}
+
+
+%\usepackage{titlesec}
+%\titleformat{\chapter}{\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+%\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+
+\begin{document}
+
+%nastavení fancy stylu
+\lhead{\includegraphics[height=0.5cm]{obrazky/lev.jpg} {ČVUT v~Praze}}
+\rhead{\leftmark}
+\cfoot{\thepage}
+\setlength{\headheight}{24pt}
+
+\pagestyle{empty}	%%vypne číslování
+
+\begin{titlepage} %% titulní strana 1(bez lva)
+	\begin{center}
+		{\huge ČESKÉ VYSOKÉ UČENÍ TECHNICKÉ} \\ [0.25cm]
+		{\LARGE FAKULTA STAVEBNÍ}
+		\\[9cm]		
+		{\Huge DIPLOMOVÁ PRÁCE}
+		\\[9cm]
+		{\Large Praha 2013 \hspace{\stretch{1}} Chrudoš VORLÍČEK}
+	\end{center}
+\end{titlepage}
+
+\begin{titlepage} %%titulní strana 2 (se lvem)
+	\begin{center}
+		{\huge ČESKÉ VYSOKÉ UČENÍ TECHNICKÉ} \\
+		{\LARGE FAKULTA STAVEBNÍ \\ [0.25cm]OBOR GEOINFORMATIKA}
+		\\[1cm]
+		\begin{figure}[!h]
+		\begin{center}
+		\includegraphics[height=5cm]{obrazky/lev.jpg}
+		\\[1cm]
+		\end{center}
+		\end{figure}							
+		{\Huge DIPLOMOVÁ PRÁCE \\ [0.25cm]}
+		{\LARGE \uppercase {Prototyp turistického systému zaloŽeného na datech OpenStreetMap}}
+		\\[3.5cm]
+		{\Large Vedoucí práce: Ing. Martin LANDA, Ph.D. \\[0.25cm] Katedra geomatiky}
+		\\[1cm]
+		{\Large Praha 2013 \hspace{\stretch{1}} Chrudoš VORLÍČEK}
+	\end{center}
+\end{titlepage}
+
+\newpage %%zadání
+	\begin{center}
+		\vspace*{15cm}
+		{\Large ZDE VLOŽIT LIST ZADÁNÍ}
+	\end{center}
+
+%% Abstrakt
+\begin{flushleft}
+	\chapter*{}
+	\section*{ABSTRAKT}
+	\paragraph{} Hlavním tématem této práce je tvorba webové turistické aplikace za použití dat OpenStreetMap, jeho napojení na sociální síť Facebook a přidávání dat přímo do OpenStreetMap. Součástí práce je i stručné shrnutí existujích řešení, popsání užitých technologií a jejich výhod a nevýhod.
+	\section*{KLÍČOVÁ SLOVA}
+	{\sc{OpenStreetMap, OSM, Turistický systém, Facebook, Nette}}
+	\section*{ABSTRACT}
+	\paragraph{}
+	\section*{KEYWORDS}
+	{\sc{}}
+\end{flushleft}
+
+\newpage %%Prohlášení
+	\vspace*{15cm}
+	\section*{\Large PROHLÁŠENÍ}
+		\paragraph{}Prohlašuji, že jsem diplomovou práci na téma \uv{Prototyp turistického systému založeného na datech OpenStreetMap} vypracoval samostatně a že veškerou použitou literaturu a podkladové materiály uvádím v~seznamu zdrojů.\\[1cm]
+	V~Praze dne ....................... \hspace{\stretch{1}}................................. \\
+	\hspace*{\stretch{1}} {(podpis autora)\hspace{0.25cm} }
+	
+\newpage %%Poděkování
+	\vspace*{15cm}
+	\section*{\Large PODĚKOVÁNÍ}
+	\paragraph{}
+		
+\renewcommand{\baselinestretch}{1.5} %nastaví mezery
+\newpage %%Obsah
+\pagestyle{plain}
+\pagenumbering{arabic}
+\setcounter{page}{5}
+
+	\tableofcontents
+
+\newpage %%Obrázky a tabulky
+	\listoffigures
+	\listoftables
+
+
+\newpage %%Samotný text
+%%Úvod
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
+	\paragraph{} V součastné době je možné najít množství mapových portálů, které poskytují informace z mnoha odvětví lidské činnosti. Od jednoduchých mapových aplikacích určených k vyhledávání cest z jednoho místa na druhé až po řešení poskytující prostorové informace z několika zdrojů s možností provádět nad těmito daty analýzy. 
+	\paragraph{} Pro potřeby turistů jsou k dispozici různě sofistikované webové aplikace poskytující rozdílné možnosti vyhledávání a užívání map.
+
+	\paragraph{Hlavní cíle:}
+	\begin{itemize}
+		\item vytvoření turistického mapového portálu nad daty OSM
+		\item propojení aplikace se sociální sítí Facebook
+		\item možnost přidávání dat do OSM
+	\end{itemize}
+
+
+
+%%Mapový server
+\pagestyle{fancy}
+\chapter{Existující řešení}
+	\section{http://opentrackmap.cz/}
+	
+	\section{Google Mapy}
+		\begin{itemize}
+			\item možnost přidávání fotek + komentáře k nim (Panoramio)
+			\item možnost importu KML do googleEarth
+			\item chybí cyklostezky a turistické trasy
+			\item vyhledávání míst
+			\item spíš pro navigaci ve městě a po silnicích
+		\end{itemize}
+
+	\section{Mapy.cz}
+		\begin{itemize}
+			\item turistické a cykloturistické trasy
+			\item profil trasy
+			\item vyhledávání cest po značených trasách - možnost exportu
+			\item vyhledávání míst
+			\item měření vzdáleností
+		\end{itemize}
+
+	\section{Výletník}
+		\begin{itemize}
+			\item podklad google mapy
+			\item vyhledávání v okolí (bod + vzdálenost)
+			\item turistické cíle - celá škála možností (bodová vrstva)
+			\item ubytování a služby
+			\item chybí trasy
+			\item na portálu jsou tipy na výlet a akce, co se dějou
+		\end{itemize}
+	
+	\section{Lonvia's Hiking Map}
+		\begin{itemize}
+			\item data OSM + z toho plynoucí výhody i nevýhody
+			\item celý svět
+			\item možnost exportu dat
+			\item informace o trasách
+			\item různé druhy map (hiking, cycling, mountain cycling, inline skating)
+			\item vyhledávání míst
+			\item chybí vyhledávání tras ale existující externí služby, které poskytují i profil trasy
+		\end{itemize}
+ 
+
+\chapter{Použité technologie}
+	\section{Server}
+		\subsection{Apache 2}
+		\subsection{Geoserver}
+	\section{Databáze -- PostGIS}
+	\section{Programovací jazyky}
+		\subsection{Server--side -- PHP, Nette}
+			\subsubsection{Návrhový vzor Model - View - Presenter}
+		\subsection{User--side -- JavaScript (OpenLayers vs LeafLet, jQuery)}
+	\section{Grafický design -- bootstrap \cite{bootstrap}}
+
+\chapter{Vývoj aplikace}
+		\section{Databáze}
+			\subsection{Datový model}
+				\paragraph{} graf propojení, seznam tabulek, přehled sloupců (ne pro data OSM - spousta nadbytečných NULL hodnot) ??redukce sloupců??
+			\subsection{Naplnění databáze}
+				\paragraph{} Naplnění databáze se sestávalo z několika kroků. Prvním z nich bylo zajištění podpory pro PostGIS a PgRouting. Tato rozšíření budou využita v aplikaci při vyhledávání cest a zobrazování prostorových dat.
+				\paragraph{}Dalším z nich bylo získání a nahrání prostorových dat. Data OSM byla stažena z  \url{http://download.geofabrik.de/europe/czech-republic.html}, kde je k dispozici vždy aktuální verze. Tato data lze importovat do databáze pomocí programu \textit{osm2pgsql}. Při vývoji na lokálním počítači vznikl problém s importem databáze. Používaný počítač neměl dostatečnou operační paměť pro jednoduchý import. Program \textit{osm2pgsql} pamatuje na starší a slabší počítače, tudíž má nastavení, která využívají přechodná úložiště v databázi a efektivněji využívají operační paměť. Databáze České republiky zabírá okolo 4 GB paměti. Vzhledem k tomu, že velká část těchto dat je nadbytečná, byla potřebná data extrahována a uložena do nové tabulky. Při této příležitosti byly vytvořeny i sloupce pro snadnější přístup k datům ve sloupci \textit{tags}. Zejména se jednalo o barvu turistické značky a její typ. Export dat a jejich úprava byly provedeny pomocí jazyka SQL. Některá data jsou ale uložena v polích. U těchto dat bylo problematičtější dostat požadovaný výsledek, ovšem dokumentace k \textit{PostgreSQL}\cite{PostgreSQL} je dobrá a na příkladech jsou uvedeny i možnosti, jak získat data z polí.
+				\paragraph{} V dalším kroku bylo potřeba dovytvořit tabulky pro ukládání uživatelů, příspěvků v  diskuzi, poznámek k trasám, fotek a jiných informací. Tyto tabulky jsou neprostorové, ikdyž některé z nich se mohou mít odkazy na určité prostorové umístění.
+
+		\section{Grafický návrh}
+			\subsection{základní vzhled webové stránky - základní styl bootstrapu}
+		\section{Mapové okno}
+			\subsection{OpenLayers}
+				\subsubsection{Zprovoznění WFS}
+			\subsection{LeafLet}
+
+		\section{Uživatelské rozhraní}
+			\subsection{Přihlašování uživatelů}
+				\paragraph{}K ukládání registrovaných uživatelů byla v databázi vytvořena tabulka \textit{user}. Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
+				\subsubsection{Bez Facebooku}
+					\paragraph{} K příhlášení bez propojení s Facebookem je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace.
+				\subsubsection{S Facebookem}
+					\paragraph{}
+			\subsection{Dostupné funkce}
+				\paragraph{}
+
+		\section{Propojení s Facebookem}
+			\subsection{Použité pluginy}
+				\paragraph{} Pro propojení sociální sítě Facebook s vyvíjenou aplikací byl použit plugin pro Nette\cite{nette20login} od Jakuba Marka. Tento plugin značně usnadnil tvorbu přihlašování. Dalším pluginem, který byl použit, je FbTools\cite{FbTools} od Milana Šulce. Tento plugin poskytuje funkcionality běžně dostupné na Facebooku, např. tlačítko \textit{Líbí se mi} nebo vlákno s \textit{komentáři}.
+			\subsection{Práva}
+				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlášení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy. Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo zveřejňovat akce nazvané \textit{publish\_actions}. Toto jsou práva, o která si aplikace říká, ale nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
+			\subsection{Zvežejňování na zdi}
+				\paragraph{} {\Huge něco o zveřejňování a sdílení}
+				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolávás. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z Facebooku.
+		\section{Testování}
+			\paragraph{}V počátcích nbylo mnoho věcí na testování, ale jak přibývaly funkcionality a komplexnost celé aplikace se zvětšovala, bylo potřeba do testování zapojit více lidí. K tomuto účelu byl vytvořen zpětnovazební formulář, přes který mi bylo možno dát vědět o chybách, nelogičnostech a možných zlepšeních.
+
+
+	%závěr
+	\chapter{Zhodnocení}
+		\paragraph{}
+
+%%Užitá literatura
+\newpage
+\addcontentsline{toc}{chapter}{Reference}
+\begin{thebibliography}{50}
+	\bibitem{bootstrap}Bootstrap \url{http://getbootstrap.com} 21.10.2013 [online].
+	\bibitem{nette20login}MAREK, Jakub. Přihlašování v Nette Frameworku \url{http://github.com/janmarek/nette20login} 21.10.2013 [online].
+	\bibitem{FbTools} ŠULC, Milan. FbTools \url{http://addons.nette.org/cs/fb-tools} 21.10.2013 [online].
+	\bibitem{FbApiPrava} Facebook developers - Login Reference. \url{https://developers.facebook.com/docs/reference/login/#permissions} 21.10.2013 [online].
+	\bibitem{Leaflet}	Leaflet - A JavaScript Library for Mobile-Friendly Maps. \url{http://leafletjs.com/} 29.10.2013 [online].
+	\bibitem{PostgreSQL} PostgreSQL: The world's most advanced open source database \url{http://www.postgresql.org/} 8.11.2013 [online].
+	\bibitem{pgRoutingOL}Tai Nguyen: pgRouting 1.01 with OpenLayers 2.5 on Ubuntu 7.10. \url{http://tainavn.blogspot.cz/2008/01/pgrouting-101-with-openlayers-25-on.html}9.11.2013 [online].
+\end{thebibliography}
+
+
+
+\end{document}

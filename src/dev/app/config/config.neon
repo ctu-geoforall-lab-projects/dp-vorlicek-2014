@@ -1,0 +1,76 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+production < common:
+	parameters:
+		database:
+			driver: pgsql
+			host: geo102.fsv.cvut.cz
+			dbname: vorlichr_dp
+			user: vorlichr_dp
+			password: vorl9pgdp
+		emails:
+			defaultFrom: "admin@toulavej.cz"
+			defaultTo: "chrudos.vorlicek@gmail.com"
+
+development < common:
+	parameters:
+		database:
+			driver: pgsql
+			host: localhost
+			dbname: toulavej
+			user: shaitan
+			password: belial666
+		emails:
+			defaultFrom: "admin@toulavej.cz"
+			defaultTo: "chrudos.vorlicek@gmail.com"
+	nette:
+		container:
+			debugger: true
+		database:
+			default:
+				debugger: true
+				explain: true
+
+
+
+common:
+	parameters:
+		facebook:
+			appId: '569796529754041' # musi byt string
+			secret: 70b35dc0e40172471810c4fcd4956036
+	php:
+		date.timezone: Europe/Prague
+		# session.save_path: "%tempDir%/sessions"
+		# zlib.output_compression: yes
+
+	nette:
+		application:
+			errorPresenter: Error
+		database:
+			dsn: '%database.driver%:host=%database.host%;dbname=%database.dbname%'
+			user: %database.user%
+			password: %database.password%
+		session:
+			autoStart: smart
+			save_path: "%tempDir%/sessions"
+			expiration: 14 days
+	
+	services:
+		database: @Nette\Database\Connection
+		authenticator: PasswordAuthenticator
+		authorizator: Acl
+		userModel: UserModel(@database::table(user))
+		facebook: Facebook({appId: %facebook.appId%, secret: %facebook.secret%})
+		facebookAuthenticator: FacebookAuthenticator
+		emailer: Emailer(%emails.defaultFrom%, %emails.defaultTo%)
+
+		routerFactory: RouterFactory
+		router: @routerFactory::createRouter
+
+	factories:
+		shoutboardModel: ShoutboardModel(@database::table(shoutboard))
+		

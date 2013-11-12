@@ -1,0 +1,39 @@
+.invisible-element{
+	display: none !important;
+}
+.main-content{
+	margin-top:48px;
+	border-bottom: 1px solid #CCC;
+	-webkit-box-shadow:0px 3px 4px rgba(101, 101, 101, 0.25);
+	-moz-box-shadow:0px 3px 4px rgba(101, 101, 101, 0.25);
+	box-shadow:0px 3px 4px rgba(101, 101, 101, 0.25);
+	padding-bottom: 20px;
+}
+.sign-in{
+	width: 350px;
+	border: 1px solid #CCC;
+	margin: auto;
+	margin-top: 5%;
+	padding: 15px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	position: relative;
+	left: -8.51063%;
+	-webkit-box-shadow:0px 3px 4px rgba(101, 101, 101, 0.35);
+	-moz-box-shadow:0px 3px 4px rgba(101, 101, 101, 0.35);
+	box-shadow:0px 3px 4px rgba(101, 101, 101, 0.35);
+}
+table{
+	width: 100%;
+}
+.action_table td{
+	padding: 3px;
+}
+.action_table td label{
+	display: inline;
+	margin-left: 5px;
+}
+.action_table td input, .action_table td textarea{
+	margin: 0 0 0 5px;
+}
