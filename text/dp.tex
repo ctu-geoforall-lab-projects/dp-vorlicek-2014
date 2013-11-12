@@ -119,6 +119,8 @@
 %%Mapový server
 \pagestyle{fancy}
 \chapter{Existující řešení}
+	\section{http://opentrackmap.cz/}
+	
 	\section{Google Mapy}
 		\begin{itemize}
 			\item možnost přidávání fotek + komentáře k nim (Panoramio)
@@ -160,28 +162,53 @@
  
 
 \chapter{Použité technologie}
-	\section{Programovací jazyky}
-		\subsection{Server--side -- PHP}
-			
-		\subsection{User--side -- JavaScript (LeafLet, jQuery)}
+	\section{Server}
+		\subsection{Apache 2}
+		\subsection{Geoserver}
 	\section{Databáze -- PostGIS}
+	\section{Programovací jazyky}
+		\subsection{Server--side -- PHP, Nette}
+			\subsubsection{Návrhový vzor Model - View - Presenter}
+		\subsection{User--side -- JavaScript (OpenLayers vs LeafLet, jQuery)}
 	\section{Grafický design -- bootstrap \cite{bootstrap}}
 
 \chapter{Vývoj aplikace}
-		\begin{itemize}
-			\item import dat pomocí osm2pgsql
-			\item data z \url{http://download.geofabrik.de/europe/czech-republic.html}
-			\item doplnění o tabulku uživatelů -- přidávají pouze reg. uživatelé
-			\item základní vzhled webové stránky - základní styl bootstrapu
-			\item přihlašování uživatelů
-		\end{itemize}
+		\section{Databáze}
+			\subsection{Datový model}
+				\paragraph{} graf propojení, seznam tabulek, přehled sloupců (ne pro data OSM - spousta nadbytečných NULL hodnot) ??redukce sloupců??
+			\subsection{Naplnění databáze}
+				\paragraph{} Naplnění databáze se sestávalo z několika kroků. Prvním z nich bylo zajištění podpory pro PostGIS a PgRouting. Tato rozšíření budou využita v aplikaci při vyhledávání cest a zobrazování prostorových dat.
+				\paragraph{}Dalším z nich bylo získání a nahrání prostorových dat. Data OSM byla stažena z  \url{http://download.geofabrik.de/europe/czech-republic.html}, kde je k dispozici vždy aktuální verze. Tato data lze importovat do databáze pomocí programu \textit{osm2pgsql}. Při vývoji na lokálním počítači vznikl problém s importem databáze. Používaný počítač neměl dostatečnou operační paměť pro jednoduchý import. Program \textit{osm2pgsql} pamatuje na starší a slabší počítače, tudíž má nastavení, která využívají přechodná úložiště v databázi a efektivněji využívají operační paměť. Databáze České republiky zabírá okolo 4 GB paměti. Vzhledem k tomu, že velká část těchto dat je nadbytečná, byla potřebná data extrahována a uložena do nové tabulky. Při této příležitosti byly vytvořeny i sloupce pro snadnější přístup k datům ve sloupci \textit{tags}. Zejména se jednalo o barvu turistické značky a její typ. Export dat a jejich úprava byly provedeny pomocí jazyka SQL. Některá data jsou ale uložena v polích. U těchto dat bylo problematičtější dostat požadovaný výsledek, ovšem dokumentace k \textit{PostgreSQL}\cite{PostgreSQL} je dobrá a na příkladech jsou uvedeny i možnosti, jak získat data z polí.
+				\paragraph{} V dalším kroku bylo potřeba dovytvořit tabulky pro ukládání uživatelů, příspěvků v  diskuzi, poznámek k trasám, fotek a jiných informací. Tyto tabulky jsou neprostorové, ikdyž některé z nich se mohou mít odkazy na určité prostorové umístění.
+
+		\section{Grafický návrh}
+			\subsection{základní vzhled webové stránky - základní styl bootstrapu}
+		\section{Mapové okno}
+			\subsection{OpenLayers}
+				\subsubsection{Zprovoznění WFS}
+			\subsection{LeafLet}
+
+		\section{Uživatelské rozhraní}
+			\subsection{Přihlašování uživatelů}
+				\paragraph{}K ukládání registrovaných uživatelů byla v databázi vytvořena tabulka \textit{user}. Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
+				\subsubsection{Bez Facebooku}
+					\paragraph{} K příhlášení bez propojení s Facebookem je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace.
+				\subsubsection{S Facebookem}
+					\paragraph{}
+			\subsection{Dostupné funkce}
+				\paragraph{}
 
 		\section{Propojení s Facebookem}
 			\subsection{Použité pluginy}
 				\paragraph{} Pro propojení sociální sítě Facebook s vyvíjenou aplikací byl použit plugin pro Nette\cite{nette20login} od Jakuba Marka. Tento plugin značně usnadnil tvorbu přihlašování. Dalším pluginem, který byl použit, je FbTools\cite{FbTools} od Milana Šulce. Tento plugin poskytuje funkcionality běžně dostupné na Facebooku, např. tlačítko \textit{Líbí se mi} nebo vlákno s \textit{komentáři}.
 			\subsection{Práva}
-				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlášení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy.
-				\paragraph{} Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo nazvané \textit{publish\_actions}. Tato práva nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
+				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlášení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy. Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo zveřejňovat akce nazvané \textit{publish\_actions}. Toto jsou práva, o která si aplikace říká, ale nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
+			\subsection{Zvežejňování na zdi}
+				\paragraph{} {\Huge něco o zveřejňování a sdílení}
+				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolávás. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z Facebooku.
+		\section{Testování}
+			\paragraph{}V počátcích nbylo mnoho věcí na testování, ale jak přibývaly funkcionality a komplexnost celé aplikace se zvětšovala, bylo potřeba do testování zapojit více lidí. K tomuto účelu byl vytvořen zpětnovazební formulář, přes který mi bylo možno dát vědět o chybách, nelogičnostech a možných zlepšeních.
+
 
 	%závěr
 	\chapter{Zhodnocení}
@@ -195,6 +222,9 @@
 	\bibitem{nette20login}MAREK, Jakub. Přihlašování v Nette Frameworku \url{http://github.com/janmarek/nette20login} 21.10.2013 [online].
 	\bibitem{FbTools} ŠULC, Milan. FbTools \url{http://addons.nette.org/cs/fb-tools} 21.10.2013 [online].
 	\bibitem{FbApiPrava} Facebook developers - Login Reference. \url{https://developers.facebook.com/docs/reference/login/#permissions} 21.10.2013 [online].
+	\bibitem{Leaflet}	Leaflet - A JavaScript Library for Mobile-Friendly Maps. \url{http://leafletjs.com/} 29.10.2013 [online].
+	\bibitem{PostgreSQL} PostgreSQL: The world's most advanced open source database \url{http://www.postgresql.org/} 8.11.2013 [online].
+	\bibitem{pgRoutingOL}Tai Nguyen: pgRouting 1.01 with OpenLayers 2.5 on Ubuntu 7.10. \url{http://tainavn.blogspot.cz/2008/01/pgrouting-101-with-openlayers-25-on.html}9.11.2013 [online].
 \end{thebibliography}
 
 

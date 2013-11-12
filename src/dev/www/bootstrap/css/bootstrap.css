@@ -2110,12 +2110,12 @@ table {
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
-  background-color: rgb(255, 230, 179);
+  background-color: rgb(220, 220, 225);
 }
 
 .table-hover tbody tr:hover td,
 .table-hover tbody tr:hover th {
-  background-color: rgb(255, 255, 205);
+  background-color: rgb(220, 225, 200);
 }
 
 table td[class*="span"],

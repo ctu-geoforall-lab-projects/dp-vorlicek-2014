@@ -16,7 +16,7 @@ class SignPresenter extends BasePresenter {
 	public function actionIn() {
 		// facebook
 		$fbUrl = $this->context->facebook->getLoginUrl(array(
-			'scope' => 'email',
+			'scope' => 'email,publish_actions',
 			'redirect_uri' => $this->link('//fbLogin'), // absolute
 		));
 		$this->template->fbUrl = $fbUrl;

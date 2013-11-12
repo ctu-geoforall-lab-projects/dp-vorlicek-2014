@@ -1,0 +1,17 @@
+{control sendingForm}
+{control vp}
+<table n:if="$discusion->count() != 0" class="table table-bordered table-hover table-striped">
+	{foreach $discusion as $d}
+	<tr>
+		<td><span class="pull-left"><b><u>{$d->name}</u></b></span><span class="pull-right">{$d->posted|date: "d.m.Y H:i"}</span>
+		<br /><?php echo html_entity_decode(stripslashes($d->message));?>
+		</td>
+	</tr>
+	{/foreach}
+
+</table>
+	
+<div n:if="$discusion->count() == 0" class="alert">
+	Zatím zde nejsou žádné vzkazy.
+</div>
+{control vp}

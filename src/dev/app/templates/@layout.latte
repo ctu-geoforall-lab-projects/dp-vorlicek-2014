@@ -13,12 +13,11 @@
 		<link href="{$basePath}/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
 		<link href="{$basePath}/bootstrap/css/myAdminStyle.css" type="text/css" rel="stylesheet">
 		<link href="{$basePath}/js/jquery-ui-1.9.2/css/ui-lightness/jquery-ui-1.9.2.min.css" type="text/css" rel="stylesheet">
-		<link href="{$basePath}/css/grido.css" type="text/css" rel="stylesheet">
+
 		<script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$basePath}/js/jquery-ui-1.9.2/js/jquery-ui-1.9.2.min.js"></script>
 		<script type="text/javascript" src="{$basePath}/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
-		<script type="text/javascript" src="{$basePath}/js/grido.js"></script>
 
 
 		{block head}{/block}
@@ -38,11 +37,16 @@
 								<li><a n:href="Map:about">O Projektu</a></li>
 							</ul>
 						</li>
+						<li><a n:href="Shoutboard:default">Diskuze</a></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 2<b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trasy a fotky<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li class="nav-header">Sekce 1</li>
-								<li><a n:href="#">Polozka 1</a></li>
+								<li class="nav-header">Trasy</li>
+								<li><a n:href="#">Seznam tras</a></li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="#">Přidat trasu</a></li>
+								<li class="nav-header">Fotky</li>
+								<li><a n:href="#">Galerie</a></li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="#">Přidat fotky</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -52,7 +56,8 @@
 							<a class="btn" n:href="Homepage:default"><i class="icon-user"></i> {$name}</a>
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a n:href="User:changePass"><i class="icon-pencil"></i> Změna hesla</a></li>
+								<li><a n:href="User:setting, id=>$user->id ">Nastavení profilu<i class="icon-pencil"></i></a></li>
+								<li><a n:href="User:feedback">Hlášení chyb</a></li>
 								<li class="divider"></li>
 								<li><a n:href="Sign:out">Odhlásit se</a></li>
 							</ul>
@@ -71,7 +76,9 @@
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						{$flash->message}
 					</div>
+					<div class="textarea">
 					{include #content}
+					</div>
 				</div>
 			</div>
 		</div>

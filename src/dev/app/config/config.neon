@@ -9,12 +9,12 @@ production < common:
 		database:
 			driver: pgsql
 			host: geo102.fsv.cvut.cz
-			dbname: 
-			user: 
-			password: 
+			dbname: vorlichr_dp
+			user: vorlichr_dp
+			password: vorl9pgdp
 		emails:
-			defaultFrom:
-			defaultTo:
+			defaultFrom: "admin@toulavej.cz"
+			defaultTo: "chrudos.vorlicek@gmail.com"
 
 development < common:
 	parameters:
@@ -25,8 +25,8 @@ development < common:
 			user: shaitan
 			password: belial666
 		emails:
-			defaultFrom:
-			defaultTo:
+			defaultFrom: "admin@toulavej.cz"
+			defaultTo: "chrudos.vorlicek@gmail.com"
 	nette:
 		container:
 			debugger: true
@@ -66,10 +66,11 @@ common:
 		userModel: UserModel(@database::table(user))
 		facebook: Facebook({appId: %facebook.appId%, secret: %facebook.secret%})
 		facebookAuthenticator: FacebookAuthenticator
+		emailer: Emailer(%emails.defaultFrom%, %emails.defaultTo%)
 
 		routerFactory: RouterFactory
 		router: @routerFactory::createRouter
 
-		
 	factories:
+		shoutboardModel: ShoutboardModel(@database::table(shoutboard))
 		

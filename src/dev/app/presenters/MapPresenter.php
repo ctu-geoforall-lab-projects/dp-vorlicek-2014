@@ -13,7 +13,14 @@ class MapPresenter extends BasePresenter {
 	 */
 	public function renderDefault()
 	{
-		
+		$params = $this->getHttpRequest()->getQuery();
+		if($params == null){
+			$params = array('zoom' => 8,
+				'lon' => 1725452.10706,
+				'lat' => 6415161.17028
+					);
+		}
+		$this->template->params = $params;
 	}
 	
 }

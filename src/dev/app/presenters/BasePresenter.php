@@ -7,23 +7,26 @@
  * @link	http://topovo.php5.cz
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
-{	
+{
+
 	protected function startup()
 	{
 		$user = $this->getUser();
 		if (!$user->isAllowed($this->reflection->name, $this->getAction())) {
 			if (!$user->isLoggedIn()) {
-				$this->flashMessage('Musíte se přihlásit', 'error');
-				$this->redirect(':Admin:Base:');
+				$this->redirect('Homepage:default');
 			} else {
-				$this->flashMessage('Na předešlou akci nemáte pravomoce', 'error');
-				$this->redirect(':Admin:Main:');
+				$this->redirect('Homepage:default');
 			}
 		}
+		if (!$this->context->emailer->getParent()) { // workaround for "Component '' already has a parent."
+			$this->context->emailer->setParent($this);
+		}
+
 		//$this->registerHelpers();
 		parent::startup();
 	}
-	
+
 	protected function beforeRender()
 	{
 		if ($this->user->isLoggedIn()) {
@@ -32,10 +35,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		parent::beforeRender();
 	}
 
-	
 	public function createComponentVp()
 	{
 		return new \VisualPaginator();
+	}
+
+	public function createComponentEmailer()
+	{
+		return new \VisualPaginator();
+	}
+
+	public function createComponentShoutboard()
+	{
+		return new \Shoutboard($this->context->createShoutboardModel(), $this->user);
 	}
 
 }

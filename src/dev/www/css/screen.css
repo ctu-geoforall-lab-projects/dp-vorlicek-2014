@@ -56,11 +56,13 @@ html.js .jshidden {
 #map{
 	position:fixed !important;
 	position:absolute;
-	top:42px;
+	top:72px;
 	right:1px;
 	bottom:1px;
 	left:1px;
 }
 
-footer{
+.textarea{
+	margin-left: 10%;
+	margin-right: 10%;
 }

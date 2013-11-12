@@ -6,8 +6,7 @@ use \Nette\Security\Identity;
 /**
  * Model for operation with the users data.
  *
- * @author  Chrudos Vorlicek
- * @email	<chrudos.vorlicek@gmail.com>
+ * @author Chrudos Vorlicek <chrudos.vorlicek@gmail.com>
  */
 class UserModel extends \BaseModel {
 
@@ -24,7 +23,7 @@ class UserModel extends \BaseModel {
 			throw new DuplicateEmailException;
 		}
 		$data["passwd_salt"] = mt_rand();
-		$data["password"] = PasswordAuthenticator::calculateSHA256($data["password"], $data["passwd_salt"]);
+		$data["passwd"] = PasswordAuthenticator::calculateSHA256($data["passwd"], $data["passwd_salt"]);
 		$user = $this->insert($data);
 		return $user;
 	}
@@ -47,18 +46,16 @@ class UserModel extends \BaseModel {
 	 */
 	public function changePassword($clearPassword, $salt, $id) {
 		$newPassword = PasswordAuthenticator::calculateSHA256($clearPassword, $salt);
-		$this->update(array("pass" => $newPassword), $id);
+		$this->update(array("passwd" => $newPassword), $id);
 		return $newPassword;
 	}
 
 	/**
-	 * 
 	 * @param array $array	array of values for where condition
 	 * @return \Nette\Database\Table\Selection
 	 */
 	public function findUser($array) {
 		return $this->getTable()->where($array);
-	
 	}
 
 }

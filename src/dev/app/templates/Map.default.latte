@@ -1,14 +1,28 @@
 {block title}Mapové okno{/block}
 {block head}
-<link href="{$basePath}/leafLet/leaflet.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="{$basePath}/leafLet/Control.OSMGeocoder.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="{$basePath}/leafLet/leaflet.ie.css" /><![endif]-->
+<link href="{$basePath}/openLayers/theme/default/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="{$basePath}/openLayers/OpenLayers.js"></script>
+<script type="text/javascript" src="{$basePath}/js/openlayersSetting.js"></script>
+
 
 {/block}
 
 {block content}
+<script type="text/javascript">
+	 $(document).ready(function(){
+		 init({$params});
+	  });
+</script>
+
+<!-- Facebook share button-->
+{*<a href="#"
+  onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+      'facebook-share-dialog', 
+      'width=626,height=436'); 
+    return false;">
+	<img src="{$basePath}/images/fb_sdilet.png">
+</a>*}
 
 <div id="map"></div>
-<script type="text/javascript" src="{$basePath}/leafLet/leaflet-src.js"></script>
-<script type="text/javascript" src="{$basePath}/leafLet/Control.OSMGeocoder.js"></script>
-<script type="text/javascript" src="{$basePath}/js/leafletSetting.js"></script>
