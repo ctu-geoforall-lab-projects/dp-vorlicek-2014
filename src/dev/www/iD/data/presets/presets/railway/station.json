@@ -1,0 +1,16 @@
+{
+    "icon": "rail",
+    "geometry": [
+        "point",
+        "vertex",
+        "area"
+    ],
+    "tags": {
+        "railway": "station"
+    },
+    "terms": [
+        "train station",
+        "station"
+    ],
+    "name": "Railway Station"
+}

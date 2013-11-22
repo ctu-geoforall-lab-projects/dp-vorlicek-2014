@@ -8,13 +8,16 @@ production < common:
 	parameters:
 		database:
 			driver: pgsql
-			host: geo102.fsv.cvut.cz
+			host: localhost
 			dbname: vorlichr_dp
 			user: vorlichr_dp
 			password: vorl9pgdp
 		emails:
 			defaultFrom: "admin@toulavej.cz"
 			defaultTo: "chrudos.vorlicek@gmail.com"
+		facebook:
+			appId: '569796529754041' # musi byt string
+			secret: 70b35dc0e40172471810c4fcd4956036
 
 development < common:
 	parameters:
@@ -27,6 +30,9 @@ development < common:
 		emails:
 			defaultFrom: "admin@toulavej.cz"
 			defaultTo: "chrudos.vorlicek@gmail.com"
+		facebook:
+			appId: '434023543386529' # musi byt string
+			secret: c4758389c85d64df6f298d2d07630a77
 	nette:
 		container:
 			debugger: true
@@ -39,9 +45,7 @@ development < common:
 
 common:
 	parameters:
-		facebook:
-			appId: '569796529754041' # musi byt string
-			secret: 70b35dc0e40172471810c4fcd4956036
+
 	php:
 		date.timezone: Europe/Prague
 		# session.save_path: "%tempDir%/sessions"
@@ -63,7 +67,7 @@ common:
 		database: @Nette\Database\Connection
 		authenticator: PasswordAuthenticator
 		authorizator: Acl
-		userModel: UserModel(@database::table(user))
+		userModel: UserModel(@database::table(users))
 		facebook: Facebook({appId: %facebook.appId%, secret: %facebook.secret%})
 		facebookAuthenticator: FacebookAuthenticator
 		emailer: Emailer(%emails.defaultFrom%, %emails.defaultTo%)

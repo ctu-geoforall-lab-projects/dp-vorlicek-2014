@@ -196,7 +196,7 @@ class UserPresenter extends BasePresenter
 		$this->context->emailer->send("feedback", "Toulavej - hlášení chyby","chrudos.vorlicek@gmail.com");
 
 		$this->flashMessage("Upozornění bylo odesláno", "success");
-		$this->redirect("Homepage");
+		$this->redirect("Homepage:default");
 	}
 
 }

@@ -29,3 +29,7 @@
 /src/dev/temp/
 /src/dev/files/
 /src/dev/tests/
+/src/prod/temp/
+/src/prod/files/
+/src/prod/log/
+/src/prod/tests/

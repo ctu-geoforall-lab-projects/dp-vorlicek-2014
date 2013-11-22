@@ -22,11 +22,12 @@ class Acl extends Permission
 		
 		$this->allow("guest", "HomepagePresenter", Permission::ALL);
 		$this->allow("guest", "SignPresenter",  Permission::ALL);
-		$this->allow("guest", "MapPresenter", Permission::ALL);
+		$this->allow("guest", "MapPresenter", array("default","about"));
 		$this->allow("guest", "ShoutboardPresenter", Permission::ALL);
 		$this->allow("guest", "UserPresenter",array("registration","passwdReset","feedback"));
 		
 		$this->allow("user", "UserPresenter", array("setting"));
+		$this->allow("user", "MapPresenter", array("editMap"));
 	}
 
 }

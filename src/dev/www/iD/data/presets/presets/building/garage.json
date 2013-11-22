@@ -1,0 +1,12 @@
+{
+    "geometry": [
+        "point",
+        "vertex",
+        "area"
+    ],
+    "tags": {
+        "building": "garage"
+    },
+    "name": "Garage",
+    "icon": "warehouse"
+}

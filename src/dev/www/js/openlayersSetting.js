@@ -4,13 +4,16 @@ renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers
 
 function init(params) {
 	OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
-	var host;
+	var host, workspace;
 	//nastavení prostředí
-	if (window.location.hostname === 'toulavej.loc')
+	if (window.location.hostname === 'toulavej.loc') {
 		host = 'toulavej.loc';
-	else if (window.location.hostname === 'geo102.fsv.cvut.cz')
-		host = '';
-
+		workspace = "diplomka";
+	}
+	else if (window.location.hostname === 'geo102.fsv.cvut.cz') {
+		host = 'geo102.fsv.cvut.cz';
+		workspace = "vorlichr";
+	}
 	map = new OpenLayers.Map({div: 'map',
 		units: "m",
 		projection: "EPSG:900913",
@@ -78,8 +81,8 @@ function init(params) {
 		strategies: [new OpenLayers.Strategy.BBOX()],
 		protocol: new OpenLayers.Protocol.WFS({
 			version: "1.1.0",
-			url: "http://" + host + ":8080/geoserver/diplomka/wfs",
-			featurePrefix: 'diplomka',
+			url: "http://" + host + ":8080/geoserver/" + workspace + "/wfs",
+			featurePrefix: workspace,
 			featureType: 'tourist_tracks',
 			geometryName: 'way',
 			srsName: "EPSG:900913"
@@ -94,8 +97,8 @@ function init(params) {
 	});
 	map.addLayer(hikingWFS);
 
-	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/diplomka/wms", {
-		layers: "diplomka:tourist_tracks",
+	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/" + workspace + "/wms", {
+		layers: workspace + ":tourist_tracks",
 		format: "image/png",
 		isBaseLayer: false,
 		transparent: true,
@@ -107,23 +110,29 @@ function init(params) {
 	});
 	map.addLayer(hikingWMS);
 
-	var kempyWFS = new OpenLayers.Layer.Vector("Kempy - WFS", {
-		projection: new OpenLayers.Projection("EPSG:900913"),
-		strategies: [new OpenLayers.Strategy.BBOX()],
-		protocol: new OpenLayers.Protocol.WFS({
-			version: "1.1.0",
-			url: "http://" + host + ":8080/geoserver/diplomka/wfs",
-			featurePrefix: 'diplomka',
-			featureType: 'kempy',
-			geometryName: 'the_geom',
-			srsName: "EPSG:900913"
-		}),
-		renderers: renderer
-	});
-	map.addLayer(kempyWFS);
+	if (host === 'toulavej.loc') {
+		var kempyWFS = new OpenLayers.Layer.Vector("Kempy - WFS", {
+			projection: new OpenLayers.Projection("EPSG:900913"),
+			strategies: [new OpenLayers.Strategy.BBOX()],
+			protocol: new OpenLayers.Protocol.WFS({
+				version: "1.1.0",
+				url: "http://" + host + ":8080/geoserver/" + workspace + "/wfs",
+				featurePrefix: workspace,
+				featureType: 'kempy',
+				geometryName: 'the_geom',
+				srsName: "EPSG:900913"
+			}),
+			renderers: renderer
+		});
+		map.addLayer(kempyWFS);
+		selectControl = new OpenLayers.Control.SelectFeature([kempyWFS, hikingWFS]);
+	}
+	else {
+		selectControl = new OpenLayers.Control.SelectFeature(hikingWFS);
+	}
 
 	// Interaction; not needed for initial display.
-	selectControl = new OpenLayers.Control.SelectFeature([kempyWFS, hikingWFS]);
+	
 	map.addControl(selectControl);
 	selectControl.activate();
 	kempyWFS.events.on({
@@ -229,7 +238,7 @@ function onRouteSelect(evt) {
 			"";
 	}
 
-	
+
 	popup = new OpenLayers.Popup.FramedCloud("featurePopup",
 			feature.geometry.getBounds().getCenterLonLat(),
 			new OpenLayers.Size(100, 100),

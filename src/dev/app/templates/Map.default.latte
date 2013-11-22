@@ -15,7 +15,8 @@
 </script>
 
 <!-- Facebook share button-->
-{*<a href="#"
+{if (($user->isInRole('user') || $user->isInRole('admin')) && $visitingUser->fbuid != NULL)}
+<a href="#"
   onclick="
     window.open(
       'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
@@ -23,6 +24,7 @@
       'width=626,height=436'); 
     return false;">
 	<img src="{$basePath}/images/fb_sdilet.png">
-</a>*}
+</a>
+{/if}
 
 <div id="map"></div>

@@ -3,3 +3,17 @@
 
 * CHV
 ** kostra textu (3 tydny)
+
+** vyhledávání cest
+** přidávání cest, bodů (integrace s iD nebo vlastní rozhraní)
+	- iD lze propojit pro editaci dat přes oAuth přímo do OSM -> asi nejideálnější, není potřeba řešit zpětná aktualizace z db projektu do OSM
+		+ nutno vytvořit nový účet, aby to nešlo přes můj
+		+ pokud uživatel chce propojit se svým účtem -> umožnit
+	- přidávání vlastních tras jen lokálně
+** fotky k trase/bodům - přes spojovací tabulky
+** možnost popisu trasy + diskuze
+** napojení na fb (možná vytvořit skupinu + feedy)
+** připojit RSS
+
+
+** vytvořit mailovou schránku pro aplikaci, registrovat na osm, propojit přes oAuth

@@ -1,5 +1,5 @@
 -- tabulka USER
-CREATE TABLE "user"
+CREATE TABLE "users"
 (
   id serial NOT NULL,
   name character varying(255) NOT NULL,
@@ -13,11 +13,14 @@ CREATE TABLE "user"
   attempts integer NOT NULL DEFAULT 0,
   role character varying(255) NOT NULL DEFAULT 'user'::character varying,
   about text NULL,
-  CONSTRAINT user_pkey PRIMARY KEY (id)
+  CONSTRAINT users_pkey PRIMARY KEY (id)
 )
 WITH (
   OIDS=FALSE
 );
+-- ADMIN
+INSERT INTO users VALUES
+(1,'Chrudoš','chrudos.vorlicek@gmail.com','62d301aa84d93b51740fc83491547baeacce2b869badce90136a7736e488ce51','895181557',NULL,'vorel6@post.cz','SHAitanBelialLeviathanLucifer666',TRUE,0,'admin',NULL);
 
 -- tabulka SHOUTBOARD pro diskuzi
 CREATE TABLE "shoutboard" (
@@ -28,16 +31,14 @@ CREATE TABLE "shoutboard" (
   "posted" timestamp NOT NULL DEFAULT NOW()
 );
 
-
-INSERT INTO user VALUES
-(1,"Chrudoš","chrudos.vorlicek@gmail.com","62d301aa84d93b51740fc83491547baeacce2b869badce90136a7736e488ce51","895181557","","vorel6@post.cz","SHAitanBelialLeviathanLucifer666",TRUE,0,"admin","");
-
 -- propojení do jedné tabulky bez mezikroku hiking_routes
 CREATE TABLE tourist_tracks
-    AS (SELECT roads.osm_id, roads.route, roads.z_order, roads.way_area, roads.way, rels.*
+    AS (SELECT roads.osm_id, roads.route, roads.z_order, roads.way_area, roads.way, rels.*, ways.*
 	FROM planet_osm_roads AS roads
         JOIN planet_osm_rels AS rels
           ON -roads.osm_id = rels.id
+		JOIN planet_osm_ways AS ways
+		  ON - roads.osm_id = ways.id
        WHERE route IN ('foot','hiking')
          AND roads.operator LIKE '%cz:K%');
 
