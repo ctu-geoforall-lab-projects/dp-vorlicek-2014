@@ -1,0 +1,33 @@
+{block title}Detail trasy{/block}
+
+{block content}
+
+<h1>Detail trasy</h1>
+<h2>{$track->name}</h2>
+<a n:href="#" class="btn btn-info">Zobrazit na mapě</a>
+<table class="table table-striped">
+	<tr><td>Délka: </td><td>{$track->length} m </td></tr>
+	<tr><td>Přidáno: </td><td>{$track->created|date: "d.m.Y H:i"}</td></tr>
+	<tr><td>Přidal: </td><td>{$track->ref('users','user_id')->name}</td></tr>
+	<tr><td>Poznámka: </td><td>{$track->note}</td></tr>
+</table>
+<h3>Články k trase</h3>
+{if ($user->isInRole('user') || $user->isInRole('admin'))}
+	<a n:href="Track:addReview, $track->id" class="btn btn-info">Přidat článek</a>
+	<br><br>
+{/if}
+
+{if $trackReviews->count() != 0}
+	<table class="table table-bordered">
+		<tr n:foreach="$trackReviews as $review">
+			<td>
+				<span class="pull-right">{$review->ref('users','user_id')->name} ({$review->created|date: "d.m.Y H:i"})</span>
+				<br>
+				<p>{$review->review}</p>
+			</td>
+		</tr>
+	</table>
+{else}
+	<i>Zatím zde nejsou žádné články.</i>
+{/if}
+

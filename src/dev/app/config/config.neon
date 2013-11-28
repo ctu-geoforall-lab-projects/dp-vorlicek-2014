@@ -28,7 +28,7 @@ development < common:
 			user: shaitan
 			password: belial666
 		emails:
-			defaultFrom: "admin@toulavej.cz"
+			defaultFrom: "toulavej@volny.cz"
 			defaultTo: "chrudos.vorlicek@gmail.com"
 		facebook:
 			appId: '434023543386529' # musi byt string
@@ -77,4 +77,6 @@ common:
 
 	factories:
 		shoutboardModel: ShoutboardModel(@database::table(shoutboard))
-		
+		newsModel: NewsModel(@database::table(news))
+		trackModel: TrackModel(@database::table(tracks))
+		trackReviewModel: TrackReviewModel(@database::table(track_reviews))

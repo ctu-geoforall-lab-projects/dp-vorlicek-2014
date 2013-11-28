@@ -43,11 +43,11 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trasy a fotky<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li class="nav-header">Trasy</li>
-								<li><a n:href="#">Seznam tras</a></li>
-								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="#">Přidat trasu</a></li>
+								<li><a n:href="Track:default">Seznam tras</a></li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Track:addTrack">Přidat trasu</a></li>
 								<li class="nav-header">Fotky</li>
-								<li><a n:href="#">Galerie</a></li>
-								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="#">Přidat fotky</a></li>
+								<li><a n:href="Track:galery">Galerie</a></li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Track:addPhoto">Přidat fotky</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -58,6 +58,7 @@
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a n:href="User:setting, id=>$user->id ">Nastavení profilu<i class="icon-pencil"></i></a></li>
+								<li><a n:href="User:osmAssign">Propojení s OSM<i class="icon-pencil"></i></a></li>
 								<li><a n:href="User:feedback">Hlášení chyb</a></li>
 								<li class="divider"></li>
 								<li><a n:href="Sign:out">Odhlásit se</a></li>
@@ -78,11 +79,15 @@
 						{$flash->message}
 					</div>
 					<div class="textarea">
-					{include #content}
+						{include #content}
 					</div>
 				</div>
 			</div>
 		</div>
-		{ifCurrent !Map:default}{ifCurrent !Map:editMap}<footer class="pull-right">&copy; Chrudoš Vorlíček {date('Y')}&nbsp;</footer>{/ifCurrent}{/ifCurrent}
+		{ifCurrent Map:editMap}
+			<footer></footer>
+		{else}
+			<footer class="pull-right">&copy; Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+		{/ifCurrent}
 	</body>
 </html>

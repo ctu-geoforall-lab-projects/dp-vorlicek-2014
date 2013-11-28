@@ -87,3 +87,11 @@ UPDATE tourist_tracks
 
 --UPDATE COLUMN kct_type
 
+-- uprava pro OAUTH
+ALTER TABLE "users"
+DROP "osm_account",
+ADD "oauth_key" character varying(255) NULL,
+ADD "oauth_secret" character varying(255) NULL; -- 0.021 s
+COMMENT ON COLUMN "users"."oauth_key" IS 'oauth key'; -- 0.056 s
+COMMENT ON COLUMN "users"."oauth_secret" IS 'oauth secret key'; -- 0.011 s
+COMMENT ON TABLE "users" IS ''; -- 0.000 s

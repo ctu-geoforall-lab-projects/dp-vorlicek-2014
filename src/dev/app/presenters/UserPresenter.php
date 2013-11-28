@@ -24,14 +24,55 @@ class UserPresenter extends BasePresenter
 		$editedUser = $this->context->userModel->get($id);
 		$this['settingManagerForm']->setDefaults($editedUser);
 	}
+	//připojení do osm přes oauth - verze 1
+	public function actionOsmAssign()
+	{
+		$visitingUser = $this->getUser()->getIdentity();
+		$params = $this->getParameter();
+		$consumer_key = '';
+		$consumer_secret = '';
+		if ($this->presenter->context->parameters["environment"] == "production") {
+			$consumer_key = "eIILOozCg0DOp2EiZoHe8e5VUICmimQZoiSLqInJ";
+			$consumer_secret = "I9AmzBQruaMazbxSy2wTUroQ1nKWroFJmfuCeMtm";
+			$callbackUrl = "http://geo102.fsv.cvut.cz/user/vorlichr/www/";
+		} else {
+			$consumer_key = "6pWcUGDDQBt9xdoi3eoiYtQ0r5snBuqrZ4WjB2nE";
+			$consumer_secret = "BvDcOUfmTBZJ1hplqfM2dI8lGjqm4wkTS3GgwR2n";
+			$callbackUrl = "http://toulavej.loc/";
+		}
+
+		if (!isset($params['oauth_token'])) {
+			$osmObj = new OsmOAuth($consumer_key, $consumer_secret);
+			$authurl = $osmObj->getAuthorizationUrl() . "&callback=" . $callbackUrl . "user/osm-assign/";
+			header('Location: ' . $authurl); //Redirect the user to the OpenStreetMap.org to authorize
+		}
+		if (isset($params['oauth_token'])) {
+			$osmObj = new OsmOAuth($consumer_key, $consumer_secret, $params['oauth_token']);
+			$token = $osmObj->getAccessToken();
+			dump($osmObj);
+			$key = $token->oauth_token;
+			$secret = $token->oauth_token_secret;
+			
+			$oauth = array('oauth_key' => $key, 'oauth_secret' => $secret);
+			dump($oauth);die;
+			if ($key && $secret) {
+				$this->context->userModel->update($oauth, $visitingUser->id);
+				$this->flashMessage('Účet z OSM byl propojen s aplikací Toulavej.', 'success');
+			} else {
+				$this->flashMessage('Někde se něco stalo a nestalo se to, co by bylo žádoucí.', 'error');
+			}
+			$this->redirect('Homepage:default');
+		}
+	}
 
 	public function renderFeedback()
 	{
 		$visitingUser = $this->getUser()->getIdentity();
-		if ($visitingUser != NULL)
+		if ($visitingUser != NULL) {
 			$this['feedbackForm']->setDefaults(array("user_id" => $visitingUser->id,
 				"liame" => $visitingUser->email,
 				"name" => $visitingUser->name));
+		}
 	}
 
 	/**
@@ -79,6 +120,7 @@ class UserPresenter extends BasePresenter
 		}
 	}
 
+	//Send mail with new password
 	public function createComponentResetPasswdForm()
 	{
 		$form = new Form();
@@ -105,10 +147,10 @@ class UserPresenter extends BasePresenter
 			$this->context->emailer->send("passwordChange", "Nové heslo", $data->liame);
 
 			$this->flashMessage("Nové heslo bylo úspěšně odesláno.", "success");
-			$this->redirect("Homepage");
+			$this->redirect(":Homepage:default");
 		} else {
 			$this->flashMessage('Uživatel se zadaným mailem nebyl nalezen.', 'error');
-			$this->redirect('Homepage');
+			$this->redirect(':Homepage:default');
 		}
 	}
 
@@ -165,7 +207,7 @@ class UserPresenter extends BasePresenter
 		$data = $form->getValues();
 		$this->context->userModel->update($data, $userId);
 		$this->flashMessage('Informace byly uloženy.', "success");
-		$this->redirect('Homepage');
+		$this->redirect('Homepage:default');
 	}
 
 	public function createComponentFeedbackForm()
@@ -193,7 +235,7 @@ class UserPresenter extends BasePresenter
 		$this->context->emailer->template->email = $data->liame;
 		$this->context->emailer->template->message = $data->message;
 
-		$this->context->emailer->send("feedback", "Toulavej - hlášení chyby","chrudos.vorlicek@gmail.com");
+		$this->context->emailer->send("feedback", "Toulavej - hlášení chyby", "chrudos.vorlicek@gmail.com");
 
 		$this->flashMessage("Upozornění bylo odesláno", "success");
 		$this->redirect("Homepage:default");
