@@ -29,7 +29,8 @@ class HomepagePresenter extends BasePresenter
 				->setAttribute('class', 'element-invisible')
 				->addRule(~$form::FILLED);
 		$form->addTextArea('note', 'Aktualita:')
-				->setRequired();
+				->setRequired()
+				->setAttribute('class', 'inputTextArea');
 		$form->addSubmit('save', 'Uložit')
 				->setAttribute('class','btn');
 		$form->onSuccess[] = $this->onAddNewsFormSuccess;

@@ -30,7 +30,7 @@ function init(params) {
 		filter: new OpenLayers.Filter.Comparison({
 			type: OpenLayers.Filter.Comparison.EQUAL_TO,
 			property: "kct_color",
-			value: "kct_blue",
+			value: "kct_blue"
 		}),
 		symbolizer: {strokeWidth: 2,
 			strokeColor: "blue"}
@@ -132,7 +132,7 @@ function init(params) {
 	}
 
 	// Interaction; not needed for initial display.
-	
+
 	map.addControl(selectControl);
 	selectControl.activate();
 	kempyWFS.events.on({

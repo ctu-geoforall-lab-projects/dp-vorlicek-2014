@@ -65,3 +65,8 @@ html.js .jshidden {
 	margin-left: 10%;
 	margin-right: 10%;
 }
+
+.inputTextArea{
+	height: 75px;
+	width: 50%;
+}
