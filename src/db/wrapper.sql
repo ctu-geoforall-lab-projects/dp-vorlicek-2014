@@ -13,7 +13,7 @@ CREATE OR REPLACE FUNCTION pgr_fromAtoB(
                 OUT osm_id integer,
                 OUT name text,
                 OUT heading double precision,
-                OUT reverse_cost double precision,
+                OUT cost double precision,
                 OUT way geometry
         )
         RETURNS SETOF record AS
@@ -42,7 +42,7 @@ BEGIN
         sql := 'SELECT osm_id, way, name, reverse_cost, source, target,
                                 ST_Reverse(way) AS flip_way FROM ' ||
                         'pgr_dijkstra(''SELECT osm_id as id, source::int, target::int, '
-                                        || 'reverse_cost::float AS cost FROM '
+                                        || 'reverse_cost::double AS cost FROM '
                                         || quote_ident(tbl) || ''', '
                                         || source || ', ' || target
                                         || ' , false, false), '
@@ -69,9 +69,9 @@ BEGIN
 
                 -- Return record
                 seq				:= seq + 1;
-                osm_id			    := rec.id;
+                osm_id			:= rec.id;
                 name		    := rec.name;
-                reverse_cost    := rec.reverse_cost;
+                cost			:= rec.reverse_cost;
                 way				:= rec.way;
                 RETURN NEXT;
         END LOOP;

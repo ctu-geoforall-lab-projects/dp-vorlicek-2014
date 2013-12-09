@@ -87,7 +87,15 @@
 		{ifCurrent Map:editMap}
 			<footer></footer>
 		{else}
-			<footer class="pull-right">&copy; Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+			{ifCurrent Map:default}
+			<footer></footer>
+			{else}
+				{ifCurrent Track:addTrack}
+					<footer class="footer-text">&copy; Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+				{else}
+					<footer class="footer-text">&copy; Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+				{/ifCurrent}
+			{/ifCurrent}
 		{/ifCurrent}
 	</body>
 </html>

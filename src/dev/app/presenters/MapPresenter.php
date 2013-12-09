@@ -8,7 +8,6 @@
  */
 class MapPresenter extends BasePresenter
 {
-
 	/**
 	 * render Map Window
 	 */
@@ -31,7 +30,6 @@ class MapPresenter extends BasePresenter
 	public function renderEditMap()
 	{
 		$this->template->visitingUser =$this->getUser()->getIdentity()->osm_account;
-		
 	}
 
 }

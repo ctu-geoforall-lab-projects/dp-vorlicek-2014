@@ -104,21 +104,28 @@
 %%Úvod
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
-	\paragraph{} Pro běžného uživatele internetu se různé mapové portály staly součástí zdrojů, ke kterým se obrací v přívadě, že shání nějaké informace. Od polohy obchodu po vyhledávání cesty na dovolenou. Mapové aplikace jsou běžnou součástí jiných webových aplikací, kde doplňují textové určení místa i vizuální složkou. Dost často se pro tyto účely používají \textit{Mapy.cz} nebo \textit{GoogleMaps}. Oba zmíněné zdroje poskytují API pro snadné a rychlé připojení do aplikace. Vývoj speciální mapy lze pomocí tohoto API také udělat, ovšem poskytuje mnohem méně možností než jiná řešení. 
-	\paragraph{}Obdobou \textit{GoogleMaps} jsou \textit{OpenStreetMap}, které jsou vytvářeny komunitou. Tento přístup má své výhody i nevýhody. Na některých místech jsou mapy podrobnější a přesnější než komerční řešení, jinde zas nedosahují takových kvalit. Komerční mapy se udržují v intervalech daných poskytovatelem mapových podkladů. \textit{OpenStreetMap} Naproti tomu poskytuje denní verze mapy.
-	\paragraph{} Pro potřeby turistů jsou k dispozici různě sofistikované webové aplikace poskytující rozdílné možnosti vyhledávání a užívání map.
+	\paragraph{} Pro běžného uživatele internetu se různé mapové portály staly součástí zdrojů, ke kterým se obrací v případě, že shání nějaké informace. Od polohy obchodu po vyhledávání cesty na dovolenou. Mapové aplikace jsou běžnou součástí jiných webových aplikací, kde doplňují textové určení místa i vizuální složkou. Dost často se pro tyto účely používají \textit{Mapy.cz} nebo \textit{GoogleMaps}. Oba zmíněné zdroje poskytují API pro snadné a rychlé připojení do aplikace. Vývoj speciální mapy lze pomocí tohoto API také udělat, ovšem poskytuje mnohem méně možností než jiná řešení. 
+	\paragraph{} Obdobou \textit{GoogleMaps} jsou \textit{OpenStreetMap}, které jsou vytvářeny komunitou a na rozdíl od \textit{GoogleMaps} poskytují možnost data stáhnout. Tento přístup má své výhody i nevýhody. Na některých místech jsou mapy podrobnější a přesnější než komerční řešení, jinde zas nedosahují takových kvalit. Komerční mapy se udržují v intervalech daných poskytovatelem mapových podkladů. \textit{OpenStreetMap} naproti tomu poskytuje denní verze mapy.
+	\paragraph{} Pro potřeby turistů jsou k dispozici různě sofistikované webové aplikace poskytující rozdílné možnosti vyhledávání a užívání map. Každá z těchto aplikací má své přednosti. Součástí práce je i vytvoření výběru existujících aplikací a popsání jejich výhod, nevýhod a použitelnosti pro turistiku. Užitečné prvky aplikací mohou sloužit jako inspirace při tvorbě vlastní aplikace. 
+	\paragraph{} Hlavním tématem práce je samotná tvorba turistické mapové aplikace. K jejímu vytvoření bylo použito množství technologií. Ty budou popsány v kapitole \textit{Použité technologie}. Spolu s tím zde budou uvedeny i technologie, jejichž užití bylo zvažováno, ale které nakonec z různých důvodů použity nebyly.
+	\paragraph{}Nejobsáhlejší kapitolou je popis toho, co bylo vytvořeno a jak probíhala realizace. Hlavní požadavky, které by měla aplikace splňovat, jsou tyto:
+		\begin{itemize}
+			\item aplikace je vyvořena nad daty OpenStreetMap,
+			\item aplikaci je možno propojit s účtem na sociální síti Facebook,
+			\item do aplikace je možno přidávat vlastní trasy a psát k nim informace,
+			\item do aplikace se dají vkládat fotky k zájmovým bodům a trasám a
+			\item aplikace umožňuje editovat data projektu OpenStreetMap.
+		\end{itemize}
+	K dalším požadavkům patří:
+		\begin{itemize}
+			\item přehledné a příjemné uživatelské rozhraní,
+			\item vyhledávání objektů a
+			\item vyhledávání cest, tzv. routování.
+		\end{itemize}
+	
+	\paragraph{} V závěru práce budou zhodnoceny výsledky tvorby -- co bylo realizováno, co se nepovedlo dokončit a co se nakonec vůbec nevytvářelo. Také zde budou navrženy možnosti dalšího rozšíření.
 
-	\paragraph{Hlavní cíle:}
-	\begin{itemize}
-		\item vytvoření turistického mapového portálu nad daty OSM
-		\item propojení aplikace se sociální sítí Facebook
-		\item přidávání a editace dat
-		\item 
-	\end{itemize}
 
-
-
-%%Mapový server
 \pagestyle{fancy}
 
 
@@ -203,6 +210,8 @@
 %									 %
 \chapter{Použité technologie}
 	\paragraph{} Pro potřeby této práce byly užité technologie rozděleny na servery, které zpracovávají data, databázi a její doplňky a užité programovací jazyky. V této kapitole budou všechny postupně popsány.
+
+%%%Servery
 	\section{Servery}
 		\paragraph{} Serverem rozumíme aplikaci běžící na počítači, která zpracovává dotazy a posílá odpovědi. Podle toho, jaké požadavky daný server zpracovává, mluvíme o webovém (web server), poštotovním (mail server), databázovém (database server), mapovém (map server) a jichých serverech. Protože se jedná o programy, tak je možné, aby na jednom stroji běželo velde sebe i více serverů. Pro potřeby této datové aplikace byl využit webový server Apache HTTP Server\cite{apache} a mapový server Geoserver.
 		\subsection{Apache HTTP Server}
@@ -216,6 +225,7 @@
 			\paragraph{} Geoserver má jednoduché uživatelské rozhraní zajištěné pomocí webové stránky. Toto rozhraní poskytuje všechny potřebné funkce pro správu uživatel-ských rolí, správu dat a jejich publikování. Pro nastavení pravidel zobrazení se užívá XML(eXtended Markup Language) schéma SLD (Styled Layer Descriptor). Tyto pravidla je možno zapsat jako SLD do textového pole nebo je lze vytvořit v externí aplikaci (například AtlasStyler SLD editor\cite{atlas} nebo Quantum GIS\cite{qgis}) a poté importovat.
 			\paragraph{} Výběr Geoserveru byl dán nutností využít WFS-T službu a snahou využít pouze svobodný software. Snaha o využití WFS-T znemožnila použít UMN MapServer, protože ji nepodporuje. Oproti MapServeru má navíc výhodu uživatelského rozhraní, které MapServer postrádá -- nastavení se provádí pomocí konfiguračních souborů.
 
+%%%Databáze
 	\section{Databáze}
 		\paragraph{} Většina webových aplikací potřebuje operovat s daty. Ať už se jedná o údaje o uživatelích, seznam článků či souřadnice skladů, vždy je potřeba je nějak uložit, aby se s nimi jednoduše operovalo. Jedním z možných přístupů je relační databáze. Mnoho aplikací užívá databázi MySQL, protože je rychlejší než PostgreSQL. Přestože je MySQL rychlejší a poskytuje i rozšíření pro prostorová data, je mnohem lepší využít PostgreSQL, protože poskytuje širší spektrum funkcí.
 		\subsection{PostgreSQL}
@@ -226,10 +236,23 @@
 				\paragraph{}
 			\subsubsection{PgRouting}
 				\paragraph{}
+
+%%%Programovací jazyky
 	\section{Programovací jazyky}
-		\subsection{Server--side -- PHP, Nette}
-			\subsubsection{Návrhový vzor Model - View - Presenter}
-		\subsection{User--side -- JavaScript (OpenLayers vs LeafLet, jQuery)}
+		\subsection{Server--side}
+			\subsubsection{PHP}
+				\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C ( při použití CGI rozhraní), Java, Perl, PHP a další. V této aplikaci je použit poslední jmenovaný jazyk. PHP\footnote{název je rekurzivní zkratka -- PHP: Hypertext Preprocessor} je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se PHP nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows).
+				\paragraph{} Současná verze PHP je 5.5, která byla vydána k 20.6.2013. Při vývoji se užívá buď čisté PHP a nebo v podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce práce programátora, protože se může plně věnovat úkolu. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s ním. Pokud se framework používá na větších nebo na více projektech, tak čas, který práce s frameworkem ušetří, je větší než doba, která je potřeba naučení se ho.
+
+			\subsubsection{Framework Nette}
+				\paragraph{}
+
+			\subsubsection{Návrhový vzor}
+				\paragraph{} Návrhovým vzorem rozumíme architekturu aplikace. Jinými slovy se jedná o určité části(vrstvy) aplikace, které zajišťují různé funkcionality. V Nette se užívá architektura MVP (Model -- View -- Presenter).
+				\paragraph{Model} je označení pro vrstvu, která se stará o propojení s databází. Vkládání, změna, výpis i mazání dat jsou akce, které jsou záležitostí modelu. Model má nadefinované své funkce, kterými obsluhuje databázi. Okolí komunikuje s modelem pomocí pevně daného rozhraní. V Nette je tato vrstva implementována v knihovně Nette\\Database. Pro větší přehlednost se vytvářejí funkce, které vypisují potřebná data. Tím nedochází k pokládání dotazů ve zdrojovém kódu Presenterů.
+				\paragraph{View} je vrstva, která vykresluje výsledek zadaného požadavku. V Nette se o tuto funkci starají šablony napsané latte. Latte je šablonovací systém napsaný v PHP, ovšem díky němu je psaní šablon jednodušší, přehlednější a bezpečnější než kdybychom je psali v čistém PHP.
+				\paragraph{Presenter} je spojovací vrstva, která předává data z modelu do view k vykreslení a akce z view zpracovává a předává modelu. Presenter je ekvivalentem Controlleru z architektury MVC s tím rozdílem, že Controller zpracovává i některé události uživatelského rozhraní.
+	\section{User--side -- JavaScript (OpenLayers vs LeafLet, jQuery)}
 	\section{Grafický design -- bootstrap \cite{bootstrap}}
 
 
@@ -258,11 +281,11 @@
 
 		\section{Uživatelské rozhraní}
 			\subsection{Přihlašování uživatelů}
-				\paragraph{}K ukládání registrovaných uživatelů byla v databázi vytvořena tabulka \textit{user}. Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
+				\paragraph{}K ukládání registrovaných uživatelů byla v databázi vytvořena tabulka \textit{users}. Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
 				\subsubsection{Bez Facebooku}
-					\paragraph{} K příhlášení bez propojení s Facebookem je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace.
+					\paragraph{} K příhlášení bez propojení s Facebookem je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace. Formulář je opatřen i pasivním filtrem proti robotům, kteří by opakovaně vytvářeli účty a zahlcovali tak databázi. Navíc by tím získali přístup k editaci dat, což je nežádoucí. Teoreticky by mohlo dojít k masovému ukládání špatných dat do OSM. 
 				\subsubsection{S Facebookem}
-					\paragraph{}
+					\paragraph{} 
 			\subsection{Dostupné funkce}
 				\paragraph{}
 
@@ -274,6 +297,19 @@
 			\subsection{Zvežejňování na zdi}
 				\paragraph{} {\Huge něco o zveřejňování a sdílení}
 				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolávás. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z Facebooku.
+		
+		\section{Editace dat}
+				\paragraph{} Pro umožnění editace dat existovala dvě možná řešení. První řešení zahrnuje vytvoření vlastního rozhraní, druhé pak použití existujícího řešení a připojení k stávající aplikaci. U druhého řešení byla od začátku zvažována možnost použití HTML5 editoru \textit{iD}. Protože obě řešení mají své výhody a nevýhody, budou zde vypsány obě.
+			\subsection{Tvorba vlastního rozhraní}
+				\paragraph{} První řešení, jak už bylo řečeno, zahrnuje vytvoření jednoduchého rozhraní. Prvky by se editovaly a  ukládaly do databáze projektu a v určitých intervalech by byl prováděn import těchto dat do OpenStreetMap. Výhoda této metody spočívá v tom, že data by mohla být kontrolována, zda jsou fakticky správně, aby nedocházelo k znehodnocení dat OpenStreetMap. Také by bylo možno tuto funkci implementovat s minimálními změnami pro přidávání vlastních cest. Na druhou stranu by toto řešení znamenalo množství programování, protože by bylo potřeba zajistit nástroj pro import do OpenStreetMap, popřípadně data importovat ručně. V začátcích by to pravděpodobně nebyl problém, ovšem po překročení určitého počtu editací by se mohl stát ruční import nemožným nebo alespoň velice náročným na čas.
+				\paragraph{} Protože zde nedochází k odesílání dat na jiný server, byl tento přístup zvolen pro přidávání vlastních cest.
+			\subsection{Editor iD} 
+				\paragraph{} Kvůli výše vyjmenovaným nevýhodám bylo rozhodnuto, že nejprve bude prozkoumána možnost připojení HTML5 editoru \textit{iD}, který byl vytvořen pro editaci dat OpenStreetMap. Po prozkoumání zdrojových kódů editoru bylo zjištěno, že aplikace může být připojena pomocí protokolu \textit{oAuth}. Aby aplikace nepoužívala osobní účet na OpenStreetMap, byl vytvořen speciální účet, pod kterým aplikace byla registrována. 
+				\paragraph{}{\Large Byla snaha umožnit uživatelům s účtem na OpenStreetMap, aby mohli editovat data pod svým účtem. Zatím tato funkcionalita zprovozněna není.}
+				\paragraph{} Editor iD má i určité nevýody. Například poskytuje více funkcionalit než je potřeba a komplexnost editoru činí modifikaci zdrojového kódu časově náročnou. Pro vytvářenou aplikaci je nadbytečná možnost editace budov. V momentě, kdy by nebyla povolena editace plošných prvků (polygonů), probíhalo by načítání dat z OpenStreetMap rychleji. 
+		\section{Trasy a fotky}
+			\paragraph{}
+
 		\section{Testování}
 
 
@@ -301,7 +337,7 @@
 	\bibitem{apache}The Apache Software Foundation: Apache - HTTP Server project. [cit. 12.11.2013]. Dostupné z: \url{http://httpd.apache.org/}
 	\bibitem{wiki-Apache}Wikipedia:Appache HTTP Server. [cit. 12.11.2013]. Dostupné z: \url{http://en.wikipedia.org/wiki/Apache_HTTP_Server}
 	\bibitem{geoserver}Geoserver. [cit. 13.11.2013]. Dostupné z: \url{http://geoserver.org/display/GEOS/Welcome}
-	\bibitem{vorlicek}VORLÍČEK, Chrudoš: Geoportály a mapové servery v České republice, bakalářská práce. Praha: České ysoké učení technické v Praze, 2012.
+	\bibitem{vorlicek}VORLÍČEK, Chrudoš: Geoportály a mapové servery v České republice, bakalářská práce. Praha: České vysoké učení technické v Praze, 2012.
 	\bibitem{atlas}GeoPublishing: AtlasStyler SLD editor. [cit. 13.11.2013]. Dostupné z: \url{http://en.geopublishing.org/AtlasStyler}
 	\bibitem{qgis}QGIS. [cit. 13.11.2013]. Dostupné z: \url{http://www.qgis.org/en/site/}
 	\bibitem{postgresql} PostgreSQL. [cit. 13.11.2013]. Dostupné z: \url{http://www.postgresql.org/}.

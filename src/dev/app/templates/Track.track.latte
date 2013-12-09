@@ -1,17 +1,17 @@
-{block title}Přidat trasu{/block}
+{block title}Detail trasy{/block}
 {block head}
 
 <!-- OL2 files-->
 <link href="{$basePath}/openLayers/theme/default/style.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="{$basePath}/openLayers/OpenLayers.js"></script>
-<script type="text/javascript" src="{$basePath}/js/olAddTrack.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olTrackDetail.js"></script>
 
 {/block}
 
 {block content}
 <script type="text/javascript">
 	$(document).ready(function() {
-		 init({$params});
+		 init({$id});
 			 });
 </script>
 
@@ -20,6 +20,7 @@
 </div>
 <div class="right-panel">
 	<h3>Informace o trase</h3>
+	<div id="track"></div>
 </div>
 
 {/block}

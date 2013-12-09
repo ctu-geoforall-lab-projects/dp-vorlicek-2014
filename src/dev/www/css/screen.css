@@ -61,6 +61,24 @@ html.js .jshidden {
 	left:1px;
 }
 
+#map-addTrack{
+	position:fixed !important;
+	position:absolute;
+	top:72px;
+	right:20%;
+	bottom:5px;
+	left:1px;
+}
+
+.right-panel{
+	position:fixed !important;
+	position:absolute;
+	top:72px;
+	right:15px;
+	bottom:5px;
+	left:81%;
+}
+
 .textarea{
 	margin-left: 10%;
 	margin-right: 10%;
@@ -69,4 +87,15 @@ html.js .jshidden {
 .inputTextArea{
 	height: 75px;
 	width: 50%;
+}
+
+.footer-text{
+	position:fixed !important;
+	position:absolute;
+	bottom:5px;
+	right:5px;
+}
+
+#track{
+	
 }

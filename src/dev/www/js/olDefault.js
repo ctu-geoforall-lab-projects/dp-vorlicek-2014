@@ -1,6 +1,15 @@
 var map;
 var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
 renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
+var center;
+var zoom;
+
+function mapEdit() {
+	center = map.getCenter();
+	center.transform(new OpenLayers.Projection("EPSG:900913"),new OpenLayers.Projection("EPSG:4326"));
+	zoom = map.getZoom();
+	window.location.href = "edit-map#background=Bing&map=16/" + String(center['lon']).substring(0,7) + "/" + String(center['lat']).substring(0,7);
+}
 
 function init(params) {
 	OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
@@ -19,12 +28,11 @@ function init(params) {
 		projection: "EPSG:900913",
 		maxResolution: "auto"
 	});
+
 	//podkladový mapy
 	var osm = new OpenLayers.Layer.OSM('OpenStreetMap');
 	map.addLayer(osm);
-
 	map.setCenter([params['lon'], params['lat']], params['zoom']);
-
 //rules
 	var blueTrack = new OpenLayers.Rule({
 		filter: new OpenLayers.Filter.Comparison({
@@ -71,10 +79,8 @@ function init(params) {
 		symbolizer: {strokeWidth: 3,
 			strokeColor: "black"}
 	});
-
 	var style = new OpenLayers.Style();
 	style.addRules([blueTrack, greenTrack, yellowTrack, redTrack, rest]);
-
 	//OSM DATA
 	var hikingWFS = new OpenLayers.Layer.Vector("Stezky - WFS", {
 		projection: new OpenLayers.Projection("EPSG:900913"),
@@ -96,7 +102,6 @@ function init(params) {
 		renderers: renderer
 	});
 	map.addLayer(hikingWFS);
-
 	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/" + workspace + "/wms", {
 		layers: workspace + ":tourist_tracks",
 		format: "image/png",
@@ -109,7 +114,6 @@ function init(params) {
 		maxScale: 0.000004
 	});
 	map.addLayer(hikingWMS);
-
 	if (host === 'toulavej.loc') {
 		var kempyWFS = new OpenLayers.Layer.Vector("Kempy - WFS", {
 			projection: new OpenLayers.Projection("EPSG:900913"),
@@ -139,12 +143,10 @@ function init(params) {
 		'featureselected': onFeatureSelect,
 		'featureunselected': onFeatureUnselect
 	});
-
 	hikingWFS.events.on({
 		'featureselected': onRouteSelect,
 		'featureunselected': onFeatureUnselect
 	});
-
 	// Přehledka
 	var options = {
 		numZoomLevels: 1,
@@ -173,15 +175,13 @@ function init(params) {
 				singleTile: true
 			})]
 	};
-
 	overview = new OpenLayers.Control.OverviewMap(options);
 	overview.isSuitableOverview = function() {
 		return true;
 	};
 	map.addControl(overview);
-
 	//map.addControl(new OpenLayers.Control.LayerSwitcher()); //layer switcher
-	map.addControl(new OpenLayers.Control.MousePosition()); //mouse position
+	map.addControl(new OpenLayers.Control.MousePosition({displayProjection:"EPSG:4326"})); //mouse position
 	map.addControl(new OpenLayers.Control.ScaleLine()); //scaleLine
 	map.addControl(new OpenLayers.Control.Scale()); //scale
 	map.addControl(new OpenLayers.Control.KeyboardDefaults());
@@ -204,8 +204,6 @@ function onFeatureSelect(evt) {
 	map.addPopup(popup, true);
 }
 
-
-
 function onFeatureUnselect(evt) {
 	feature = evt.feature;
 	if (feature.popup) {
@@ -220,29 +218,40 @@ function onRouteSelect(evt) {
 	feature = evt.feature;
 	var length = parseFloat(Math.round(feature.geometry.getLength()) / 1000).toFixed(2);
 	var color;
-	var tagy = feature.attributes.tags;
-	switch (feature.attributes.kct_color) {
-		case "kct_blue":
-			color = "Modrá";
-			break;
-		case "kct_green":
-			color = "Zelená";
-			break;
-		case "kct_red":
-			color = "Červená";
-			break;
-		case "kct_yellow":
-			color = "Žlutá";
-			break;
-		default:
-			"";
+	if (feature.attributes.kct_color !== null) {
+		switch (feature.attributes.kct_color) {
+			case "kct_blue":
+				color = "Modrá";
+				break;
+			case "kct_green":
+				color = "Zelená";
+				break;
+			case "kct_red":
+				color = "Červená";
+				break;
+			case "kct_yellow":
+				color = "Žlutá";
+				break;
+			default:
+				color = " ";
+		}
+	} else {
+		color = " ";
 	}
-
-
+	var name = feature.attributes.kct_name;
+	var destinations = feature.attributes.kct_destinations;
+	var text = "";
+	if (name != null) {
+		text += "<h4>" + name + "</h4>";
+	}
+	if (destinations != null) {
+		text += "Cíle: " + destinations + "<br>";
+	}
+	text += "Značka: " + color + "<br>";
+	text += "Délka: " + length + " km <br>";
 	popup = new OpenLayers.Popup.FramedCloud("featurePopup",
 			feature.geometry.getBounds().getCenterLonLat(),
-			new OpenLayers.Size(100, 100),
-			"<h4>" + color + " stezka" + "</h4>" + "délka trasy: " + length + " km" + "<br>" + tagy, null, true, onPopupClose);
+			new OpenLayers.Size(100, 100), text, null, true, onPopupClose);
 	feature.popup = popup;
 	popup.feature = feature;
 	map.addPopup(popup, true);

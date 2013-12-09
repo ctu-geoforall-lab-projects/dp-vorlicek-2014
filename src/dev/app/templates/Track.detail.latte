@@ -4,7 +4,7 @@
 
 <h1>Detail trasy</h1>
 <h2>{$track->name}</h2>
-<a n:href="#" class="btn btn-info">Zobrazit na mapě</a>
+<a n:href="Track:track $track->id" class="btn btn-info">Zobrazit na mapě</a>
 <table class="table table-striped">
 	<tr><td>Délka: </td><td>{$track->length} m </td></tr>
 	<tr><td>Přidáno: </td><td>{$track->created|date: "d.m.Y H:i"}</td></tr>

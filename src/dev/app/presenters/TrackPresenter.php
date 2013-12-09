@@ -25,7 +25,26 @@ class TrackPresenter extends BasePresenter
 		if ($visitingUser->isInRole('guest')) {
 			$this->flashMessage('Na požadovanou akci nemáte dostatečné oprávnění.', 'error');
 			$this->redirect('Homepage:');
+		} else {
+			$this->template->visitingUser = $this->getUser()->getIdentity();
+			$params = $this->getHttpRequest()->getQuery();
+			if ($params == null) {
+				$params = array('zoom' => 8,
+					'lon' => 1725452.10706,
+					'lat' => 6415161.17028
+				);
+			}
+			$this->template->params = $params;
 		}
+	}
+	
+	public function renderTrack($id)
+	{
+		if($id == null){
+			$this->flashMessage("Neplatný odkaz", "error");
+			$this->redirect("Track:default");
+		}
+		$this->template->id=$id;
 	}
 
 	public function renderDetail($id)
@@ -64,9 +83,9 @@ class TrackPresenter extends BasePresenter
 		$users = array(null => '- Nerozhoduje -');
 		$users = array_merge($users, $this->context->userModel->getTable()->fetchPairs('id', 'name'));
 
-		$grid->addColumn('id','ID')
+		$grid->addColumn('id', 'ID')
 				->setSortable()
-				->setFilter();		
+				->setFilter();
 		$grid->addColumn('name', 'Trasa')
 				->setSortable()
 				->setFilter();
@@ -107,11 +126,11 @@ class TrackPresenter extends BasePresenter
 	public function onAddTrackReviewFormSuccess(Form $form)
 	{
 		$data = $form->getValues();
-		$track = $this->context->createTrackModel()->get(array('id'=>$data->track_id));
+		$track = $this->context->createTrackModel()->get(array('id' => $data->track_id));
 		$data['created'] = 'NOW()';
-		$notice = array('user_id'=>$data->user_id,
-			'note' => 'Byl přidán článek k trase '.  $track->id .' - '. $track->name . '.',
-			'created' => 'now()');		
+		$notice = array('user_id' => $data->user_id,
+			'note' => 'Byl přidán článek k trase ' . $track->id . ' - ' . $track->name . '.',
+			'created' => 'now()');
 		$this->context->createTrackReviewModel()->insert($data);
 		$this->context->createNewsModel()->insert($notice);
 		$this->flashMessage('Článek byl přidán.', 'success');
