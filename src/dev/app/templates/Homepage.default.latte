@@ -1,16 +1,18 @@
 {block title}Homepage{/block}
 
 {block content}
+<h1>Vítejte!</h1>
+<p>Tyto stránky jsou součástí diplomové práce a stále jsou ve vývoji. O projektu a funkcionalitách stránky se můžete dozvědět více v sekci <a n:href="Map:about">O Projektu</a>. Případné chyby, které objevíte, můžete hlásit <a n:href="User:feedback">zde</a>.</p>
 
-<h1>Co se zde aktuálně děje</h1>
+<h3>Co se zde děje...</h3>
 {if $user->isInRole('admin')}
 	{control addNewsForm}
 {/if}
 
 {if count($news) != 0}
-	<table class="table table-bordered">
+	<table class="table">
 		<tr n:foreach="$news as $new">
-			<td><span class="pull-right">{$new->created|date: "d.m.Y H:i"}</span><br>
+			<td><span class="pull-left">{$new->created|date: "d.m.Y H:i"}</span><br>
 				<p>{$new->note}</p>
 			</td>
 		</tr>

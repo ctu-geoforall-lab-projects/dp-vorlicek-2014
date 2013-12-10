@@ -213,44 +213,48 @@
 <script src='{$basePath}/iD/data/introGraph.js'></script>
 
 <script type="text/javascript">
-	function initID(user){
+	function initID(user) {
 	iD.data.load(function() {
-		alert(user);
 		var oauth_c_k = "eIILOozCg0DOp2EiZoHe8e5VUICmimQZoiSLqInJ";
 		var oauth_sec = "I9AmzBQruaMazbxSy2wTUroQ1nKWroFJmfuCeMtm";
-
 		id = iD().assetPath('/iD/dist/');
 		d3.select('#id-container')
 				.call(id.ui());
 		d3.select('#about').insert('li', '.user-list')
 				.attr('class', 'source-switch')
 				.call(iD.ui.SourceSwitch(id)
-						.keys([
+					.keys([
 	{
 		"url": "http://www.openstreetmap.org",
-										"oauth_consumer_key": oauth_c_k,
-										"oauth_secret": oauth_sec
-									}/*,{
-									 "url": "http://api06.dev.openstreetmap.org",
-									 "oauth_consumer_key": "zwQZFivccHkLs3a8Rq5CoS412fE5aPCXDw9DZj7R",
-									 "oauth_secret": "aMnOOCwExO2XYtRVWJ1bI9QOdqh1cay2UgpbhA6p"
-									 }*/
+		"oauth_consumer_key": oauth_c_k,
+		"oauth_secret": oauth_sec
+	}/*,{
+		"url": "http://api06.dev.openstreetmap.org",
+		"oauth_consumer_key": "zwQZFivccHkLs3a8Rq5CoS412fE5aPCXDw9DZj7R",
+		"oauth_secret": "aMnOOCwExO2XYtRVWJ1bI9QOdqh1cay2UgpbhA6p"
+	}*/
 	]));
-		});
-	}
+			});
+		}
 </script>
 
 {/block}
 
 {block content}
+<script type="text/javascript">
+	$('html').on('contextmenu', function(e) {
+		return false;
+	});
+</script>
+
 </div>
 </div>
 
 <div id='id-container'></div>
 <script type="text/javascript">
-	 $(document).ready(function(){
+	$(document).ready(function() {
 		 initID({$visitingUser});
-	  });
+			 });
 </script>
 
 <div>

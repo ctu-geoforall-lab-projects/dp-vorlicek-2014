@@ -29,6 +29,11 @@ class MapPresenter extends BasePresenter
 	 */
 	public function renderEditMap()
 	{
+		$visitingUser = $this->getUser();
+		if ($visitingUser->isInRole('guest')) {
+			$this->flashMessage('Na požadovanou akci nemáte dostatečné oprávnění.', 'error');
+			$this->redirect('Homepage:');
+		}
 		$this->template->visitingUser =$this->getUser()->getIdentity()->osm_account;
 	}
 

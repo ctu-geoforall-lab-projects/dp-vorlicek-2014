@@ -3,6 +3,7 @@ var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
 renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
 var center;
 var zoom;
+
 function init(params) {
 	OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
 	var host, workspace;
@@ -38,9 +39,16 @@ function init(params) {
 	map.addLayer(hikingWMS);
 
 	var newTrack = new OpenLayers.Layer.Vector("Nová trasa", {
-		projection: new OpenLayers.Projection("EPSG:900913")
+		projection: new OpenLayers.Projection("EPSG:900913"),
+		style: {
+			strokeColor: 'rgb(0,0,0)',
+			strokeWidth: 3
+		}
 	});
 	map.addLayer(newTrack);
+
+	drawControls = {line: new OpenLayers.Control.DrawFeature(newTrack, OpenLayers.Handler.Path)};
+	map.addControl(drawControls['line']);
 
 // Přehledka
 	var options = {
@@ -76,9 +84,22 @@ function init(params) {
 	};
 	map.addControl(overview);
 //map.addControl(new OpenLayers.Control.LayerSwitcher()); //layer switcher
-	map.addControl(new OpenLayers.Control.MousePosition({displayProjection:"EPSG:4326"})); //mouse position
-			map.addControl(new OpenLayers.Control.ScaleLine()); //scaleLine
+	map.addControl(new OpenLayers.Control.MousePosition({displayProjection: "EPSG:4326"})); //mouse position
+	map.addControl(new OpenLayers.Control.ScaleLine()); //scaleLine
 	map.addControl(new OpenLayers.Control.Scale()); //scale
 	map.addControl(new OpenLayers.Control.KeyboardDefaults());
 	map.addControl(new OpenLayers.Control.Permalink());
+}
+
+
+function toggleControl(element) {
+	for (key in drawControls) {
+		var control = drawControls[key];
+		if (element.name === key && element.checked) {
+			control.activate();
+		} else {
+			control.deactivate();
+			document.getElementById('frmaddTrackForm-the_geom').innerHTML = 'toto je test zápisu.';
+		}
+	}
 }

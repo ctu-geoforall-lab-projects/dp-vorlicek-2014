@@ -1,4 +1,4 @@
-DROP TABLE pois;
+DROP TABLE IF EXISTS pois;
 
 CREATE TABLE pois AS 
         (SELECT "osm_id", "amenity", "historic", "leisure", "man_made", "name", "natural", "religion", "shop", "tags", "tourism", "way", "z_order"

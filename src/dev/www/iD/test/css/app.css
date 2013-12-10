@@ -24,10 +24,10 @@ span{
     padding-top: 100px;
 }
 
-.id-container {
+#id-container {
     position:fixed !important;
 	position:absolute;
-	top:55px;
+	top:50px;
 	right:1px;
 	bottom:1px;
 	left:1px;

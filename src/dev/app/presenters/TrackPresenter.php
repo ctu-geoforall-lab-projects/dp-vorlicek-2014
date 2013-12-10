@@ -10,7 +10,6 @@ use Nette\Application\UI\Form;
  */
 class TrackPresenter extends BasePresenter
 {
-
 	//-------RENDERS------------
 	//seznam tras
 	public function renderDefault()
@@ -44,7 +43,7 @@ class TrackPresenter extends BasePresenter
 			$this->flashMessage("Neplatný odkaz", "error");
 			$this->redirect("Track:default");
 		}
-		$this->template->id=$id;
+		$this->template->track=$this->context->createTrackModel()->get(array('id' => $id));
 	}
 
 	public function renderDetail($id)
@@ -71,7 +70,11 @@ class TrackPresenter extends BasePresenter
 	//přidání fotky
 	public function renderAddPhoto()
 	{
-		
+		$visitingUser = $this->getUser();
+		if ($visitingUser->isInRole('guest')) {
+			$this->flashMessage('Na požadovanou akci nemáte dostatečné oprávnění.', 'error');
+			$this->redirect('Homepage:');
+		}
 	}
 
 	//-------COMPONENTS-----------
@@ -83,18 +86,18 @@ class TrackPresenter extends BasePresenter
 		$users = array(null => '- Nerozhoduje -');
 		$users = array_merge($users, $this->context->userModel->getTable()->fetchPairs('id', 'name'));
 
-		$grid->addColumn('id', 'ID')
-				->setSortable()
-				->setFilter();
 		$grid->addColumn('name', 'Trasa')
 				->setSortable()
 				->setFilter();
-		$grid->addColumn('length', 'Délka')
-				->setSortable();
+		$grid->addColumn('length', 'Délka [km]')
+				->setSortable()
+				->setCustomRender(function($item){
+						return number_format($item->length/1000, 3, ',', ' ');
+					});
 		$grid->addColumn('created', 'Vytvořeno')
 				->setSortable()
 				->setCustomRender(function($item) {
-					return date("d.m.Y H:i", $item->created);
+					return $item->created->format("d.m.Y H:i");
 				});
 		$grid->addColumn('user_id', 'Přidal')
 				->setSortable()
@@ -136,5 +139,25 @@ class TrackPresenter extends BasePresenter
 		$this->flashMessage('Článek byl přidán.', 'success');
 		$this->redirect('Track:default');
 	}
-
+	
+	public function createComponentAddTrackForm(){
+		$visitingUser = $this->getUser();
+		$form = new Form();
+		$form->addHidden('user_id',$visitingUser->id);
+		$form->addText('name','Jméno trasy: ')
+				->setRequired('Vyplňte jméno.')
+				->setAttribute('class','input-medium');
+		$form->addTextArea('the_geom','Geometrie:')
+				->setRequired('Zadejte minimálně dva body.')
+				->setAttribute('class', 'inputTextAreaTrack');
+		$form->addTextArea('note','Cíle:')
+				->setAttribute('class', 'inputTextAreaTrack');		
+		$form->addSubmit('save', 'Uložit')->setAttribute('class', 'btn');
+		$form->onSuccess[] = $this->onAddTrackFormSuccess;
+		return $form;
+	}
+	
+	public function onAddTrackFormSuccess($form){
+		$data = $form->getValues();
+	}
 }

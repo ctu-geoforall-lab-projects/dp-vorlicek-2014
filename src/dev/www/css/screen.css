@@ -65,9 +65,18 @@ html.js .jshidden {
 	position:fixed !important;
 	position:absolute;
 	top:72px;
-	right:20%;
+	right:25%;
 	bottom:5px;
 	left:1px;
+}
+
+#mapTrackDetail{
+	position:fixed !important;
+	position:absolute;
+	top:150px;
+	right:20px;
+	height:50%;
+	width:50%;
 }
 
 .right-panel{
@@ -76,7 +85,7 @@ html.js .jshidden {
 	top:72px;
 	right:15px;
 	bottom:5px;
-	left:81%;
+	left:76%;
 }
 
 .textarea{
@@ -89,13 +98,14 @@ html.js .jshidden {
 	width: 50%;
 }
 
+.inputTextAreaTrack{
+	height: 75px;
+	width: 90%;
+}
+
 .footer-text{
 	position:fixed !important;
 	position:absolute;
 	bottom:5px;
 	right:5px;
-}
-
-#track{
-	
 }

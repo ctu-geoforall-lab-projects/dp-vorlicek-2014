@@ -1,4 +1,4 @@
-DROP TABLE tourist_tracks;
+DROP TABLE IF EXISTS tourist_tracks;
 
 CREATE TABLE tourist_tracks AS (
 SELECT	osm_id,

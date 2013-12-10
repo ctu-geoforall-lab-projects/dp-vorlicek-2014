@@ -11,16 +11,31 @@
 {block content}
 <script type="text/javascript">
 	$(document).ready(function() {
-		 init({$id});
+		 init({$track->id});
 			 });
 </script>
 
 <div class="pull-left">
-<div id="map-addTrack"></div>
+	<div id="map-addTrack"></div>
 </div>
 <div class="right-panel">
 	<h3>Informace o trase</h3>
-	<div id="track"></div>
+	<div id="track">
+		<h2>{$track->name}</h2>
+		<table class="table table-striped table-condensed">
+			<tr><td>Délka: </td><td>{if $track->length > 1000}
+					{$track->length/1000 |number:3:',':' '} km
+					{else}
+								{$track->length |number:0:',':' '} m
+					{/if}</td></tr>
+</td></tr>
+			<tr><td>Přidáno: </td><td>{$track->created|date: "d.m.Y H:i"}</td></tr>
+			<tr><td>Přidal: </td><td>{$track->ref('users','user_id')->name}</td></tr>
+			<tr><td>Poznámka: </td><td>{$track->note}</td></tr>
+		</table>
+		<a n:href="Track:detail $track->id" class="btn btn-info">Články k trase</a>
+	</div>
+
 </div>
 
 {/block}
