@@ -99,35 +99,27 @@
 	\listoffigures
 	\listoftables
 
-
 \newpage %%Samotný text
 %%Úvod
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
-	\paragraph{} Pro běžného uživatele internetu se různé mapové portály staly součástí zdrojů, ke kterým se obrací v případě, že shání nějaké informace. Od polohy obchodu po vyhledávání cesty na dovolenou. Mapové aplikace jsou běžnou součástí jiných webových aplikací, kde doplňují textové určení místa i vizuální složkou. Dost často se pro tyto účely používají \textit{Mapy.cz} nebo \textit{GoogleMaps}. Oba zmíněné zdroje poskytují API pro snadné a rychlé připojení do aplikace. Vývoj speciální mapy lze pomocí tohoto API také udělat, ovšem poskytuje mnohem méně možností než jiná řešení. 
-	\paragraph{} Obdobou \textit{GoogleMaps} jsou \textit{OpenStreetMap}, které jsou vytvářeny komunitou a na rozdíl od \textit{GoogleMaps} poskytují možnost data stáhnout. Tento přístup má své výhody i nevýhody. Na některých místech jsou mapy podrobnější a přesnější než komerční řešení, jinde zas nedosahují takových kvalit. Komerční mapy se udržují v intervalech daných poskytovatelem mapových podkladů. \textit{OpenStreetMap} naproti tomu poskytuje denní verze mapy.
-	\paragraph{} Pro potřeby turistů jsou k dispozici různě sofistikované webové aplikace poskytující rozdílné možnosti vyhledávání a užívání map. Každá z těchto aplikací má své přednosti. Součástí práce je i vytvoření výběru existujících aplikací a popsání jejich výhod, nevýhod a použitelnosti pro turistiku. Užitečné prvky aplikací mohou sloužit jako inspirace při tvorbě vlastní aplikace. 
-	\paragraph{} Hlavním tématem práce je samotná tvorba turistické mapové aplikace. K jejímu vytvoření bylo použito množství technologií. Ty budou popsány v kapitole \textit{Použité technologie}. Spolu s tím zde budou uvedeny i technologie, jejichž užití bylo zvažováno, ale které nakonec z různých důvodů použity nebyly.
-	\paragraph{}Nejobsáhlejší kapitolou je popis toho, co bylo vytvořeno a jak probíhala realizace. Hlavní požadavky, které by měla aplikace splňovat, jsou tyto:
+	\paragraph{} Internet se stal součástí životů velkého množství lidí a s jeho rozšířením i do mobilních telefonů je dostupný na mnoha místech, kde bychom ho před lety nečekaly. Díky tomu lze využívat webové aplikace ikdyž jsme na cestách. Když jsme v horách či se jen touláme přírodou, mohou nám mapové portály pomoci s plánováním další cesty. Ve srovnání s globálními navigačními satelitními systémy(GNSS) mají tyto portály jen omezené možnosti lokalizace. Webové aplikace mohou na druhou stranu poskytnout doplňující informace o zajímavých věcech, kolem kterých nás mohou naše kroky zavést. Mapové portály se pro nás staly nepostradatelným pomocníkem při plánování cest či výletů. 
+	\paragraph{} Stejně tak jako se liší služební cesta od výletu, liší se i potřeby uživatelů. Podnikatel cestující autem, který hledá nejkratší cestu z bodu A do bodu B, nepotřebuje pro vyhledávání turistické mapy. Ačkoliv je může použít, obsahují pro něj nadbytečná data a mohou být příliš podrobné. Kdyby turista hledal v automapě cestu z bodu A do B, pravděpodobně by ji našel, ale vedla by nejspíš po silnicích, což není úplně žádoucí. Každá mapa, ať už papírová či internetová, poskytuje různá data. Výhodou internetových mapových aplikací je mimo jiné i možnost zobrazení různých dat v potřebném měřítku v jednom mapovém okně.
+	\paragraph{} Portály poskytující mapové aplikace často vytvářejí svá API, aby jejich produkty mohly být použity i na jiných serverech. Díky tomu je možné narazit na mapy od Googlu či Seznamu i na jiných stránkách. Jedná se o nejsnažší způsob, jak prezentovat prostorová data, např. společnost zabývající se venkovní reklamou tak může prezentovat rozmístění nabízených billboardů. Tento přístup má ale svá omezení daná funkcemi, které poskytuje API, a většinou i počtem přístupů či velikostí poskytovaných dat. Navíc se většinou jedná o doprovodnou funkci. Výhodou ovšem je snadnější tvorba. Pokud je zobrazování prostorových dat hlavní náplní aplikace, je lepší použít specializovanou aplikaci. Vytvoření takové aplikace vyžaduje mnohem více času a znalostí. 
+	\paragraph{} Pro turistiku se dají použít oba zmíněné přístupy, ovšem jejich vhodnost závisí na zamýšlených funkcionalitách. Pro zobrazení možných cílů výletů lze využít API od některého z poskytovatelů. Z českých aplikací toto využívá Výletník.cz\ref{sec:vyletnik}. Pokud ale chceme prezentovat síť turistických stezek, vkládat vlastní trasy, editovat data atd., je lepší vytvořit vlastní systém, ve kterém budou požadované funkce dostupné.
+	\paragraph{} Na internetu lze dohledat několik turistických portálů. Aby v rámci této práce nebylo vytvářeno něco, co už existuje, byl vytvořen vzorek aplikací. Tento výběr posloužil k utvoření přehledu funkcionalit, výhod, nevýhod a originálních prvků webových map. Více je pospáno v kapitole Existující řešení\ref{sec:Ex_reseni}. Většina nalezených aplikací neumožňuje připojení k sociálním sítím. V současné době, kdy jsou sítě jako Facebook a Twitter velmi rozšířené, mohou být funkce jako přihlášení přes už existující účet či sdílení výletních tras s přáteli přidanou hodnotou aplikace. 
+	\paragraph{} Cíle této práce lze shrnout do několika hlavních bodů.
 		\begin{itemize}
-			\item aplikace je vyvořena nad daty OpenStreetMap,
-			\item aplikaci je možno propojit s účtem na sociální síti Facebook,
-			\item do aplikace je možno přidávat vlastní trasy a psát k nim informace,
-			\item do aplikace se dají vkládat fotky k zájmovým bodům a trasám a
-			\item aplikace umožňuje editovat data projektu OpenStreetMap.
+			\item Aplikace je postavena nad daty projektu OpenStreetMap.
+			\item Pro přihlášení do aplikace lze použít účet na sociální síti Facebook. Pod tímto účtem pak lze zveřejňovat mapy na Facebooku.
+			\item Přímo ze stránek projektu je možné editovat data projektu OpenStreetMap.
+			\item Registrovaní uživatelé mohou přidat vlastní trasy. Jakýkoliv přihlášený uživatel může tyto trasy okomentovat.
+			\item Registrovaní uživatelé mohou vkládat do mapy fotky.
 		\end{itemize}
-	K dalším požadavkům patří:
-		\begin{itemize}
-			\item přehledné a příjemné uživatelské rozhraní,
-			\item vyhledávání objektů a
-			\item vyhledávání cest, tzv. routování.
-		\end{itemize}
+	\paragraph{} Protože v mapách často něco hledáme, měla by vyvíjená mapa umožnit uživatelům vyhledávat objekty a cesty z bodu A do bodu B. Vyhledávání by mělo zahrnovat i pokročilé volby, kdy se dá vyhledat zájmový bod v určité vzdálenosti od plánované cesty či od jiného bodu. Tyto body mají až druhotný význam a budou realizovány pouze v případě, že hlavní cíle projektu budou splněny.
+	\paragraph{} Práce je strukturována do pěti kapitol. V první kapitole se text věnuje existujícím řešením. Prozkoumáním aplikací bylo zjištěno, jaké funkce jsou obvykle k dispozici a jaké nikoliv. Druhá kapitola je věnována  komunitnímu projektu OpenStreetMap. Bude zmíněna jeho historie, možnosti, kvalita a výhody a nevýhody. Protože aplikace používá data OpenStreetMap, budou v této kapitole popsána. Třetí kapitola je zaměřena na technologickou stránku problému. Množství programů a programovacích jazyků, které lze použít, je velké. Proto v této části budou popsány jen ty programy, jazyky a knihovny, které se použily či  jejichž použití bylo zvažováno. Ve čtvrté části práce je popsán vývoj a s ním spojené problémy. Též zde lze najít popsaný výsledný stav aplikace ke dni dokončení práce. V poslední, páté kapitole je zhodnocení celého projektu, odůvodnění koncového stavu a nápady na rozšíření, vylepšení či dodělání aplikace.
 	
-	\paragraph{} V závěru práce budou zhodnoceny výsledky tvorby -- co bylo realizováno, co se nepovedlo dokončit a co se nakonec vůbec nevytvářelo. Také zde budou navrženy možnosti dalšího rozšíření.
-
-
 \pagestyle{fancy}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% EXISTUJÍCÍ ŘEŠENÍ 	   %%%%%
@@ -136,12 +128,13 @@
 %%								     %%
 %									 %
 \chapter{Existující řešení}
-	\paragraph{} Pro shrnutí, co v současnosti poskytují mapové aplikace, byly zvoleny dvě v České republice nejužívanější aplikace (GoogleMaps a Mapy.cz), aplikace vytvořená pomocí API od Googlu (Výletník) a dvě aplikace postavené na Open StreetMap (Waymarked Trails a OpenTrackMap). Každá z těchto aplikací je něčím specifická, každá má své přednosti i své nedostatky. V této kapitole bude stručně pospáno, jak ta či ona aplikace vyniká a co jí zas chybí.
+	\label{sec:Ex_reseni}
+	\paragraph{} Z velkého množství různých mapových aplikací bylo vybráno šest zástupců, kteří mají alespoň nějakou spojitost se zpracovávaným tématem. Kromě dvou v České republice nejčastěji užívaných mapových portálů GoogleMaps a Mapy.cz byly pro hodnocení zvoleny tři aplikace postavené nad daty OpenStreetMap. Jedná se o české aplikace OpenTrackMap a MTB mapa Evropy. Trojici uzavírá web Waymarked Trails. Poslední aplikací je už v úvodu zmiňovaný Výletník.cz, jehož mapová aplikace je vytvořena pomocí Google API. Každá z těchto aplikací je něčím specifická, má své výhody i nedostatky. 
 	\section{Google Mapy}
 		\url{http://www.google.com/maps/preview}
-		\paragraph{}Google Mapy jsou mapovou aplikací firmy Google. Jejich API je volně k použití, takže ji mnoho jiných aplikací používá. Google mapy neposkytují informace o turistických a cykloturistických stezká. Na druhou stranu mají dobré vyhledávání míst a cest. GoogleMaps též umožňují import vlastních cest. 
-		\paragraph{}Důvodem, proč jsou Google mapy začleněné v tomto výběru, je aplikace Panoramio, která umožňuje importovat do mapy fotografie. Ty lze přiřadit k místům a je možné je i komentovat. Ikdyž aplikace Mapy.cz  také poskytují tuto funkcionalitu, je třeba mít na paměti, že Google s ní přišel první.
-		\paragraph{}Celkově jsou Google Mapy vhodnější pro navigaci ve městě a na silnicích než v přírodě.
+		\paragraph{} V globálním měřítku asi nejužívanější mapovou aplikací jsou Google Mapy spuštěné v roce 2005. Ve stejném roce společnost Google uvedla k mapám i API pro jejich použití na webech třetích stran. Podle typu užití se jedná buď o placenou či volně dostupnou službu. Google má k mapám velké množství doplňkových funkcí -- od vyhledávání míst přes vyhledávání cest autem, na kole či pěšky po Street View, zobrazení 3D modelů budov a fotek z momentálně zobrazené oblasti. Též lze importovata svá data a sdílet je s jinými uživateli.
+		\paragraph{} Google Mapy sice jsou užitečným pomocníkem při plánování cest a zobrazení prostorových dat, ovšem jejich užití je pro turisty dosti omezené. Aplikace nedisponuje údaji o turistických stezkách. Důvodem, proč se mapy od Googlu dostaly do tohoto výběru, je aplikace Panoramio, která je na s mapami provázána. Jedná se vrstvu lokalizovaných fotografií, které uživatelé nahrály do aplikace. Možnost nahrát fotky do mapy sice poskytují i  Mapy.cz, ovšem aplikace Panoramio je starší -- vznikla v roce 2005. Původně nebyla vlastněna Googlem, ten ji získal v roce 2007 a v roce 2008 byla propojena s  mapovou aplikací. 
+		\paragraph{}  Google vytvořil pro své mapy i nové zobrazení, které vychází z Mercatorova zobrazení. Pro zobrazení jsou použity vzorce pro Mercatorovo zobrazení na kouli, ale objekty mají  souřadnice v systému WGS 84, což vede k tomu, zobrazení není konformní.\label{google_mercator} Toto zobrazení má v označení EPSG:900913.
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -159,19 +152,28 @@
 
 	\section{Mapy.cz}
 		\url{http://mapy.cz/}
-		\paragraph{} Česká mapová aplikace, která má mnoho příznivců a která je schopná konkurovat vyhledávacímu monopolu Googlu. Mapy.cz mají oproti Googlu výhodu -- zaměřují se pouze na Českou republiku. Díky tomu poskytují velké množství kvalitních mapových podkladů s velkou škálou funkcí. Od jednoduchého přidávání bodů a jejich sdílení přes vyhledávání k měřícím funkcím a vyhledávání tras. V závislosti na typu dopravního prostředku používá k vyhledávání i turistické značky a lesní cesty. Taky je možné vyhledanou cestu uložit či zobrazit její výškový profil. Mapy.cz také umožňují nahrávání fotografií a jejich komentování.
+		\paragraph{} Ikdyž je Google se svými mapami světově nejužívanější, v českých podmínkách mu směle konkuruje mapová aplikace firmy Seznam. Mapy.cz mají oproti Googlu výhodu domácího prostředí a zaměření zejména na Českou republiku, což v důsledku znamená rychlejší aktualizaci mapových podkladů. Mapy.cz poskytují tři různé podkladové mapy (leteckou, obecnou a turistickou) a různé tématické vrstvy (turistické trasy, cyklotrasy, dopravní info, zastávky MHD a veřejné dopravy aj.). 
+		\paragraph{} Na Mapách.cz mohou řidiči, cyklisti a chodci vyhledat trasy z bodu A do bodu B přes libovolný počet mezilehlých bodů. V závislosti na zvoleném dopravním prostředku bere vyhledávač v potaz i lesní cesty a turistické trasy. Ve stejné záložce lze najít i ruční měření vzdálenosti. Vyhledaná či ručně zadané cesta může být exportována. Též lze zobrazit její výškový profil. Do mapy lze přidat vlastní body a ty sdílet s ostatními uživateli pomocí url adresy. Stejně jako Google poskytuje i Seznam možnost vyhledávat místa podle souřadnic, ulice či názvu objektu. Mapy.cz podporují vkládání fotografií a jejich komentování, ale narozdíl od Googlu to není řešené jinou aplikací, ale je to přímo součástí aplikace.
 
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=11cm]{obrazky/vyletnik.png}
+				\includegraphics[width=12cm]{obrazky/vyletnik.png}
 				\caption{Mapová aplikace portálu Výletník}
 			\end{center}
 		\end{figure}
 
 	\section{Výletník}
+		\label{sec:vyletnik}
 		\url{http://mapy.vyletnik.cz/}
-		\paragraph{} Portál Výletník poskytuje informace o turistických a cykloturistických stezkách a má i mapovou aplikaci s bodovou vrstvou možných turistických cílů, kterých je velké množství. celá aplikace je vytvořena za pomoci Google API. Díky tomu nejsou v mapě vidět turistické trasy, což mapě hodně ubírá. Na druhou stranu poskytuje možnosti vyhledat ubytování a vyhledat zájmové body v okolí. Přidanou hodnotou této aplikace je množství tipů na výlet a seznam aktuálně konaných akcí.
-	
+		\paragraph{} Turistický portál Výletník.cz poskytuje informace o možných cílech výletů, o službách spojených s turistikou (např. restaurace či ubytování)  či o zajímavých akcích. díky těmto datům je portál dobrým zdrojem nápadů, pokud připravujeme výlet. Registrovaným uživatelům poskytuje portál informace o akcích probíhajících následující víkend. Též uživatelům umožňuje vkládat vlastní fotografie, místa a příspěvky. Při registraci je inzerována možnost registrace pomocí Facebooku, ale nikde na to nebyl nalezen odkaz. Nakonec se ukázalo, že Adblock, doplněk prohlížeče Firefox blokující reklamy, vyhodnotil přihlašovací nástroj pro Facebook jako reklamu a podle toho s ním zacházel. Po vypnutí Adblocku propojení s Facebookem bylo viditelné. Na druhou stranu se objevilo množství reklam, které kazí jinak dobrý pocit z webu.
+		\paragraph{} Pro mapovou aplikaci tohoto portálu platí to, co pro celý web -- všudypřítomné reklamy snižují přívětivost aplikace. Na několika místech se projevilo špatné nastylování aplikace, kdy se prvky překrývaly. Nejzřetelněji je to vidět na možnosti přepínání map. V nápovědě je napsáno, že aplikace poskytuje normální, satelitní a hybridní podkladovou mapu, ale možnost přepínání těchto map je překryta rozbalovacími seznamy zájmových bodů. Těch je k dispozici velké množství a jsou rozděleny na dvě základní skupiny -- \textit{turistické cíle} a \textit{ubytování a služby}. Obě skupiny obsahují další možnosti, ze kterých lze zvolit jednu či více položek. Výletník.cz umožňuje uživatelům vyhledávat objekty ve třech kategoriích:
+			\begin{itemize}
+				\item rejstřík míst,
+				\item služby,
+				\item turistické informace.
+			\end{itemize}
+Vyhledávat lze i v určitém okruhu od zvoleného bodu.
+		\paragraph{} Ačkoliv tato aplikace poskytu solidní informace, má jistá omezení vyplívající z toho, že je vytvořena pomocí GoogleMaps API. Jednou z nevýhod jsou chybějící turistické a cykloturistické trasy. Google mapy tyto informace neposkytují a aplikace samotná je z jiných zdrojů nezískává, čímž vzniká nutnost pro užití dalších portálů pro plánování výletu.	
 	
 	\section{Waymarked Trails}
 		\url{http://waymarkedtrails.org/cs/}
@@ -179,7 +181,7 @@
 
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=7.5cm]{obrazky/waymarkedTrails.png}
+				\includegraphics[width=8cm]{obrazky/waymarkedTrails.png}
 				\caption{Hiking Map na Waymarked Trails}
 			\end{center}
 		\end{figure}
@@ -192,15 +194,50 @@
      		 \item ostatní -- naučné stezky, odbočky k hradům, zříceninám, vyhlídkám, přírodním zajímavostem apod.
 	\end{itemize}
   Mapa také poskytuje možnost vyhledání místa podle názvu a vytvoření permanentního odkazu na mapový výřez. Mapa neposkytuje vyhledávání tras -- na to je potřeba použít jiná existující řešení, např. OpenRouteService (\url{http://www.openrouteservice.org/}), které kromě vyhledání trasy pro určitý typ dopravy (autem, na kole, pěšky) poskytuje i její export, výškový profil, vyhledání zájmových bodů v blízkosti.
+
  	\section{OpenTrackMap}
 		\url{http://opentrackmap.cz/}
-		\paragraph{} Posledním z výběru je český projekt OpenTrackMap Ing. Radka Bartoně z roku 2009. Motivací pro tento projekt bylo postupný nárůst užívání GPS přístrojů v turistice a nutnost map pro ně. V té době existující mapy nebylo možno použít z důvodu licenčních či technických omezení\cite{OTM}. Projekt využívá dat OpenStreetMap, která jsou uložena v PostgreSQL databázi a vykreslovány pomocí softwaru Mapnik. Aplikace poskytuje pouze možnost vykreslení turistických tras, vrstevnic a stínování terénu. V současné době mapa není aktuální.
+		\paragraph{} OpenTrackMap je projekt Ing. Radka Bartoně. Projekt běží na serveru geo102, který spravuje katedra Geomatiky na Fakultě stavební ČVUT v Praze. Tvorba této aplikace byla motivována snahou poskytnout mapy pro aplikaci TangoGPS běžící na platformě Openmoko\cite{OTM}. Již existující mapy nemohly být z licenčních důvodů či kvůli různým technickým omezením použity. Data OpenStreetMap mohou být volně použity, tudíž zde odpadá problém s licencí. Data jsou uložena v databázi PostgraSQL a pro jejich zobrazení je použit software Mapnik. Ačkoliv mapy v současné době nejsou aktualizovány, jejich přínos je ve vytvoření značkového klíče pro tras a objektů v mapě. 
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/otm.png}
 				\caption{OpenTrackMap}
 			\end{center}
 		\end{figure}
+
+		\paragraph{}  Aplikace poskytuje vrstevnice, stínování terénu, podkladovou mapu a turistické trasy. Vzhledem k tomu, že mapy byly určeny pro zobrazení v mobilních zařízeních, bylo zapotřebí snížit množství dat přenášených k uživateli. Toho bylo dosaženo pomocí dlaždic. Původní testování odhalilo, že pro malá měřítka je vykreslování pomalejší, protože je pro velkou oblast vykreslováno stínování kopců. Od určitého stupně přiblížení se rychlost vykreslení mírně zvýšila, protože byla vykreslována menší plocha a protože klesl počet vektorových prvků.
+
+	\section{MTB mapa Evropy}
+		\url{http://mtbmap.cz/}
+		\paragraph{} Projekt Martina Tesaře MTB mapa Evropy prezentuje stezky pro jízdu na horském kole byl původně omezen pouze na oblast České republiky a přilehlého okolí, ale časem byl rozšířen na mapu Evropy. Mapa využívá značkový klíč projektu OpenTrackMap, který je popsán na OpenStreetMap Wiki\cite{otm_klic}, a kromě cyklistických stezek zobrazuje i turistické cesty. Aktuálnost mapy je udržována týdenními aktualizacemi dat OpenStreetMap. Data pochází ze serveru \textit{geofabrik.de}, který poskytuje možnost stažení dat OpenStreetMap pro jednotlivé země, kontinenty i celý svět.
+		\paragraph{} Apliakce poskytuje velké množství funkcí, které jsou dostupné všem. K dispozici je vyhledávání pomocí služby OpenStreetMap Nominatim\cite{nominatim}. Dále lze exportovat data v souřadnicemi daném výřezu. Zde lze nastavit stupeň přiblížení, velikost výsledku v pixelech a zobrazené mapové prvky -- tiráž. název mapy, trasu, legendu a měřítko. Kromě vyhledávání míst  pomocí Nominatim je k dispozici i vyhledání cesty podle množství vstupních parametrů, které zahrnují například typ cesty, druh povrchu nebo obtížnost. Tyto parametry jde uložit na disk a později je znovu použít pro vyhledání stejné cesty. Lze též vložit vlastní cestu v souboru GPX nebo ručně a zobrazit k ní výškový profil. Taktop vytvořené stezky se zobrazí v mapě, ale neukládají se pro pozdější zobrazení. Aplikace umožňuje vygenerovat permanentní odkaz na zobrazenou pozici či přesměruje uživatele na OpenStreetMap a otevře editor iD.
+		\paragraph{} Tento projekt má svoji stránku i na OpenStreetMap Wiki, kde jsou popsány úkoly, kterými by měl směřovat další vývoj aplikace. Mapa je vytvořena pomocí javascriptové knihovny Leaflet. K dispozici jsou 4 podkladové mapy (MTB mapa, OSM Mapnik, OpenCycleMap, Hike \& Bike Map), které jsou zobrazeny v EPSG:3857. Toto zobrazení je ekvivalentní s EPSG:900913, které na svých mapách používá Google. Jak bylo uvedeno výše\ref{google_mercator}, toto zobrazení není přesně konformní, ovšem v tiráži je uvedeno \uv{Zobrazení: Konformní válcové - mercatorovo}.
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/mtb.png}
+				\caption{MTB mapa Evropy}
+			\end{center}
+		\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% OPEN STREET MAP        %%%%%
+%%%%						      %%%%
+%%%							  %%%
+%%								     %%
+%									 %
+\chapter{OpenStreetMap}
+	\section{O Projektu}
+		\paragraph{} Tato práce je navázána na projekt OpenStreetMap a toto jméno se zde velice často objevuje. Z toho důvodu by bylo vhodné říci o co se jedná, jakou má projekt historii, jak v současné době vypadá a jaké má využití. OpenStreetMap je svobodná mapa, kterou vytváří a spravují její uživatelé. Narozdíl od jiných mapových děl OpenStreetMap poskytují uživatelům možnost stáhnout si data a volně s nimi nakládat. Díky možnosti svobodného nakládání s daty vznikají různá mapová díla dle potřeb uživatelů. Mapa musí mít uvedeno autorství OpenStreetMap contributors a musí být šířena pod stejnou licencí jako samotná OpenStreetMap.
+		\subsection{Historie}	 %od vzniku po současnost
+			\paragraph{}Projekt vznikl ve Velké Británii v roce 2004. O jeho základy se postaral Steve Coast, který se nechal inspirovat jiným komunitou řízeným projektem -- svobodnou encyklopedií Wikipedie. O dva roky později vznikla OpenStreetMap Foundation, která projekt podporuje. V průběhu let povolily některé společnosti používat své mapové podklady pro tvorbu OpenStreetMap. V roce 2006 to byl Yahoo. O rok později Automotive Navigation Data poskytla mapy silniční sítě Nizozemska, Indie a Činy. 
+			\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce následujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}. 
+		\subsection{Komunita} %rychlost mapování, aktualizace, zájmové oblasti
+			\paragraph{} 
+	\section{Data}
+	\section{Editory} %iD, Osmosis, Mapnik a další
+	\section{Využití}  %napojení na další stránky
+	
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% POUŽITÉ TECHNOLOGIE%%%%%
@@ -210,7 +247,6 @@
 %									 %
 \chapter{Použité technologie}
 	\paragraph{} Pro potřeby této práce byly užité technologie rozděleny na servery, které zpracovávají data, databázi a její doplňky a užité programovací jazyky. V této kapitole budou všechny postupně popsány.
-
 %%%Servery
 	\section{Servery}
 		\paragraph{} Serverem rozumíme aplikaci běžící na počítači, která zpracovává dotazy a posílá odpovědi. Podle toho, jaké požadavky daný server zpracovává, mluvíme o webovém (web server), poštotovním (mail server), databázovém (database server), mapovém (map server) a jichých serverech. Protože se jedná o programy, tak je možné, aby na jednom stroji běželo velde sebe i více serverů. Pro potřeby této datové aplikace byl využit webový server Apache HTTP Server\cite{apache} a mapový server Geoserver.
@@ -320,27 +356,61 @@
 %%								     %%
 %									 %
 	\chapter{Zhodnocení}
-		\paragraph{}
+		\section{Budoucí rozšíření}
+
+		\section{Známé problémy}
+
+		\section{MTB mapa Evropy}
+			\paragraph{} V sekci Existující řešení\ref{sec:Ex_reseni} je popisována aplikace MTB mapa Evropy, která se věnuje cykloturistice a turistice. Ačkoliv aplikace zobrazují stejná data a jsou určeny pro dosti podobnou skupinu lidí, hlavní téma této práce leží v jiné oblasti než je tvorba samotné mapy. Projekt Toulavej je zaměřen hlavně na propojení se sociální sítí a s editorem iD. Stránky  nabízí možnost registrace, která poskytuje další výhody, jako je editace dat, přidávání vlastních cest a fotografií. Tyto funkce odlišují obě aplikace a nedělají z projektu Toulavej pouze další turistickou mapu. Aplikace MTB mapa Evropy byla objevena před odevzdáním této práce, a proto uvedené funkce nemohly být tvořeny jako doplňky pro stávající mapy.
+
+
+
+%% Seznam zkratek
+\newpage 
+\chapter*{Seznam zkratek}
+\addcontentsline{toc}{chapter}{Seznam zkratek}
+	\begin{itemize}
+		\item API -- Rozhraní pro programování aplikací (Application programming interface)
+		\item GNSS -- Globální navigační satelitní systém (Global navigation satellite system)
+		\item SLD -- Styled layer descriptor
+		\item OSM -- OpenStreetMap
+		\item OTM -- OpenTrackMap
+		\item WFS -- Web feature service
+		\item WFS-T -- Web feature service -- Transactional
+		\item WMS -- Web map service
+
+	\end{itemize}
+
+
 
 %%Užitá literatura
 \newpage
 \addcontentsline{toc}{chapter}{Reference}
 \begin{thebibliography}{50}
-	\bibitem{bootstrap}Bootstrap. [cit. 21.10.2013] Dostupné z: \url{http://getbootstrap.com}.
-	\bibitem{nette20login}MAREK, Jakub: Přihlašování v Nette Frameworku. [cit. 21.10.2013]. Dostupné z: \url{http://github.com/janmarek/nette20login}
-	\bibitem{FbTools} ŠULC, Milan: FbTools. [cit. 21.10.2013]. Dostupné z: \url{http://addons.nette.org/cs/fb-tools}.
-	\bibitem{FbApiPrava} Facebook developers - Login Reference. [cit. 21.10.2013]. Dostupné z: \url{https://developers.facebook.com/docs/reference/login/#permissions}.
-	\bibitem{Leaflet}	Leaflet - A JavaScript Library for Mobile-Friendly Maps. [cit. 29.10.2013]. Dostupné z: \url{http://leafletjs.com/}
-	\bibitem{PostgreSQL} PostgreSQL: The world's most advanced open source database. [cit. 8.11.2013]. Dostupné z: \url{http://www.postgresql.org/}.
-	\bibitem{Waymarked} Waymarked Trails.  [cit. 12.11.2013] . Dostupné z: \url{http://www.waymarkedtrails.org/cs/}
+	\bibitem{bootstrap}Bootstrap [online].  [cit. 2013-10-29]. Dostupné z: \url{http://getbootstrap.com}.
+	\bibitem{nette20login}MAREK, Jakub: Přihlašování v Nette Frameworku [online].  [cit. 2013-10-29]. Dostupné z: \url{http://github.com/janmarek/nette20login}
+	\bibitem{FbTools} ŠULC, Milan: FbTools [online].  [cit. 2013-10-29]. Dostupné z: \url{http://addons.nette.org/cs/fb-tools}.
+	\bibitem{FbApiPrava} Facebook developers - Login Reference [online]. [cit. 2013-10-21]. Dostupné z: \url{https://developers.facebook.com/docs/reference/login/#permissions}.
+	\bibitem{Leaflet}	Leaflet - A JavaScript Library for Mobile-Friendly Maps [online]. [cit. 2013-10-29]. Dostupné z: \url{http://leafletjs.com/}
+	\bibitem{PostgreSQL} PostgreSQL: The world's most advanced open source database [online]. [cit. 2013-11-08]. Dostupné z: \url{http://www.postgresql.org/}.
+	\bibitem{Waymarked} Waymarked Trails [online].  [cit. 2013-11-12]. Dostupné z: \url{http://www.waymarkedtrails.org/cs/}
 	\bibitem{OTM} BARTOŇ, Radek. Custom OpenStreetMap Rendering: OpenTrackMap Experience. In: [online]. 2009. vyd. [cit. 2013-11-12]. Dostupné z: \url{http://geoinformatics.fsv.cvut.cz/gwiki/Custom_OpenStreetMap_Rendering_-_OpenTrackMap_Experience}
-	\bibitem{apache}The Apache Software Foundation: Apache - HTTP Server project. [cit. 12.11.2013]. Dostupné z: \url{http://httpd.apache.org/}
-	\bibitem{wiki-Apache}Wikipedia:Appache HTTP Server. [cit. 12.11.2013]. Dostupné z: \url{http://en.wikipedia.org/wiki/Apache_HTTP_Server}
-	\bibitem{geoserver}Geoserver. [cit. 13.11.2013]. Dostupné z: \url{http://geoserver.org/display/GEOS/Welcome}
+	\bibitem{apache}The Apache Software Foundation: Apache - HTTP Server project [online]. [cit. 2013-11-12]. Dostupné z: \url{http://httpd.apache.org/}
+	\bibitem{wiki-Apache}Wikipedia:Apache HTTP Server [online]. [cit. 2013-11-12]. Dostupné z: \url{http://en.wikipedia.org/wiki/Apache_HTTP_Server}
+	\bibitem{geoserver}Geoserver [online]. [cit. 2013-11-13]. Dostupné z: \url{http://geoserver.org/display/GEOS/Welcome}
 	\bibitem{vorlicek}VORLÍČEK, Chrudoš: Geoportály a mapové servery v České republice, bakalářská práce. Praha: České vysoké učení technické v Praze, 2012.
-	\bibitem{atlas}GeoPublishing: AtlasStyler SLD editor. [cit. 13.11.2013]. Dostupné z: \url{http://en.geopublishing.org/AtlasStyler}
-	\bibitem{qgis}QGIS. [cit. 13.11.2013]. Dostupné z: \url{http://www.qgis.org/en/site/}
-	\bibitem{postgresql} PostgreSQL. [cit. 13.11.2013]. Dostupné z: \url{http://www.postgresql.org/}.
+	\bibitem{atlas}GeoPublishing: AtlasStyler SLD editor [online]. [cit. 2013-11-13]. Dostupné z: \url{http://en.geopublishing.org/AtlasStyler}
+	\bibitem{qgis}QGIS [online]. [cit. 2013-11-13]. Dostupné z: \url{http://www.qgis.org/en/site/}
+	\bibitem{postgresql} PostgreSQL [online]. [cit. 13.11.2013]. Dostupné z: \url{http://www.postgresql.org/}.
+	\bibitem{mtb_map-wiki}OpenStreetMap Wiki contributors:  MTB map Europe. In OpenStreetMap Wiki [online]. [cit. 2013-12-11]. Dostupné z:\url{http://wiki.openstreetmap.org/wiki/MTB_map_Europe}.
+	\bibitem{openmoko}Openmoko [online]. [cit. 12.12.2013]. Dostupné z: \url{http://geoinformatics.fsv.cvut.cz/gwiki/Custom_OpenStreetMap_Rendering_-_OpenTrackMap_Experience}
+	\bibitem{otm_klic} OpenStreetMap Wiki contributors: WIKIProject Czech Republic/OTM značkový klíč. In: OpenStreetMap Wiki [online]. [cit. 2013-12-12]. Dostupné z: 	\url{http://wiki.openstreetmap.org/wiki/WikiProject_Czech_Republic/OTM_zna%C4%8Dkov%C3%BD_kl%C3%AD%C4%8D}
+	\bibitem{google-wiki}Google Maps. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-12]. Dostupné z: \url{http://en.wikipedia.org/wiki/Google_Maps}
+	\bibitem{geofabrik}Geofabrik [online]. [cit. 2013-12-14] Dostupné z: \url{http://download.geofabrik.de/}.
+	\bibitem{nominatim}OpenStreetMap Wiki contributors: Nominatim. In OpenStreetMap Wiki [online]. [cit. 2013-12-14]. Dostupné z: \url{http://wiki.openstreetmap.org/wiki/Nominatim}
+	\bibitem{neis}NEIS, Pascal. The OpenStreetMap Contributors Map aka Who’s around me?. In: [online]. [cit. 2013-12-14]. Dostupné z: \url{http://neis-one.org/2013/01/oooc/}
+	\bibitem{osm_wikipedia_cs}OpenStreetMap. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-15]. Dostupné z: \url{http://cs.wikipedia.org/wiki/OpenStreetMap}
+	\bibitem{osm_wikipedia_en}OpenStreetMap. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-15]. Dostupné z: \url{http://en.wikipedia.org/wiki/OpenStreetMap}
 \end{thebibliography}
 
 \end{document}
