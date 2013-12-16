@@ -332,8 +332,8 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
-	\section{Využití}  %napojení na další stránky
-		\paragraph{} Data OpenStreetMap jsou široce využívány k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Ačkoliv tyto produkty ocení většina uživatelů, dle mého leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
+	\section{Využití}
+		\paragraph{} Data OpenStreetMap jsou široce využívány k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Řada velkých projektů, např. Foursquare, užívá nebo přechází na mapy OpenStreetMap, protože jsou pro ně výhodnější. Ačkoliv tyto produkty ocení většina uživatelů, dle mého leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
 		\paragraph{}V momentě, kdy nějakou část světa zasáhne živelná katastrofa, mohou dobrovolníci z řad uživatelů OpenStreetMap z aktuálních družicových snímků vytvořit novou aktuální mapu postižené oblasti. Toto bylo využito třeba v roce 2010, kdy bylo Haiti zasaženo zemětřesením, a v současnosti probíhá nové mapování po tajfunu na Filipínách z listopadu 2013. Během prvního týdne od tajfunu bylo editováno víc jak 2 000 000 objektů a do obnovy se zapojilo přes 900 uživatelů. K 11.prosinci 2013 bylo za přispění více jak 1 600 uživatelů zmapováno přes 4,5 milionu objektů\cite{wiki_tajfun}.
 		\paragraph{} Aby bylo zajištěno efektivní tvorba, produkce a distribuce map pro postižené oblasti, byla v lednu 2009 vytvořena skupina Humanitarian OpenStreetMap Team\cite{wiki_hot}, která tuto činnost řídí.
 	
@@ -345,50 +345,72 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 %%								     %%
 %									 %
 \chapter{Použité technologie}
-	\paragraph{} Pro potřeby této práce byly užité technologie rozděleny na servery, které zpracovávají data, databázi a její doplňky a užité programovací jazyky. V této kapitole budou všechny postupně popsány.
 %%%Servery
-	\section{Servery}
-		\paragraph{} Serverem rozumíme aplikaci běžící na počítači, která zpracovává dotazy a posílá odpovědi. Podle toho, jaké požadavky daný server zpracovává, mluvíme o webovém (web server), poštotovním (mail server), databázovém (database server), mapovém (map server) a jichých serverech. Protože se jedná o programy, tak je možné, aby na jednom stroji běželo velde sebe i více serverů. Pro potřeby této datové aplikace byl využit webový server Apache HTTP Server\cite{apache} a mapový server Geoserver.
-		\subsection{Apache HTTP Server}
-			\paragraph{} Jak už bylo řečeno v předchozím odstavci, Apache HTTP Server (častěji označován pouze jako Apache) je webový server. Jeho funkce spočívá v přijímání požadavků, jejich zpracování a odeslání odpovědi. Zpracováním se rozumí např. odeslání statické webové stránky nebo předání požadavku dalším aplikacím. Samotná komunikace je zajištěna přes hypertextový přenosový protokol (HTTP -- HyperText Transfer Protokol) Množství možných modulů značně rozšiřují možnosti samotného jádra programu. Příkladem modulu může být mod\_rewrite, který slouží k přepisování URL adresy, mod\_php rozšiřující Apache o podporu PHP nebo mod\_ssl pro šifrované spojení. Tento výčet je jen malou částí množiny.
-			\paragraph{} Apache je open--source free--to--use software, což znamená, že kdokoliv ho může bezplatně užívat, prohlížet zdrojové kódy a upravovat je. Apache je také multiplatformní software s podporou všech hlavních operačních systémů. Tato strategie je výhodná a Apache je díky ní pravděpodobně nejrozšířenějším webovým serverem. Dle odhadů z června 2013 obsluhovaly servery s Apachem  54,2\% všech aktivních vebových stránek\cite{wiki-Apache}. Ikdyž je Apache vyvíjen jako open--source, jeho rychlost je srovnatelná s rychlostí výkoných komerčních serverů. 
-			\paragraph{} Důvodem pro užití Apache byly přednosti vyjmenované výše -- zejména rychlost a to, že se jedná o svobodný software. Jeho nastavení se sice provádí pomocí textového editoru, to ovšem není taková překážka, protože webové stránky projektu poskytují dostatečnou dokumentaci. V případě problémů není složité dohledat řešení na internetových fórech věnovaných právě serverům.
+	\section{Apache HTTP Server}
+		\paragraph{} V momentě, kdy je vyvíjena webová aplikace, je nutné mít aplikaci, která by zpracovávala dotazy a posílala odpovědi. Dotazem rozumíme i žádost o přesměrování na jinou stránku. Takovémuto softwaru se říká webový server nebo server. Funkce serveru mohou být různé. Velice často obsluhuje webové stránky, ale může sloužit ke skladování dat (datový server) nebo k hraní her (herní server). Při pořizování softwaru je na výběr z několika produktů. Nejčastěji užívaným je Apache HTTP Server, poté je IIS od Microsoftu, nginx od NGINX, Inc. a GWS od Googlu. Protože při vývoji aplikace byl použit server Apache HTTP Server, budou následující řádky věnovány jemu.
+		\paragraph{} Apache HTTP Server častěji bývá označován pouze jako Apache. Jeho funkce spočívá v přijímání požadavků z webové stránky, jejich zpracování a vrácení odpovědi. Zpracováním se rozumí např. odeslání statické webové stránky nebo předání požadavku dalším aplikacím. Samotná komunikace je zajištěna přes hypertextový přenosový protokol (HTTP -- HyperText Transfer Protokol). Apache má velké množství modulů, které mohou a nemusí být spuštěny. Pokud jsou zapnuty, rozšiřují možnosti samotného jádra. Při vývoji aplikací je ovšem potřeba, aby na vývojovém a produkčním serveru byly povoleny stejné moduly. V opačném případě může docházet k problémům s funkčností. Běžně užívané moduly jsou např. mod\_rewrite, který slouží k přepisování URL adresy, mod\_php přidávající Apachi podporu pro zpracování PHP skriptů nebo mod\_ssl pro šifrovaná spojení. Ve srovnání s celkovým počtem modulů je toto jen velmi malý vzorek.
+		
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=6cm]{obrazky/apacheLogo.png}
+				\caption{Logo projektu Apache HTTP Server}
+			\end{center}
+		\end{figure}
 
-		\subsection{Geoserver}
-			\paragraph{} Stejně jako webový server zpracovává dotazy na webové stránky, mapový server zpracovává dotazy na prostorové informace. Dotaz se povětšinou skládá z řady parametrů. Většinou se jedná o zadání výřezu, seznam vrstev, v jakém formátu se mají data vrátit atd. 
-			\paragraph{} Geoserver je open--source program napsaný v Javě, který umožňuje publikovat prostorová data. V současné době se jedná asi o nejlepší nekomerční řešení\cite{vorlicek}, které podporuje nejen službu WMS (Web Mapping Service), ale i WFS (Web Feature Service) a WFS-T (Web Feature Service - Transactial) a WCS (Web Coverage Service). Kromě webových služeb, poskytuje Geoserver i množství výstupních formátů. Od rastrových jpeg a png obrázkůpřes KML a PDF po GeoJSON, GML a Shapefile.
-			\paragraph{} Geoserver má jednoduché uživatelské rozhraní zajištěné pomocí webové stránky. Toto rozhraní poskytuje všechny potřebné funkce pro správu uživatel-ských rolí, správu dat a jejich publikování. Pro nastavení pravidel zobrazení se užívá XML(eXtended Markup Language) schéma SLD (Styled Layer Descriptor). Tyto pravidla je možno zapsat jako SLD do textového pole nebo je lze vytvořit v externí aplikaci (například AtlasStyler SLD editor\cite{atlas} nebo Quantum GIS\cite{qgis}) a poté importovat.
-			\paragraph{} Výběr Geoserveru byl dán nutností využít WFS-T službu a snahou využít pouze svobodný software. Snaha o využití WFS-T znemožnila použít UMN MapServer, protože ji nepodporuje. Oproti MapServeru má navíc výhodu uživatelského rozhraní, které MapServer postrádá -- nastavení se provádí pomocí konfiguračních souborů.
+		\paragraph{} Apache je nejrozšířenější webový server -- dle odhadů z června 2013 obsluhovaly servery s Apachem 54,2\% všech aktivních webových stránek. Toto postavení je pravděpodobně způsobeno několika faktory:
+		\begin{itemize}
+			\item užití Apache License, která umožňuje svobodné užívání softwaru,
+			\item veřejně přístupné zdrojové kódy,
+			\item rychlost je srovnatelná s komerčními servery a 
+			\item podpora všech hlavních operačních systémů.
+		\end{itemize}
+		\paragraph{} Důvodem pro užití Apache byly přednosti vyjmenované výše -- zejména rychlost a to, že se jedná o svobodný software. Jeho nastavení se sice provádí pomocí textového editoru, to ovšem není taková překážka, protože webové stránky projektu poskytují dostatečnou dokumentaci a v případě problémů není složité dohledat řešení na internetových fórech věnovaných právě serverům. Též svoje sehrálo i to, že Apache obsluhuje školní server geo102.
+
+	\section{Geoserver}
+		\paragraph{} V předchozí části bylo uvedeno, že webový server může přesměrovat některé dotazy jiným aplikacím. Dotazy na prostorové informace lze přesměrovat na mapový server. Pokud se pohybujeme v rovině svobodného softwaru, existují dvě možnosti -- Geoserver a UMN MapServer. V komerční sféře lze najít servery od firem Esri, Intergraph a dalších. 
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=10cm]{obrazky/mapserver.png}
+				\caption{Schéma funkce mapového serveru}
+				\label{fig:server_schema}
+			\end{center}
+		\end{figure}
+Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřezu mapy, který odešle webovému serveru. Ten ho pak odešle zpátky uživateli. Pravidla pro generování jsou dány parametry, které může a nemusí uživatel zadat. Mezi parametry lze třeba najít požadovaný výstupní formát.
+		\paragraph{} Geoserver je v současné době asi nejlepší nekomerční řešení\cite{vorlicek} s  podporou všech běžně užívaných webových služeb. Aplikace podporuje velké množství vstupních a výstupních formátů. Vstupem může být například PostGIS databáze, Esri Shapefile, GeoTIFF či WMS služba. Výstup může být například ve formátu PNG, PDF, JPEG, KML, CSV nebo JSON.  Geoserver je napsán v Javě a pro jeho nastavení a správu se používá webové rozhraní, které je normálně dostupné na portu 8080, ale tento port může být změněn. Zde lze nastavit poskytované vrstvy a služby. Správa uživatelů a uživatelských rolí se provádí také zde. 
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=10cm]{obrazky/geoserver.png}
+				\caption{Uživatelské rozhraní Geoserveru}
+			\end{center}
+		\end{figure}
+		\paragraph{}Pro nastavení vzhledu publikovaných vrstev se používá SLD (Styled Layer Descriptor) schéma. Jedná se typ XML (eXtended Markup Language). Pravidla lze zapsat do textového pole, což není moc pohodlné. Naštěstí Geoserver poskytuje možnost importovat pravidla  vytvořená v jiném programu. Takto lze úspěšně použít Quantum GIS\cite{qgis} či AtlasStyler\cite{atlas} pro tvorbu vzhledu prvků.
+		\paragraph{} Výběr Geoserveru byl dán zejména snahou využít svobodný software. Před začátkem tvorby se předpokládalo, že aplikace bude potřebovat WFS-T službu. MapServer tedy nemohl být použit a Geoserver se jevil jako dobrá volba. V jeho prospěch také hrálo uživatelské rozhraní pro nastavení a publikování vrstev, protože MapServer se nastavuje pomocí konfiguračních souborů.
 
 %%%Databáze
-	\section{Databáze}
-		\paragraph{} Většina webových aplikací potřebuje operovat s daty. Ať už se jedná o údaje o uživatelích, seznam článků či souřadnice skladů, vždy je potřeba je nějak uložit, aby se s nimi jednoduše operovalo. Jedním z možných přístupů je relační databáze. Mnoho aplikací užívá databázi MySQL, protože je rychlejší než PostgreSQL. Přestože je MySQL rychlejší a poskytuje i rozšíření pro prostorová data, je mnohem lepší využít PostgreSQL, protože poskytuje širší spektrum funkcí.
-		\subsection{PostgreSQL}
-			\paragraph{} PostgreSQL je open--source databázový systém. Jedná se o relační databázi, která běží na všech hlavních platformách. V PostgreSQL je podporována většina datových typů daných normou SQL:2008. Implementace SQL v PostgreSQL odpovídá standartu ANSI-SQL:2008\cite{postgresql}. Samozřejmostí je tedy podpora primárních (PRIMARY) a cizích klíčů (FOREIGN KEYS), podmínky UNIQUE a NOT NULL. Indexy mohou být uloženy v B-stromech, R-stromech, hashích nebo GiST(Generalized search tree) metodě.
-			\paragraph{} PostgreSQL se dá přizpůsobit, díky čemuž existují některá rozšíření.
-		\subsection{Rozšíření}
-			\subsubsection{PostGIS}
-				\paragraph{}
-			\subsubsection{PgRouting}
-				\paragraph{}
+		\section{PostgreSQL}
+			\paragraph{} V obrázku \ref{fig:server_schema} je zobrazeno, že si mapový server bere data. Data jspou uložena buď v samostatném souboru nebo v databázi. Pro potřeby webových aplikací se spíše užívají databáze, ačkoliv využití jednotlivých souborů také není vyloučeno. Mnoho webových aplikací používá relační databázi MySQL, ale z hlediska vhodnosti pro tuto aplikaci byla zvolena jiná relační databáze -- PostgreSQL. Ačkoliv MySQL má podporu pro prostorová data, PostgreSQL nabízí širší škálu funkcí. Navíc existují pro PostgreSQL programy, které usnadňují import dat OpenStreetMap. V neposlední řadě k této volbě přispěl i fakt, že projekt OpenStreetMap používá PostgreSQL.
+			\paragraph{}PostgreSQL je databázový systém napsaný v jazyce C. Kromě Linuxu je možné s ním pracovat i na počítačích s operačními systémy Windows, Mac OS X, Solaris aj. Systém je licencován pod PostgreSQL License, která je podobná licenci MIT.  Implementace SQL v PostgreSQL  odpovídá standartu ANSI--SQL:2008\cite{postgresql} a také obsahuje většinu ze standartu SQL:2011\cite{wiki_postgresql}. Systém podporuje použití primárních (PRIMARY) a cizích klíčů (FOREIGN KEYS), triggerů, podmínek UNIQUE a NOT NULL. Indexy mohou být uloženy v B-stromech, R-stromech, hashích nebo GiST(Generalized search tree) metodě. Současná stabilní verze má číslo 9.3.2. PostgreSQL se dá přizpůsobit podle potřeb uživatelů, díky čemuž vznikly různá rozšíření. 
+			\paragraph{}Z existujících rozšíření mají spojitost s vytvářeným projektem dva balíky. Prvním z nich je PostGIS, který poskytuje podporu pro geografická data. Tento balík přidává do systému geometrii prvků a funkce pro práci s nimi. Druhým rozšířením je pgRouting, který poskytuje funkce pro vyhledávání cest. Oba balíky jsou šířeny pod licencí GNU GPL.
+			\paragraph{}Samotná databáze musí být nějak spravována. V systému linux lze použít program psql využívající příkazový řádek, grafické rozhraní pgAdmin3 nebo PHP program Adminer. Každá z uvedených variant má své výhody. Pro práci s databází v rámci skriptu napsaného pro shell najde uplatnění právě příkazový řádek, pro práci na vzdáleném počítači lze využít Adminer, který se spouští přes webové rozhraní a pro práci na lokálním počítači se dá použít pgAdmin3.
+
+
+
 
 %%%Programovací jazyky
-	\section{Programovací jazyky}
-		\subsection{Server--side}
-			\subsubsection{PHP}
-				\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C ( při použití CGI rozhraní), Java, Perl, PHP a další. V této aplikaci je použit poslední jmenovaný jazyk. PHP\footnote{název je rekurzivní zkratka -- PHP: Hypertext Preprocessor} je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se PHP nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows).
-				\paragraph{} Současná verze PHP je 5.5, která byla vydána k 20.6.2013. Při vývoji se užívá buď čisté PHP a nebo v podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce práce programátora, protože se může plně věnovat úkolu. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s ním. Pokud se framework používá na větších nebo na více projektech, tak čas, který práce s frameworkem ušetří, je větší než doba, která je potřeba naučení se ho.
-
-			\subsubsection{Framework Nette}
-				\paragraph{}
-
-			\subsubsection{Návrhový vzor}
+	\section{PHP}
+		\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C ( při použití CGI rozhraní), Java, Perl, PHP a další. V této aplikaci je použit poslední jmenovaný jazyk. PHP (název je rekurzivní zkratka -- PHP: Hypertext Preprocessor) je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se PHP nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows).
+		\paragraph{} Současná verze PHP je 5.5, která byla vydána k 20.6.2013, ale používány jsou i starší verze jazyka. Při vývoji se užívá buď čisté PHP a nebo v podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce práce programátora, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s ním. Pokud se framework používá na větších projektech, či počet projektů, kde je užit, je větší, tak čas, který práce s frameworkem ušetří, je větší než doba, která je potřeba k zvládnutí práce s ním.
+		\subsection{Framework Nette}
+			\paragraph{}
+			\subsubsection*{Návrhový vzor}
 				\paragraph{} Návrhovým vzorem rozumíme architekturu aplikace. Jinými slovy se jedná o určité části(vrstvy) aplikace, které zajišťují různé funkcionality. V Nette se užívá architektura MVP (Model -- View -- Presenter).
 				\paragraph{Model} je označení pro vrstvu, která se stará o propojení s databází. Vkládání, změna, výpis i mazání dat jsou akce, které jsou záležitostí modelu. Model má nadefinované své funkce, kterými obsluhuje databázi. Okolí komunikuje s modelem pomocí pevně daného rozhraní. V Nette je tato vrstva implementována v knihovně Nette\\Database. Pro větší přehlednost se vytvářejí funkce, které vypisují potřebná data. Tím nedochází k pokládání dotazů ve zdrojovém kódu Presenterů.
 				\paragraph{View} je vrstva, která vykresluje výsledek zadaného požadavku. V Nette se o tuto funkci starají šablony napsané latte. Latte je šablonovací systém napsaný v PHP, ovšem díky němu je psaní šablon jednodušší, přehlednější a bezpečnější než kdybychom je psali v čistém PHP.
 				\paragraph{Presenter} je spojovací vrstva, která předává data z modelu do view k vykreslení a akce z view zpracovává a předává modelu. Presenter je ekvivalentem Controlleru z architektury MVC s tím rozdílem, že Controller zpracovává i některé události uživatelského rozhraní.
-	\section{User--side -- JavaScript (OpenLayers vs LeafLet, jQuery)}
-	\section{Grafický design -- bootstrap \cite{bootstrap}}
+	\section{JavaScript} %openLayers, Leaflet, jQuery a další
+		\subsection{OpenLayers} %v2 v3
+		\subsection{Leaflet}
+	\section{Grafika}
 
 
 
@@ -407,12 +429,12 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 				\paragraph{}Dalším z nich bylo získání a nahrání prostorových dat. Data OSM byla stažena z  \url{http://download.geofabrik.de/europe/czech-republic.html}, kde je k dispozici vždy aktuální verze. Tato data lze importovat do databáze pomocí programu \textit{osm2pgsql}. Při vývoji na lokálním počítači vznikl problém s importem databáze. Používaný počítač neměl dostatečnou operační paměť pro jednoduchý import. Program \textit{osm2pgsql} pamatuje na starší a slabší počítače, tudíž má nastavení, která využívají přechodná úložiště v databázi a efektivněji využívají operační paměť. Databáze České republiky zabírá okolo 4 GB paměti. Vzhledem k tomu, že velká část těchto dat je nadbytečná, byla potřebná data extrahována a uložena do nové tabulky. Při této příležitosti byly vytvořeny i sloupce pro snadnější přístup k datům ve sloupci \textit{tags}. Zejména se jednalo o barvu turistické značky a její typ. Export dat a jejich úprava byly provedeny pomocí jazyka SQL. Některá data jsou ale uložena v polích. U těchto dat bylo problematičtější dostat požadovaný výsledek, ovšem dokumentace k \textit{PostgreSQL}\cite{PostgreSQL} je dobrá a na příkladech jsou uvedeny i možnosti, jak získat data z polí.
 				\paragraph{} V dalším kroku bylo potřeba dovytvořit tabulky pro ukládání uživatelů, příspěvků v  diskuzi, poznámek k trasám, fotek a jiných informací. Tyto tabulky jsou neprostorové, ikdyž některé z nich se mohou mít odkazy na určité prostorové umístění.
 
-		\section{Grafický návrh}
-			\subsection{základní vzhled webové stránky - základní styl bootstrapu}
+		\section{Grafický návrh} %zmínit bootstrap a jeho základní admin styl
+
 		\section{Mapové okno}
 			\subsection{OpenLayers}
-				\subsubsection{Zprovoznění WFS}
 			\subsection{LeafLet}
+			\subsection{Zprovoznění WFS}
 
 		\section{Uživatelské rozhraní}
 			\subsection{Přihlašování uživatelů}
@@ -476,6 +498,7 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 		\item GPL -- všeobecná veřejná licence (General public license)
 		\item GPX -- Výměnný formát GPX (GPS eXchange format)
 		\item HTML -- Hypertextový značkovací jazyk (Hypertext markup language)
+		\item HTTP -- Hypertextový přenosový protokol (Hypertext transfer protocol)
 		\item SLD -- Styled layer descriptor
 		\item SVG -- Scalable Vector Graphics
 		\item OSM -- OpenStreetMap
@@ -530,6 +553,7 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 	\bibitem{wiki_comparison}OpenStreetMap Wiki contributors: Comparison of editors In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z:	\url{https://wiki.openstreetmap.org/wiki/Comparison_of_editors}
 	\bibitem{wiki_tajfun}OpenStreetMap Wiki contributors: Typhoon Haiyan In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z: \url{wiki.openstreetmap.org/wiki/Typhoon_Haiyan_(2013)}
 	\bibitem{wiki_hot}OpenStreetMap Wiki contributors: Humanitarian OSM Team  In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z: \url{http://wiki.openstreetmap.org/wiki/Humanitarian_OSM_Team}
+	\bibitem{wiki_postgresql}PostgreSQL. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-16]. Dostupné z: \url{http://en.wikipedia.org/wiki/PostgreSQL}
 
 \end{thebibliography}
 \end{document}
