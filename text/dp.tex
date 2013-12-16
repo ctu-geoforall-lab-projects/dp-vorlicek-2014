@@ -97,7 +97,6 @@
 
 \newpage %%Obrázky a tabulky
 	\listoffigures
-	\listoftables
 
 \newpage %%Samotný text
 %%Úvod
@@ -210,9 +209,9 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 
 	\section{MTB mapa Evropy}
 		\url{http://mtbmap.cz/}
-		\paragraph{} Projekt Martina Tesaře MTB mapa Evropy prezentuje stezky pro jízdu na horském kole byl původně omezen pouze na oblast České republiky a přilehlého okolí, ale časem byl rozšířen na mapu Evropy. Mapa využívá značkový klíč projektu OpenTrackMap, který je popsán na OpenStreetMap Wiki\cite{otm_klic}, a kromě cyklistických stezek zobrazuje i turistické cesty. Aktuálnost mapy je udržována týdenními aktualizacemi dat OpenStreetMap. Data pochází ze serveru \textit{geofabrik.de}, který poskytuje možnost stažení dat OpenStreetMap pro jednotlivé země, kontinenty i celý svět.
+		\paragraph{} Projekt Martina Tesaře MTB mapa Evropy byl původně bakalářskou prací zpracovávanou na fakultě informatiky Masarykovy univerzity v Brně. Aplikace prezentuje stezky pro jízdu na horském kole. Mapa byla původně omezena pouze na oblast České republiky a přilehlého okolí, ale časem byla rozšířena na Evropy. Mapa využívá značkový klíč projektu OpenTrackMap, který je popsán na OpenStreetMap Wiki\cite{otm_klic}, a kromě cyklistických stezek zobrazuje i turistické cesty. Aktuálnost mapy je udržována týdenními aktualizacemi dat OpenStreetMap. Data pochází ze serveru \textit{geofabrik.de}, který poskytuje možnost stažení dat OpenStreetMap pro jednotlivé země, kontinenty i celý svět.
 		\paragraph{} Apliakce poskytuje velké množství funkcí, které jsou dostupné všem. K dispozici je vyhledávání pomocí služby OpenStreetMap Nominatim\cite{nominatim}. Dále lze exportovat data v souřadnicemi daném výřezu. Zde lze nastavit stupeň přiblížení, velikost výsledku v pixelech a zobrazené mapové prvky -- tiráž. název mapy, trasu, legendu a měřítko. Kromě vyhledávání míst  pomocí Nominatim je k dispozici i vyhledání cesty podle množství vstupních parametrů, které zahrnují například typ cesty, druh povrchu nebo obtížnost. Tyto parametry jde uložit na disk a později je znovu použít pro vyhledání stejné cesty. Lze též vložit vlastní cestu v souboru GPX nebo ručně a zobrazit k ní výškový profil. Taktop vytvořené stezky se zobrazí v mapě, ale neukládají se pro pozdější zobrazení. Aplikace umožňuje vygenerovat permanentní odkaz na zobrazenou pozici či přesměruje uživatele na OpenStreetMap a otevře editor iD.
-		\paragraph{} Tento projekt má svoji stránku i na OpenStreetMap Wiki, kde jsou popsány úkoly, kterými by měl směřovat další vývoj aplikace. Mapa je vytvořena pomocí javascriptové knihovny Leaflet. K dispozici jsou 4 podkladové mapy (MTB mapa, OSM Mapnik, OpenCycleMap, Hike \& Bike Map), které jsou zobrazeny v EPSG:3857. Toto zobrazení je ekvivalentní s EPSG:900913, které na svých mapách používá Google. Jak bylo uvedeno výše\ref{google_mercator}, toto zobrazení není přesně konformní, ovšem v tiráži je uvedeno \uv{Zobrazení: Konformní válcové - mercatorovo}.
+		\paragraph{} Tento projekt má svoji stránku i na OpenStreetMap Wiki, kde jsou popsány úkoly, kterými by měl směřovat další vývoj aplikace. Mapa byla původně vytvořena v OpenLayers\cite{tesar_bp}, ale v současné době užívá javascriptovou knihovnu Leaflet. K dispozici jsou 4 podkladové mapy (MTB mapa, OSM Mapnik, OpenCycleMap, Hike \& Bike Map), které jsou zobrazeny v EPSG:3857. Toto zobrazení je ekvivalentní s EPSG:900913, které na svých mapách používá Google. Jak bylo uvedeno výše\ref{google_mercator}, toto zobrazení není přesně konformní, ovšem v tiráži je uvedeno \uv{Zobrazení: Konformní válcové - mercatorovo}.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/mtb.png}
@@ -228,15 +227,115 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 %									 %
 \chapter{OpenStreetMap}
 	\section{O Projektu}
-		\paragraph{} Tato práce je navázána na projekt OpenStreetMap a toto jméno se zde velice často objevuje. Z toho důvodu by bylo vhodné říci o co se jedná, jakou má projekt historii, jak v současné době vypadá a jaké má využití. OpenStreetMap je svobodná mapa, kterou vytváří a spravují její uživatelé. Narozdíl od jiných mapových děl OpenStreetMap poskytují uživatelům možnost stáhnout si data a volně s nimi nakládat. Díky možnosti svobodného nakládání s daty vznikají různá mapová díla dle potřeb uživatelů. Mapa musí mít uvedeno autorství OpenStreetMap contributors a musí být šířena pod stejnou licencí jako samotná OpenStreetMap.
-		\subsection{Historie}	 %od vzniku po současnost
-			\paragraph{}Projekt vznikl ve Velké Británii v roce 2004. O jeho základy se postaral Steve Coast, který se nechal inspirovat jiným komunitou řízeným projektem -- svobodnou encyklopedií Wikipedie. O dva roky později vznikla OpenStreetMap Foundation, která projekt podporuje. V průběhu let povolily některé společnosti používat své mapové podklady pro tvorbu OpenStreetMap. V roce 2006 to byl Yahoo. O rok později Automotive Navigation Data poskytla mapy silniční sítě Nizozemska, Indie a Činy. 
-			\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce následujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}. 
-		\subsection{Komunita} %rychlost mapování, aktualizace, zájmové oblasti
-			\paragraph{} 
+		\paragraph{} Tato práce je navázána na projekt OpenStreetMap a toto jméno se zde velice často objevuje. Z toho důvodu by bylo vhodné říci o co se jedná, jakou má projekt historii, jak v současné době vypadá a jaké má využití. 
+		\paragraph{} OpenStreetMap je svobodná mapa, kterou vytváří a spravují její uživatelé. Narozdíl od jiných mapových děl OpenStreetMap poskytují uživatelům možnost stáhnout si data a volně s nimi nakládat. Díky možnosti svobodného nakládání s daty vznikají různá mapová díla dle potřeb uživatelů. Mapa musí mít uvedeno autorství OpenStreetMap contributors a musí být šířena pod stejnou licencí jako samotná OpenStreetMap. Toto je známo jako licence \textit{CC BY-SA 2.0}\cite{creative_commons}.
+		\paragraph{}Projekt vznikl ve Velké Británii v roce 2004. O jeho základy se postaral Steve Coast, který se nechal inspirovat jiným komunitou řízeným projektem -- svobodnou encyklopedií Wikipedie. O dva roky později vznikla OpenStreetMap Foundation, která projekt podporuje. V průběhu let povolily některé společnosti používat své mapové podklady pro tvorbu OpenStreetMap. V roce 2006 to byl Yahoo. O rok později Automotive Navigation Data poskytla mapy silniční sítě Nizozemska, Indie a Činy. 
+		\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce následujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}. 
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/osm_stat_users.png}
+				\caption{Graf nárustu registrovaných uživatelů}
+			\end{center}
+		\end{figure}
+
 	\section{Data}
-	\section{Editory} %iD, Osmosis, Mapnik a další
+		\subsection{Typy dat}
+		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velké množství rozličných dat. Kromě standartních objektů, jako jsou silnice, vodstvo, budovy, zalejsněné oblasti či turistické značky, jsou mapovány i věci, které na normálních mapách zobrazeny nejsou. Jedná se například o bezpečnostní kamery na veřejných místech. Data mohou být:
+	\begin{itemize}
+		\item uzly (nodes) -- body se souřadnicemi,
+		\item cesty (ways) -- liniové prvky a hranice polygonů -- nebo
+		\item relace (relations) -- popisují vztahy s dalšími prvky.
+	\end{itemize}
+Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznamenávají  vlastnosti. 			\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou součástí cesty. V tom případě definují tvar cesty. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z topologického hlediska o křižovatku, ale mimoúrovňové křížení. Globální dataset obsahuje k roku 2013 přes 2 x 10$^9$ uzlů.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/osm_stat_elements.png}
+				\caption{Graf vývoje počtu uzlů, cest a relací}
+			\end{center}
+		\end{figure}
+
+		\paragraph{} Oproti uzlům je cest výrazně míň (kolem 200 000), protože cesty jsou tvořeny 2 až 2000 uzly spojenými liniovými segmenty. Cesta je buď otevřená nebo uzavřená. Otevřená cesta je taková, kde začátek a konec tvoří jiný uzel. Uzavřená cesta má identický počáteční a koncový uzel. V tomto případě se může jednat o uzavřenou polylinii či plošný prvek. Rozdíl lze stanovit pomocí tagu area -- pokud má hodnotu yes, jedná se o plochu. V některých případech může cesta tvořit polylinii a hranici polygonu zároveň -- toto je pak označeno odpovídajícím způsobem ve vlastnostech.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/Osm-200607-praha.png}
+				\caption{Praha na mapách OpenStreetMap -- červenec 2006}
+				\label{fig:praha2006}
+			\end{center}
+		\end{figure}
+
+		\paragraph{} Vznik dat se dá rozdělit do tří skupin. První z nich je přímý sběr v terénu, kdy uživatel chodí venku a pomocí GPS přístroje získává souřadnice, které pak importuje v souboru GPX do mapy. Druhou variantou je odvozování z existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s licencí, kterou užívá OpenStreetMap. V případě, že nejsou vyjasněny licenční podmínky,materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes WMS Ústavem pro hospodářskou úpravu lesů (ÚHÚL) či WMS katastrální mapy Českého úřadu zeměměřického a katastrálního(ČÚZK). WMS ortofotomapy ČÚZK na odvozování nemůže být použita. Může být ale použita na ověření přesnosti jiných použitelných zdrojů.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/Osm-201312-praha.png}
+				\caption{Praha na mapách OpenStreetMap -- prosinec 2013}
+				\label{fig:praha2013}
+			\end{center}
+		\end{figure}
+
+		\paragraph{} Graf vývoje počtu elementů ukazuje, že z počátku přibývalo malé množství objektů a větší zvrat nastal spolu s nárustem počtu uživatelů. V roce 2007 je vidět skokový nárust počtu bodových prvků -- jedná se o data silniční sítě Nizozemska, Indie a Číny poskytnuté organizací Automotive Navigation Data. 
+		Přibývání počtu prvků v mapě lze též dobře sledovat na malých plochách. Pro ilustraci jsou zde přiloženy obrázky, jak Praha byla zmapována v roce 2006 \ref{fig:praha2006} a v prosinci 2013 \ref{fig:praha2013}. V prvním případě jsou zmapovány hlavní silnice a vodní toky, zatímco druhý obrázek je plnohodnotnou mapou.
+	
+	\subsection{Uložení dat}
+		\paragraph{} Data se ukládají do databáze, která je klíčovým prvkem celého projektu. Pro každý typ prvku existují tabulky v databázi. Kromě současné verze obsahuje databáze i historické verze, takže lze dohledat změny a případně je vrátit. Další tabulky se vztahují ke změnovým sadám (changesetům), GPX souborům nebo registrovaným uživatelům. Kromě tabulek jsou uloženy i primární a cizí klíče, sekvence a indexy.
+		\paragraph{} Data jsou distribuovány v XML souboru Planet.osm, který je vytvářen v týdenních intervalech. V současnosti je velikost nekomprimované sady přes 400 GB, při užití komprimace je možno se dostat k 29 GB. Protože dost často není potřeba mít data z celého světa, dělají se i extrakty, které pokrývají jednotlivé kontinenty, země nebo města. Tyto výtahy jsou vytvářeny častěji -- \url{http://download.geofabrik.de} poskytuje data s denním intervalem. Vytvoření obrazu databáze většinou zabere 12 hodin\cite{planet.osm}.
+	\paragraph{} Kromě samotných mapových dat jsou k dispozici i planet.gpx s údaji z nahraných GPX souborů a soubor s historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB. 
+	\paragraph{} Data jsou uložena na databázovém serveru, který má dostatečné prostředky pro správu těchto dat. Od dubna 2009 do dubna 2012 byl primárním serverem server Smaug. Operační systém Ubuntu 12.04 LTS Server amd64 obsluhuje relační databázi PostgreSQL ve verzi 9.1. Pevné disky mají kapacitu přes 6 TB a operační paměť je 64 GB. V současné době je primírním serverem server se jménem Ramoth, který je také obsluhován operačním systémem Ubuntu 12.04 LTS Server amd64, ovšem od svého kolegy se liší jak kapacitou disků (skoro 15 TB), tak operační pamětí (256 GB). Funkci databázového systému plní stále PostgreSQL 9.1.
+	\paragraph{}Každý záznam v databázi má u sebe uvedeny i své vlastnosti. Protože pro každý typ prvku je jedna tabulka, jsou některé vlastnosti prvku prázdné. Parametry, které se evidují např. u silnice jsou jiné než vlastnosti, které nás zajímají u řeky -- obojí lze najít v tabulce s liniovými prvky. Aby se běžný uživatel či vývojář vyznali v databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechny parametry (sloupce v databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hlednání v databázi vůbec možné a nepřipomíná hledání v jehly v kupce sena.
+
+
+	\section{Editory} % id, Potlach 2, JOSM, Merkaator
+		\paragraph{} Součástí práce je napojení editoru vytvářené aplikace na data OpenStreetMap. Stojí tedy za zmínku, jaké jsou prostředky, kterými se v současné době provádí editace dat. 
+		\subsection{iD}
+			\paragraph{}Editor iD je nejnovějším z uvedených editorů. Pro užití na OpenStreetMap byl spuštěn v květnu 2013. Jedná se o javascriptovou aplikaci, která je šířena pod licencí WTFPL (Do What the Fuck You Want to Public License)\cite{wiki_wtfpl}, která umožňuje naprosto volně nakládat s produktem. K vykreslení je užívána javascriptová knihovna d3js, která slouží k práci v na datech založených dokumentech. Knihovna užívá HTML, CSS a SVG k vykreslení požadovaných prvků. Podpora jiných vykreslovacích přístupů není zatím v editoru iD implementována. Jedná se o aplikaci vhodnou pro začátečníky, protože má jednoduché ovládání.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/iD_osm.png}
+				\caption{Editor iD na webu OpenStreetMap.org}
+				\label{fig:iD_osm}
+			\end{center}
+		\end{figure}
+
+			\paragraph{} Podle stránek projektu\cite{wiki_iD} program zatím plně nepodporuje prohlížeče Internet Explorer verze 9, 10 a 11. Někteří uživatelé též hlásili zhoršený výkon pro prohlížeč Firefox.
+
+		\subsection{JOSM}
+			\paragraph{}JOSM (Java OpenStreetMap Editor) je na javě založený editor dat OpenStreetMap. Jedná se o desktopovou aplikaci s licencí GPL (General public license), ze které jsou změny dálkové nahrávány do hlavní databáze. Narozdíl od iD poskytuje JOSM mnohem více možnostní pro manipulaci s daty, což je znát i na jeho uživatelském rozhraní\ref{fig:josm_osm}. Aplikace podporuje čtení GPX souborů buď z pevného disku nebo z databáze OpenStreetMap, editování existujících uzlů, cest, tagů a relací.
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/josm_osm.png}
+				\caption{Editor JOSM (zdroj: OSM Wiki\cite{wiki_josm})}
+				\label{fig:josm_osm}
+			\end{center}
+		\end{figure}
+			\paragraph{} Výhodou oproti online editorům je možnost pracovat i bez připojení k internetu. Aplikace také poskytuje různá rozšíření, která z ní dělají velmi silný editovací nástroj. Dle informací na OpenStreetMap Wiki\cite{wiki_josm} je práce s tímto editorem jednoduchá. Některé pokročilejší funkce mohou mít složitější ovládání a jejich zvládnutí může zabrat čas.
+
+		\subsection{Merkaator}
+			\paragraph{} Editor Merkaator je určen pro Unix, Mac OS i Windows a je distribuován pod licencí GNU GPL v2. Editor je ve stádiu vývoje (dle OpenStreetMap Wiki je dostupná verze 0.18.1 vydaná v červnu 2012), ovšem vývojářská komunita tohoto projektu není příliš aktivní. Aplikace obsahuje prvky, které stojí za povšimnutí. Jedná se například o průhledné zobrazení vrstev, editor stylů zobrazení mapy, přímé připojení k GPS přijímači nebo vykreslení mapy do SVG nebo bitmapového obrázku za použití momentálně užitých stylů. Vzhledem k tomu, že je program ve vývoji, lze některé prvky získat pouze kompilací ze zdrojových souborů, což pro většinu uživatelů není vhodné.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/merkaator_osm.png}
+				\caption{Editor Merkaator (zdroj: OSM Wiki\cite{wiki_merkaator})}
+			\end{center}
+		\end{figure}
+
+		\subsection{Potlatch 2}
+			\paragraph{} Stejně jako iD editor je i Potlatch 2 online editor s licencí WTFPL, ale narozdíl od něj je napsán ve Flashi. Jedná se o jednoduchý editor, který není určen pro náročnější uživatele. Potlatch 2 vznikl kompletním přepsáním původního Potlatch, kdy byly přidáno zobrazení WYSIWYG (What You See Is What You Get), jednodušší tagování a autentizace přes OAuth pro zakomponování do jiných stránek při zachování napojení na OpenStreetMap. Z důvodu existence editoru iD není v současnosti aplikace aktivně vyvíjena.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/p2_osm.png}
+				\caption{Editor Potlatch 2 (zdroj: OSM Wiki\cite{wiki_p2})}
+			\end{center}
+		\end{figure}
+
 	\section{Využití}  %napojení na další stránky
+		\paragraph{} Data OpenStreetMap jsou široce využívány k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Ačkoliv tyto produkty ocení většina uživatelů, dle mého leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
+		\paragraph{}V momentě, kdy nějakou část světa zasáhne živelná katastrofa, mohou dobrovolníci z řad uživatelů OpenStreetMap z aktuálních družicových snímků vytvořit novou aktuální mapu postižené oblasti. Toto bylo využito třeba v roce 2010, kdy bylo Haiti zasaženo zemětřesením, a v současnosti probíhá nové mapování po tajfunu na Filipínách z listopadu 2013. Během prvního týdne od tajfunu bylo editováno víc jak 2 000 000 objektů a do obnovy se zapojilo přes 900 uživatelů. K 11.prosinci 2013 bylo za přispění více jak 1 600 uživatelů zmapováno přes 4,5 milionu objektů\cite{wiki_tajfun}.
+		\paragraph{} Aby bylo zajištěno efektivní tvorba, produkce a distribuce map pro postižené oblasti, byla v lednu 2009 vytvořena skupina Humanitarian OpenStreetMap Team\cite{wiki_hot}, která tuto činnost řídí.
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -371,14 +470,22 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 \addcontentsline{toc}{chapter}{Seznam zkratek}
 	\begin{itemize}
 		\item API -- Rozhraní pro programování aplikací (Application programming interface)
+		\item CSS -- Kaskádové styly (Cascading Style Sheets)
+		\item ČÚZK -- Český úřad zeměměřický a katastrální
 		\item GNSS -- Globální navigační satelitní systém (Global navigation satellite system)
+		\item GPL -- všeobecná veřejná licence (General public license)
+		\item GPX -- Výměnný formát GPX (GPS eXchange format)
+		\item HTML -- Hypertextový značkovací jazyk (Hypertext markup language)
 		\item SLD -- Styled layer descriptor
+		\item SVG -- Scalable Vector Graphics
 		\item OSM -- OpenStreetMap
 		\item OTM -- OpenTrackMap
+		\item ÚHÚL -- Ústav pro hospodářskou úpravu lesů
 		\item WFS -- Web feature service
 		\item WFS-T -- Web feature service -- Transactional
 		\item WMS -- Web map service
-
+		\item WTFPL -- Veřejná licence \uv{Dělej si co do prdele chceš} (Do What The Fuck You Want To Public License)
+		\item WYSIWYG -- Co vidíš je to co dostaneš (What You See Is What You Get)
 	\end{itemize}
 
 
@@ -411,6 +518,18 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 	\bibitem{neis}NEIS, Pascal. The OpenStreetMap Contributors Map aka Who’s around me?. In: [online]. [cit. 2013-12-14]. Dostupné z: \url{http://neis-one.org/2013/01/oooc/}
 	\bibitem{osm_wikipedia_cs}OpenStreetMap. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-15]. Dostupné z: \url{http://cs.wikipedia.org/wiki/OpenStreetMap}
 	\bibitem{osm_wikipedia_en}OpenStreetMap. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-15]. Dostupné z: \url{http://en.wikipedia.org/wiki/OpenStreetMap}
-\end{thebibliography}
+	\bibitem{tesar_bp}TESAŘ, Martin. Vykreslovací systém MTB map pro OpenStreetMap. Brno, 2010. Dostupné z: \url{http://is.muni.cz/th/256369/fi_b/bpfinal.pdf}. Bakalářská práce. Masarykova univerzita. Vedoucí práce RNDr. Petr Holub, Ph.D.
+	\bibitem{creative_commons}Uveďte autora-Zachovejte licenci 2.0 Generic. CREATIVE COMMONS. [online]. [cit. 2013-12-15]. Dostupné z: \url{http://creativecommons.org/licenses/by-sa/2.0/deed.cs}
+	\bibitem{planet.osm}OpenStreetMap Wiki contributors: Planet.osm. In OpenStreetMap Wiki [online]. [cit. 2013-12-15]. Dostupné z: \url{http://wiki.openstreetmap.org/wiki/Planet.osm}.
+	\bibitem{freemap}OpenStreetMap Wiki contributors: WIKIProject Czech Republic/freemap. In: OpenStreetMap Wiki [online]. [cit. 2013-12-15]. Dostupné z:  \url{http://wiki.openstreetmap.org/wiki/WikiProject_Czech_Republic/freemap}
+	\bibitem{wiki_wtfpl} WTFPL. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-15]. Dostupné z: \url{http://en.wikipedia.org/wiki/WTFPL}
+	\bibitem{wiki_iD}OpenStreetMap Wiki contributors: iD. In: OpenStreetMap Wiki [online]. [cit. 2013-12-15]. Dostupné z:  \url{http://wiki.openstreetmap.org/wiki/ID}
+	\bibitem{wiki_josm}OpenStreetMap Wiki contributors:JOSM. In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z:  \url{http://wiki.openstreetmap.org/wiki/JOSM}
+	\bibitem{wiki_merkaator}OpenStreetMap Wiki contributors: Merkaator. In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z:  \url{http://wiki.openstreetmap.org/wiki/Merkaator}
+	\bibitem{wiki_merkaator}OpenStreetMap Wiki contributors: Potlatch 2. In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z:  \url{http://wiki.openstreetmap.org/wiki/Potlatch2}
+	\bibitem{wiki_comparison}OpenStreetMap Wiki contributors: Comparison of editors In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z:	\url{https://wiki.openstreetmap.org/wiki/Comparison_of_editors}
+	\bibitem{wiki_tajfun}OpenStreetMap Wiki contributors: Typhoon Haiyan In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z: \url{wiki.openstreetmap.org/wiki/Typhoon_Haiyan_(2013)}
+	\bibitem{wiki_hot}OpenStreetMap Wiki contributors: Humanitarian OSM Team  In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z: \url{http://wiki.openstreetmap.org/wiki/Humanitarian_OSM_Team}
 
+\end{thebibliography}
 \end{document}
