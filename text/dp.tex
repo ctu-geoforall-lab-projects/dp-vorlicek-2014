@@ -434,15 +434,43 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 			\paragraph{} Hlavním cílem je tvorba bezpečných aplikací. Mimo jiné je zde ochrana před Cross-site scripting(XSS), která ošetřuje data z uživatelských vstupů a zabraňuje tak, aby útočník podstrčil svůj vlastní kód. Ačkoliv je otázka bezpečnosti první v seznamu výhod, není zdaleka poslední. Velmi silným argumentem pro jeho užití je snadné tvoření formulářů. Nette formuláře poskytují velké mnnožství validačních pravidel. Automaticky generovaný validační javascriptový kód může být brán jako bonus.
 			\paragraph{} Při práci s Nette je možné ale ne nutné nastavit vývojový nebo produkční režim. Výhodou nastavení takovéhoto rozdělení je možnost nakopírování aplikace z vývojového serveru na produkční a aplikace podle adresy serveru bere požadované parametry, např. jméno databáze, přihlašovací jméno a  heslo a další. Ve vývojovém prostředí je pak dostupní Laděnka, která pomáhá v debugování celé aplikace.
 			\paragraph{} Velkou výhodou je, že v českém prostředí má Nette aktivní komunitu uživatelů, kteří kromě tvorby mnoha komponent pořádají i pravidelné srazy.  Uživatelé a vývojáři frameworku jsou též aktivní na fórech, kde lze řešit problémy v aplikacích a bugy v Nette.
-
 			\subsubsection*{Návrhový vzor}
 				\paragraph{} Návrhovým vzorem rozumíme architekturu aplikace. Jinými slovy se jedná o určité části(vrstvy) aplikace, které zajišťují různé funkcionality. V Nette se užívá architektura MVP (Model -- View -- Presenter).
 				\paragraph{Model} je označení pro vrstvu, která se stará o propojení s databází. Vkládání, změna, výpis i mazání dat jsou akce, které jsou záležitostí modelu. Model má nadefinované své funkce, kterými obsluhuje databázi. Okolí komunikuje s modelem pomocí pevně daného rozhraní. V Nette je tato vrstva implementována v knihovně Nette\\Database. Pro větší přehlednost se vytvářejí funkce, které vypisují potřebná data. Tím nedochází k pokládání dotazů ve zdrojovém kódu Presenterů.
 				\paragraph{View} je vrstva, která vykresluje výsledek zadaného požadavku. V Nette se o tuto funkci starají šablony napsané latte. Latte je šablonovací systém napsaný v PHP, ovšem díky němu je psaní šablon jednodušší, přehlednější a bezpečnější než kdybychom je psali v čistém PHP.
 				\paragraph{Presenter} je spojovací vrstva, která předává data z modelu do view k vykreslení a akce z view zpracovává a předává modelu. Presenter je ekvivalentem Controlleru z architektury MVC s tím rozdílem, že Controller zpracovává i některé události uživatelského rozhraní.
+
 	\section{JavaScript} %openLayers, Leaflet, jQuery a další
+		\paragraph{} Každá webová stránka občas potřebuje zobrazit dynamický obsah, který bude okamžitě reagovat na uživatelské vstupy. V aplikacích vytvořených v Javě zajišťuje jak práci na serveru, tak interakci na klientském počítači Java. Jazyk PHP má ke zpracování uživatelských vstupů trochu jiný přístup. PHP nedokáže dynamicky měnit obsah stránky bez nového načtení této stránky. Tento nedostatek jazyka se dá odstranit užitím jazyka JavaScript.
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=5cm]{obrazky/klient_skript.png}
+				\caption{Princip klientského skriptu, např. JavaScriptu}
+				\label{fig:client}
+			\end{center}
+		\end{figure}	
+		\paragraph{} JavaScript byl vyvíjen jako jazyk Mocha ve firmě Netscape pro potřeby prohlížeče Navigator, ve kterém se objevil jako LiveScript. JavaScript je též znám jako ECMAScript. Díky svému jménu bývá často chybně spojován s Javou. Oba jazyky mají podobnou syntax, ale to mají i s jinými jazyky, např. PHP nebo C++. Každý z jazyků vytvořila jiná firma -- JavaScript byl vytvořen v Netscapu a Java v Sun Microsystems. JavaScript je hojně užíván pro tvorbu dynamického obsahu webových stránek, a proto se občas označuje za programovací jazyk webových stránek, ačkoliv se pro tvorbu internetových stránek používá jazyk HTML.
+
+		\paragraph{} Využití JavaScriptu je zejména v tvorbě dynamických prvků na webových stránkách. JavaScritpový kód je posílán ke klientovi na počítač, kde je zpracován\label{fig:client} interpreterem, který je součástí každého moderního prohlížeče. JavaScript je možné zapsat do HTML souboru pomocí tagů \textless script\textgreater \textless \textbackslash script\textgreater. Pokud se jedná o delší skript, je lepší ho dát do zvláštního souboru a ten pouze nahrát.
+		\paragraph{AJAX} Asynchronní JavaScript A XML je jedno z běžných užití JavaScriptu, které umožňuje posílat XML dotazy na server bez znovunačtení stránky. Server tento dotaz obslouží , vrátí výsledek a ten se zobrazí na stránce. Tato technika obnovování stránky si získala oblibu díky službám společnosti Google. Tento přístup je též užíván v knihovnách jako jsou OpenLayers nebo Leaflet pro získání a zobrazení mapy.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=5cm]{obrazky/ajax.png}
+				\caption{Princip fungování AJAXu}
+				\label{fig:ajax}
+			\end{center}
+		\end{figure}	
+
 		\subsection{OpenLayers} %v2 v3
+			\paragraph{} JavaScript lze využít pro tvorbu mnoha dynamických prvků stránek, ale pro složitější prvky je vhodnější použít nějaké existující nástroje. Pro tvorbu mapových aplikací existuje několik knihoven, které poskytují  API  pro usnadnění práce. Jednou z takových knihoven je OpenLayers.
+			\paragraph{} Jedná se o knihovnu s otevřeným kódem, která je šířena pod licencí BSD. OpenLayers byly vytvořeny firmou MetaCarta mezi roky 2005 a 2006 a od listopadu 2007 je o jejich vývoj stará Open Source Geospatial Foundation. Aktuální stabilní verze je 2.13.1, ale souběžně s OpenLayers verzí 2 se vyvíjí i verze 3, která je dostupná ve verzi 3.0.0-beta.1. OpenLayers 3 vznikají přepisování původní verze a začleněním nových technologií, které umožňují využití HTML5 a CSS3. Vytvoření mapy s novou verzí je oproti minulé verzi rychleší a výsledný kód je přehlednější.
+			\paragraph{}OpenLayers jsou schopné zobrazit velké množství formátů -- od rastrových dat v jpegu nebo png až po vektorová data v GeoJSON či GML. Data lze připojit přímo z disku nebo je lze získat pomocí WMS nebo WFS služby. Velkým plus této knihovny je velice dobře zpracovaná dokumentace a vzorové příklady, které pomohou při tvorbě mapové aplikace. 
 		\subsection{Leaflet}
+			\paragraph{} Druhou knihovnou, kterou lze užít na tvorbu webové mapy, je javascriptová knihovna Leaflet. Jedná se o moderní knihovnu srovnatelnou s OpenLayers3. Leaflet se dá též použít pro zobrazení aplikace na mobilních zařízeních. Stejně jako OpenLayers3 je i Leaflet stále ve vývoji (od listopadu 2013 je dostupná verze 0.7.1), takže některé prvky stále nejsou plně funkční či chybí úplně. Dobře zdokumentované API a návody pro začátečníky jsou velice dobrým pomocníkem při tvorbě map, stejně tak i různé zásuvné moduly, které vytvořili členové komunity.
+		\paragraph{} Ačkoliv Leaflet a OpenLayers 3 jsou modernější, pro vývoj aplikace byla použita stávající verze OpenLayers v2. Původně zvažovaný Leaflet byl zamítnut kvůli problémům s připojením vektorových vrstev a kvůli tomu, že se stále jedná o vývojovou verzi. Ze stejného důvodu nebyla použita ani knihovna OpenLayers3.
+
+		
 	\section{Grafika}
 
 
@@ -588,6 +616,8 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 	\bibitem{wiki_hot}OpenStreetMap Wiki contributors: Humanitarian OSM Team  In: OpenStreetMap Wiki [online]. [cit. 2013-12-16]. Dostupné z: \url{http://wiki.openstreetmap.org/wiki/Humanitarian_OSM_Team}
 	\bibitem{wiki_postgresql}PostgreSQL. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-16]. Dostupné z: \url{http://en.wikipedia.org/wiki/PostgreSQL}
 	\bibitem{nette_web}NETTE FOUNDATION. Nette Framework [online]. 2008. vyd. [cit. 2013-12-16]. Dostupné z: \url{http://nette.org} 
+	\bibitem{wiki_ol}OpenLayers. In: Wikipedia: the free encyclopedia [online]. San Francisco (CA): Wikimedia Foundation, 2001- [cit. 2013-12-16]. Dostupné z: \url{http://en.wikipedia.org/wiki/OpenLayers}
+	\bibitem{ol}OPEN SOURCE GEOSPATIAL FOUNDATION. OpenLayers: Free Maps for the Web [online]. [cit. 2013-12-17]. Dostupné z: \url{http://openlayers.org} 
 
 \end{thebibliography}
 \end{document}
