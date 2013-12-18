@@ -493,7 +493,24 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 \chapter{Vývoj aplikace}
 		\section{Databáze}
 			\subsection{Datový model}
-				\paragraph{} graf propojení, seznam tabulek, přehled sloupců (ne pro data OSM - spousta nadbytečných NULL hodnot) ??redukce sloupců??
+				\paragraph{} Databáze je důležitým prvkem aplikace Toulavej -- jsou zde uloženi registrovaní uživatelé, příspěvky v diskuzi a další data včetně dat OpenStreetMap. Databáze byla vytvářena postupně podle toho, které tabulky byly potřeba. Všechny tabulky a sloupce jsou pojmenovány anglicky. V obrázku \ref{fig:db} jsou vidět tabulky a vztahy mezi nimi. V schématu nejsou zobrazeny tabulky vzniklé importem dat planet\_osm a tabulky rozšíření PostGIS. 
+		
+		\paragraph{}Tabulka \textit{news} je určena pro ukládání událostí, které jsou zveřejňovány jako novinky. Zde se evidují pouze položky \textbf{id} jako primární klíč, \textbf{user\_id} jako cizí klíč na tabulku \textit{users}, \textbf{note} s novinkou a čas vytvoření(\textbf{created}).
+		\paragraph{}Další v pořadí je tabulka \textit{pois} odvozená od bodové vrstvy dat OpenStreetMap. Vznikla vybráním bodů, které by mohly být pro uživatele nějakým způsobem zajímavé. Hlavní sloupce jsou \textbf{osm\_id} pro primární klíč a \textbf{way} pro geometrii. Sloupce \textbf{amenity, historic, leisure, man\_made, name, natural, religion, shop a tourism} obsahují informaci o typu prvku. Zde je velice častý výskyt hodnoty NULL. Sloupec \textbf{tags} užívá rozšíření hstore a jsou v něm uvedeny další informace.
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=13cm]{obrazky/datovy_model.png}
+				\caption{Datový model databáze projektu Toulavej}
+				\label{fig:db}
+			\end{center}
+		\end{figure}
+
+			\paragraph{} Tabulka \textit{tracks} slouží k ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje po \textbf{user\_id}. Geometrii lze najít v \textbf{the\_geom} a délka je v \textbf{length}. Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k ukládání komentářů a hodnocení k cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text(\textbf{review}) a časová známka, kdy byl příspěvek vložen(\textbf{created}).
+			\paragraph{}Tabulka \textit{users} slouží k ukládání dat o registrovaných uživatelích. Pole \textbf{id} je primární klíč, které má výchozí hodnotu nastavenou na další číslo v pořadí. Pole \textbf{name} je jméno, které zadává uživatel při registraci nebo které se vezme z profilu na Facebooku. Toto jméno lze v nastavení změnit. Tabulka obsahuje pole s emailem, který spolu s heslem slouží k přihlášení do aplikace. Pokud je uživatel připojen přes Facebook, uloží se jeho identifikace na Facebooku do pole \textbf{fbuid}. Pole \textbf{active} slouží k případnému znemožnění přihlášení uživatele a pole \textbf{attempts} ukazuje počet neúspěšných pokusů o přihlášení. Pokud dosáhne jejich počet určitého množství, tak se účet zablokuje. Sloupec \textbf{role} udává, jaká práva má daný uživatel. V systému jsou tři typy rolí (guest, user a admin) ale pouze user a admin se ukládají do tabulky. Volitelné pole \textbf{about} umožňuje uživateli napsat o sobě pár informací a \textbf{note} slouží k zapsání poznámky pro administrátora. Sloupce \textbf{oauth\_key} a \textbf{oauth\_secret} jsou určeny pro přihlašování do OpenStreetMap.
+
+
+
 			\subsection{Naplnění databáze}
 				\paragraph{} Naplnění databáze se sestávalo z několika kroků. Prvním z nich bylo zajištění podpory pro PostGIS a PgRouting. Tato rozšíření budou využita v aplikaci při vyhledávání cest a zobrazování prostorových dat.
 				\paragraph{}Dalším z nich bylo získání a nahrání prostorových dat. Data OSM byla stažena z  \url{http://download.geofabrik.de/europe/czech-republic.html}, kde je k dispozici vždy aktuální verze. Tato data lze importovat do databáze pomocí programu \textit{osm2pgsql}. Při vývoji na lokálním počítači vznikl problém s importem databáze. Používaný počítač neměl dostatečnou operační paměť pro jednoduchý import. Program \textit{osm2pgsql} pamatuje na starší a slabší počítače, tudíž má nastavení, která využívají přechodná úložiště v databázi a efektivněji využívají operační paměť. Databáze České republiky zabírá okolo 4 GB paměti. Vzhledem k tomu, že velká část těchto dat je nadbytečná, byla potřebná data extrahována a uložena do nové tabulky. Při této příležitosti byly vytvořeny i sloupce pro snadnější přístup k datům ve sloupci \textit{tags}. Zejména se jednalo o barvu turistické značky a její typ. Export dat a jejich úprava byly provedeny pomocí jazyka SQL. Některá data jsou ale uložena v polích. U těchto dat bylo problematičtější dostat požadovaný výsledek, ovšem dokumentace k \textit{PostgreSQL}\cite{PostgreSQL} je dobrá a na příkladech jsou uvedeny i možnosti, jak získat data z polí.
