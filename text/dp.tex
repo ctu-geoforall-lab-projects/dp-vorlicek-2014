@@ -16,6 +16,8 @@
 
 
 \begin{document}
+%
+\newcommand{\htmlTag}[1]{ \textless #1\textgreater \textless \textbackslash #1\textgreater}
 
 %nastavení fancy stylu
 \lhead{\includegraphics[height=0.5cm]{obrazky/lev.jpg} {ČVUT v~Praze}}
@@ -451,7 +453,7 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 		\end{figure}	
 		\paragraph{} JavaScript byl vyvíjen jako jazyk Mocha ve firmě Netscape pro potřeby prohlížeče Navigator, ve kterém se objevil jako LiveScript. JavaScript je též znám jako ECMAScript. Díky svému jménu bývá často chybně spojován s Javou. Oba jazyky mají podobnou syntax, ale to mají i s jinými jazyky, např. PHP nebo C++. Každý z jazyků vytvořila jiná firma -- JavaScript byl vytvořen v Netscapu a Java v Sun Microsystems. JavaScript je hojně užíván pro tvorbu dynamického obsahu webových stránek, a proto se občas označuje za programovací jazyk webových stránek, ačkoliv se pro tvorbu internetových stránek používá jazyk HTML.
 
-		\paragraph{} Využití JavaScriptu je zejména v tvorbě dynamických prvků na webových stránkách. JavaScritpový kód je posílán ke klientovi na počítač, kde je zpracován\label{fig:client} interpreterem, který je součástí každého moderního prohlížeče. JavaScript je možné zapsat do HTML souboru pomocí tagů \textless script\textgreater \textless \textbackslash script\textgreater. Pokud se jedná o delší skript, je lepší ho dát do zvláštního souboru a ten pouze nahrát.
+		\paragraph{} Využití JavaScriptu je zejména v tvorbě dynamických prvků na webových stránkách. JavaScritpový kód je posílán ke klientovi na počítač, kde je zpracován\label{fig:client} interpreterem, který je součástí každého moderního prohlížeče. JavaScript je možné zapsat do HTML souboru pomocí tagů \htmlTag{script}. Pokud se jedná o delší skript, je lepší ho dát do zvláštního souboru a ten pouze nahrát.
 		\paragraph{AJAX} Asynchronní JavaScript A XML je jedno z běžných užití JavaScriptu, které umožňuje posílat XML dotazy na server bez znovunačtení stránky. Server tento dotaz obslouží , vrátí výsledek a ten se zobrazí na stránce. Tato technika obnovování stránky si získala oblibu díky službám společnosti Google. Tento přístup je též užíván v knihovnách jako jsou OpenLayers nebo Leaflet pro získání a zobrazení mapy.
 
 		\begin{figure}[!h]
@@ -469,12 +471,19 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 		\subsection{Leaflet}
 			\paragraph{} Druhou knihovnou, kterou lze užít na tvorbu webové mapy, je javascriptová knihovna Leaflet. Jedná se o moderní knihovnu srovnatelnou s OpenLayers3. Leaflet se dá též použít pro zobrazení aplikace na mobilních zařízeních. Stejně jako OpenLayers3 je i Leaflet stále ve vývoji (od listopadu 2013 je dostupná verze 0.7.1), takže některé prvky stále nejsou plně funkční či chybí úplně. Dobře zdokumentované API a návody pro začátečníky jsou velice dobrým pomocníkem při tvorbě map, stejně tak i různé zásuvné moduly, které vytvořili členové komunity.
 		\paragraph{} Ačkoliv Leaflet a OpenLayers 3 jsou modernější, pro vývoj aplikace byla použita stávající verze OpenLayers v2. Původně zvažovaný Leaflet byl zamítnut kvůli problémům s připojením vektorových vrstev a kvůli tomu, že se stále jedná o vývojovou verzi. Ze stejného důvodu nebyla použita ani knihovna OpenLayers3.
-
-		
 	\section{Grafika}
-
-
-
+		\paragraph{} Důležitým prvkem webu je jeho grafické provedení, protože špatně vytvořený vzhled webu může odradit potenciální zákazníky. Důležitost grafiky uživatelského rozhraní dokazuje i to, že dost firem vyvíjejících webové stránky a aplikace má ve svém týmu člověka, který se věnuje zejména tvorbě grafiky.
+		\paragraph{} Hlavním nástrojem pro určení pozice, barvy, velikosti a chování prvků při zmenšení/zvětšení okna jsou \textit{kaskádové styly}(Cascading style sheets) označované zkratkou CSS. Vzhled stránky může být definován v sekci \htmlTag{head} souboru s HTML kódem stránky nebo pomocí vlastnosti \textit{style} přímo u prvku, ale častěji se kvůli přehlednosti využívá zapsání do samostatného souboru, který se do HTML dokumentu importuje podobně, jako javascriptový soubor. Kaskádovými styly lze modifikovat vzhled všech HTML prvků. 
+		\paragraph{} Kaskádové styly mají tři úrovně zapsání. První možností je užítí na všechny prvky stejného typu, např. pro nastavení stejného vzhledu všech nadpisů \htmlTag{h1}. Pro definování vzhledu jen určitých prvků je možné použít třídy. V HTML tagu se pomocí vlastnosti \textit{class} zavolá požadovaný styl. Pokud v dokumentu existují unikátí prvky, tak lze k jejich nastylování použít id. Volání se provádí v HTML tagu pomocí vlastnosti \textit{id}.
+		\paragraph{} Aby bylo možno dosáhnout požadovaného výsledku, umožňují kaskádové styly vrstvit jednotlivá pravidla, jak je zobrazeno na příkladu webu Seznam.cz\ref{fig:seznam}. Ne všechny prohlížeče zobrazují všechny stránky stejně. U Microsoft Inernet Exploreru je interpretace CSS stylů odlišná od jiných prohlížečů, což vede vývojáře k vytváření speciálních pravidel pro tento prohlížeč.
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/css_vrstvy.png}
+				\caption{Zobrazení CSS vrstev webu Seznam.cz}
+				\label{fig:seznam}
+			\end{center}
+		\end{figure}	
+		\paragraph{} Pro usnadnění práce vývojářů vznikly různé šablony a frameworky. V případě vyvíjené aplikace byl použit Bootstrap (v2.2.2) -- framework s otevřeným zdrojovým kódem vytvořený v Twitteru v polovině roku 2010. Ve verzi 2 byla přidána podpora responsivního designu, což zaručuje správné zobrazení aplikace i na mobilních zařízeních. Začátkem prosince 2013 byl vydán Bootstrap ve verzi 3.0.3, která má v základu nastavený responzivní design a bere ohled na mobilní zařízení.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% 	VÝVOJ APLIKACE	   %%%%%
 %%%%						      %%%%
