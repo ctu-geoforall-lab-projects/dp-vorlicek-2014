@@ -19,6 +19,10 @@ psql -U vorlichr  -d vorlichr_dp --file=hiking_routes.sql
 echo "Creating POIs"
 psql -U vorlichr  -d vorlichr_dp --file=pois.sql
 
+#set rights
+echo "Setting permissions"
+psql -U vorlichr -d vorlichr_dp --file=grant_privileges.sql
+
 #remove osm file
 echo "Removing czech-republic-latest.osm"
 rm czech-republic-latest.osm

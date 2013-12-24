@@ -61,8 +61,9 @@ module.exports = function(o) {
             token('oauth_request_token_secret', resp.oauth_token_secret);
             popup.location = o.url + '/oauth/authorize?' + ohauth.qsString({
                 oauth_token: resp.oauth_token,
-                oauth_callback: location.href.replace('index.html', '')
+                oauth_callback: location.href.replace('edit-map', '')
                     .replace(/#.+/, '') + o.landing
+
             });
         }
 
@@ -153,7 +154,7 @@ module.exports = function(o) {
         o = _;
 
         o.url = o.url || 'http://www.openstreetmap.org';
-        o.landing = o.landing || 'land.html';
+        o.landing = o.landing || 'osm-auth';
 
         // Optional loading and loading-done functions for nice UI feedback.
         // by default, no-ops

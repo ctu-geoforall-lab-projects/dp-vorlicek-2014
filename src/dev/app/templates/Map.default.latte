@@ -30,6 +30,12 @@
 			 });
 </script>
 
+</div>
+<div class="pull-right">
+<!-- Editovat výřez -->
+{if $user->isInRole('user') || $user->isInRole('admin')}
+	<a href="javascript:mapEdit()" class="btn btn-warning">Editovat výřez</a>
+{/if}
 <!-- Facebook share button-->
 {if (($user->isInRole('user') || $user->isInRole('admin')) && $visitingUser->fbuid != NULL)}
 	<a href="#"
@@ -38,27 +44,24 @@
 					   'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href),
 					   'facebook-share-dialog',
 					   'width=626,height=436');
-			   return false;">
-		<img src="{$basePath}/images/fb_sdilet.png">
+			   return false;" class="btn btn-info">
+		Sdílet na Fb
+		{*<img src="{$basePath}/images/fb_sdilet.png">*}
+		
 	</a>
 {/if}
 </div>
-<span>
-	{if $user->isInRole('user') || $user->isInRole('admin')}
-		<a href="javascript:mapEdit()" class="btn btn-warning">Editovat výřez</a>
-	{/if}
-</span>
 <div>
 <!--OL2 setting -->
-<div id="map"></div>
+	<div id="map"></div>
 
 <!--OL3 setting-->
-{*<div id="map">
-	<span id="start-point">start</span>
-	<span id="final-point">final</span>
-	<span id="popup"></span>
-	<script type="text/javascript" src="{$basePath}/js/ol3Setting.js"></script>
-</div>*}
+	{*<div id="map">
+		<span id="start-point">start</span>
+		<span id="final-point">final</span>
+		<span id="popup"></span>
+		<script type="text/javascript" src="{$basePath}/js/ol3Setting.js"></script>
+	</div>*}
 
 
 

@@ -36,5 +36,4 @@ class MapPresenter extends BasePresenter
 		}
 		$this->template->visitingUser =$this->getUser()->getIdentity()->osm_account;
 	}
-
 }

@@ -113,7 +113,7 @@ class UserPresenter extends BasePresenter
 		try {
 			$this->context->userModel->addUser($save);
 			$this->flashMessage("Účet byl vytvořen.", "success");
-			$this->redirect("Homepage");
+			$this->redirect("Homepage:");
 		} catch (DuplicateEmailException $e) {
 			$this->flashMessage("Uživatel se zadaným e-mailem již existuje.", "error");
 			$this->redirect("User:registration");
@@ -129,7 +129,7 @@ class UserPresenter extends BasePresenter
 				->addRule(Form::EMAIL)
 				->setRequired("Je požadován e-mail");
 		$form->onSuccess[] = $this->onResetPasswdFormSuccess;
-		$form->addSubmit('send', 'Zaslat heslo')
+		$form->addSubmit('send', 'Resetovat heslo')
 				->setAttribute('class', 'btn');
 		return $form;
 	}
@@ -147,10 +147,10 @@ class UserPresenter extends BasePresenter
 			$this->context->emailer->send("passwordChange", "Nové heslo", $data->liame);
 
 			$this->flashMessage("Nové heslo bylo úspěšně odesláno.", "success");
-			$this->redirect(":Homepage:default");
+			$this->redirect("Homepage:default");
 		} else {
 			$this->flashMessage('Uživatel se zadaným mailem nebyl nalezen.', 'error');
-			$this->redirect(':Homepage:default');
+			$this->redirect('Homepage:default');
 		}
 	}
 
@@ -221,7 +221,7 @@ class UserPresenter extends BasePresenter
 		$form->addText('name', 'Jméno:')
 				->setRequired("Je požadováno jméno");
 		$form->addTextArea('message', 'Zpráva:');
-		$form->addSubmit('save', 'Uložit')
+		$form->addSubmit('save', 'Poslat')
 				->setAttribute("class", "btn");
 		$form->onSuccess[] = $this->onFeedbackFormSuccess;
 		return $form;

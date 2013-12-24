@@ -7,7 +7,7 @@ wget http://download.geofabrik.de/europe/czech-republic-latest.osm.bz2
 echo "Extracting OSM data"
 bunzip2 czech-republic-latest.osm.bz2
 
-#transfer data to db
+#transfer data to db /uses --create => delete all entries from db and add new/
 echo "Importing OSM data"
 osm2pgsql --slim --cache-strategy dense --hstore -d toulavej czech-republic-latest.osm
 
