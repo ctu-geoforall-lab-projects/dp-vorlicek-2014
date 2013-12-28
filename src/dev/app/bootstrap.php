@@ -26,6 +26,10 @@ $configurator->createRobotLoader()
 
 if ($_SERVER["SERVER_NAME"] == "toulavej.loc") { // development @ local network
 	$configurator->addParameters(array("environment" => "development"));
+} else if ($_SERVER["SERVER_NAME"] == "94.143.173.89") {
+	$configurator->addParameters(array("environment" => "development"));
+} else if ($_SERVER["SERVER_NAME"] == "shaitan666.asuscomm.com") {
+	$configurator->addParameters(array("environment" => "development"));
 } else if ($_SERVER["SERVER_NAME"] == "geo102.fsv.cvut.cz") {
 	$configurator->addParameters(array("environment" => "production"));
 }

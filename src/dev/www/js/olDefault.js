@@ -19,6 +19,14 @@ function init(params) {
 		host = 'toulavej.loc';
 		workspace = "diplomka";
 	}
+	else if (window.location.hostname === '94.143.173.89'){
+		host = '94.143.173.89';
+		workspace = "diplomka";
+	}
+	else if (window.location.hostname === 'shaitan666.asuscomm.com'){
+		host = 'shaitan666.asuscomm.com';
+		workspace = "diplomka";
+	}	
 	else if (window.location.hostname === 'geo102.fsv.cvut.cz') {
 		host = 'geo102.fsv.cvut.cz';
 		workspace = "vorlichr";
@@ -102,7 +110,7 @@ function init(params) {
 		renderers: renderer
 	});
 	map.addLayer(hikingWFS);
-	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/" + workspace + "/wms", {
+	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://"+ host +":8080/geoserver/" + workspace + "/wms", {
 		layers: workspace + ":tourist_tracks",
 		format: "image/png",
 		isBaseLayer: false,
@@ -139,10 +147,13 @@ function init(params) {
 
 	map.addControl(selectControl);
 	selectControl.activate();
-	kempyWFS.events.on({
-		'featureselected': onFeatureSelect,
-		'featureunselected': onFeatureUnselect
-	});
+	if (host === 'toulavej.loc')
+	{
+		kempyWFS.events.on({
+			'featureselected': onFeatureSelect,
+			'featureunselected': onFeatureUnselect
+		});
+	}
 	hikingWFS.events.on({
 		'featureselected': onRouteSelect,
 		'featureunselected': onFeatureUnselect

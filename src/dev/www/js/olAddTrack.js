@@ -3,6 +3,7 @@ var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
 renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
 var center;
 var zoom;
+var controls;
 
 function init(params) {
 	OpenLayers.ProxyHost = "/cgi-bin/proxy.cgi?url=";
@@ -12,10 +13,23 @@ function init(params) {
 		host = 'toulavej.loc';
 		workspace = "diplomka";
 	}
+	else if (window.location.hostname === '94.143.173.89') {
+		host = '94.143.173.89';
+		workspace = "diplomka";
+	}
+	else if (window.location.hostname === 'shaitan666.asuscomm.com') {
+		host = 'shaitan666.asuscomm.com';
+		workspace = "diplomka";
+	}
 	else if (window.location.hostname === 'geo102.fsv.cvut.cz') {
 		host = 'geo102.fsv.cvut.cz';
 		workspace = "vorlichr";
 	}
+
+	OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '3';
+	OpenLayers.Feature.Vector.style['default']['strokeColor'] = 'rgb(0,0,0)';
+	OpenLayers.Feature.Vector.style['select']['strokeWidth'] = '3';
+	OpenLayers.Feature.Vector.style['select']['strokeColor'] = 'rgb(0,0,0)';
 
 	map = new OpenLayers.Map({
 		div: 'map-addTrack',
@@ -28,7 +42,7 @@ function init(params) {
 	map.addLayer(osm);
 	map.setCenter([params['lon'], params['lat']], params['zoom']);
 
-	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/" + workspace + "/wms", {
+	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://" + host + ":8080/geoserver/" + workspace + "/wms", {
 		layers: workspace + ":tourist_tracks",
 		format: "image/png",
 		isBaseLayer: false,
@@ -39,16 +53,33 @@ function init(params) {
 	map.addLayer(hikingWMS);
 
 	var newTrack = new OpenLayers.Layer.Vector("Nová trasa", {
-		projection: new OpenLayers.Projection("EPSG:900913"),
-		style: {
-			strokeColor: 'rgb(0,0,0)',
-			strokeWidth: 3
-		}
+		projection: new OpenLayers.Projection("EPSG:900913")
 	});
 	map.addLayer(newTrack);
 
-	drawControls = {line: new OpenLayers.Control.DrawFeature(newTrack, OpenLayers.Handler.Path)};
-	map.addControl(drawControls['line']);
+	//for disable draw control
+	newTrack.events.on({
+		'featuresadded': onFeaturesAdded,
+		'afterfeaturemodified': writeGeometry,
+		'featuremodified': writeGeometry,
+		'vertexmodified': writeGeometry,
+		'sketchcomplete': writeGeometry
+	});
+
+	if (console && console.log) {
+		function report(event) {
+			console.log(event.type, event.feature ? event.feature.id : event.components);
+		}
+		newTrack.events.on({
+			"beforefeaturemodified": report,
+			"featuremodified": report,
+			"afterfeaturemodified": report,
+			"vertexmodified": report,
+			"sketchmodified": report,
+			"sketchstarted": report,
+			"sketchcomplete": report
+		});
+	}
 
 // Přehledka
 	var options = {
@@ -89,17 +120,32 @@ function init(params) {
 	map.addControl(new OpenLayers.Control.Scale()); //scale
 	map.addControl(new OpenLayers.Control.KeyboardDefaults());
 	map.addControl(new OpenLayers.Control.Permalink());
+
+	//control for draw new Track
+	controls = {
+		line: new OpenLayers.Control.DrawFeature(newTrack, OpenLayers.Handler.Path),
+		modify: new OpenLayers.Control.ModifyFeature(newTrack)
+	};
+	map.addControl(controls['line']);
+	map.addControl(controls['modify']);
+
+	controls.modify.mode = OpenLayers.Control.ModifyFeature.RESHAPE;
+	controls.modify.createVertices = true;
+
+	controls.line.activate();
+	alert('Editace je aktivní');
 }
 
+//	function for create shape of path
+//	modification of modify-feature example from openlayers.org
+function onFeaturesAdded(event) {
+	controls.line.deactivate();
+	controls.modify.activate();
+}
 
-function toggleControl(element) {
-	for (key in drawControls) {
-		var control = drawControls[key];
-		if (element.name === key && element.checked) {
-			control.activate();
-		} else {
-			control.deactivate();
-			document.getElementById('frmaddTrackForm-the_geom').innerHTML = 'toto je test zápisu.';
-		}
-	}
+function writeGeometry(event){
+	feature = event.feature;
+	document.getElementById('trackLenght').innerHTML = (feature.geometry.getLength()/1000).toFixed(3) + " km";
+	$('input.the_geom').val(feature.geometry.toString());
+	$('input.length').val(feature.geometry.getLength());
 }

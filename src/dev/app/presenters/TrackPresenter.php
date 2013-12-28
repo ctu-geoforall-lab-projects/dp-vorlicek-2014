@@ -147,9 +147,15 @@ class TrackPresenter extends BasePresenter
 		$form->addText('name','Jméno trasy: ')
 				->setRequired('Vyplňte jméno.')
 				->setAttribute('class','input-medium');
-		$form->addTextArea('the_geom','Geometrie:')
+		//field with geometry
+		$form->addHidden('the_geom')
+				->getControlPrototype()->class('the_geom');
+		$form->addHidden('length')
+				->getControlPrototype()->class('length');
+		//development
+		/*$form->addTextArea('the_geom','Geometrie:')
 				->setRequired('Zadejte minimálně dva body.')
-				->setAttribute('class', 'inputTextAreaTrack');
+				->setAttribute('type', 'hidden');*/
 		$form->addTextArea('note','Cíle:')
 				->setAttribute('class', 'inputTextAreaTrack');		
 		$form->addSubmit('save', 'Uložit')->setAttribute('class', 'btn');
@@ -159,5 +165,8 @@ class TrackPresenter extends BasePresenter
 	
 	public function onAddTrackFormSuccess($form){
 		$data = $form->getValues();
+		$this->context->createTrackModel()->saveTrack($data);
+		$this->flashMessage('Trasa byla přidána.', 'success');
+		$this->redirect('Track:default');
 	}
 }

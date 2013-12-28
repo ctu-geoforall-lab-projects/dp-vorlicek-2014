@@ -14,4 +14,11 @@ class TrackModel extends BaseModel
 	{
 		return parent::baseFilter();
 	}
+	
+	public function saveTrack($data)
+	{
+		$data['the_geom'] = `ST_GeomFromText("` . $data->the_geom . `","900913")`;
+		$data['created'] = 'now()';
+		$this->insert($data);
+	}
 }

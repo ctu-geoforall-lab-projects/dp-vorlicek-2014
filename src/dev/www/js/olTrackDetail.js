@@ -11,6 +11,14 @@ function init(id) {
 		host = 'toulavej.loc';
 		workspace = "diplomka";
 	}
+	else if (window.location.hostname === '94.143.173.89') {
+		host = '94.143.173.89';
+		workspace = "diplomka";
+	}
+	else if (window.location.hostname === 'shaitan666.asuscomm.com') {
+		host = 'shaitan666.asuscomm.com';
+		workspace = "diplomka";
+	}
 	else if (window.location.hostname === 'geo102.fsv.cvut.cz') {
 		host = 'geo102.fsv.cvut.cz';
 		workspace = "vorlichr";
@@ -27,17 +35,7 @@ function init(id) {
 	var osm = new OpenLayers.Layer.OSM('OpenStreetMap');
 	map.addLayer(osm);
 
-
-	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/" + workspace + "/wms", {
-		layers: workspace + ":tourist_tracks",
-		format: "image/png",
-		isBaseLayer: false,
-		transparent: true,
-		tiled: true,
-		tilesOrigin: map.maxExtent.left + ',' + map.maxExtent.bottom
-	});
-	map.addLayer(hikingWMS);
-
+	//wfs detail of track
 	var trackWFS = new OpenLayers.Layer.Vector("Trasa - WFS", {
 		projection: new OpenLayers.Projection("EPSG:900913"),
 		strategies: [new OpenLayers.Strategy.BBOX()],
@@ -46,17 +44,31 @@ function init(id) {
 			format: new OpenLayers.Format.GeoJSON()
 		}),
 		style: {
-			'strokeWidth': 2,
+			'strokeWidth': 3,
 			'strokeColor': 'rgb(0,0,0)'
-		}		
+		}
 	});
 	map.addLayer(trackWFS);
-
+	
 	trackWFS.events.on({
-		loadend: function() {getFeatures(trackWFS);}
-		});
+		loadend: function() {
+			getFeatures(trackWFS);
+		}
+	});
 
-	//map.setCenter(tracks.geometry.getBounds().getCenterLonLat(),10);
+//hiking maps
+	var hikingWMS = new OpenLayers.Layer.WMS("Stezky - WMS", "http://localhost:8080/geoserver/" + workspace + "/wms", {
+		layers: workspace + ":tourist_tracks",
+		format: "image/png",
+		isBaseLayer: false,
+		transparent: true,
+		style: {
+			'strokeWidth': 5
+		},
+		tiled: true,
+		tilesOrigin: map.maxExtent.left + ',' + map.maxExtent.bottom
+	});
+	map.addLayer(hikingWMS);
 
 // Přehledka
 	var options = {
@@ -102,5 +114,5 @@ function init(id) {
 
 function getFeatures(layer) {
 	zoom = map.getZoomForExtent(layer.features[0].geometry.getBounds());
-	map.setCenter(layer.features[0].geometry.getBounds().getCenterLonLat(),zoom);
+	map.setCenter(layer.features[0].geometry.getBounds().getCenterLonLat(), zoom);
 }
