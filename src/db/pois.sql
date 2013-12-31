@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS pois;
 
 CREATE TABLE pois AS 
-        (SELECT "osm_id", "amenity", "historic", "leisure", "man_made", "name", "natural", "religion", "shop", "tags", "tourism", "way", "z_order"
+        (SELECT "osm_id", "amenity", "historic", "leisure", "man_made", "name", "natural", "religion", "shop", "tags", "tourism", "way", "z_order", "ele"
            FROM planet_osm_point WHERE osm_id IN 
                 (SELECT DISTINCT osm_id
                    FROM planet_osm_point

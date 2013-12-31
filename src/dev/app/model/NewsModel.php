@@ -2,7 +2,6 @@
 
 /**
  * @author Top - Chrudos Vorlicek <chrudos.vorlicek@gmail.com>
- * @author Michal Odcházel <michal.odchazel@litea.cz>
  */
 class NewsModel extends BaseModel
 {

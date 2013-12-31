@@ -11,14 +11,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 	protected function startup()
 	{
-		/* $user = $this->getUser();
-		  if (!$user->isAllowed($this->reflection->name, $this->getAction())) {
-		  if (!$user->isLoggedIn()) {
-		  $this->redirect('Homepage:default');
-		  } else {
-		  $this->redirect('Homepage:default');
-		  }
-		  } */
+		
 		if (!$this->context->emailer->getParent()) { // workaround for "Component '' already has a parent."
 			$this->context->emailer->setParent($this);
 		}

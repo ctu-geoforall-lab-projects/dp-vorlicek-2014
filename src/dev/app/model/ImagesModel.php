@@ -3,7 +3,7 @@
 /**
  * @author Top - Chrudos Vorlicek <chrudos.vorlicek@gmail.com>
  */
-class TrackReviewModel extends BaseModel
+class ImagesModel extends BaseModel
 {
 	/**
 	 * Base filter on table
@@ -14,8 +14,10 @@ class TrackReviewModel extends BaseModel
 		return parent::baseFilter();
 	}
 	
-	public function getTrackReview($trackId)
+	public function saveImage($data)
 	{
-		return $this->getTable()->where('track_id',$trackId);
+		$data['the_geom'] = `ST_GeomFromText("` . $data->the_geom . `","900913")`;
+		$data['created'] = 'now()';
+		$this->insert($data);
 	}
 }

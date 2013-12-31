@@ -80,3 +80,4 @@ common:
 		newsModel: NewsModel(@database::table(news))
 		trackModel: TrackModel(@database::table(tracks))
 		trackReviewModel: TrackReviewModel(@database::table(track_reviews))
+		imagesModel: ImagesModel(@database::table(images))

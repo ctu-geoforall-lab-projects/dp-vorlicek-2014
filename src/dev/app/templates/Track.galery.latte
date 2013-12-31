@@ -1,0 +1,37 @@
+{block title}Seznam tras{/block}
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/gallery.js"></script>
+{/block}
+
+{block content}
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#image').width($(window).width()/2);
+		
+      $('#gallery')
+          .gallery({  })
+          .css({ top: ($(this).height()-150), left: 50 });
+      $('#gallery img')
+          .mouseover(function() {
+              $(this).stop().animate({ width: 200, height: 130, marginTop: -50, marginLeft: -25 });
+          })
+          .mouseout(function() {
+              $(this).stop().animate({ width: 150, height: 80, marginTop: 0, marginLeft: 0 });
+          });
+  });
+  </script>
+
+<h1>Galerie</h1>
+{if $images->count() > 0}
+	<div id="gallery">
+	{foreach $images as $image}	
+		<a href="javascript:;" title="{$image->name}"> <img src="{$basePath}/files/{$image->filename}" alt="{$image->name}" width="150" height="80"/></a>
+	{/foreach}
+	</div>
+	<div id="image"><img src="{$basePath}/files/{$images[1]->filename}"/></div>
+
+{else}
+	Nejsou zde zatím žádné fotky
+{/if}
+<div>
