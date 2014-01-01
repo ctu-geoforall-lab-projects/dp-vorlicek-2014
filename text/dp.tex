@@ -330,10 +330,36 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 %									 %
 \chapter{OpenStreetMap}
 	\section{O Projektu}
+
+        %%% ML: "a toto jméno se zde velice často objevuje" zni
+        %%% opravdu spatne..., zduvodneni formulovane jako "Z toho
+        %%% důvodu by bylo vhodné říci o co se jedná" je potreba
+        %%% preformulovat, neco jako "cilem kapitoly je ...."
+
 		\paragraph{} Tato práce je navázána na projekt OpenStreetMap a toto jméno se zde velice často objevuje. Z toho důvodu by bylo vhodné říci o co se jedná, jakou má projekt historii, jak v současné době vypadá a jaké má využití. 
+
+                %%% ML: "OpenStreetMap je svobodná mapa" je
+                %%% zavadejici, nepresne a divne..., zkuste tuto cast
+                %%% prepsat, opet chybejeji citace jako v celem textu...
+
+                %%% ML: nejde o "mapove dilo" !!! jaka jina "mapova
+                %%% dila" mate na mysli
+
+                %%% ML: "stahnout si data" jaka data - neni vysvetleno
+
+                %%% ML: OSM jiz nepouzivat CC-BY-SA !!! -
+                %%% http://wiki.openstreetmap.org/wiki/Cs:ODbL/We_Are_Changing_The_License
+                %%% opet chyby jakakoliv reference ... (!!!)
+
 		\paragraph{} OpenStreetMap je svobodná mapa, kterou vytváří a spravují její uživatelé. Narozdíl od jiných mapových děl OpenStreetMap poskytují uživatelům možnost stáhnout si data a volně s nimi nakládat. Díky možnosti svobodného nakládání s daty vznikají různá mapová díla dle potřeb uživatelů. Mapa musí mít uvedeno autorství OpenStreetMap contributors a musí být šířena pod stejnou licencí jako samotná OpenStreetMap. Toto je známo jako licence \textit{CC BY-SA 2.0}\cite{creative_commons}.
 		\paragraph{}Projekt vznikl ve Velké Británii v roce 2004. O jeho základy se postaral Steve Coast, který se nechal inspirovat jiným komunitou řízeným projektem -- svobodnou encyklopedií Wikipedie. O dva roky později vznikla OpenStreetMap Foundation, která projekt podporuje. V průběhu let povolily některé společnosti používat své mapové podklady pro tvorbu OpenStreetMap. V roce 2006 to byl Yahoo. O rok později Automotive Navigation Data poskytla mapy silniční sítě Nizozemska, Indie a Činy. 
-		\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce následujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}. 
+		\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V~srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce násle\-dujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}.
+
+                %%% ML: kazdy obrazek musi byt uveden zdroj !!!
+                
+                %%% ML: obrazek ma nevhodny popisek - uzivatelu ceho?
+                %%% (je potreba uvest OSM), v seznamu obrazku to bude matouci
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/osm_stat_users.png}
@@ -341,15 +367,45 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 			\end{center}
 		\end{figure}
 
+                %%% ML: jaka data? prilis obecne
+
 	\section{Data}
 		\subsection{Typy dat}
-		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velké množství rozličných dat. Kromě standartních objektů, jako jsou silnice, vodstvo, budovy, zalejsněné oblasti či turistické značky, jsou mapovány i věci, které na normálních mapách zobrazeny nejsou. Jedná se například o bezpečnostní kamery na veřejných místech. Data mohou být:
+
+                %%% ML: rozlicnych dat ci kvalitu dat, ci neco jineho
+                %%% ??? nepresna formulace
+
+                %%% ML: "standardnich objektu" to je velmi nepresne,
+                %%% silnice ci vodstvo nejsou objekty...
+
+                %%% ML: co mate na mysli "normalnimi mapami" ? je
+                %%% treba to nejak rozvest...
+
+                %%% ML: "Data mohou byt" zni divne, spise neco jako
+                %%% "Rozlisuje tri zakladni elementy datoveho modelu,
+                %%% ktery projekt OSM pouziva:" ci neco podobnebo
+
+		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velké množství rozličných dat. Kromě standardních objektů, jako jsou silnice, vodstvo, budovy, zalesněné oblasti či turistické značky, jsou mapovány i věci, které na normálních mapách zobrazeny nejsou. Jedná se například o bezpečnostní kamery na veřejných místech. Data mohou být:
 	\begin{itemize}
 		\item uzly (nodes) -- body se souřadnicemi,
+
+                  %%% ML: nebo co?
+
 		\item cesty (ways) -- liniové prvky a hranice polygonů -- nebo
+
+                  %%% ML: jakymi dalsimi prvky?
+
 		\item relace (relations) -- popisují vztahy s dalšími prvky.
 	\end{itemize}
-Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznamenávají  vlastnosti. 			\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou součástí cesty. V tom případě definují tvar cesty. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z topologického hlediska o křižovatku, ale mimoúrovňové křížení. Globální dataset obsahuje k roku 2013 přes 2 x 10$^9$ uzlů.
+Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznamenávají  vlastnosti. 	
+
+%%% ML: "nebo jsou součástí cesty" zni divne, mate na mysli, ze uzly
+%%% tvori lomove body cesty? nebo jenom pocatecni a koncovy bod cesty
+%%% (lomene cary) ?
+
+		\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou součástí cesty. V tom případě definují tvar cesty. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z topologického hlediska o křižovatku, ale mimoúrovňové křížení. Globální dataset obsahuje k roku 2013 přes 2 x 10$^9$ uzlů.
+
+%%% ML: chybi zdroj, to musite uvest...
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -357,6 +413,10 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 				\caption{Graf vývoje počtu uzlů, cest a relací}
 			\end{center}
 		\end{figure}
+
+                %%% ML: "Oproti uzlům je cest výrazně míň" to nezni
+                %%% prilis staste, zkuste preformulovat, jedna se o
+                %%% text technickeho charakteru
 
 		\paragraph{} Oproti uzlům je cest výrazně míň (kolem 200 000), protože cesty jsou tvořeny 2 až 2000 uzly spojenými liniovými segmenty. Cesta je buď otevřená nebo uzavřená. Otevřená cesta je taková, kde začátek a konec tvoří jiný uzel. Uzavřená cesta má identický počáteční a koncový uzel. V tomto případě se může jednat o uzavřenou polylinii či plošný prvek. Rozdíl lze stanovit pomocí tagu area -- pokud má hodnotu yes, jedná se o plochu. V některých případech může cesta tvořit polylinii a hranici polygonu zároveň -- toto je pak označeno odpovídajícím způsobem ve vlastnostech.
 
@@ -368,7 +428,20 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
-		\paragraph{} Vznik dat se dá rozdělit do tří skupin. První z nich je přímý sběr v terénu, kdy uživatel chodí venku a pomocí GPS přístroje získává souřadnice, které pak importuje v souboru GPX do mapy. Druhou variantou je odvozování z existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s licencí, kterou užívá OpenStreetMap. V případě, že nejsou vyjasněny licenční podmínky,materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes WMS Ústavem pro hospodářskou úpravu lesů (ÚHÚL) či WMS katastrální mapy Českého úřadu zeměměřického a katastrálního(ČÚZK). WMS ortofotomapy ČÚZK na odvozování nemůže být použita. Může být ale použita na ověření přesnosti jiných použitelných zdrojů.
+                %%% ML: "Vznik dat" divne, zkuste preformulovat - zdroje dat
+
+                %%% ML: "chodi venku" nezni jako formulace s diplomove prace
+
+                %%% ML: "souradnice, ktere pak importuje v souboru GPX
+                %%% do mapy" zni opet divne, tuto formulace by me
+                %%% neprekvapila jinde, ale u zaverecne prace oboru
+                %%% "geoinfomatika" ano, zkuste prepsat
+
+                %%% ML: Druhou "variantou" jako variantou, dalsim zdrojem dat ....
+
+		\paragraph{} Vznik dat se dá rozdělit do tří skupin. První z nich je přímý sběr v terénu, kdy uživatel chodí venku a pomocí GPS přístroje získává souřadnice, které pak importuje v souboru GPX do mapy. Druhou variantou je odvozování z existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s licencí, kterou užívá OpenStreetMap. V~případě, že nejsou vyjasněny licenční podmínky, materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes WMS Ústavem pro hospodářskou úpravu lesů (ÚHÚL) či WMS katastrální mapy Českého úřadu zeměměřického a katastrálního (ČÚZK). WMS ortofotomapy ČÚZK na odvozování nemůže být použita. Může být ale použita na ověření přesnosti jiných použitelných zdrojů.
+
+                %%% ML: opet chybi zdroj
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -378,21 +451,50 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
+
+                %%% ML: chybi odkaz na graf, ctenar musi hledat...
+
+                %%% ML: konec odstavce: "zatímco druhý obrázek je
+                %%% plnohodnotnou mapou." je spatna formulace, obrazek
+                %%% muze byt tezkou mapou, 
+
 		\paragraph{} Graf vývoje počtu elementů ukazuje, že z počátku přibývalo malé množství objektů a větší zvrat nastal spolu s nárustem počtu uživatelů. V roce 2007 je vidět skokový nárust počtu bodových prvků -- jedná se o data silniční sítě Nizozemska, Indie a Číny poskytnuté organizací Automotive Navigation Data. 
 		Přibývání počtu prvků v mapě lze též dobře sledovat na malých plochách. Pro ilustraci jsou zde přiloženy obrázky, jak Praha byla zmapována v roce 2006 \ref{fig:praha2006} a v prosinci 2013 \ref{fig:praha2013}. V prvním případě jsou zmapovány hlavní silnice a vodní toky, zatímco druhý obrázek je plnohodnotnou mapou.
 	
 	\subsection{Uložení dat}
 		\paragraph{} Data se ukládají do databáze, která je klíčovým prvkem celého projektu. Pro každý typ prvku existují tabulky v databázi. Kromě současné verze obsahuje databáze i historické verze, takže lze dohledat změny a případně je vrátit. Další tabulky se vztahují ke změnovým sadám (changesetům), GPX souborům nebo registrovaným uživatelům. Kromě tabulek jsou uloženy i primární a cizí klíče, sekvence a indexy.
-		\paragraph{} Data jsou distribuovány v XML souboru Planet.osm, který je vytvářen v týdenních intervalech. V současnosti je velikost nekomprimované sady přes 400 GB, při užití komprimace je možno se dostat k 29 GB. Protože dost často není potřeba mít data z celého světa, dělají se i extrakty, které pokrývají jednotlivé kontinenty, země nebo města. Tyto výtahy jsou vytvářeny častěji -- \url{http://download.geofabrik.de} poskytuje data s denním intervalem. Vytvoření obrazu databáze většinou zabere 12 hodin\cite{planet.osm}.
-	\paragraph{} Kromě samotných mapových dat jsou k dispozici i planet.gpx s údaji z nahraných GPX souborů a soubor s historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB. 
+
+                %%% ML: "extrakt" neni rozhodne ceske slovo... zkuste
+                %%% najit lepsi termin, dale pouzivate "vytahy" coz
+                %%% neni take uplne stastny termin
+
+		\paragraph{} Data jsou distribuovány v XML souboru Planet.osm, který je vytvářen v~týdenních intervalech. V současnosti je velikost nekomprimované sady přes 400 GB, při užití komprimace je možno se dostat k 29 GB. Protože dost často není potřeba mít data z celého světa, dělají se i extrakty, které pokrývají jednotlivé kontinenty, země nebo města. Tyto výtahy jsou vytvářeny častěji -- \url{http://download.geofabrik.de} poskytuje data s denním intervalem. Vytvoření obrazu databáze většinou zabere 12 hodin\cite{planet.osm}.
+
+                %%% ML: "mapova data" co to je? co je format GPX,
+                %%% nikde neni vystetleno
+
+	\paragraph{} Kromě samotných mapových dat jsou k dispozici i planet.gpx s údaji z~nahraných GPX souborů a soubor s historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB. 
+
+        %%% ML: odkud tyto informace jsou, jako vsude v textu CHYBI
+        %%% REFERENCE!!!
+
 	\paragraph{} Data jsou uložena na databázovém serveru, který má dostatečné prostředky pro správu těchto dat. Od dubna 2009 do dubna 2012 byl primárním serverem server Smaug. Operační systém Ubuntu 12.04 LTS Server amd64 obsluhuje relační databázi PostgreSQL ve verzi 9.1. Pevné disky mají kapacitu přes 6 TB a operační paměť je 64 GB. V současné době je primírním serverem server se jménem Ramoth, který je také obsluhován operačním systémem Ubuntu 12.04 LTS Server amd64, ovšem od svého kolegy se liší jak kapacitou disků (skoro 15 TB), tak operační pamětí (256 GB). Funkci databázového systému plní stále PostgreSQL 9.1.
-	\paragraph{}Každý záznam v databázi má u sebe uvedeny i své vlastnosti. Protože pro každý typ prvku je jedna tabulka, jsou některé vlastnosti prvku prázdné. Parametry, které se evidují např. u silnice jsou jiné než vlastnosti, které nás zajímají u řeky -- obojí lze najít v tabulce s liniovými prvky. Aby se běžný uživatel či vývojář vyznali v databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechny parametry (sloupce v databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hlednání v databázi vůbec možné a nepřipomíná hledání v jehly v kupce sena.
+
+        %%% ML: asi mate na mysli popisna data, vlastnosti jsou
+        %%% zavadejici
+
+	\paragraph{}Každý záznam v databázi má u sebe uvedeny i své vlastnosti. Protože pro každý typ prvku je jedna tabulka, jsou některé vlastnosti prvku prázdné. Parametry, které se evidují např. u silnice jsou jiné než vlastnosti, které nás zajímají u řeky -- obojí lze najít v tabulce s liniovými prvky. Aby se běžný uživatel či vývojář vyznali v databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechny parametry (sloupce v databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hledání v databázi vůbec možné a~nepřipomíná hledání v jehly v kupce sena.
 
 
-	\section{Editory} % id, Potlach 2, JOSM, Merkaator
-		\paragraph{} Součástí práce je napojení editoru vytvářené aplikace na data OpenStreetMap. Stojí tedy za zmínku, jaké jsou prostředky, kterými se v současné době provádí editace dat. 
+	\section{OSM editory} % id, Potlach 2, JOSM, Merkaator
+		\paragraph{} Součástí předkládané diplomové práce je napojení editoru vytvářené web\-ové aplikace na data OpenStreetMap (OSM). Stojí tedy za zmínku, jaké jsou prostředky, kterými se v současné době provádí editace dat projektu OSM. 
 		\subsection{iD}
-			\paragraph{}Editor iD je nejnovějším z uvedených editorů. Pro užití na OpenStreetMap byl spuštěn v květnu 2013. Jedná se o javascriptovou aplikaci, která je šířena pod licencí WTFPL (Do What the Fuck You Want to Public License)\cite{wiki_wtfpl}, která umožňuje naprosto volně nakládat s produktem. K vykreslení je užívána javascriptová knihovna d3js, která slouží k práci v na datech založených dokumentech. Knihovna užívá HTML, CSS a SVG k vykreslení požadovaných prvků. Podpora jiných vykreslovacích přístupů není zatím v editoru iD implementována. Jedná se o aplikaci vhodnou pro začátečníky, protože má jednoduché ovládání.
+
+                %%% ML: chybi odkaz na d3js, co znamena "práci v datech založených dokumentech" ?
+
+                %%% ML: jako nikde v textu nejsou vysvetleny zkratky -  HTML, CSS a dalsi
+
+			\paragraph{}Editor iD je nejnovějším z uvedených editorů. Pro užití na OpenStreetMap byl spuštěn v květnu 2013. Jedná se o javascriptovou aplikaci, která je šířena pod licencí WTFPL (Do What the Fuck You Want to Public License)\cite{wiki_wtfpl}, která umožňuje naprosto volně nakládat s produktem. K vykreslení je užívána javascriptová knihovna d3js, která slouží k práci v datech založených dokumentech. Knihovna užívá HTML, CSS a SVG k vykreslení požadovaných prvků. Podpora jiných vykreslovacích přístupů není zatím v editoru iD implementována. Jedná se o aplikaci vhodnou pro začátečníky, protože má jednoduché ovládání.
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -405,7 +507,10 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\paragraph{} Podle stránek projektu\cite{wiki_iD} program zatím plně nepodporuje prohlížeče Internet Explorer verze 9, 10 a 11. Někteří uživatelé též hlásili zhoršený výkon pro prohlížeč Firefox.
 
 		\subsection{JOSM}
-			\paragraph{}JOSM (Java OpenStreetMap Editor) je na javě založený editor dat OpenStreetMap. Jedná se o desktopovou aplikaci s licencí GPL (General public license), ze které jsou změny dálkové nahrávány do hlavní databáze. Narozdíl od iD poskytuje JOSM mnohem více možnostní pro manipulaci s daty, což je znát i na jeho uživatelském rozhraní\ref{fig:josm_osm}. Aplikace podporuje čtení GPX souborů buď z pevného disku nebo z databáze OpenStreetMap, editování existujících uzlů, cest, tagů a relací.
+			\paragraph{}JOSM (Java OpenStreetMap Editor) je na Javě založený editor dat OpenStreetMap. Jedná se o desktopovou aplikaci publikovanou pod licencí GPL (General Public License), ze které jsou změny dálkové nahrávány do hlavní databáze OSM. Narozdíl od iD poskytuje JOSM mnohem více možnostní pro manipulaci s daty, což je znát i na jeho uživatelském rozhraní, viz \ref{fig:josm_osm}. Aplikace podporuje čtení GPX souborů buď z pevného disku nebo z databáze OpenStreetMap, editování existujících uzlů, cest, tagů a relací.
+
+                        %%% ML: jediny obrazek se zdrojem, no konecne :-)
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/josm_osm.png}
@@ -426,7 +531,9 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 		\end{figure}
 
 		\subsection{Potlatch 2}
-			\paragraph{} Stejně jako iD editor je i Potlatch 2 online editor s licencí WTFPL, ale narozdíl od něj je napsán ve Flashi. Jedná se o jednoduchý editor, který není určen pro náročnější uživatele. Potlatch 2 vznikl kompletním přepsáním původního Potlatch, kdy byly přidáno zobrazení WYSIWYG (What You See Is What You Get), jednodušší tagování a autentizace přes OAuth pro zakomponování do jiných stránek při zachování napojení na OpenStreetMap. Z důvodu existence editoru iD není v současnosti aplikace aktivně vyvíjena.
+			\paragraph{} Stejně jako iD editor je i Potlatch 2 online editor s licencí WTFPL, ale narozdíl od něj je napsán ve Adobe Flash. Jedná se o jednoduchý editor, který není určen pro náročnější uživatele. Potlatch 2 vznikl kompletním přepsáním původního Potlatch, kdy byly přidáno zobrazení WYSIWYG (What You See Is What You Get), jednodušší tagování a autentizace přes OAuth pro zakomponování do jiných stránek při zachování napojení na OpenStreetMap. Z důvodu existence editoru iD není v současnosti aplikace aktivně vyvíjena.
+
+                        %%% ML: zdroj nelze dohledat
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -435,10 +542,10 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
-	\section{Využití}
-		\paragraph{} Data OpenStreetMap jsou široce využívány k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Řada velkých projektů, např. Foursquare, užívá nebo přechází na mapy OpenStreetMap, protože jsou pro ně výhodnější. Ačkoliv tyto produkty ocení většina uživatelů, dle mého leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
-		\paragraph{}V momentě, kdy nějakou část světa zasáhne živelná katastrofa, mohou dobrovolníci z řad uživatelů OpenStreetMap z aktuálních družicových snímků vytvořit novou aktuální mapu postižené oblasti. Toto bylo využito třeba v roce 2010, kdy bylo Haiti zasaženo zemětřesením, a v současnosti probíhá nové mapování po tajfunu na Filipínách z listopadu 2013. Během prvního týdne od tajfunu bylo editováno víc jak 2 000 000 objektů a do obnovy se zapojilo přes 900 uživatelů. K 11.prosinci 2013 bylo za přispění více jak 1 600 uživatelů zmapováno přes 4,5 milionu objektů\cite{wiki_tajfun}.
-		\paragraph{} Aby bylo zajištěno efektivní tvorba, produkce a distribuce map pro postižené oblasti, byla v lednu 2009 vytvořena skupina Humanitarian OpenStreetMap Team\cite{wiki_hot}, která tuto činnost řídí.
+	\section{Využití dat OSM}
+		\paragraph{} Data OpenStreetMap jsou často využívána k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Řada velkých projektů, např. Foursquare, užívá nebo přechází na mapy OpenStreetMap, protože jsou pro ně výhodnější. Ačkoliv tyto produkty ocení většina uživatelů, dle mého názoru leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
+		\paragraph{}V momentě, kdy nějakou část světa zasáhne živelná katastrofa, mohou dobrovolníci z řad uživatelů OpenStreetMap z aktuálních družicových snímků vytvořit novou aktuální mapu postižené oblasti. Toto bylo využito třeba v~roce 2010, kdy bylo Haiti zasaženo zemětřesením, a v současnosti probíhá nové mapování po tajfunu na Filipínách z listopadu 2013. Během prvního týdne od tajfunu bylo editováno víc jak 2 000 000 objektů a do obnovy se zapojilo přes 900 uživatelů. K 11.prosinci 2013 bylo za přispění více jak 1 600 uživatelů zmapováno přes 4,5 milionu objektů \cite{wiki_tajfun}.
+		\paragraph{} Aby bylo zajištěno efektivní tvorba, produkce a distribuce map pro postižené oblasti, byla v lednu 2009 vytvořena skupina Humanitarian OpenStreetMap Team \cite{wiki_hot}, která tuto činnost řídí.
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%
