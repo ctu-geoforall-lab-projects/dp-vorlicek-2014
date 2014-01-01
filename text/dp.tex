@@ -809,9 +809,20 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 %									 %
 \chapter{Vývoj aplikace}
 		\section{Databáze}
+Databáze je důležitým prvkem aplikace \uv{Toulavej} -- jsou zde uloženi registrovaní uživatelé, příspěvky v diskuzi a další data včetně dat OpenStreetMap.
 			\subsection{Datový model}
-				\paragraph{} Databáze je důležitým prvkem aplikace Toulavej -- jsou zde uloženi registrovaní uživatelé, příspěvky v diskuzi a další data včetně dat OpenStreetMap. Databáze byla vytvářena postupně podle toho, které tabulky byly potřeba. Všechny tabulky a sloupce jsou pojmenovány anglicky. V obrázku \ref{fig:db} jsou vidět tabulky a vztahy mezi nimi. V schématu nejsou zobrazeny tabulky vzniklé importem dat planet\_osm a tabulky rozšíření PostGIS. 
-				\paragraph{}Tabulka \textit{news} je určena pro ukládání událostí, které jsou zveřejňovány jako novinky. Zde se evidují pouze položky \textbf{id} jako primární klíč, \textbf{user\_id} jako cizí klíč na tabulku \textit{users}, \textbf{note} s novinkou a čas vytvoření(\textbf{created}).
+				\paragraph{}  Databáze byla vytvářena postupně podle toho, které tabulky byly potřeba. Všechny tabulky a sloupce jsou pojmenovány anglicky. V obrázku \ref{fig:db} jsou vidět tabulky a vztahy mezi nimi. V schématu nejsou zobrazeny tabulky vzniklé importem dat planet\_osm a tabulky rozšíření PostGIS. 
+				\paragraph{}Tabulka \textit{news} je určena pro ukládání událostí, které jsou zveřejňovány jako novinky. Zde se evidují pouze položky \textbf{id} jako primární klíč, \textbf{user\_id} jako cizí klíč na tabulku \textit{users}, \textbf{note} s novinkou a čas vytvoření (\textbf{created}).
+
+                                %%% ML: "Zde je velice častý výskyt
+                                %%% hodnoty NULL." proc neni
+                                %%% vysvetleno...
+
+                                %%% ML: co je hstore, proc bylo
+                                %%% pouzito, chybi vysvetleni nebo
+                                %%% odkaz na text, kde to bude
+                                %%% vysvetleno...
+
 				\paragraph{}Další v pořadí je tabulka \textit{pois} odvozená od bodové vrstvy dat OpenStreetMap. Vznikla vybráním bodů, které by mohly být pro uživatele nějakým způsobem zajímavé. Hlavní sloupce jsou \textbf{osm\_id} pro primární klíč a \textbf{way} pro geometrii. Sloupce \textbf{amenity, historic, leisure, man\_made, name, natural, religion, shop a tourism} obsahují informaci o typu prvku. Zde je velice častý výskyt hodnoty NULL. Sloupec \textbf{tags} užívá rozšíření hstore a jsou v něm uvedeny další informace.
 		\begin{figure}[!h]
 			\begin{center}
@@ -820,23 +831,31 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\label{fig:db}
 			\end{center}
 		\end{figure}
-                        \paragraph{} Další tabulkou odvozenou z liniové vrstvy dat OpenStreetMap jsou \textit{tourist\_tracks}. Stejně jako \textit{pois} nese sloupec s primárním klíčem označení \textbf{osm\_id}. Sloupec \textbf{kct\_color} určuje barvu turistické stezky bez ohledu na druh značky. Ten je zohledněn v \textbf{kct\_symbol}. Možné cíle trasy(pokud jsou uvedeny) udává \textbf{kct\_destinations}. Pokud má trasa nějaké jméno, je uvedeno v \textbf{kct\_name}. Zřizovatel trasy je uveden v \textbf{operator}. V poli \textbf{route} je uveden typ cesty. Geometrii lze nalézt ve sloupci \textbf{way}. \textbf{way\_area} určuje plochu ohraničenou uzavřeným liniovým prvkem.
-			\paragraph{} Tabulka \textit{tracks} slouží k ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje po \textbf{user\_id}. Geometrii lze najít v \textbf{the\_geom} a délka je v \textbf{length}. Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k ukládání komentářů a hodnocení k cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text(\textbf{review}) a časová známka, kdy byl příspěvek vložen(\textbf{created}).
+                        \paragraph{} Další tabulkou odvozenou z liniové vrstvy dat OpenStreetMap jsou \textit{tourist\_tracks}. Stejně jako \textit{pois} nese sloupec s primárním klíčem označení \textbf{osm\_id}. Sloupec \textbf{kct\_color} určuje barvu turistické stezky bez ohledu na druh značky. Ten je zohledněn v \textbf{kct\_symbol}. Možné cíle trasy(pokud jsou uvedeny) udává \textbf{kct\_destinations}. Pokud má trasa nějaké jméno, je uvedeno v \textbf{kct\_name}. Zřizovatel trasy je uveden v \textbf{operator}. V poli \textbf{route} je uveden typ cesty. Geometrii lze nalézt ve sloupci \textbf{way}. Atribut \textbf{way\_area} určuje plochu ohraničenou uzavřeným liniovým prvkem.
+
+                        %%% "a délka je v \textbf{length}" delka ceho,
+                        %%% nutno vysvetlit, a proc se uklada
+                        %%% explicitne... ?
+
+			\paragraph{} Tabulka \textit{tracks} slouží k ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje atribut \textbf{user\_id}. Geometrii lze najít v sloupečku \textbf{the\_geom} a délka je v \textbf{length}. Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k ukládání komentářů a hodnocení k cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text (\textbf{review}) a časová známka, kdy byl příspěvek vložen (\textbf{created}).
 			\paragraph{}Tabulka \textit{users} slouží k ukládání dat o registrovaných uživatelích. Pole \textbf{id} je primární klíč, které má výchozí hodnotu nastavenou na další číslo v pořadí. Pole \textbf{name} je jméno, které zadává uživatel při registraci nebo které se vezme z profilu na Facebooku. Toto jméno lze v nastavení změnit. Tabulka obsahuje pole s emailem, který spolu s heslem slouží k přihlášení do aplikace. Pokud je uživatel připojen přes Facebook, uloží se jeho identifikace na Facebooku do pole \textbf{fbuid}. Pole \textbf{active} slouží k případnému znemožnění přihlášení uživatele a pole \textbf{attempts} ukazuje počet neúspěšných pokusů o přihlášení. Pokud dosáhne jejich počet určitého množství, tak se účet zablokuje. Sloupec \textbf{role} udává, jaká práva má daný uživatel. V systému jsou tři typy rolí (guest, user a admin) ale pouze user a admin se ukládají do tabulky. Volitelné pole \textbf{about} umožňuje uživateli napsat o sobě pár informací a \textbf{note} slouží k zapsání poznámky pro administrátora. Sloupce \textbf{oauth\_key} a \textbf{oauth\_secret} jsou určeny pro přihlašování do OpenStreetMap.
+
+                        %%% ML: tomuto odstavci nerozumim...
+
 			\paragraph{}Tabulky, které jsou doplňovány, jsou prázdé a jediné záznamy, které se vkládaly při tvorbě, jsou administrátorovy uživatelské informace.
 
 			\subsection{Naplnění databáze}
-				\paragraph{} Před zahájením samotného naplnění databáze bylo potřeba aktivovat rozšíření. Jednalo se o \textit{PostGIS} rozšíření pro práci s prostorovými daty, \textit{PgRouting} pro plánované vyhledávání cest mezi zadanými body a \textit{hstore} pro usnadnění práce s daty ve sloupcích \textbf{tags}. Na tyto úkony je potřeba administrátorský přístup, takže potřebné modifikace v databázi na serveru \textit{geo102} provedl Ing. Landa.
-				\paragraph{} V momentě, kdy byla databáze připravena, bylo možné vytvořit tabulky a nahrát data. Pro získání dat OpenStreetMap byla použita internetová stránka \url{http://download.geofabrik.de/europe/czech-republic.html}, kde jsou data Planet.osm rozdělena podle kontinentů a zemí. Tato data jsou každý den aktualizována. Nejjednodušším způsobem, jak nahrát data do databáze, je pomocí konzolové aplikace \textit{osm2pgsql}. Při importu dat může dojít k tomu, že užívaný počítač nemí potřebnou operační paměť. Program \textit{osm2pgsql} tento problém řeší pomocí tzv. \textit{slim modu}, ve kterém jsou využita dočasná úložiště. Ta zmenší velikost potřebné operační paměti. Databáze České republiky zabírá zhruba 4 GB paměti, ovšem ne všechna data jsou pro projekt potřebná. V případě turistických stezek byla potřebná data uložena do speciální tabulky, protože jejich výběr z původní tabulky za pomoci SELECTu nebo VIEW byl zdlouhavý. Ze stejného důvodu byly vybrány i zájmové body. Při prvním nahrání databáze vznikl problém se získáním údajů z pole \textbf{tags}. V dokumentaci \textit{PostgreSQL} na stránkách aplikace byl uveden příklad, jak je získat. Tento problém poté odpadl s aktivací rozšíření \textit{hstore}. Kvůli výsledné velikosti databázi je zvažováno, že po zprovoznění vyhledávání cest budou tabulky s nepotřebnými daty odstraněny. Aby se k datům dalo přistupovat z aplikace, bylo potřeba správně nastavit práva.
+				\paragraph{} Před zahájením samotného naplnění databáze bylo potřeba aktivovat rozšíření. Jednalo se o \textit{PostGIS} rozšíření pro práci s geografickými daty, \textit{PgRouting} pro plánované vyhledávání cest mezi zadanými body a \textit{hstore} pro usnadnění práce s daty ve sloupcích \textbf{tags}. Na tyto úkony je potřeba administrátorský přístup, takže potřebné modifikace v databázi na serveru \textit{geo102} provedl Ing. Landa.
+				\paragraph{} V momentě, kdy byla databáze připravena, bylo možné vytvořit tabulky a nahrát data. Pro získání dat OpenStreetMap byla použita internetová stránka \url{http://download.geofabrik.de/europe/czech-republic.html}, kde jsou data Planet.osm rozdělena podle kontinentů a zemí. Tato data jsou každý den aktualizována. Nejjednodušším způsobem, jak nahrát data do databáze, je pomocí konzolové aplikace \textit{osm2pgsql}. Při importu dat může dojít k tomu, že užívaný počítač nemá potřebnou operační paměť. Program \textit{osm2pgsql} tento problém řeší pomocí tzv. \textit{slim modu}, ve kterém jsou využita dočasná úložiště. Ta zmenší velikost potřebné operační paměti. Databáze České republiky zabírá zhruba 4 GB paměti, ovšem ne všechna data jsou pro projekt potřebná. V případě turistických stezek byla potřebná data uložena do speciální tabulky, protože jejich výběr z původní tabulky za pomoci SELECTu nebo VIEW byl zdlouhavý. Ze stejného důvodu byly vybrány i zájmové body. Při prvním nahrání databáze vznikl problém se získáním údajů z pole \textbf{tags}. V dokumentaci \textit{PostgreSQL} na stránkách aplikace byl uveden příklad, jak je získat. Tento problém poté odpadl s aktivací rozšíření \textit{hstore}. Kvůli výsledné velikosti databáze je zvažováno, že po zprovoznění vyhledávání cest budou tabulky s nepotřebnými daty odstraněny. Aby se k datům dalo přistupovat z webové aplikace, bylo potřeba správně nastavit přístupová práva.
 				\paragraph{} V neposlední řadě bylo potřeba doplnit tabulky, které nevznikají z dat OpenStreetMap:
 					\begin{itemize}
 						\item news -- novinky generované při některých akcích či zadané administrátorem
 						\item  shoutboard -- tabulka pro diskuzi
-						\item  track\_reviews -- komentáře a články k trati
+						\item  track\_reviews -- komentáře a články k trase
 						\item  tracks -- uživateli zadané trasy
 						\item users -- informace o uživatelích včetně jejich přihlašovacích údajů
 					\end{itemize}
-Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tracks} má prostorovou složku.
+Většina těchto tabulek neobsahuje geografická data, jenom tabulka \textit{tracks} má geometrickou složku popisu geodat.
 			\subsection{Aktualizace databáze}
 				\paragraph{} Protože se data OpenStreetMap neustále vyvíjí a zpřesňují, je potřeba je jednou za čas aktualizovat. Vzhledem k tomu, že se jedná o časově náročnou činnost (import dat OpenStreetMap trvá na serveru kolem 1 hodiny), byl vytvořen skript, který provede potřebné kroky automaticky poté, co je předchozí úkol hotov. Skript postupuje v následujících krocích.
 		\begin{enumerate}
@@ -845,7 +864,7 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 			\item Za užití \textit{osm2pgsql} s parametry \textit{ -\--slim  -\--cache--strategy dense -\--hstore --d vorlichr\_dp} importuje data do databáze.
 			\item Program psql vytvoří tabulku \textit{tourist\_tracks} podle SELECTu ze souboru \textit{hiking\_routes.sql}.
 			\item Ze souboru \textit{pois.sql} použije \textit{psql} dotaz na vytvoření tabulky \textit{pois}.
-			\item Spustí se skript, který správně nastaví přístupy k databázi.
+			\item Spustí se skript, který správně nastaví přístupová práva k databázi.
 			\item V posledním kroku skript smaže stažený soubor.
 		\end{enumerate}
 			\paragraph{} V momentě, kdy bude plně funkční vyhledávání tras pomocí pgRoutingu, do programu přibudou další kroky, které provedou potřebné úpravy. Jedná se o vytvoření tabulky se silnicemi a cestami, vypočítání geometrie sítě a nastavení parametrů potřebných pro vyhledávání.
@@ -859,7 +878,11 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 		\end{figure}	
 
 		\section{Vzhled a styly}
-			\paragraph{} Při tvorbě vzhledu byla snaha vytvořit jednoduché rozhraní. Z hlediska lepšího využití prostoru bylo menu navrhnuto jako lišta. Původní navigační panel\ref{fig:menu_puv} obsahoval dvě rozbalovací menu, ale po konzultaci s Ing. Landou bylo shledáno toto rozvržení nevhodným. Jednalo se např. o zařazení stránky \textit{O Projektu} pod záložku \textit{Mapa}. Předělané menu\ref{fig:menu_nove} je přehlednější.
+
+                %%% ML: reference na obrazky je vhodne komentovat,
+                %%% napr. (viz obr.~\ref{fig:menu_puv})
+
+			\paragraph{} Při tvorbě vzhledu byla snaha vytvořit jednoduché rozhraní. Z hlediska lepšího využití prostoru bylo menu navrhnuto jako lišta. Původní navigační panel (viz obr.~\ref{fig:menu_puv}) obsahoval dvě rozbalovací menu, ale po konzultaci s Ing. Landou bylo shledáno toto rozvržení nevhodným. Jednalo se např. o zařazení stránky \textit{O Projektu} pod záložku \textit{Mapa}. Předělané menu (viz obr.~\ref{fig:menu_nove}) je přehlednější.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/toulavej/menu_nove.png}
@@ -875,8 +898,8 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 				\label{fig:addTrack}
 			\end{center}
 		\end{figure}	
-			\paragraph{} Mapových oken je v aplikaci víc a mají různá nastavení stylů. První je v samotné sekci \textit{Mapa} a hlavním rysem tohoto prvku je malé odsazení od spodního a bočních krajů. Stejný rys má i druhé okno, které se nachází v sekci \textit{Upravit}. To je ale navíc rozděleno na mapovou a textovou část. Poslední styl mapy je společný pro dvě mapová okna. Jedná se o přidání vlastní trasy a zobrazení trasy na mapě. Tento styl se vyznačuje odsazením od pravého kraje, takže zde vznikne místo pro Informace o trase -- buď vypsané v tabulce nebo vstupní formulář pro ně\ref{fig:addTrack}.
-			\paragraph{} Z grafického hlediska bylo největším problémem propojení aplikace Toulavej s editorem iD. protože tato aplikace má své vlastní styly. Některé třídy stylů měly stejné názvy a  styly editoru tak přepisovaly pravidla aplikace. Tento problém byl vyřešen přepsáním pravidel, která se vzájemně rušila, tak, aby byla stejná. Ačkoliv většina aplikace byla přepsána úspěšně, v některých místech stále není úprava provedena, např. v editoru iD chybí tlačítku lokalizovat popis po najetí myši\ref{fig:error_locate}.
+			\paragraph{} Mapových oken je v aplikaci víc a mají různá nastavení stylů. První je v samotné sekci \textit{Mapa} a hlavním rysem tohoto prvku je malé odsazení od spodního a bočních krajů. Stejný rys má i druhé okno, které se nachází v~sekci \textit{Upravit}. To je ale navíc rozděleno na mapovou a textovou část. Poslední styl mapy je společný pro dvě mapová okna. Jedná se o přidání vlastní trasy a zobrazení trasy na mapě. Tento styl se vyznačuje odsazením od pravého kraje, takže zde vznikne místo pro Informace o trase -- buď vypsané v tabulce nebo vstupní formulář pro ně -- viz obr.~\ref{fig:addTrack}.
+			\paragraph{} Z grafického hlediska bylo největším problémem propojení aplikace Toulavej s editorem iD, jelikož má tato aplikace své vlastní styly. Některé třídy stylů měly stejné názvy a  styly editoru tak přepisovaly pravidla aplikace. Tento problém byl vyřešen přepsáním pravidel, která se vzájemně rušila, tak, aby byla stejná. Ačkoliv většina aplikace byla přepsána úspěšně, v některých místech stále není úprava provedena, např. v editoru iD chybí tlačítku lokalizovat popis po najetí myši -- viz obr.~\ref{fig:error_locate}.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=7cm]{obrazky/toulavej/chyba_locate.png}
@@ -885,8 +908,20 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 			\end{center}
 		\end{figure}	
 
+
+                %%% ML: nazev kapitoly neni jasny, hned v prvni vete
+                %%% mluvite o "mapovych oknech"... 
+
 		\section{Mapy} %Leaflet, OpenLayers v2 v3
-			\paragraph{} Mapová okna mají nejen své vlastní styly, ale i své vlastní konfigurace, které bylo třeba vytvořit. Kromě připojení podkladové mapy bylo potřeba připojit i další vrstvy. První v pořadí byla připojena přes službu WFS data turistických stezek. Pro získání informací o prvku byla vytvořena funkce, která je vypíše(pokud jsou k dispozici) a zvýrazní vybranou stezku\ref{fig:infoTrack}. Informace, které mohou být zobrazeny, jsou jméno a cíle stezky, celková délka a barva trasy.
+			\paragraph{} Mapová okna mají nejen své vlastní styly, ale i své vlastní konfigurace, které bylo třeba vytvořit. Kromě připojení podkladové mapy bylo potřeba připojit i další vrstvy. První v pořadí byla připojena přes službu WFS data turistických stezek. Pro získání informací o prvku byla vytvořena funkce, která je vypíše (pokud jsou k dispozici) a zvýrazní vybranou stezku (obr.~\ref{fig:infoTrack}). Informace, které mohou být zobrazeny, jsou jméno a cíle stezky, celková délka a barva trasy.
+
+                        %%% Nikde neni vysvetlen rozdil mezi WFS a
+                        %%% WMS, alespon o tom nevim, to je potreba
+                        %%% nekde doplnit nebo pridat odkaz na
+                        %%% kapitolu, kde je to vysvetlo, ctenar se
+                        %%% bude ptat "proc je nacitani WFS tak
+                        %%% zdlouhave", to je potreba vystetlit
+
 			\paragraph{} Protože načítání WFS vrstvy pro celou republiku je zdlouhavé, byla přidána WMS vrstva stezek KČT, která se při určitém přiblížení změní na dříve přidanou WFS vrstvu. Tímto se sníží čas potřebný k nahrání potřebných dat pro celou Českou republiku. Pro menší oblast je čas nahrávání vektorové vrstvy už přijatelný.
 		\begin{figure}[!h]
 			\begin{center}
@@ -897,16 +932,27 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 		\end{figure}	
 
 			\paragraph{} Abychom vůbec mohli použít WMS a WFS vrstvy z dat, která jsou uložena v databázi, musí být nastaven Geoserver, vrstvy musí být publikovány a pro WFS službu musí být na serveru přítomen soubor, který zpracovává proxy dotazy. Toto je dáno tím, že se z OpenLayers nelze připojit přímo ke Geoserveru a komunikovat s ním přímo. 
-			\paragraph{} V neposlední řadě byly do mapy přidány ovládací prvky jako zoom, permanentní odkaz, měřítko a přehledka. Pokud je uživatel přihlášený, tak může pomocí funkce \textit{Editovat výřez} přejít na do editačního módu na souřadnicích, kde momentáůně leží střed mapy. Pokud má uživatel účet na Facebooku a má ho propojený s aplikací, tak může sdílet mapu s přáteli.
+			\paragraph{} V neposlední řadě byly do mapy přidány ovládací prvky jako zoom, permanentní odkaz, měřítko a přehledka. Pokud je uživatel přihlášený, tak může pomocí funkce \textit{Editovat výřez} přejít na do editačního módu na souřadnicích, kde momentálně leží střed mapy. Pokud má uživatel účet na Facebooku a má ho propojený s aplikací, tak může sdílet mapu s přáteli.
 			\paragraph{}Pro připojení mapového HTML5 editoru iD bylo za potřebí importovat všechny knihovny a styly a nastavit autentifikační údaje pro \textit{oauth}. 
 
 			
 		\section{Uživatelské rozhraní}
 			\subsection{Přihlašování uživatelů}
+
+                        %%% ML: zde by mel byt odkaz na kapitolu, kde
+                        %%% se mluvi o datovem modelu DB (low priority)
+
 				\paragraph{}K ukládání registrovaných uživatelů byla v databázi vytvořena tabulka \textit{users}. Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
 				\subsubsection{Bez Facebooku}
-					\paragraph{} K příhlášení bez propojení s Facebookem je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace. Formulář je opatřen i pasivním filtrem proti robotům, kteří by opakovaně vytvářeli účty a zahlcovali tak databázi. Navíc by tím získali přístup k editaci dat, což je nežádoucí. Teoreticky by mohlo dojít k masovému ukládání špatných dat do OSM. 
+
+                                %%% ML: "je potřeba se registrovat na
+                                %%% stránce" zkuste napsat jasneji
+
+					\paragraph{} K příhlášení bez propojení se sociální sítí Facebook je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace. Formulář je opatřen i pasivním filtrem proti robotům, kteří by opakovaně vytvářeli účty a zahlcovali tak databázi. Navíc by tím získali přístup k editaci dat, což je nežádoucí. Teoreticky by mohlo dojít k masovému ukládání špatných dat do OSM. 
 				\subsubsection{S Facebookem}
+
+                                %%% ML: TODO
+
 					\paragraph{} 
 			\subsection{Dostupné funkce}
 				\paragraph{}
