@@ -331,10 +331,36 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 %									 %
 \chapter{OpenStreetMap}
 	\section{O Projektu}
+
+        %%% ML: "a toto jméno se zde velice často objevuje" zni
+        %%% opravdu spatne..., zduvodneni formulovane jako "Z toho
+        %%% důvodu by bylo vhodné říci o co se jedná" je potreba
+        %%% preformulovat, neco jako "cilem kapitoly je ...."
+
 		\paragraph{} Tato práce je navázána na projekt OpenStreetMap a toto jméno se zde velice často objevuje. Z toho důvodu by bylo vhodné říci o co se jedná, jakou má projekt historii, jak v současné době vypadá a jaké má využití. 
+
+                %%% ML: "OpenStreetMap je svobodná mapa" je
+                %%% zavadejici, nepresne a divne..., zkuste tuto cast
+                %%% prepsat, opet chybejeji citace jako v celem textu...
+
+                %%% ML: nejde o "mapove dilo" !!! jaka jina "mapova
+                %%% dila" mate na mysli
+
+                %%% ML: "stahnout si data" jaka data - neni vysvetleno
+
+                %%% ML: OSM jiz nepouzivat CC-BY-SA !!! -
+                %%% http://wiki.openstreetmap.org/wiki/Cs:ODbL/We_Are_Changing_The_License
+                %%% opet chyby jakakoliv reference ... (!!!)
+
 		\paragraph{} OpenStreetMap je svobodná mapa, kterou vytváří a spravují její uživatelé. Narozdíl od jiných mapových děl OpenStreetMap poskytují uživatelům možnost stáhnout si data a volně s nimi nakládat. Díky možnosti svobodného nakládání s daty vznikají různá mapová díla dle potřeb uživatelů. Mapa musí mít uvedeno autorství OpenStreetMap contributors a musí být šířena pod stejnou licencí jako samotná OpenStreetMap. Toto je známo jako licence \textit{CC BY-SA 2.0}\cite{creative_commons}.
 		\paragraph{}Projekt vznikl ve Velké Británii v roce 2004. O jeho základy se postaral Steve Coast, který se nechal inspirovat jiným komunitou řízeným projektem -- svobodnou encyklopedií Wikipedie. O dva roky později vznikla OpenStreetMap Foundation, která projekt podporuje. V průběhu let povolily některé společnosti používat své mapové podklady pro tvorbu OpenStreetMap. V roce 2006 to byl Yahoo. O rok později Automotive Navigation Data poskytla mapy silniční sítě Nizozemska, Indie a Činy. 
-		\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce následujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}. 
+		\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V~srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce násle\-dujícího roku narostlo toto číslo na skoro na  200 000. V roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}.
+
+                %%% ML: kazdy obrazek musi byt uveden zdroj !!!
+                
+                %%% ML: obrazek ma nevhodny popisek - uzivatelu ceho?
+                %%% (je potreba uvest OSM), v seznamu obrazku to bude matouci
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/osm_stat_users.png}
@@ -342,15 +368,45 @@ Vyhledávat lze i v určitém okruhu od zvoleného bodu.
 			\end{center}
 		\end{figure}
 
+                %%% ML: jaka data? prilis obecne
+
 	\section{Data}
 		\subsection{Typy dat}
-		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velké množství rozličných dat. Kromě standartních objektů, jako jsou silnice, vodstvo, budovy, zalejsněné oblasti či turistické značky, jsou mapovány i věci, které na normálních mapách zobrazeny nejsou. Jedná se například o bezpečnostní kamery na veřejných místech. Data mohou být:
+
+                %%% ML: rozlicnych dat ci kvalitu dat, ci neco jineho
+                %%% ??? nepresna formulace
+
+                %%% ML: "standardnich objektu" to je velmi nepresne,
+                %%% silnice ci vodstvo nejsou objekty...
+
+                %%% ML: co mate na mysli "normalnimi mapami" ? je
+                %%% treba to nejak rozvest...
+
+                %%% ML: "Data mohou byt" zni divne, spise neco jako
+                %%% "Rozlisuje tri zakladni elementy datoveho modelu,
+                %%% ktery projekt OSM pouziva:" ci neco podobnebo
+
+		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velké množství rozličných dat. Kromě standardních objektů, jako jsou silnice, vodstvo, budovy, zalesněné oblasti či turistické značky, jsou mapovány i věci, které na normálních mapách zobrazeny nejsou. Jedná se například o bezpečnostní kamery na veřejných místech. Data mohou být:
 	\begin{itemize}
 		\item uzly (nodes) -- body se souřadnicemi,
+
+                  %%% ML: nebo co?
+
 		\item cesty (ways) -- liniové prvky a hranice polygonů -- nebo
+
+                  %%% ML: jakymi dalsimi prvky?
+
 		\item relace (relations) -- popisují vztahy s dalšími prvky.
 	\end{itemize}
-Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznamenávají  vlastnosti. 			\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou součástí cesty. V tom případě definují tvar cesty. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z topologického hlediska o křižovatku, ale mimoúrovňové křížení. Globální dataset obsahuje k roku 2013 přes 2 x 10$^9$ uzlů.
+Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznamenávají  vlastnosti. 	
+
+%%% ML: "nebo jsou součástí cesty" zni divne, mate na mysli, ze uzly
+%%% tvori lomove body cesty? nebo jenom pocatecni a koncovy bod cesty
+%%% (lomene cary) ?
+
+		\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou součástí cesty. V tom případě definují tvar cesty. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z topologického hlediska o křižovatku, ale mimoúrovňové křížení. Globální dataset obsahuje k roku 2013 přes 2 x 10$^9$ uzlů.
+
+%%% ML: chybi zdroj, to musite uvest...
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -358,6 +414,10 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 				\caption{Graf vývoje počtu uzlů, cest a relací}
 			\end{center}
 		\end{figure}
+
+                %%% ML: "Oproti uzlům je cest výrazně míň" to nezni
+                %%% prilis staste, zkuste preformulovat, jedna se o
+                %%% text technickeho charakteru
 
 		\paragraph{} Oproti uzlům je cest výrazně míň (kolem 200 000), protože cesty jsou tvořeny 2 až 2000 uzly spojenými liniovými segmenty. Cesta je buď otevřená nebo uzavřená. Otevřená cesta je taková, kde začátek a konec tvoří jiný uzel. Uzavřená cesta má identický počáteční a koncový uzel. V tomto případě se může jednat o uzavřenou polylinii či plošný prvek. Rozdíl lze stanovit pomocí tagu area -- pokud má hodnotu yes, jedná se o plochu. V některých případech může cesta tvořit polylinii a hranici polygonu zároveň -- toto je pak označeno odpovídajícím způsobem ve vlastnostech.
 
@@ -369,7 +429,20 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
-		\paragraph{} Vznik dat se dá rozdělit do tří skupin. První z nich je přímý sběr v terénu, kdy uživatel chodí venku a pomocí GPS přístroje získává souřadnice, které pak importuje v souboru GPX do mapy. Druhou variantou je odvozování z existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s licencí, kterou užívá OpenStreetMap. V případě, že nejsou vyjasněny licenční podmínky,materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes WMS Ústavem pro hospodářskou úpravu lesů (ÚHÚL) či WMS katastrální mapy Českého úřadu zeměměřického a katastrálního(ČÚZK). WMS ortofotomapy ČÚZK na odvozování nemůže být použita. Může být ale použita na ověření přesnosti jiných použitelných zdrojů.
+                %%% ML: "Vznik dat" divne, zkuste preformulovat - zdroje dat
+
+                %%% ML: "chodi venku" nezni jako formulace s diplomove prace
+
+                %%% ML: "souradnice, ktere pak importuje v souboru GPX
+                %%% do mapy" zni opet divne, tuto formulace by me
+                %%% neprekvapila jinde, ale u zaverecne prace oboru
+                %%% "geoinfomatika" ano, zkuste prepsat
+
+                %%% ML: Druhou "variantou" jako variantou, dalsim zdrojem dat ....
+
+		\paragraph{} Vznik dat se dá rozdělit do tří skupin. První z nich je přímý sběr v terénu, kdy uživatel chodí venku a pomocí GPS přístroje získává souřadnice, které pak importuje v souboru GPX do mapy. Druhou variantou je odvozování z existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s licencí, kterou užívá OpenStreetMap. V~případě, že nejsou vyjasněny licenční podmínky, materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes WMS Ústavem pro hospodářskou úpravu lesů (ÚHÚL) či WMS katastrální mapy Českého úřadu zeměměřického a katastrálního (ČÚZK). WMS ortofotomapy ČÚZK na odvozování nemůže být použita. Může být ale použita na ověření přesnosti jiných použitelných zdrojů.
+
+                %%% ML: opet chybi zdroj
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -379,21 +452,50 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
+
+                %%% ML: chybi odkaz na graf, ctenar musi hledat...
+
+                %%% ML: konec odstavce: "zatímco druhý obrázek je
+                %%% plnohodnotnou mapou." je spatna formulace, obrazek
+                %%% muze byt tezkou mapou, 
+
 		\paragraph{} Graf vývoje počtu elementů ukazuje, že z počátku přibývalo malé množství objektů a větší zvrat nastal spolu s nárustem počtu uživatelů. V roce 2007 je vidět skokový nárust počtu bodových prvků -- jedná se o data silniční sítě Nizozemska, Indie a Číny poskytnuté organizací Automotive Navigation Data. 
 		Přibývání počtu prvků v mapě lze též dobře sledovat na malých plochách. Pro ilustraci jsou zde přiloženy obrázky, jak Praha byla zmapována v roce 2006 \ref{fig:praha2006} a v prosinci 2013 \ref{fig:praha2013}. V prvním případě jsou zmapovány hlavní silnice a vodní toky, zatímco druhý obrázek je plnohodnotnou mapou.
 	
 	\subsection{Uložení dat}
 		\paragraph{} Data se ukládají do databáze, která je klíčovým prvkem celého projektu. Pro každý typ prvku existují tabulky v databázi. Kromě současné verze obsahuje databáze i historické verze, takže lze dohledat změny a případně je vrátit. Další tabulky se vztahují ke změnovým sadám (changesetům), GPX souborům nebo registrovaným uživatelům. Kromě tabulek jsou uloženy i primární a cizí klíče, sekvence a indexy.
-		\paragraph{} Data jsou distribuovány v XML souboru Planet.osm, který je vytvářen v týdenních intervalech. V současnosti je velikost nekomprimované sady přes 400 GB, při užití komprimace je možno se dostat k 29 GB. Protože dost často není potřeba mít data z celého světa, dělají se i extrakty, které pokrývají jednotlivé kontinenty, země nebo města. Tyto výtahy jsou vytvářeny častěji -- \url{http://download.geofabrik.de} poskytuje data s denním intervalem. Vytvoření obrazu databáze většinou zabere 12 hodin\cite{planet.osm}.
-	\paragraph{} Kromě samotných mapových dat jsou k dispozici i planet.gpx s údaji z nahraných GPX souborů a soubor s historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB. 
+
+                %%% ML: "extrakt" neni rozhodne ceske slovo... zkuste
+                %%% najit lepsi termin, dale pouzivate "vytahy" coz
+                %%% neni take uplne stastny termin
+
+		\paragraph{} Data jsou distribuovány v XML souboru Planet.osm, který je vytvářen v~týdenních intervalech. V současnosti je velikost nekomprimované sady přes 400 GB, při užití komprimace je možno se dostat k 29 GB. Protože dost často není potřeba mít data z celého světa, dělají se i extrakty, které pokrývají jednotlivé kontinenty, země nebo města. Tyto výtahy jsou vytvářeny častěji -- \url{http://download.geofabrik.de} poskytuje data s denním intervalem. Vytvoření obrazu databáze většinou zabere 12 hodin\cite{planet.osm}.
+
+                %%% ML: "mapova data" co to je? co je format GPX,
+                %%% nikde neni vystetleno
+
+	\paragraph{} Kromě samotných mapových dat jsou k dispozici i planet.gpx s údaji z~nahraných GPX souborů a soubor s historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB. 
+
+        %%% ML: odkud tyto informace jsou, jako vsude v textu CHYBI
+        %%% REFERENCE!!!
+
 	\paragraph{} Data jsou uložena na databázovém serveru, který má dostatečné prostředky pro správu těchto dat. Od dubna 2009 do dubna 2012 byl primárním serverem server Smaug. Operační systém Ubuntu 12.04 LTS Server amd64 obsluhuje relační databázi PostgreSQL ve verzi 9.1. Pevné disky mají kapacitu přes 6 TB a operační paměť je 64 GB. V současné době je primírním serverem server se jménem Ramoth, který je také obsluhován operačním systémem Ubuntu 12.04 LTS Server amd64, ovšem od svého kolegy se liší jak kapacitou disků (skoro 15 TB), tak operační pamětí (256 GB). Funkci databázového systému plní stále PostgreSQL 9.1.
-	\paragraph{}Každý záznam v databázi má u sebe uvedeny i své vlastnosti. Protože pro každý typ prvku je jedna tabulka, jsou některé vlastnosti prvku prázdné. Parametry, které se evidují např. u silnice jsou jiné než vlastnosti, které nás zajímají u řeky -- obojí lze najít v tabulce s liniovými prvky. Aby se běžný uživatel či vývojář vyznali v databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechny parametry (sloupce v databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hlednání v databázi vůbec možné a nepřipomíná hledání v jehly v kupce sena.
+
+        %%% ML: asi mate na mysli popisna data, vlastnosti jsou
+        %%% zavadejici
+
+	\paragraph{}Každý záznam v databázi má u sebe uvedeny i své vlastnosti. Protože pro každý typ prvku je jedna tabulka, jsou některé vlastnosti prvku prázdné. Parametry, které se evidují např. u silnice jsou jiné než vlastnosti, které nás zajímají u řeky -- obojí lze najít v tabulce s liniovými prvky. Aby se běžný uživatel či vývojář vyznali v databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechny parametry (sloupce v databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hledání v databázi vůbec možné a~nepřipomíná hledání v jehly v kupce sena.
 
 
-	\section{Editory} % id, Potlach 2, JOSM, Merkaator
-		\paragraph{} Součástí práce je napojení editoru vytvářené aplikace na data OpenStreetMap. Stojí tedy za zmínku, jaké jsou prostředky, kterými se v současné době provádí editace dat. 
+	\section{OSM editory} % id, Potlach 2, JOSM, Merkaator
+		\paragraph{} Součástí předkládané diplomové práce je napojení editoru vytvářené web\-ové aplikace na data OpenStreetMap (OSM). Stojí tedy za zmínku, jaké jsou prostředky, kterými se v současné době provádí editace dat projektu OSM. 
 		\subsection{iD}
-			\paragraph{}Editor iD je nejnovějším z uvedených editorů. Pro užití na OpenStreetMap byl spuštěn v květnu 2013. Jedná se o javascriptovou aplikaci, která je šířena pod licencí WTFPL (Do What the Fuck You Want to Public License)\cite{wiki_wtfpl}, která umožňuje naprosto volně nakládat s produktem. K vykreslení je užívána javascriptová knihovna d3js, která slouží k práci v na datech založených dokumentech. Knihovna užívá HTML, CSS a SVG k vykreslení požadovaných prvků. Podpora jiných vykreslovacích přístupů není zatím v editoru iD implementována. Jedná se o aplikaci vhodnou pro začátečníky, protože má jednoduché ovládání.
+
+                %%% ML: chybi odkaz na d3js, co znamena "práci v datech založených dokumentech" ?
+
+                %%% ML: jako nikde v textu nejsou vysvetleny zkratky -  HTML, CSS a dalsi
+
+			\paragraph{}Editor iD je nejnovějším z uvedených editorů. Pro užití na OpenStreetMap byl spuštěn v květnu 2013. Jedná se o javascriptovou aplikaci, která je šířena pod licencí WTFPL (Do What the Fuck You Want to Public License)\cite{wiki_wtfpl}, která umožňuje naprosto volně nakládat s produktem. K vykreslení je užívána javascriptová knihovna d3js, která slouží k práci v datech založených dokumentech. Knihovna užívá HTML, CSS a SVG k vykreslení požadovaných prvků. Podpora jiných vykreslovacích přístupů není zatím v editoru iD implementována. Jedná se o aplikaci vhodnou pro začátečníky, protože má jednoduché ovládání.
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -406,7 +508,10 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\paragraph{} Podle stránek projektu\cite{wiki_iD} program zatím plně nepodporuje prohlížeče Internet Explorer verze 9, 10 a 11. Někteří uživatelé též hlásili zhoršený výkon pro prohlížeč Firefox.
 
 		\subsection{JOSM}
-			\paragraph{}JOSM (Java OpenStreetMap Editor) je na javě založený editor dat OpenStreetMap. Jedná se o desktopovou aplikaci s licencí GPL (General public license), ze které jsou změny dálkové nahrávány do hlavní databáze. Narozdíl od iD poskytuje JOSM mnohem více možnostní pro manipulaci s daty, což je znát i na jeho uživatelském rozhraní\ref{fig:josm_osm}. Aplikace podporuje čtení GPX souborů buď z pevného disku nebo z databáze OpenStreetMap, editování existujících uzlů, cest, tagů a relací.
+			\paragraph{}JOSM (Java OpenStreetMap Editor) je na Javě založený editor dat OpenStreetMap. Jedná se o desktopovou aplikaci publikovanou pod licencí GPL (General Public License), ze které jsou změny dálkové nahrávány do hlavní databáze OSM. Narozdíl od iD poskytuje JOSM mnohem více možnostní pro manipulaci s daty, což je znát i na jeho uživatelském rozhraní, viz \ref{fig:josm_osm}. Aplikace podporuje čtení GPX souborů buď z pevného disku nebo z databáze OpenStreetMap, editování existujících uzlů, cest, tagů a relací.
+
+                        %%% ML: jediny obrazek se zdrojem, no konecne :-)
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/josm_osm.png}
@@ -427,7 +532,9 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 		\end{figure}
 
 		\subsection{Potlatch 2}
-			\paragraph{} Stejně jako iD editor je i Potlatch 2 online editor s licencí WTFPL, ale narozdíl od něj je napsán ve Flashi. Jedná se o jednoduchý editor, který není určen pro náročnější uživatele. Potlatch 2 vznikl kompletním přepsáním původního Potlatch, kdy byly přidáno zobrazení WYSIWYG (What You See Is What You Get), jednodušší tagování a autentizace přes OAuth pro zakomponování do jiných stránek při zachování napojení na OpenStreetMap. Z důvodu existence editoru iD není v současnosti aplikace aktivně vyvíjena.
+			\paragraph{} Stejně jako iD editor je i Potlatch 2 online editor s licencí WTFPL, ale narozdíl od něj je napsán ve Adobe Flash. Jedná se o jednoduchý editor, který není určen pro náročnější uživatele. Potlatch 2 vznikl kompletním přepsáním původního Potlatch, kdy byly přidáno zobrazení WYSIWYG (What You See Is What You Get), jednodušší tagování a autentizace přes OAuth pro zakomponování do jiných stránek při zachování napojení na OpenStreetMap. Z důvodu existence editoru iD není v současnosti aplikace aktivně vyvíjena.
+
+                        %%% ML: zdroj nelze dohledat
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -436,10 +543,10 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 
-	\section{Využití}
-		\paragraph{} Data OpenStreetMap jsou široce využívány k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Řada velkých projektů, např. Foursquare, užívá nebo přechází na mapy OpenStreetMap, protože jsou pro ně výhodnější. Ačkoliv tyto produkty ocení většina uživatelů, dle mého leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
-		\paragraph{}V momentě, kdy nějakou část světa zasáhne živelná katastrofa, mohou dobrovolníci z řad uživatelů OpenStreetMap z aktuálních družicových snímků vytvořit novou aktuální mapu postižené oblasti. Toto bylo využito třeba v roce 2010, kdy bylo Haiti zasaženo zemětřesením, a v současnosti probíhá nové mapování po tajfunu na Filipínách z listopadu 2013. Během prvního týdne od tajfunu bylo editováno víc jak 2 000 000 objektů a do obnovy se zapojilo přes 900 uživatelů. K 11.prosinci 2013 bylo za přispění více jak 1 600 uživatelů zmapováno přes 4,5 milionu objektů\cite{wiki_tajfun}.
-		\paragraph{} Aby bylo zajištěno efektivní tvorba, produkce a distribuce map pro postižené oblasti, byla v lednu 2009 vytvořena skupina Humanitarian OpenStreetMap Team\cite{wiki_hot}, která tuto činnost řídí.
+	\section{Využití dat OSM}
+		\paragraph{} Data OpenStreetMap jsou často využívána k tvorbě tématických map, např. z oblasti turistiky. Mapy mohou též sloužit jako podklady do navigací. Řada velkých projektů, např. Foursquare, užívá nebo přechází na mapy OpenStreetMap, protože jsou pro ně výhodnější. Ačkoliv tyto produkty ocení většina uživatelů, dle mého názoru leží větší význam map OpenStreetMap v oblasti humanitární pomoci.
+		\paragraph{}V momentě, kdy nějakou část světa zasáhne živelná katastrofa, mohou dobrovolníci z řad uživatelů OpenStreetMap z aktuálních družicových snímků vytvořit novou aktuální mapu postižené oblasti. Toto bylo využito třeba v~roce 2010, kdy bylo Haiti zasaženo zemětřesením, a v současnosti probíhá nové mapování po tajfunu na Filipínách z listopadu 2013. Během prvního týdne od tajfunu bylo editováno víc jak 2 000 000 objektů a do obnovy se zapojilo přes 900 uživatelů. K 11.prosinci 2013 bylo za přispění více jak 1 600 uživatelů zmapováno přes 4,5 milionu objektů \cite{wiki_tajfun}.
+		\paragraph{} Aby bylo zajištěno efektivní tvorba, produkce a distribuce map pro postižené oblasti, byla v lednu 2009 vytvořena skupina Humanitarian OpenStreetMap Team \cite{wiki_hot}, která tuto činnost řídí.
 	
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -451,14 +558,27 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 \chapter{Použité technologie}
 %%%Servery
 	\section{Apache HTTP Server}
-		\paragraph{} V momentě, kdy je vyvíjena webová aplikace, je nutné mít aplikaci, která by zpracovávala dotazy a posílala odpovědi. Dotazem rozumíme i žádost o přesměrování na jinou stránku. Takovémuto softwaru se říká webový server nebo server. Funkce serveru mohou být různé. Velice často obsluhuje webové stránky, ale může sloužit ke skladování dat (datový server) nebo k hraní her (herní server). Při pořizování softwaru je na výběr z několika produktů. Nejčastěji užívaným je Apache HTTP Server, poté je IIS od Microsoftu, nginx od NGINX, Inc. a GWS od Googlu. Protože při vývoji aplikace byl použit server Apache HTTP Server, budou následující řádky věnovány jemu.
+
+        %%% ML: v tomto textu michate dohromady specializovany
+        %%% software "webovy server" s obecneji vmimanym pojmem
+        %%% "server", zkuste tento odstavec prepsat
+
+		\paragraph{} V momentě, kdy je vyvíjena webová aplikace, je nutné mít k~dispozici aplikaci, která by zpracovávala dotazy a posílala odpovědi. Dotazem rozumíme i žádost o přesměrování na jinou stránku. Takovémuto softwaru se říká webový server. Funkce serveru mohou být různé. Velice často obsluhuje webové stránky, ale může sloužit ke skladování dat (datový server) nebo k hraní her (herní server). Při pořizování softwaru je na výběr z několika produktů. Nejčastěji užívaným je Apache HTTP Server, poté je IIS od Microsoftu, nginx od NGINX, Inc. a GWS od Googlu. Protože při vývoji aplikace byl použit server Apache HTTP Server, budou následující řádky věnovány jemu.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=5cm]{obrazky/apacheLogo.png}
 				\caption{Logo projektu Apache HTTP Server}
 			\end{center}
 		\end{figure}
+
+                %%% ML: "z webove stranky" - mate na mysli "klienta" -
+                %%% potom chybi vysvetleni pojmu "server" a "klient"
+                %%% (viz odstavec vyse)
+
 		\paragraph{} Apache HTTP Server častěji bývá označován pouze jako Apache. Jeho funkce spočívá v přijímání požadavků z webové stránky, jejich zpracování a vrácení odpovědi. Zpracováním se rozumí např. odeslání statické webové stránky nebo předání požadavku dalším aplikacím. Samotná komunikace je zajištěna přes hypertextový přenosový protokol (HTTP -- HyperText Transfer Protokol). Apache má velké množství modulů, které mohou a nemusí být spuštěny. Pokud jsou zapnuty, rozšiřují možnosti samotného jádra. Při vývoji aplikací je ovšem potřeba, aby na vývojovém a produkčním serveru byly povoleny stejné moduly. V opačném případě může docházet k problémům s funkčností. Běžně užívané moduly jsou např. mod\_rewrite, který slouží k přepisování URL adresy, mod\_php přidávající Apachi podporu pro zpracování PHP skriptů nebo mod\_ssl pro šifrovaná spojení. Ve srovnání s celkovým počtem modulů je toto jen velmi malý vzorek.
+
+                %%% ML: CHYBI zdroj tohoto tvrzeni, musite ho doplnit,
+                %%% jinak je to jenom vykrik do tmy
 
 		\paragraph{} Apache je nejrozšířenější webový server -- dle odhadů z června 2013 obsluhovaly servery s Apachem 54,2\% všech aktivních webových stránek. Toto postavení je pravděpodobně způsobeno několika faktory:
 		\begin{itemize}
@@ -468,6 +588,8 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\item podpora všech hlavních operačních systémů.
 		\end{itemize}
 		
+                %%% ML: open chybi zdroj !!!
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=6cm]{obrazky/servers_share.png}
@@ -479,6 +601,9 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 
 	\section{Geoserver}
 		\paragraph{} V předchozí části bylo uvedeno, že webový server může přesměrovat některé dotazy jiným aplikacím. Dotazy na prostorové informace lze přesměrovat na mapový server. Pokud se pohybujeme v rovině svobodného softwaru, existují dvě možnosti -- Geoserver a UMN MapServer. V komerční sféře lze najít servery od firem Esri, Intergraph a dalších. 
+
+                %%% ML: chybi zdroj
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/mapserver.png}
@@ -487,19 +612,50 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 			\end{center}
 		\end{figure}
 Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřezu mapy, který odešle webovému serveru. Ten ho pak odešle zpátky uživateli. Pravidla pro generování jsou dány parametry, které může a nemusí uživatel zadat. Mezi parametry lze třeba najít požadovaný výstupní formát.
-		\paragraph{} Geoserver je v současné době asi nejlepší nekomerční řešení\cite{vorlicek} s  podporou všech běžně užívaných webových služeb. Aplikace podporuje velké množství vstupních a výstupních formátů. Vstupem může být například PostGIS databáze, Esri Shapefile, GeoTIFF či WMS služba. Výstup může být například ve formátu PNG, PDF, JPEG, KML, CSV nebo JSON.  Geoserver je napsán v Javě a pro jeho nastavení a správu se používá webové rozhraní, které je normálně dostupné na portu 8080, ale tento port může být změněn. Zde lze nastavit poskytované vrstvy a služby. Správa uživatelů a uživatelských rolí se provádí také zde. 
+
+               %%% ML: nejlepsi, proc? tato formulace zavani "flame-war"
+
+               %%% ML: nekomercni? proc? naopak je to vcelku komercne
+               %%% vyuzitelne reseni, jiz opraveno na "open source"
+
+               %%% ML: minimalne WMS zkratku by bylo dobre rozepsat...
+
+		\paragraph{} Geoserver je v současné době asi nejlepší open source řešení\cite{vorlicek} s  podporou všech běžně užívaných webových služeb. Aplikace podporuje velké množství vstupních a výstupních formátů. Vstupem může být například PostGIS databáze, Esri Shapefile, GeoTIFF či WMS služba. Výstup může být například ve formátu PNG, PDF, JPEG, KML, CSV nebo JSON.  Geoserver je napsán v Javě a pro jeho nastavení a správu se používá webové rozhraní, které je normálně dostupné na portu 8080, ale tento port může být změněn. Zde lze nastavit poskytované vrstvy a služby. Správa uživatelů a uživatelských rolí se provádí také zde. 
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/geoserver.png}
 				\caption{Uživatelské rozhraní Geoserveru}
 			\end{center}
 		\end{figure}
+
+                %%% ML: "Jedná se typ XML (eXtended Markup Language)."
+                %%% neexistuje "typ" xml, SDL je odvozen ci zalozen na
+                %%% XML
+
 		\paragraph{}Pro nastavení vzhledu publikovaných vrstev se používá SLD (Styled Layer Descriptor) schéma. Jedná se typ XML (eXtended Markup Language). Pravidla lze zapsat do textového pole, což není moc pohodlné. Naštěstí Geoserver poskytuje možnost importovat pravidla  vytvořená v jiném programu. Takto lze úspěšně použít Quantum GIS\cite{qgis} či AtlasStyler\cite{atlas} pro tvorbu vzhledu prvků.
+
+                %%% ML: co je WMS-T a proc to bude potreba, vysvetlit
+                %%% ci uvest odkaz na kapitolu, kde to bude vysvetleno
+
+                %%% ML: proc nemohl byt pouzit MapServer, vysvetlit
+
 		\paragraph{} Výběr Geoserveru byl dán zejména snahou využít svobodný software. Před začátkem tvorby se předpokládalo, že aplikace bude potřebovat WFS-T službu. MapServer tedy nemohl být použit a Geoserver se jevil jako dobrá volba. V jeho prospěch také hrálo uživatelské rozhraní pro nastavení a publikování vrstev, protože MapServer se nastavuje pomocí konfiguračních souborů.
 
 %%%Databáze
 	\section{PostgreSQL}
-		\paragraph{} V obrázku \ref{fig:server_schema} je zobrazeno, že si mapový server bere data. Data jspou uložena buď v samostatném souboru nebo v databázi. Pro potřeby webových aplikací se spíše užívají databáze, ačkoliv využití jednotlivých souborů také není vyloučeno. Mnoho webových aplikací používá relační databázi MySQL, ale z hlediska vhodnosti pro tuto aplikaci byla zvolena jiná relační databáze -- PostgreSQL. Ačkoliv MySQL má podporu pro prostorová data, PostgreSQL nabízí širší škálu funkcí. Navíc existují pro PostgreSQL programy, které usnadňují import dat OpenStreetMap. V neposlední řadě k této volbě přispěl i fakt, že projekt OpenStreetMap používá PostgreSQL.
+
+        %%% ML: "bere data" - to snad ne ;-) PREPISTE TO
+
+        %%% ML: samotny soubor? neco jako souborove orientovany format
+        %%% jako napr. Esri Shapefile
+
+        %%% ML: vyuziti jednotlivych souboru? jakych ?
+
+
+        %%% ML: "PostgreSQL nabízí širší škálu funkcí" --- nezminujete
+        %%% se vubec o PostGISu, aha, je zminka v dalsim odstavci
+
+		\paragraph{} Na obrázku \ref{fig:server_schema} je zobrazeno, že si mapový server bere data. Data jsou uložena buď v samostatném souboru nebo v databázi. Pro potřeby webových aplikací se spíše užívají databáze, ačkoliv využití jednotlivých souborů také není vyloučeno. Mnoho webových aplikací používá relační databázi MySQL, ale z hlediska vhodnosti pro tuto aplikaci byla zvolena jiná relační databáze -- PostgreSQL. Ačkoliv MySQL má podporu pro prostorová data, PostgreSQL nabízí širší škálu funkcí. Navíc existují pro PostgreSQL programy, které usnadňují import dat OpenStreetMap. V neposlední řadě k této volbě přispěl i fakt, že projekt OpenStreetMap používá PostgreSQL.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/psql.png}
@@ -508,7 +664,13 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 			\end{center}
 		\end{figure}
 
-		\paragraph{}PostgreSQL je databázový systém napsaný v jazyce C. Kromě Linuxu je možné s ním pracovat i na počítačích s operačními systémy Windows, Mac OS X, Solaris aj. Systém je licencován pod PostgreSQL License, která je podobná licenci MIT.  Implementace SQL v PostgreSQL  odpovídá standartu ANSI--SQL:2008\cite{postgresql} a také obsahuje většinu ze standartu SQL:2011\cite{wiki_postgresql}. Systém podporuje použití primárních (PRIMARY) a cizích klíčů (FOREIGN KEYS), triggerů, podmínek UNIQUE a NOT NULL. Indexy mohou být uloženy v B-stromech, R-stromech, hashích nebo GiST(Generalized search tree) metodě. Současná stabilní verze má číslo 9.3.2. PostgreSQL se dá přizpůsobit podle potřeb uživatelů, díky čemuž vznikly různá rozšíření. 
+
+                %%% ML: nezapomente na kontrolu pravopisu, na rade
+                %%% mist jsem opravil chyby jako "standart" a dalsi
+
+                %%% ML: "hashích" ??? to neni odborny termin
+
+		\paragraph{}PostgreSQL je databázový systém napsaný v jazyce C. Kromě Linuxu je možné s ním pracovat i na počítačích s operačními systémy Windows, Mac OS X, Solaris aj. PostgreSQL je licencován pod PostgreSQL License, která je podobná licenci MIT.  Implementace SQL v PostgreSQL  odpovídá standardu ANSI--SQL:2008\cite{postgresql} a také obsahuje většinu ze standardu SQL:2011\cite{wiki_postgresql}. Systém podporuje použití primárních (PRIMARY) a cizích klíčů (FOREIGN KEYS), triggerů, podmínek UNIQUE a NOT NULL. Indexy mohou být uloženy v B-stromech, R-stromech, hashích nebo GiST (Generalized search tree) vyhledávacích stromech. Současná stabilní verze PostgreSQL má číslo 9.3.2. PostgreSQL se dá přizpůsobit podle potřeb uživatelů, díky čemuž vznikly různá rozšíření. 
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=8cm]{obrazky/pgadmin3.png}
@@ -516,7 +678,7 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\label{fig:pgadmin}
 			\end{center}
 		\end{figure}
-		\paragraph{}Z existujících rozšíření mají spojitost s vytvářeným projektem dva balíky. Prvním z nich je PostGIS, který poskytuje podporu pro geografická data. Tento balík přidává do systému geometrii prvků a funkce pro práci s nimi. Druhým rozšířením je pgRouting, který poskytuje funkce pro vyhledávání cest. Oba balíky jsou šířeny pod licencí GNU GPL.
+		\paragraph{}Z existujících rozšíření mají spojitost s vytvářeným projektem dva balíky. Prvním z nich je PostGIS, který poskytuje podporu pro geografická data. Tento balík přidává do systému geometrii prvků a funkce pro práci s nimi. Druhým rozšířením je pgRouting, který poskytuje funkce pro síťové analýzy. Oba výše zmíněné projekty jsou šířeny pod licencí GNU GPL.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/adminer.png}
@@ -524,28 +686,51 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\label{fig:adminer}
 			\end{center}
 		\end{figure}			
-		\paragraph{}Samotná databáze musí být nějak spravována. V systému linux lze použít program psql\ref{fig:psql} využívající příkazový řádek, grafické rozhraní pgAdmin III\ref{fig:pgadmin} nebo PHP program Adminer\ref{fig:adminer}. Každá z uvedených variant má své výhody. Pro práci s databází v rámci skriptu napsaného pro shell najde uplatnění právě příkazový řádek, pro práci na vzdáleném počítači lze využít Adminer, který se spouští přes webové rozhraní a pro práci na lokálním počítači se dá použít pgAdmin3.
+
+                %%% ML: co je shell, neni vysvetleno, ctenar bez
+                %%% hlubsi zkusenosti asi bude zmaten
+
+		\paragraph{}Samotná databáze musí být nějak spravována. V operačním systému Linux lze použít program psql \ref{fig:psql} využívající příkazový řádek, grafické rozhraní pgAdmin III \ref{fig:pgadmin} nebo PHP program Adminer \ref{fig:adminer}. Každá z uvedených variant má své výhody. Pro práci s databází v rámci skriptu napsaného pro shell najde uplatnění právě příkazový řádek, pro práci na vzdáleném počítači lze využít Adminer, který se spouští přes webové rozhraní a pro práci na lokálním počítači se dá použít pgAdmin3.
 
 
 
 
 %%%Programovací jazyky
 	\section{PHP}
-		\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C ( při použití CGI rozhraní), Java, Perl, PHP a další. V této aplikaci je použit poslední jmenovaný jazyk. PHP (název je rekurzivní zkratka -- PHP: Hypertext Preprocessor) je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se PHP nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows).
-		\paragraph{} Současná verze PHP je 5.5, která byla vydána k 20.6.2013, ale používány jsou i starší verze jazyka. Při vývoji se užívá buď čisté PHP a nebo v podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce práce programátora, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s ním. Pokud se framework používá na větších projektech, či počet projektů, kde je užit, je větší, tak čas, který práce s frameworkem ušetří, je větší než doba, která je potřeba k zvládnutí práce s ním.
+		\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C (při použití CGI rozhraní), Java, Perl, PHP a další. V této aplikaci je použit poslední jmenovaný jazyk. PHP (název je rekurzivní zkratka -- PHP: Hypertext Preprocessor) je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se PHP nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows).
+
+                %%% ML: kde jsou pouzivany starsi verze, neni prilis jasne
+
+		\paragraph{} Současná verze PHP je 5.5, která byla vydána k 20.6.2013, ale používány jsou i starší verze jazyka. Při vývoji se užívá buď čisté PHP a nebo v podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce vývojáře, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s ním. Pokud se framework používá na větších projektech, či počet projektů, kde je užit, je větší, tak čas, který práce s frameworkem ušetří, je větší než doba, která je potřeba k zvládnutí práce s ním.
 		\subsection{Framework Nette}
 			\paragraph{} Jedná se o open source framework českého původu, který je určený pro tvorbu aplikací v PHP 5.  Autorem je David Grudl, ale v současné době se o vývoj stará organizace Nette Foundation. K 11.12.2013 byla uvolněna ke stažení verze 2.1.0 RC3, která je pod licencí NewBSD a GNU GPL.  
-			\paragraph{} Hlavním cílem je tvorba bezpečných aplikací. Mimo jiné je zde ochrana před Cross-site scripting(XSS), která ošetřuje data z uživatelských vstupů a zabraňuje tak, aby útočník podstrčil svůj vlastní kód. Ačkoliv je otázka bezpečnosti první v seznamu výhod, není zdaleka poslední. Velmi silným argumentem pro jeho užití je snadné tvoření formulářů. Nette formuláře poskytují velké mnnožství validačních pravidel. Automaticky generovaný validační javascriptový kód může být brán jako bonus.
-			\paragraph{} Při práci s Nette je možné ale ne nutné nastavit vývojový nebo produkční režim. Výhodou nastavení takovéhoto rozdělení je možnost nakopírování aplikace z vývojového serveru na produkční a aplikace podle adresy serveru bere požadované parametry, např. jméno databáze, přihlašovací jméno a  heslo a další. Ve vývojovém prostředí je pak dostupní Laděnka, která pomáhá v debugování celé aplikace.
-			\paragraph{} Velkou výhodou je, že v českém prostředí má Nette aktivní komunitu uživatelů, kteří kromě tvorby mnoha komponent pořádají i pravidelné srazy.  Uživatelé a vývojáři frameworku jsou též aktivní na fórech, kde lze řešit problémy v aplikacích a bugy v Nette.
+			\paragraph{} Hlavním cílem je tvorba bezpečných aplikací. Mimo jiné je zde implementována ochrana před Cross-site scripting (XSS), která ošetřuje data z~uživatelských vstupů a zabraňuje tak, aby útočník podstrčil svůj vlastní kód. Ačkoliv je otázka bezpečnosti první v seznamu výhod, není zdaleka poslední. Velmi silným argumentem pro jeho užití je snadné tvoření formulářů. Nette formuláře poskytují velké množství validačních pravidel. Automaticky generovaný validační javascriptový kód může být brán jako bonus.
+
+                        %%% ML: Laděnka? vysvetlit
+
+			\paragraph{} Při práci s Nette je možné ale ne nutné nastavit vývojový nebo produkční režim. Výhodou nastavení takovéhoto rozdělení je možnost nakopírování aplikace z vývojového serveru na produkční a aplikace podle adresy serveru bere požadované parametry, např. jméno databáze, přihlašovací jméno a  heslo a další. Ve vývojovém prostředí je pak dostupná Laděnka, která pomáhá v debugování celé aplikace.
+			\paragraph{} Velkou výhodou je, že v českém prostředí má Nette aktivní komunitu uživatelů, kteří kromě tvorby mnoha komponent pořádají i pravidelné srazy uživatelů.  Uživatelé a vývojáři frameworku jsou též aktivní na fórech, kde lze řešit problémy v aplikacích a chyby ve frameworku Nette.
 			\subsubsection*{Návrhový vzor}
-				\paragraph{} Návrhovým vzorem rozumíme architekturu aplikace. Jinými slovy se jedná o určité části(vrstvy) aplikace, které zajišťují různé funkcionality. V Nette se užívá architektura MVP (Model -- View -- Presenter).
-				\paragraph{Model} je označení pro vrstvu, která se stará o propojení s databází. Vkládání, změna, výpis i mazání dat jsou akce, které jsou záležitostí modelu. Model má nadefinované své funkce, kterými obsluhuje databázi. Okolí komunikuje s modelem pomocí pevně daného rozhraní. V Nette je tato vrstva implementována v knihovně Nette\\Database. Pro větší přehlednost se vytvářejí funkce, které vypisují potřebná data. Tím nedochází k pokládání dotazů ve zdrojovém kódu Presenterů.
+				\paragraph{} Návrhovým vzorem rozumíme architekturu aplikace. Jinými slovy se jedná o určité části (vrstvy) aplikace, které zajišťují různé funkcionality. V Nette se užívá architektura MVP (Model -- View -- Presenter).
+
+                                %%% ML: zkuste odstavec prepsat (model)
+
+				\paragraph{Model} je označení pro vrstvu, která se stará o propojení s databází. Vkládání, změna, výpis i mazání dat jsou akce, které jsou záležitostí modelu. Model má nadefinované své funkce, kterými obsluhuje databázi. Okolí komunikuje s modelem pomocí pevně daného rozhraní. V Nette je tato vrstva implementována v knihovně Nette Database. Pro větší přehlednost se vytvářejí funkce, které vypisují potřebná data. Tím nedochází k pokládání dotazů ve zdrojovém kódu Presenterů.
+
+                                %%% ML: "V Nette se o tuto funkci
+                                %%% starají šablony napsané latte."
+                                %%% ???
+
+                                %%% ML: chybi vysvetleni pojmu "sablona"
+
 				\paragraph{View} je vrstva, která vykresluje výsledek zadaného požadavku. V Nette se o tuto funkci starají šablony napsané latte. Latte je šablonovací systém napsaný v PHP, ovšem díky němu je psaní šablon jednodušší, přehlednější a bezpečnější než kdybychom je psali v čistém PHP.
 				\paragraph{Presenter} je spojovací vrstva, která předává data z modelu do view k vykreslení a akce z view zpracovává a předává modelu. Presenter je ekvivalentem Controlleru z architektury MVC s tím rozdílem, že Controller zpracovává i některé události uživatelského rozhraní.
 
 	\section{JavaScript} %openLayers, Leaflet, jQuery a další
-		\paragraph{} Každá webová stránka občas potřebuje zobrazit dynamický obsah, který bude okamžitě reagovat na uživatelské vstupy. V aplikacích vytvořených v Javě zajišťuje jak práci na serveru, tak interakci na klientském počítači Java. Jazyk PHP má ke zpracování uživatelských vstupů trochu jiný přístup. PHP nedokáže dynamicky měnit obsah stránky bez nového načtení této stránky. Tento nedostatek jazyka se dá odstranit užitím jazyka JavaScript.
+		\paragraph{} Každá webová stránka občas potřebuje zobrazit dynamický obsah, který bude okamžitě reagovat na uživatelské vstupy. V aplikacích vytvořených v programovacím jazyce Java zajišťuje jak práci na serveru, tak interakci na klientském počítači. Jazyk PHP má ke zpracování uživatelských vstupů trochu jiný přístup. PHP nedokáže dynamicky měnit obsah stránky bez nového načtení této stránky. Tento nedostatek jazyka se dá odstranit užitím jazyka JavaScript.
+
+                %%% ML: zdroj?
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=5cm]{obrazky/klient_skript.png}
@@ -553,10 +738,16 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\label{fig:client}
 			\end{center}
 		\end{figure}	
-		\paragraph{} JavaScript byl vyvíjen jako jazyk Mocha ve firmě Netscape pro potřeby prohlížeče Navigator, ve kterém se objevil jako LiveScript. JavaScript je též znám jako ECMAScript. Díky svému jménu bývá často chybně spojován s Javou. Oba jazyky mají podobnou syntax, ale to mají i s jinými jazyky, např. PHP nebo C++. Každý z jazyků vytvořila jiná firma -- JavaScript byl vytvořen v Netscapu a Java v Sun Microsystems. JavaScript je hojně užíván pro tvorbu dynamického obsahu webových stránek, a proto se občas označuje za programovací jazyk webových stránek, ačkoliv se pro tvorbu internetových stránek používá jazyk HTML.
+		\paragraph{} JavaScript byl vyvíjen jako jazyk Mocha ve firmě Netscape pro potřeby prohlížeče Navigator, ve kterém se objevil jako LiveScript. JavaScript je též znám jako ECMAScript. Díky svému jménu bývá často chybně spojován s programovacím jazykem Java. Oba jazyky mají podobnou syntax, ale to mají i s jinými jazyky, např. PHP nebo C++. Každý z jazyků vytvořila jiná firma -- JavaScript byl vytvořen v Netscapu a Java v Sun Microsystems. JavaScript je hojně užíván pro tvorbu dynamického obsahu webových stránek, a proto se občas označuje za programovací jazyk webových stránek, ačkoliv se pro tvorbu internetových stránek používá jazyk HTML.
+
+                %%% ML: konec odstavce : "a ten pouze nahrát", čtenař
+                %%% se
+                %%% bude ptat, "nahrat kam", a proc "pouze", cela veta
+                %%% by chtela
+                %%% prepsat
 
 		\paragraph{} Využití JavaScriptu je zejména v tvorbě dynamických prvků na webových stránkách. JavaScritpový kód je posílán ke klientovi na počítač, kde je zpracován\label{fig:client} interpreterem, který je součástí každého moderního prohlížeče. JavaScript je možné zapsat do HTML souboru pomocí tagů \htmlTag{script}. Pokud se jedná o delší skript, je lepší ho dát do zvláštního souboru a ten pouze nahrát.
-		\paragraph{AJAX} Asynchronní JavaScript A XML je jedno z běžných užití JavaScriptu, které umožňuje posílat XML dotazy na server bez znovunačtení stránky. Server tento dotaz obslouží , vrátí výsledek a ten se zobrazí na stránce. Tato technika obnovování stránky si získala oblibu díky službám společnosti Google. Tento přístup je též užíván v knihovnách jako jsou OpenLayers nebo Leaflet pro získání a zobrazení mapy.
+		\paragraph{AJAX} Asynchronní JavaScript A XML je jedno z běžných užití Java\-Scriptu, které umožňuje posílat XML dotazy na server bez znovunačtení stránky. Server tento dotaz obslouží, vrátí výsledek a ten se zobrazí na stránce. Tato technika obnovování stránky si získala oblibu díky službám společnosti Google. Tento přístup je též užíván v knihovnách jako jsou OpenLayers nebo Leaflet pro získání a zobrazení mapy.
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -568,16 +759,38 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
 		\subsection{OpenLayers} %v2 v3
 			\paragraph{} JavaScript lze využít pro tvorbu mnoha dynamických prvků stránek, ale pro složitější prvky je vhodnější použít nějaké existující nástroje. Pro tvorbu mapových aplikací existuje několik knihoven, které poskytují  API  pro usnadnění práce. Jednou z takových knihoven je OpenLayers.
-			\paragraph{} Jedná se o knihovnu s otevřeným kódem, která je šířena pod licencí BSD. OpenLayers byly vytvořeny firmou MetaCarta mezi roky 2005 a 2006 a od listopadu 2007 je o jejich vývoj stará Open Source Geospatial Foundation. Aktuální stabilní verze je 2.13.1, ale souběžně s OpenLayers verzí 2 se vyvíjí i verze 3, která je dostupná ve verzi 3.0.0-beta.1. OpenLayers 3 vznikají přepisování původní verze a začleněním nových technologií, které umožňují využití HTML5 a CSS3. Vytvoření mapy s novou verzí je oproti minulé verzi rychleší a výsledný kód je přehlednější.
-			\paragraph{}OpenLayers jsou schopné zobrazit velké množství formátů -- od rastrových dat v jpegu nebo png až po vektorová data v GeoJSON či GML. Data lze připojit přímo z disku nebo je lze získat pomocí WMS nebo WFS služby. Velkým plus této knihovny je velice dobře zpracovaná dokumentace a vzorové příklady, které pomohou při tvorbě mapové aplikace. 
+			\paragraph{} Jedná se o knihovnu s otevřeným kódem, která je šířena pod licencí BSD. OpenLayers byly vytvořeny firmou MetaCarta mezi roky 2005 a 2006 a od listopadu 2007 je o jejich vývoj stará Open Source Geospatial Foundation. Aktuální stabilní verze je 2.13.1, ale souběžně s OpenLayers verzí 2 se vyvíjí i verze 3, která je dostupná ve verzi 3.0.0-beta.1. OpenLayers~3 vzniká přepisování původní verze a začleněním nových technologií, které umožňují využití HTML5 a CSS3. Vytvoření mapy s novou verzí je oproti minulé verzi rychleší a výsledný kód je přehlednější.
+			\paragraph{}OpenLayers jsou schopné zobrazit velké množství formátů -- od rastrových dat ve formátu JPEF nebo PNG až po vektorová data GeoJSON či GML. Data lze připojit přímo z disku nebo je lze získat pomocí WMS nebo WFS služby. Velkým plus této knihovny je velice dobře zpracovaná dokumentace a vzorové příklady, které pomohou při tvorbě mapové aplikace. 
 		\subsection{Leaflet}
-			\paragraph{} Druhou knihovnou, kterou lze užít na tvorbu webové mapy, je javascriptová knihovna Leaflet. Jedná se o moderní knihovnu srovnatelnou s OpenLayers3. Leaflet se dá též použít pro zobrazení aplikace na mobilních zařízeních. Stejně jako OpenLayers3 je i Leaflet stále ve vývoji (od listopadu 2013 je dostupná verze 0.7.1), takže některé prvky stále nejsou plně funkční či chybí úplně. Dobře zdokumentované API a návody pro začátečníky jsou velice dobrým pomocníkem při tvorbě map, stejně tak i různé zásuvné moduly, které vytvořili členové komunity.
-		\paragraph{} Ačkoliv Leaflet a OpenLayers 3 jsou modernější, pro vývoj aplikace byla použita stávající verze OpenLayers v2. Původně zvažovaný Leaflet byl zamítnut kvůli problémům s připojením vektorových vrstev a kvůli tomu, že se stále jedná o vývojovou verzi. Ze stejného důvodu nebyla použita ani knihovna OpenLayers3.
+			\paragraph{} Druhou knihovnou, kterou lze užít na tvorbu webové mapové aplikace, je javascriptová knihovna Leaflet. Jedná se o moderní knihovnu srovnatelnou s OpenLayers 3. Leaflet se dá též použít pro zobrazení aplikace na mobilních zařízeních. Stejně jako OpenLayers 3 je i Leaflet stále ve vývoji (od listopadu 2013 je dostupná verze 0.7.1), takže některé prvky stále nejsou plně funkční či chybí úplně. Dobře zdokumentované API a návody pro začátečníky jsou velice dobrým pomocníkem při tvorbě map, stejně tak i různé zásuvné moduly, které vytvořili členové komunity.
+		\paragraph{} Ačkoliv Leaflet a OpenLayers 3 jsou modernější, pro vývoj aplikace byla použita stávající verze OpenLayers v2. Původně zvažovaný Leaflet byl zamítnut kvůli problémům s připojením vektorových vrstev a kvůli tomu, že se stále jedná o vývojovou verzi. Ze stejného důvodu nebyla použita ani knihovna OpenLayers 3.
+
+                %%% ML: najdete mene zavadejici nazev pro tuto
+                %%% kapitolu...
+
 	\section{Grafika}
-		\paragraph{} Důležitým prvkem webu je jeho grafické provedení, protože špatně vytvořený vzhled webu může odradit potenciální zákazníky. Důležitost grafiky uživatelského rozhraní dokazuje i to, že dost firem vyvíjejících webové stránky a aplikace má ve svém týmu člověka, který se věnuje zejména tvorbě grafiky.
-		\paragraph{} Hlavním nástrojem pro určení pozice, barvy, velikosti a chování prvků při zmenšení/zvětšení okna jsou \textit{kaskádové styly}(Cascading style sheets) označované zkratkou CSS. Vzhled stránky může být definován v sekci \htmlTag{head} souboru s HTML kódem stránky nebo pomocí vlastnosti \textit{style} přímo u prvku, ale častěji se kvůli přehlednosti využívá zapsání do samostatného souboru, který se do HTML dokumentu importuje podobně, jako javascriptový soubor. Kaskádovými styly lze modifikovat vzhled všech HTML prvků. 
+
+        %%% ML: "grafika uzivatelskeho rozhrani" slysim poprve, zkuste
+        %%% spise operovat s pojmem "design" nebo navrh UI
+
+        %%% ML: "tvorba grafiky" ??? design ...
+
+		\paragraph{} Důležitým prvkem webové stránky je její grafické provedení, protože špatně vytvořený vzhled webu může odradit potenciální zákazníky. Důležitost grafiky uživatelského rozhraní dokazuje i to, že dost firem vyvíjejících webové stránky a aplikace má ve svém týmu člověka, který se věnuje zejména tvorbě grafiky.
+
+                %%% ML: prvku ceho?
+
+		\paragraph{} Hlavním nástrojem pro určení pozice, barvy, velikosti a chování prvků při zmenšení/zvětšení okna jsou \textit{kaskádové styly} (Cascading style sheets) označované zkratkou CSS. Vzhled stránky může být definován v sekci \htmlTag{head} souboru s HTML kódem stránky nebo pomocí vlastnosti \textit{style} přímo u prvku, ale častěji se kvůli přehlednosti využívá zapsání do samostatného souboru, který se do HTML dokumentu importuje podobně, jako javascriptový soubor. Kaskádovými styly lze modifikovat vzhled všech HTML prvků. 
+
+                %%% ML: "zapsani" ??
+
+                %%% ML: "První možností je užítí na všechny prvky
+                %%% stejného typu" - zkuste prepsat...
+
 		\paragraph{} Kaskádové styly mají tři úrovně zapsání. První možností je užítí na všechny prvky stejného typu, např. pro nastavení stejného vzhledu všech nadpisů \htmlTag{h1}. Pro definování vzhledu jen určitých prvků je možné použít třídy. V HTML tagu se pomocí vlastnosti \textit{class} zavolá požadovaný styl. Pokud v dokumentu existují unikátí prvky, tak lze k jejich nastylování použít id. Volání se provádí v HTML tagu pomocí vlastnosti \textit{id}.
-		\paragraph{} Aby bylo možno dosáhnout požadovaného výsledku, umožňují kaskádové styly vrstvit jednotlivá pravidla, jak je zobrazeno na příkladu webu Seznam.cz\ref{fig:seznam}. Ne všechny prohlížeče zobrazují všechny stránky stejně. U Microsoft Inernet Exploreru je interpretace CSS stylů odlišná od jiných prohlížečů, což vede vývojáře k vytváření speciálních pravidel pro tento prohlížeč.
+
+                %%% ML: "vrstvit" nezni moc pekne ...
+
+		\paragraph{} Aby bylo možno dosáhnout požadovaného výsledku, umožňují kaskádové styly vrstvit jednotlivá pravidla, jak je zobrazeno na příkladu webu Seznam.cz\ref{fig:seznam}. Ne všechny prohlížeče zobrazují všechny stránky stejně. U Microsoft Internet Exploreru je interpretace CSS stylů odlišná od jiných prohlížečů, což vede vývojáře k vytváření speciálních pravidel pro tento prohlížeč.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/css_vrstvy.png}
@@ -585,7 +798,10 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\label{fig:seznam}
 			\end{center}
 		\end{figure}	
-		\paragraph{} Pro usnadnění práce vývojářů vznikly různé šablony a frameworky. V případě vyvíjené aplikace byl použit Bootstrap (v2.2.2) -- framework s otevřeným zdrojovým kódem vytvořený v Twitteru v polovině roku 2010. Ve verzi 2 byla přidána podpora responsivního designu, což zaručuje správné zobrazení aplikace i na mobilních zařízeních. Začátkem prosince 2013 byl vydán Bootstrap ve verzi 3.0.3, která má v základu nastavený responzivní design a bere ohled na mobilní zařízení.
+
+                %%% ML: odkaz na Twitter, poznamka pod carou, vysvetleni...
+
+		\paragraph{} Pro usnadnění práce vývojářů vznikly různé šablony a frameworky. V~pří\-padě vyvíjené aplikace byl použit Bootstrap (v2.2.2) -- framework s otevřeným zdrojovým kódem vytvořený pro Twitter v polovině roku 2010. Ve verzi 2 byla přidána podpora responsivního designu, což zaručuje správné zobrazení aplikace i na mobilních zařízeních. Začátkem prosince 2013 byl vydán Bootstrap ve verzi 3.0.3, která má v základu nastavený responzivní design a bere ohled na mobilní zařízení.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% 	VÝVOJ APLIKACE	   %%%%%
 %%%%						      %%%%
@@ -594,9 +810,20 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 %									 %
 \chapter{Vývoj aplikace}
 		\section{Databáze}
+Databáze je důležitým prvkem aplikace \uv{Toulavej} -- jsou zde uloženi registrovaní uživatelé, příspěvky v diskuzi a další data včetně dat OpenStreetMap.
 			\subsection{Datový model}
-				\paragraph{} Databáze je důležitým prvkem aplikace Toulavej -- jsou zde uloženi registrovaní uživatelé, příspěvky v diskuzi a další data včetně dat OpenStreetMap. Databáze byla vytvářena postupně podle toho, které tabulky byly potřeba. Všechny tabulky a sloupce jsou pojmenovány anglicky. V obrázku \ref{fig:db} jsou vidět tabulky a vztahy mezi nimi. V schématu nejsou zobrazeny tabulky vzniklé importem dat planet\_osm a tabulky rozšíření PostGIS. 
-				\paragraph{}Tabulka \textit{news} je určena pro ukládání událostí, které jsou zveřejňovány jako novinky. Zde se evidují pouze položky \textbf{id} jako primární klíč, \textbf{user\_id} jako cizí klíč na tabulku \textit{users}, \textbf{note} s novinkou a čas vytvoření(\textbf{created}).
+				\paragraph{}  Databáze byla vytvářena postupně podle toho, které tabulky byly potřeba. Všechny tabulky a sloupce jsou pojmenovány anglicky. V obrázku \ref{fig:db} jsou vidět tabulky a vztahy mezi nimi. V schématu nejsou zobrazeny tabulky vzniklé importem dat planet\_osm a tabulky rozšíření PostGIS. 
+				\paragraph{}Tabulka \textit{news} je určena pro ukládání událostí, které jsou zveřejňovány jako novinky. Zde se evidují pouze položky \textbf{id} jako primární klíč, \textbf{user\_id} jako cizí klíč na tabulku \textit{users}, \textbf{note} s novinkou a čas vytvoření (\textbf{created}).
+
+                                %%% ML: "Zde je velice častý výskyt
+                                %%% hodnoty NULL." proc neni
+                                %%% vysvetleno...
+
+                                %%% ML: co je hstore, proc bylo
+                                %%% pouzito, chybi vysvetleni nebo
+                                %%% odkaz na text, kde to bude
+                                %%% vysvetleno...
+
 				\paragraph{}Další v pořadí je tabulka \textit{pois} odvozená od bodové vrstvy dat OpenStreetMap. Vznikla vybráním bodů, které by mohly být pro uživatele nějakým způsobem zajímavé. Hlavní sloupce jsou \textbf{osm\_id} pro primární klíč a \textbf{way} pro geometrii. Sloupce \textbf{amenity, historic, leisure, man\_made, name, natural, religion, shop a tourism} obsahují informaci o typu prvku. Zde je velice častý výskyt hodnoty NULL. Sloupec \textbf{tags} užívá rozšíření hstore a jsou v něm uvedeny další informace.
 		\begin{figure}[!h]
 			\begin{center}
@@ -605,23 +832,31 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\label{fig:db}
 			\end{center}
 		\end{figure}
-                        \paragraph{} Další tabulkou odvozenou z liniové vrstvy dat OpenStreetMap jsou \textit{tourist\_tracks}. Stejně jako \textit{pois} nese sloupec s primárním klíčem označení \textbf{osm\_id}. Sloupec \textbf{kct\_color} určuje barvu turistické stezky bez ohledu na druh značky. Ten je zohledněn v \textbf{kct\_symbol}. Možné cíle trasy(pokud jsou uvedeny) udává \textbf{kct\_destinations}. Pokud má trasa nějaké jméno, je uvedeno v \textbf{kct\_name}. Zřizovatel trasy je uveden v \textbf{operator}. V poli \textbf{route} je uveden typ cesty. Geometrii lze nalézt ve sloupci \textbf{way}. \textbf{way\_area} určuje plochu ohraničenou uzavřeným liniovým prvkem.
-			\paragraph{} Tabulka \textit{tracks} slouží k ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje po \textbf{user\_id}. Geometrii lze najít v \textbf{the\_geom} a délka je v \textbf{length}. Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k ukládání komentářů a hodnocení k cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text(\textbf{review}) a časová známka, kdy byl příspěvek vložen(\textbf{created}).
+                        \paragraph{} Další tabulkou odvozenou z liniové vrstvy dat OpenStreetMap jsou \textit{tourist\_tracks}. Stejně jako \textit{pois} nese sloupec s primárním klíčem označení \textbf{osm\_id}. Sloupec \textbf{kct\_color} určuje barvu turistické stezky bez ohledu na druh značky. Ten je zohledněn v \textbf{kct\_symbol}. Možné cíle trasy(pokud jsou uvedeny) udává \textbf{kct\_destinations}. Pokud má trasa nějaké jméno, je uvedeno v \textbf{kct\_name}. Zřizovatel trasy je uveden v \textbf{operator}. V poli \textbf{route} je uveden typ cesty. Geometrii lze nalézt ve sloupci \textbf{way}. Atribut \textbf{way\_area} určuje plochu ohraničenou uzavřeným liniovým prvkem.
+
+                        %%% "a délka je v \textbf{length}" delka ceho,
+                        %%% nutno vysvetlit, a proc se uklada
+                        %%% explicitne... ?
+
+			\paragraph{} Tabulka \textit{tracks} slouží k ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje atribut \textbf{user\_id}. Geometrii lze najít v sloupečku \textbf{the\_geom} a délka je v \textbf{length}. Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k ukládání komentářů a hodnocení k cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text (\textbf{review}) a časová známka, kdy byl příspěvek vložen (\textbf{created}).
 			\paragraph{}Tabulka \textit{users} slouží k ukládání dat o registrovaných uživatelích. Pole \textbf{id} je primární klíč, které má výchozí hodnotu nastavenou na další číslo v pořadí. Pole \textbf{name} je jméno, které zadává uživatel při registraci nebo které se vezme z profilu na Facebooku. Toto jméno lze v nastavení změnit. Tabulka obsahuje pole s emailem, který spolu s heslem slouží k přihlášení do aplikace. Pokud je uživatel připojen přes Facebook, uloží se jeho identifikace na Facebooku do pole \textbf{fbuid}. Pole \textbf{active} slouží k případnému znemožnění přihlášení uživatele a pole \textbf{attempts} ukazuje počet neúspěšných pokusů o přihlášení. Pokud dosáhne jejich počet určitého množství, tak se účet zablokuje. Sloupec \textbf{role} udává, jaká práva má daný uživatel. V systému jsou tři typy rolí (guest, user a admin) ale pouze user a admin se ukládají do tabulky. Volitelné pole \textbf{about} umožňuje uživateli napsat o sobě pár informací a \textbf{note} slouží k zapsání poznámky pro administrátora. Sloupce \textbf{oauth\_key} a \textbf{oauth\_secret} jsou určeny pro přihlašování do OpenStreetMap.
+
+                        %%% ML: tomuto odstavci nerozumim...
+
 			\paragraph{}Tabulky, které jsou doplňovány, jsou prázdé a jediné záznamy, které se vkládaly při tvorbě, jsou administrátorovy uživatelské informace.
 
 			\subsection{Naplnění databáze}
-				\paragraph{} Před zahájením samotného naplnění databáze bylo potřeba aktivovat rozšíření. Jednalo se o \textit{PostGIS} rozšíření pro práci s prostorovými daty, \textit{PgRouting} pro plánované vyhledávání cest mezi zadanými body a \textit{hstore} pro usnadnění práce s daty ve sloupcích \textbf{tags}. Na tyto úkony je potřeba administrátorský přístup, takže potřebné modifikace v databázi na serveru \textit{geo102} provedl Ing. Landa.
-				\paragraph{} V momentě, kdy byla databáze připravena, bylo možné vytvořit tabulky a nahrát data. Pro získání dat OpenStreetMap byla použita internetová stránka \url{http://download.geofabrik.de/europe/czech-republic.html}, kde jsou data Planet.osm rozdělena podle kontinentů a zemí. Tato data jsou každý den aktualizována. Nejjednodušším způsobem, jak nahrát data do databáze, je pomocí konzolové aplikace \textit{osm2pgsql}. Při importu dat může dojít k tomu, že užívaný počítač nemí potřebnou operační paměť. Program \textit{osm2pgsql} tento problém řeší pomocí tzv. \textit{slim modu}, ve kterém jsou využita dočasná úložiště. Ta zmenší velikost potřebné operační paměti. Databáze České republiky zabírá zhruba 4 GB paměti, ovšem ne všechna data jsou pro projekt potřebná. V případě turistických stezek byla potřebná data uložena do speciální tabulky, protože jejich výběr z původní tabulky za pomoci SELECTu nebo VIEW byl zdlouhavý. Ze stejného důvodu byly vybrány i zájmové body. Při prvním nahrání databáze vznikl problém se získáním údajů z pole \textbf{tags}. V dokumentaci \textit{PostgreSQL} na stránkách aplikace byl uveden příklad, jak je získat. Tento problém poté odpadl s aktivací rozšíření \textit{hstore}. Kvůli výsledné velikosti databázi je zvažováno, že po zprovoznění vyhledávání cest budou tabulky s nepotřebnými daty odstraněny. Aby se k datům dalo přistupovat z aplikace, bylo potřeba správně nastavit práva.
+				\paragraph{} Před zahájením samotného naplnění databáze bylo potřeba aktivovat rozšíření. Jednalo se o \textit{PostGIS} rozšíření pro práci s geografickými daty, \textit{PgRouting} pro plánované vyhledávání cest mezi zadanými body a \textit{hstore} pro usnadnění práce s daty ve sloupcích \textbf{tags}. Na tyto úkony je potřeba administrátorský přístup, takže potřebné modifikace v databázi na serveru \textit{geo102} provedl Ing. Landa.
+				\paragraph{} V momentě, kdy byla databáze připravena, bylo možné vytvořit tabulky a nahrát data. Pro získání dat OpenStreetMap byla použita internetová stránka \url{http://download.geofabrik.de/europe/czech-republic.html}, kde jsou data Planet.osm rozdělena podle kontinentů a zemí. Tato data jsou každý den aktualizována. Nejjednodušším způsobem, jak nahrát data do databáze, je pomocí konzolové aplikace \textit{osm2pgsql}. Při importu dat může dojít k tomu, že užívaný počítač nemá potřebnou operační paměť. Program \textit{osm2pgsql} tento problém řeší pomocí tzv. \textit{slim modu}, ve kterém jsou využita dočasná úložiště. Ta zmenší velikost potřebné operační paměti. Databáze České republiky zabírá zhruba 4 GB paměti, ovšem ne všechna data jsou pro projekt potřebná. V případě turistických stezek byla potřebná data uložena do speciální tabulky, protože jejich výběr z původní tabulky za pomoci SELECTu nebo VIEW byl zdlouhavý. Ze stejného důvodu byly vybrány i zájmové body. Při prvním nahrání databáze vznikl problém se získáním údajů z pole \textbf{tags}. V dokumentaci \textit{PostgreSQL} na stránkách aplikace byl uveden příklad, jak je získat. Tento problém poté odpadl s aktivací rozšíření \textit{hstore}. Kvůli výsledné velikosti databáze je zvažováno, že po zprovoznění vyhledávání cest budou tabulky s nepotřebnými daty odstraněny. Aby se k datům dalo přistupovat z webové aplikace, bylo potřeba správně nastavit přístupová práva.
 				\paragraph{} V neposlední řadě bylo potřeba doplnit tabulky, které nevznikají z dat OpenStreetMap:
 					\begin{itemize}
 						\item news -- novinky generované při některých akcích či zadané administrátorem
 						\item  shoutboard -- tabulka pro diskuzi
-						\item  track\_reviews -- komentáře a články k trati
+						\item  track\_reviews -- komentáře a články k trase
 						\item  tracks -- uživateli zadané trasy
 						\item users -- informace o uživatelích včetně jejich přihlašovacích údajů
 					\end{itemize}
-Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tracks} má prostorovou složku.
+Většina těchto tabulek neobsahuje geografická data, jenom tabulka \textit{tracks} má geometrickou složku popisu geodat.
 			\subsection{Aktualizace databáze}
 				\paragraph{} Protože se data OpenStreetMap neustále vyvíjí a zpřesňují, je potřeba je jednou za čas aktualizovat. Vzhledem k tomu, že se jedná o časově náročnou činnost (import dat OpenStreetMap trvá na serveru kolem 1 hodiny), byl vytvořen skript, který provede potřebné kroky automaticky poté, co je předchozí úkol hotov. Skript postupuje v následujících krocích.
 		\begin{enumerate}
@@ -630,7 +865,7 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 			\item Za užití \textit{osm2pgsql} s parametry \textit{ -\--slim  -\--cache--strategy dense -\--hstore --d vorlichr\_dp} importuje data do databáze.
 			\item Program psql vytvoří tabulku \textit{tourist\_tracks} podle SELECTu ze souboru \textit{hiking\_routes.sql}.
 			\item Ze souboru \textit{pois.sql} použije \textit{psql} dotaz na vytvoření tabulky \textit{pois}.
-			\item Spustí se skript, který správně nastaví přístupy k databázi.
+			\item Spustí se skript, který správně nastaví přístupová práva k databázi.
 			\item V posledním kroku skript smaže stažený soubor.
 		\end{enumerate}
 			\paragraph{} V momentě, kdy bude plně funkční vyhledávání tras pomocí pgRoutingu, do programu přibudou další kroky, které provedou potřebné úpravy. Jedná se o vytvoření tabulky se silnicemi a cestami, vypočítání geometrie sítě a nastavení parametrů potřebných pro vyhledávání.
@@ -644,7 +879,11 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 		\end{figure}	
 
 		\section{Vzhled a styly}
-			\paragraph{} Při tvorbě vzhledu byla snaha vytvořit jednoduché rozhraní. Z hlediska lepšího využití prostoru bylo menu navrhnuto jako lišta. Původní navigační panel\ref{fig:menu_puv} obsahoval dvě rozbalovací menu, ale po konzultaci s Ing. Landou bylo shledáno toto rozvržení nevhodným. Jednalo se např. o zařazení stránky \textit{O Projektu} pod záložku \textit{Mapa}. Předělané menu\ref{fig:menu_nove} je přehlednější.
+
+                %%% ML: reference na obrazky je vhodne komentovat,
+                %%% napr. (viz obr.~\ref{fig:menu_puv})
+
+			\paragraph{} Při tvorbě vzhledu byla snaha vytvořit jednoduché rozhraní. Z hlediska lepšího využití prostoru bylo menu navrhnuto jako lišta. Původní navigační panel (viz obr.~\ref{fig:menu_puv}) obsahoval dvě rozbalovací menu, ale po konzultaci s Ing. Landou bylo shledáno toto rozvržení nevhodným. Jednalo se např. o zařazení stránky \textit{O Projektu} pod záložku \textit{Mapa}. Předělané menu (viz obr.~\ref{fig:menu_nove}) je přehlednější.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/toulavej/menu_nove.png}
@@ -660,8 +899,8 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 				\label{fig:addTrack}
 			\end{center}
 		\end{figure}	
-			\paragraph{} Mapových oken je v aplikaci víc a mají různá nastavení stylů. První je v samotné sekci \textit{Mapa} a hlavním rysem tohoto prvku je malé odsazení od spodního a bočních krajů. Stejný rys má i druhé okno, které se nachází v sekci \textit{Upravit}. To je ale navíc rozděleno na mapovou a textovou část. Poslední styl mapy je společný pro dvě mapová okna. Jedná se o přidání vlastní trasy a zobrazení trasy na mapě. Tento styl se vyznačuje odsazením od pravého kraje, takže zde vznikne místo pro Informace o trase -- buď vypsané v tabulce nebo vstupní formulář pro ně\ref{fig:addTrack}.
-			\paragraph{} Z grafického hlediska bylo největším problémem propojení aplikace Toulavej s editorem iD. protože tato aplikace má své vlastní styly. Některé třídy stylů měly stejné názvy a  styly editoru tak přepisovaly pravidla aplikace. Tento problém byl vyřešen přepsáním pravidel, která se vzájemně rušila, tak, aby byla stejná. Ačkoliv většina aplikace byla přepsána úspěšně, v některých místech stále není úprava provedena, např. v editoru iD chybí tlačítku lokalizovat popis po najetí myši\ref{fig:error_locate}.
+			\paragraph{} Mapových oken je v aplikaci víc a mají různá nastavení stylů. První je v samotné sekci \textit{Mapa} a hlavním rysem tohoto prvku je malé odsazení od spodního a bočních krajů. Stejný rys má i druhé okno, které se nachází v~sekci \textit{Upravit}. To je ale navíc rozděleno na mapovou a textovou část. Poslední styl mapy je společný pro dvě mapová okna. Jedná se o přidání vlastní trasy a zobrazení trasy na mapě. Tento styl se vyznačuje odsazením od pravého kraje, takže zde vznikne místo pro Informace o trase -- buď vypsané v tabulce nebo vstupní formulář pro ně -- viz obr.~\ref{fig:addTrack}.
+			\paragraph{} Z grafického hlediska bylo největším problémem propojení aplikace Toulavej s editorem iD, jelikož má tato aplikace své vlastní styly. Některé třídy stylů měly stejné názvy a  styly editoru tak přepisovaly pravidla aplikace. Tento problém byl vyřešen přepsáním pravidel, která se vzájemně rušila, tak, aby byla stejná. Ačkoliv většina aplikace byla přepsána úspěšně, v některých místech stále není úprava provedena, např. v editoru iD chybí tlačítku lokalizovat popis po najetí myši -- viz obr.~\ref{fig:error_locate}.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=7cm]{obrazky/toulavej/chyba_locate.png}
@@ -670,8 +909,20 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 			\end{center}
 		\end{figure}	
 
+
+                %%% ML: nazev kapitoly neni jasny, hned v prvni vete
+                %%% mluvite o "mapovych oknech"... 
+
 		\section{Mapy} %Leaflet, OpenLayers v2 v3
-			\paragraph{} Mapová okna mají nejen své vlastní styly, ale i své vlastní konfigurace, které bylo třeba vytvořit. Kromě připojení podkladové mapy bylo potřeba připojit i další vrstvy. První v pořadí byla připojena přes službu WFS data turistických stezek. Pro získání informací o prvku byla vytvořena funkce, která je vypíše(pokud jsou k dispozici) a zvýrazní vybranou stezku\ref{fig:infoTrack}. Informace, které mohou být zobrazeny, jsou jméno a cíle stezky, celková délka a barva trasy.
+			\paragraph{} Mapová okna mají nejen své vlastní styly, ale i své vlastní konfigurace, které bylo třeba vytvořit. Kromě připojení podkladové mapy bylo potřeba připojit i další vrstvy. První v pořadí byla připojena přes službu WFS data turistických stezek. Pro získání informací o prvku byla vytvořena funkce, která je vypíše (pokud jsou k dispozici) a zvýrazní vybranou stezku (obr.~\ref{fig:infoTrack}). Informace, které mohou být zobrazeny, jsou jméno a cíle stezky, celková délka a barva trasy.
+
+                        %%% Nikde neni vysvetlen rozdil mezi WFS a
+                        %%% WMS, alespon o tom nevim, to je potreba
+                        %%% nekde doplnit nebo pridat odkaz na
+                        %%% kapitolu, kde je to vysvetlo, ctenar se
+                        %%% bude ptat "proc je nacitani WFS tak
+                        %%% zdlouhave", to je potreba vystetlit
+
 			\paragraph{} Protože načítání WFS vrstvy pro celou republiku je zdlouhavé, byla přidána WMS vrstva stezek KČT, která se při určitém přiblížení změní na dříve přidanou WFS vrstvu. Tímto se sníží čas potřebný k nahrání potřebných dat pro celou Českou republiku. Pro menší oblast je čas nahrávání vektorové vrstvy už přijatelný.
 		\begin{figure}[!h]
 			\begin{center}
@@ -682,43 +933,78 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 		\end{figure}	
 
 			\paragraph{} Abychom vůbec mohli použít WMS a WFS vrstvy z dat, která jsou uložena v databázi, musí být nastaven Geoserver, vrstvy musí být publikovány a pro WFS službu musí být na serveru přítomen soubor, který zpracovává proxy dotazy. Toto je dáno tím, že se z OpenLayers nelze připojit přímo ke Geoserveru a komunikovat s ním přímo. 
-			\paragraph{} V neposlední řadě byly do mapy přidány ovládací prvky jako zoom, permanentní odkaz, měřítko a přehledka. Pokud je uživatel přihlášený, tak může pomocí funkce \textit{Editovat výřez} přejít na do editačního módu na souřadnicích, kde momentáůně leží střed mapy. Pokud má uživatel účet na Facebooku a má ho propojený s aplikací, tak může sdílet mapu s přáteli.
+			\paragraph{} V neposlední řadě byly do mapy přidány ovládací prvky jako zoom, permanentní odkaz, měřítko a přehledka. Pokud je uživatel přihlášený, tak může pomocí funkce \textit{Editovat výřez} přejít na do editačního módu na souřadnicích, kde momentálně leží střed mapy. Pokud má uživatel účet na Facebooku a má ho propojený s aplikací, tak může sdílet mapu s přáteli.
 			\paragraph{}Pro připojení mapového HTML5 editoru iD bylo za potřebí importovat všechny knihovny a styly a nastavit autentifikační údaje pro \textit{oauth}. 
 
 			
 		\section{Uživatelské rozhraní}
 			\subsection{Přihlašování uživatelů}
+
+                        %%% ML: zde by mel byt odkaz na kapitolu, kde
+                        %%% se mluvi o datovem modelu DB (low priority)
+
 				\paragraph{}K ukládání registrovaných uživatelů byla v databázi vytvořena tabulka \textit{users}. Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
 				\subsubsection{Bez Facebooku}
-					\paragraph{} K příhlášení bez propojení s Facebookem je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace. Formulář je opatřen i pasivním filtrem proti robotům, kteří by opakovaně vytvářeli účty a zahlcovali tak databázi. Navíc by tím získali přístup k editaci dat, což je nežádoucí. Teoreticky by mohlo dojít k masovému ukládání špatných dat do OSM. 
+
+                                %%% ML: "je potřeba se registrovat na
+                                %%% stránce" zkuste napsat jasneji
+
+					\paragraph{} K příhlášení bez propojení se sociální sítí Facebook je potřeba se registrovat na stránce. K tomu slouží jednoduchý formulář, kde uživatel zadá požadované informace. Formulář je opatřen i pasivním filtrem proti robotům, kteří by opakovaně vytvářeli účty a zahlcovali tak databázi. Navíc by tím získali přístup k editaci dat, což je nežádoucí. Teoreticky by mohlo dojít k masovému ukládání špatných dat do OSM. 
 				\subsubsection{S Facebookem}
+
+                                %%% ML: TODO
+
 					\paragraph{} 
 			\subsection{Dostupné funkce}
+
+                                %%% ML: TODO
+
 				\paragraph{}
 
 		\section{Propojení s Facebookem}
 			\subsection{Použité pluginy}
+
+                        %%% ML: tvorba prihlasovani ?
+
 				\paragraph{} Pro propojení sociální sítě Facebook s vyvíjenou aplikací byl použit plugin pro Nette\cite{nette20login} od Jakuba Marka. Tento plugin značně usnadnil tvorbu přihlašování. Dalším pluginem, který byl použit, je FbTools\cite{FbTools} od Milana Šulce. Tento plugin poskytuje funkcionality běžně dostupné na Facebooku, např. tlačítko \textit{Líbí se mi} nebo vlákno s \textit{komentáři}.
 			\subsection{Práva}
-				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlášení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy. Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo zveřejňovat akce nazvané \textit{publish\_actions}. Toto jsou práva, o která si aplikace říká, ale nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
+				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlá\-šení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy. Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo zveřejňovat akce nazvané \textit{publish\_actions}. Toto jsou práva, o která si aplikace říká, ale nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
 			\subsection{Zvežejňování na zdi}
+
+                        %%% ML: TODO
+
+                        %%% ML: pridat nejaky screenshot ?
+
 				\paragraph{} {\Huge něco o zveřejňování a sdílení}
-				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolávás. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z Facebooku.
+				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolává. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z~Facebooku.
 		
-		\section{Editace dat}
-				\paragraph{} Pro umožnění editace dat existovala dvě možná řešení. První řešení zahrnuje vytvoření vlastního rozhraní, druhé pak použití existujícího řešení a připojení k stávající aplikaci. U druhého řešení byla od začátku zvažována možnost použití HTML5 editoru \textit{iD}. Protože obě řešení mají své výhody a nevýhody, budou zde vypsány obě.
+                                %%% ML: zmenil jsem nazev kapitoly na
+                                %%% OSM, jinak to bylo prilis obecne
+
+		\section{Editace dat OSM}
+
+                %%% ML: zde by se hodil odkaz na kapitolu o iD
+
+				\paragraph{} Pro umožnění editace dat existovala dvě možná řešení. První řešení zahrnuje vytvoření vlastního rozhraní, druhé pak použití existujícího řešení a připojení k~vlastní webové aplikaci. U druhého řešení byla od začátku zvažována možnost použití HTML5 editoru \textit{iD}. Protože obě řešení mají své výhody a nevýhody, budou zde vypsány obě.
 			\subsection{Tvorba vlastního rozhraní}
-				\paragraph{} První řešení, jak už bylo řečeno, zahrnuje vytvoření jednoduchého rozhraní. Prvky by se editovaly a  ukládaly do databáze projektu a v určitých intervalech by byl prováděn import těchto dat do OpenStreetMap. Výhoda této metody spočívá v tom, že data by mohla být kontrolována, zda jsou fakticky správně, aby nedocházelo k znehodnocení dat OpenStreetMap. Také by bylo možno tuto funkci implementovat s minimálními změnami pro přidávání vlastních cest. Na druhou stranu by toto řešení znamenalo množství programování, protože by bylo potřeba zajistit nástroj pro import do OpenStreetMap, popřípadně data importovat ručně. V začátcích by to pravděpodobně nebyl problém, ovšem po překročení určitého počtu editací by se mohl stát ruční import nemožným nebo alespoň velice náročným na čas.
+				\paragraph{} První řešení, jak už bylo řečeno, zahrnuje vytvoření jednoduchého rozhraní. Prvky by se editovaly a  ukládaly do databáze projektu a v určitých intervalech by byl prováděn import těchto dat do OpenStreetMap. Výhoda této metody spočívá v tom, že data by mohla být kontrolována, zda jsou fakticky správně, aby nedocházelo k znehodnocení dat OpenStreetMap. Také by bylo možno tuto funkci implementovat s minimálními změnami pro přidávání vlastních cest. Na druhou stranu by toto řešení znamenalo množství programování, protože by bylo potřeba zajistit nástroj pro import do OpenStreetMap, popřípadně data importovat ručně. V začátcích by to pravdě\-podobně nebyl problém, ovšem po překročení určitého počtu editací by se mohl stát ruční import nemožným nebo alespoň velice náročným na čas.
 				\paragraph{} Protože zde nedochází k odesílání dat na jiný server, byl tento přístup zvolen pro přidávání vlastních cest.
 			\subsection{Editor iD} 
 				\paragraph{} Kvůli výše vyjmenovaným nevýhodám bylo rozhodnuto, že nejprve bude prozkoumána možnost připojení HTML5 editoru \textit{iD}, který byl vytvořen pro editaci dat OpenStreetMap. Po prozkoumání zdrojových kódů editoru bylo zjištěno, že aplikace může být připojena pomocí protokolu \textit{oAuth}. Aby aplikace nepoužívala osobní účet na OpenStreetMap, byl vytvořen speciální účet, pod kterým aplikace byla registrována. 
+
+                                %%% ML: proc zmena velikosti fontu ???
+
 				\paragraph{}{\Large Byla snaha umožnit uživatelům s účtem na OpenStreetMap, aby mohli editovat data pod svým účtem. Zatím tato funkcionalita zprovozněna není.}
 				\paragraph{} Editor iD má i určité nevýody. Například poskytuje více funkcionalit než je potřeba a komplexnost editoru činí modifikaci zdrojového kódu časově náročnou. Pro vytvářenou aplikaci je nadbytečná možnost editace budov. V momentě, kdy by nebyla povolena editace plošných prvků (polygonů), probíhalo by načítání dat z OpenStreetMap rychleji. 
 		\section{Trasy a fotky}
+
+                %%% ML: TODO
+
 			\paragraph{}
 
 		\section{Testování}
 
+                %%% ML: TODO
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% 		ZÁVĚR	  	   %%%%%
@@ -729,16 +1015,27 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 	\chapter{Zhodnocení}
 		\section{Budoucí rozšíření}
 
+                %%% ML: TODO
+
 		\section{Známé problémy}
 
+                %%% ML: TODO
+
 		\section{MTB mapa Evropy}
-			\paragraph{} V sekci Existující řešení\ref{sec:Ex_reseni} je popisována aplikace MTB mapa Evropy, která se věnuje cykloturistice a turistice. Ačkoliv aplikace zobrazují stejná data a jsou určeny pro dosti podobnou skupinu lidí, hlavní téma této práce leží v jiné oblasti než je tvorba samotné mapy. Projekt Toulavej je zaměřen hlavně na propojení se sociální sítí a s editorem iD. Stránky  nabízí možnost registrace, která poskytuje další výhody, jako je editace dat, přidávání vlastních cest a fotografií. Tyto funkce odlišují obě aplikace a nedělají z projektu Toulavej pouze další turistickou mapu. Aplikace MTB mapa Evropy byla objevena před odevzdáním této práce, a proto uvedené funkce nemohly být tvořeny jako doplňky pro stávající mapy.
+
+                %%% ML: Mozna by bylo zahodno psat Toulej v uvozovkach
+
+			\paragraph{} V kapitole \uv{Existující řešení} \ref{sec:Ex_reseni} je popisována aplikace MTB mapa Evropy, která se věnuje cykloturistice a turistice. Ačkoliv aplikace zobrazují stejná data a jsou určeny pro dosti podobnou skupinu lidí, hlavní téma této práce leží v jiné oblasti než je tvorba samotné mapy. Projekt Toulavej je zaměřen hlavně na propojení se sociální sítí a s editorem iD. Stránky  nabízí možnost registrace, která poskytuje další výhody, jako je editace dat, přidávání vlastních cest a fotografií. Tyto funkce odlišují obě aplikace a~nedělají z projektu Toulavej pouze další turistickou mapu. Aplikace MTB mapa Evropy byla objevena před odevzdáním této práce, a proto uvedené funkce nemohly být tvořeny jako doplňky pro stávající mapy.
 
 
 
 %% Seznam zkratek
 \newpage 
 \chapter*{Seznam zkratek}
+
+%%% ML: seznam zkratek se da generovat automatizovane, viz poznamky na
+%%% zacatku textu, vzhledem k casovemu tlaku to nechte takto
+
 \addcontentsline{toc}{chapter}{Seznam zkratek}
 	\begin{itemize}
 		\item API -- Rozhraní pro programování aplikací (Application programming interface)
@@ -764,6 +1061,18 @@ Většina těchto tabulek neobsahuje prostorová data, jenom tabulka \textit{tra
 
 
 %%Užitá literatura
+
+%%% ML: Literatura by mela byt rozdelene na dve sekce - primarni
+%%% (tistena a clanky) a sekundarni (online) - casu je malo a zbyva
+%%% Vam hodne nedodelku, nechte to v nejhorsim pripade takto, jenom
+%%% dejte do textu vice odkazu na literaturu, to tam velmi chybi, viz
+%%% poznamky v textu
+
+%%% ML: Pokud by zbyl cas tak pridejte do prace dodatek s doplnujicimi
+%%% informacemi, napr. podstatne casti konfigurace ci popis aplikace
+%%% se vice screenshoty, bohuzel ale neni prilis casu a stale vam
+%%% chybi zasadni casti prace...
+
 \newpage
 \addcontentsline{toc}{chapter}{Reference}
 \begin{thebibliography}{50}
