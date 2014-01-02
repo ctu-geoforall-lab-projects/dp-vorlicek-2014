@@ -955,31 +955,55 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulka \textit{tr
 
 					\paragraph{} 
 			\subsection{Dostupné funkce}
+
+                                %%% ML: TODO
+
 				\paragraph{}
 
 		\section{Propojení s Facebookem}
 			\subsection{Použité pluginy}
+
+                        %%% ML: tvorba prihlasovani ?
+
 				\paragraph{} Pro propojení sociální sítě Facebook s vyvíjenou aplikací byl použit plugin pro Nette\cite{nette20login} od Jakuba Marka. Tento plugin značně usnadnil tvorbu přihlašování. Dalším pluginem, který byl použit, je FbTools\cite{FbTools} od Milana Šulce. Tento plugin poskytuje funkcionality běžně dostupné na Facebooku, např. tlačítko \textit{Líbí se mi} nebo vlákno s \textit{komentáři}.
 			\subsection{Práva}
-				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlášení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy. Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo zveřejňovat akce nazvané \textit{publish\_actions}. Toto jsou práva, o která si aplikace říká, ale nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
+				\paragraph{} Pro správné fungování funkcionalit je potřeba si vyžádat potřebná  práva. Zde se vyskytuje problém, protože toto lze nastavit pouze při prvním přihlá\-šení uživatele. Pozdější změny jsou možné pouze tehdy, když si uživatel odebere aplikaci a poté si ji znovu přidá s novými právy. Základní právo, které je potřeba k přihlášení je \textit{email}, které povoluje získání emailu. Pro možnost publikovat na zdi, dávat \uv{lajky} a přidávat komentáře je potřeba mít právo zveřejňovat akce nazvané \textit{publish\_actions}. Toto jsou práva, o která si aplikace říká, ale nejsou jediná. Všechna práva jsou popsána v API dokumentaci\cite{FbApiPrava}.
 			\subsection{Zvežejňování na zdi}
+
+                        %%% ML: TODO
+
+                        %%% ML: pridat nejaky screenshot ?
+
 				\paragraph{} {\Huge něco o zveřejňování a sdílení}
-				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolávás. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z Facebooku.
+				\paragraph{} Bylo zjištěno, že pokud se uživatel odhlásí z aplikace, ale zůstane stále přihlášen na Facebooku, tak může zveřejňovat věci na zdi. V momentě, kdy se na počítači střídá víc lidí, může dojít k situaci, kdy jeden uživatel, který vůbec nemusí mít účet na Facebooku, bude moci publikovat statusy na zdi někoho, kdo byl na počítači před ním a zapomněl se odhlásit z Facebooku. Protože toto je nežádoucí jev, byly proti němu učiněna opatření v podobě skrytí tlačítka, které sdílení vyvolává. Tlačítko se zobrazí jen v případě, že má uživatel u svého účtu uloženo v databázi \textit{fbuid}, což je označení pro pole v tabulce \textit{user}, ve kterém je uloženo uživatelská indentifikace obdržená z~Facebooku.
 		
-		\section{Editace dat}
-				\paragraph{} Pro umožnění editace dat existovala dvě možná řešení. První řešení zahrnuje vytvoření vlastního rozhraní, druhé pak použití existujícího řešení a připojení k stávající aplikaci. U druhého řešení byla od začátku zvažována možnost použití HTML5 editoru \textit{iD}. Protože obě řešení mají své výhody a nevýhody, budou zde vypsány obě.
+                                %%% ML: zmenil jsem nazev kapitoly na
+                                %%% OSM, jinak to bylo prilis obecne
+
+		\section{Editace dat OSM}
+
+                %%% ML: zde by se hodil odkaz na kapitolu o iD
+
+				\paragraph{} Pro umožnění editace dat existovala dvě možná řešení. První řešení zahrnuje vytvoření vlastního rozhraní, druhé pak použití existujícího řešení a připojení k~vlastní webové aplikaci. U druhého řešení byla od začátku zvažována možnost použití HTML5 editoru \textit{iD}. Protože obě řešení mají své výhody a nevýhody, budou zde vypsány obě.
 			\subsection{Tvorba vlastního rozhraní}
-				\paragraph{} První řešení, jak už bylo řečeno, zahrnuje vytvoření jednoduchého rozhraní. Prvky by se editovaly a  ukládaly do databáze projektu a v určitých intervalech by byl prováděn import těchto dat do OpenStreetMap. Výhoda této metody spočívá v tom, že data by mohla být kontrolována, zda jsou fakticky správně, aby nedocházelo k znehodnocení dat OpenStreetMap. Také by bylo možno tuto funkci implementovat s minimálními změnami pro přidávání vlastních cest. Na druhou stranu by toto řešení znamenalo množství programování, protože by bylo potřeba zajistit nástroj pro import do OpenStreetMap, popřípadně data importovat ručně. V začátcích by to pravděpodobně nebyl problém, ovšem po překročení určitého počtu editací by se mohl stát ruční import nemožným nebo alespoň velice náročným na čas.
+				\paragraph{} První řešení, jak už bylo řečeno, zahrnuje vytvoření jednoduchého rozhraní. Prvky by se editovaly a  ukládaly do databáze projektu a v určitých intervalech by byl prováděn import těchto dat do OpenStreetMap. Výhoda této metody spočívá v tom, že data by mohla být kontrolována, zda jsou fakticky správně, aby nedocházelo k znehodnocení dat OpenStreetMap. Také by bylo možno tuto funkci implementovat s minimálními změnami pro přidávání vlastních cest. Na druhou stranu by toto řešení znamenalo množství programování, protože by bylo potřeba zajistit nástroj pro import do OpenStreetMap, popřípadně data importovat ručně. V začátcích by to pravdě\-podobně nebyl problém, ovšem po překročení určitého počtu editací by se mohl stát ruční import nemožným nebo alespoň velice náročným na čas.
 				\paragraph{} Protože zde nedochází k odesílání dat na jiný server, byl tento přístup zvolen pro přidávání vlastních cest.
 			\subsection{Editor iD} 
 				\paragraph{} Kvůli výše vyjmenovaným nevýhodám bylo rozhodnuto, že nejprve bude prozkoumána možnost připojení HTML5 editoru \textit{iD}, který byl vytvořen pro editaci dat OpenStreetMap. Po prozkoumání zdrojových kódů editoru bylo zjištěno, že aplikace může být připojena pomocí protokolu \textit{oAuth}. Aby aplikace nepoužívala osobní účet na OpenStreetMap, byl vytvořen speciální účet, pod kterým aplikace byla registrována. 
+
+                                %%% ML: proc zmena velikosti fontu ???
+
 				\paragraph{}{\Large Byla snaha umožnit uživatelům s účtem na OpenStreetMap, aby mohli editovat data pod svým účtem. Zatím tato funkcionalita zprovozněna není.}
 				\paragraph{} Editor iD má i určité nevýody. Například poskytuje více funkcionalit než je potřeba a komplexnost editoru činí modifikaci zdrojového kódu časově náročnou. Pro vytvářenou aplikaci je nadbytečná možnost editace budov. V momentě, kdy by nebyla povolena editace plošných prvků (polygonů), probíhalo by načítání dat z OpenStreetMap rychleji. 
 		\section{Trasy a fotky}
+
+                %%% ML: TODO
+
 			\paragraph{}
 
 		\section{Testování}
 
+                %%% ML: TODO
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% 		ZÁVĚR	  	   %%%%%
