@@ -51,4 +51,22 @@ COMMENT ON COLUMN tracks.note IS 'poznámka';
 COMMENT ON COLUMN tracks.length IS 'délka prvku';
 COMMENT ON COLUMN tracks.created IS 'vytvořeno';
 
+-- create table for photos
+CREATE TABLE images
+(
+  id serial NOT NULL,
+  name character varying(255),
+  user_id integer,
+  the_geom geometry,
+  created timestamp without time zone,
+  note character varying(255),
+  filename character varying(255) NOT NULL,
+  CONSTRAINT images_id PRIMARY KEY (id),
+  CONSTRAINT images_user_id_fkey FOREIGN KEY (user_id)
+      REFERENCES users (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
 

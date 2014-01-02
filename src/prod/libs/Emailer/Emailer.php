@@ -3,6 +3,7 @@
 use Nette\Application\UI\Control;
 use Nette\Mail\IMailer;
 use Nette\Mail\Message;
+use Nette\Mail\SmtpMailer;
 use Nette\Mail\SendmailMailer;
 
 /**
@@ -30,7 +31,13 @@ class Emailer extends Control
 	{
 		$this->defaultFromEmail = $defaultFromEmail;
 		$this->defaultToEmail = $defaultToEmail;
-		$this->mailer = new SendmailMailer();
+		//$this->mailer = new SendmailMailer();
+		$this->mailer = new Nette\Mail\SmtpMailer(array(
+        'host' => 'smtp.volny.cz',
+        'username' => 'toulavej@volny.cz',
+        'password' => 'Chrudos123*',
+        'secure' => 'ssl',
+));
 	}
 
 	public function getTemplateFilePath($templateFileName)
@@ -38,12 +45,10 @@ class Emailer extends Control
 		return dirname(__FILE__) . '/templates/' . $templateFileName . '.latte';
 	}
 
-	public function send($templateFileName, $subject, $toEmail = NULL, $fromEmail = NULL, $htmlBody = NULL)
+	public function send($templateFileName, $subject, $toEmail = NULL, $htmlBody = NULL)
 	{
 		$message = new Message();
-		if ($fromEmail === NULL) {
-			$fromEmail = $this->defaultFromEmail;
-		}
+		
 		if (($toEmail === NULL) || ($this->presenter->context->parameters["environment"] != "production")) {
 			$toEmail = $this->defaultToEmail; // don't spam the real e-mails when in the development or testing mode
 		}
@@ -61,7 +66,7 @@ class Emailer extends Control
 		$this->template->htmlBody = ($htmlBody !== NULL ? nl2br($htmlBody) : NULL);
 		$this->template->subject = $subject;
 		$this->template->setFile($this->getTemplateFilePath($templateFileName));
-		$message->setFrom($fromEmail)
+		$message->setFrom('toulavej@volny.cz')
 				->setSubject($subject)
 				->setHtmlBody($this->template);
 		$this->mailer->send($message);

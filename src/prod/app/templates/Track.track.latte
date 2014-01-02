@@ -1,0 +1,50 @@
+{block title}Detail trasy{/block}
+{block head}
+
+<!-- OL2 files-->
+<link href="{$basePath}/openLayers/theme/default/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="{$basePath}/openLayers/OpenLayers.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olTrackDetail.js"></script>
+<script type="text/javascript">
+	function share() {
+	window.open(
+					'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location),
+					'facebook-share-dialog',
+					'width=626,height=436');
+			return;
+		}
+</script>
+{/block}
+
+{block content}
+<script type="text/javascript">
+	$(document).ready(function() {
+		 init({$track->id});
+			 });
+</script>
+
+<div class="pull-left">
+	<div id="map-addTrack"></div>
+</div>
+<div class="right-panel">
+	<h3>Informace o trase</h3>
+	<div id="track">
+		<h2>{$track->name}</h2>
+		<table class="table table-striped table-condensed">
+			<tr><td>Délka: </td><td>{if $track->length > 1000}
+					{$track->length/1000 |number:3:',':' '} km
+					{else}
+						{$track->length |number:0:',':' '} m
+						{/if}</td></tr>
+					</td></tr>
+					<tr><td>Přidáno: </td><td>{$track->created|date: "d.m.Y H:i"}</td></tr>
+					<tr><td>Přidal: </td><td>{$track->ref('users','user_id')->name}</td></tr>
+					<tr><td>Poznámka: </td><td>{$track->note}</td></tr>
+				</table>
+				<a n:href="Track:detail $track->id" class="btn btn-info">Články k trase</a>
+				<a href="javascript:share()" class="btn btn-info"> Sdílet na Facebooku</a>
+			</div>
+
+			</div>
+
+		{/block}

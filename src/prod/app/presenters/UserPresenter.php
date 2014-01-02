@@ -28,10 +28,11 @@ class UserPresenter extends BasePresenter
 	public function renderFeedback()
 	{
 		$visitingUser = $this->getUser()->getIdentity();
-		if ($visitingUser != NULL)
+		if ($visitingUser != NULL) {
 			$this['feedbackForm']->setDefaults(array("user_id" => $visitingUser->id,
 				"liame" => $visitingUser->email,
 				"name" => $visitingUser->name));
+		}
 	}
 
 	/**
@@ -68,17 +69,22 @@ class UserPresenter extends BasePresenter
 			'passwd' => $data->passwd,
 			"name" => $data->name,
 		);
+		$email  = $save['email'];
+		$passwd = $save['passwd'];
 
 		try {
 			$this->context->userModel->addUser($save);
+			$this->getUser()->login($email,$passwd);
 			$this->flashMessage("Účet byl vytvořen.", "success");
-			$this->redirect("Homepage");
+			$this->flashMessage("Uživatel byl přihlášen.", "success");			
+			$this->redirect("Homepage:");
 		} catch (DuplicateEmailException $e) {
 			$this->flashMessage("Uživatel se zadaným e-mailem již existuje.", "error");
 			$this->redirect("User:registration");
 		}
 	}
 
+	//Send mail with new password
 	public function createComponentResetPasswdForm()
 	{
 		$form = new Form();
@@ -87,7 +93,7 @@ class UserPresenter extends BasePresenter
 				->addRule(Form::EMAIL)
 				->setRequired("Je požadován e-mail");
 		$form->onSuccess[] = $this->onResetPasswdFormSuccess;
-		$form->addSubmit('send', 'Zaslat heslo')
+		$form->addSubmit('send', 'Resetovat heslo')
 				->setAttribute('class', 'btn');
 		return $form;
 	}
@@ -105,10 +111,10 @@ class UserPresenter extends BasePresenter
 			$this->context->emailer->send("passwordChange", "Nové heslo", $data->liame);
 
 			$this->flashMessage("Nové heslo bylo úspěšně odesláno.", "success");
-			$this->redirect("Homepage");
+			$this->redirect("Homepage:default");
 		} else {
 			$this->flashMessage('Uživatel se zadaným mailem nebyl nalezen.', 'error');
-			$this->redirect('Homepage');
+			$this->redirect('Homepage:default');
 		}
 	}
 
@@ -165,7 +171,7 @@ class UserPresenter extends BasePresenter
 		$data = $form->getValues();
 		$this->context->userModel->update($data, $userId);
 		$this->flashMessage('Informace byly uloženy.', "success");
-		$this->redirect('Homepage');
+		$this->redirect('Homepage:default');
 	}
 
 	public function createComponentFeedbackForm()
@@ -179,7 +185,7 @@ class UserPresenter extends BasePresenter
 		$form->addText('name', 'Jméno:')
 				->setRequired("Je požadováno jméno");
 		$form->addTextArea('message', 'Zpráva:');
-		$form->addSubmit('save', 'Uložit')
+		$form->addSubmit('save', 'Poslat')
 				->setAttribute("class", "btn");
 		$form->onSuccess[] = $this->onFeedbackFormSuccess;
 		return $form;
@@ -193,10 +199,10 @@ class UserPresenter extends BasePresenter
 		$this->context->emailer->template->email = $data->liame;
 		$this->context->emailer->template->message = $data->message;
 
-		$this->context->emailer->send("feedback", "Toulavej - hlášení chyby","chrudos.vorlicek@gmail.com");
+		$this->context->emailer->send("feedback", "Toulavej - hlášení chyby", "chrudos.vorlicek@gmail.com");
 
 		$this->flashMessage("Upozornění bylo odesláno", "success");
-		$this->redirect("Homepage");
+		$this->redirect("Homepage:default");
 	}
 
 }

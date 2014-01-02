@@ -46,7 +46,7 @@
 								<li><a n:href="Track:default">Seznam tras</a></li>
 								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Track:addTrack">Přidat trasu</a></li>
 								<li class="nav-header">Fotky</li>
-								<li><a n:href="Track:galery">Galerie</a></li>
+								<li><a n:href="Track:gallery">Galerie</a></li>
 								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Track:addPhoto">Přidat fotky</a></li>
 							</ul>
 						</li>
@@ -91,9 +91,9 @@
 			<footer></footer>
 			{else}
 				{ifCurrent Track:addTrack}
-					<footer class="footer-text">Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+					<footer class="footer-text">Chrudoš Vorlíček 2013 - {date('Y')}&nbsp;</footer>
 				{else}
-					<footer class="footer-text">Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+					<footer class="footer-text">Chrudoš Vorlíček 2013 - {date('Y')}&nbsp;</footer>
 				{/ifCurrent}
 			{/ifCurrent}
 		{/ifCurrent}

@@ -5,8 +5,8 @@ use \Nette\Security\Identity;
 
 /**
  * Model for operation with the users data.
- *
  * @author Chrudos Vorlicek <chrudos.vorlicek@gmail.com>
+ * @author Michal Odcházel <michal.odchazel@litea.cz>
  */
 class UserModel extends \BaseModel {
 

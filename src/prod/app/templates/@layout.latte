@@ -30,25 +30,27 @@
 					<a class="brand" n:href="Homepage:default">Toulavej</a>
 
 					<ul class="nav">
-						<li class="dropdown">
+						{*<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mapa<b class="caret"></b></a>
-							<ul class="dropdown-menu">
+							<ul class="dropdown-menu">*}
 								<li><a n:href="Map:default">Mapa</a></li>
-								<li><a n:href="Map:about">O Projektu</a></li>
-							</ul>
-						</li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Map:editMap">Upravit</a></li>
+								
+							{*</ul>
+						</li>*}
 						<li><a n:href="Shoutboard:default">Diskuze</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Trasy a fotky<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li class="nav-header">Trasy</li>
-								<li><a n:href="#">Seznam tras</a></li>
-								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="#">Přidat trasu</a></li>
+								<li><a n:href="Track:default">Seznam tras</a></li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Track:addTrack">Přidat trasu</a></li>
 								<li class="nav-header">Fotky</li>
-								<li><a n:href="#">Galerie</a></li>
-								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="#">Přidat fotky</a></li>
+								<li><a n:href="Track:gallery">Galerie</a></li>
+								<li n:if="$user->isInRole('user') || $user->isInRole('admin')"><a n:href="Track:addPhoto">Přidat fotky</a></li>
 							</ul>
 						</li>
+						<li><a n:href="Map:about">O Projektu</a></li>
 					</ul>
 
 					<div class="btn-group pull-right">
@@ -77,11 +79,23 @@
 						{$flash->message}
 					</div>
 					<div class="textarea">
-					{include #content}
+						{include #content}
 					</div>
 				</div>
 			</div>
 		</div>
-		<footer class="pull-right">&copy; Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+		{ifCurrent Map:editMap}
+			<footer></footer>
+		{else}
+			{ifCurrent Map:default}
+			<footer></footer>
+			{else}
+				{ifCurrent Track:addTrack}
+					<footer class="footer-text">Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+				{else}
+					<footer class="footer-text">Chrudoš Vorlíček {date('Y')}&nbsp;</footer>
+				{/ifCurrent}
+			{/ifCurrent}
+		{/ifCurrent}
 	</body>
 </html>

@@ -1,28 +1,48 @@
 {block title}Mapové okno{/block}
 {block head}
+
 <link href="{$basePath}/openLayers/theme/default/style.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="{$basePath}/openLayers/OpenLayers.js"></script>
-<script type="text/javascript" src="{$basePath}/js/openlayersSetting.js"></script>
-
+<script type="text/javascript" src="{$basePath}/js/olConfig/olStyles.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olFunctions.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olDefault.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olAccommodation.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olCastle.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olFood.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olHiking.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olInfo.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olPeak.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olPhoto.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olReligion.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olSpring.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olTree.js"></script>
+<script type="text/javascript" src="{$basePath}/js/olConfig/olKempyWFS.js"></script>
 
 {/block}
 
 {block content}
 <script type="text/javascript">
-	 $(document).ready(function(){
+	$(document).ready(function() {
 		 init({$params});
-	  });
+			 });
 </script>
 
+</div>
+<div class="pull-right">
+<!-- Editovat výřez -->
+	
+{if $user->isInRole('user') || $user->isInRole('admin')}
+	<a href="javascript:mapEdit()" class="btn btn-warning">Upravit</a>
+	<a href="javascript:addTrack()" class="btn btn-warning">Přidat trasu</a>
+	<a href="javascript:addPhoto()" class="btn btn-warning">Přidat fotku</a>
+{/if}
 <!-- Facebook share button-->
-<a href="#"
-  onclick="
-    window.open(
-      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-      'facebook-share-dialog', 
-      'width=626,height=436'); 
-    return false;">
-	<img src="{$basePath}/images/fb_sdilet.png">
-</a>
-
-<div id="map"></div>
+{if (($user->isInRole('user') || $user->isInRole('admin')) && $visitingUser->fbuid != NULL)}
+	<a href="#"
+	   onclick="javascript:fbShare();" class="btn btn-info">Sdílet na Fb</a>
+{/if}
+<a href="javascript:locatePosition()" class="btn btn-warning">Najít pozici</a>
+<a n:href="Map:help" class="btn btn-info">Nápověda</a>
+</div>
+<div>
+	<div id="map"></div>

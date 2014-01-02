@@ -1,0 +1,47 @@
+{block title}Seznam tras{/block}
+{block head}
+<script type="text/javascript">
+	function shareImage() {
+		var url = "http://" + location.host + location.pathname;
+				window.open(
+						'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url),
+						'facebook-share-dialog',
+						'width=626,height=436');
+				return;
+			}
+</script>
+{/block}
+
+{block content}
+</div>
+
+<div class="pull-right">
+	{if (($user->isInRole('user') || $user->isInRole('admin')) && $visitingUser->fbuid != NULL)}
+		<a href="#"
+		   onclick="javascript:shareImage();" class="btn btn-info">Sdílet na Fb</a>
+	{/if}
+</div>
+<h1>Galerie</h1>
+
+{if $images->count() > 0}
+	<div id="image"><img src="{$basePath}/files/{$preview->filename}" height="80%"/></div>
+	<div id="gallery">
+		{foreach $images as $image}	
+			<a n:href="changeImage!, $image->id" title="{$image->name}"> <img src="{$basePath}/files/{$image->filename}" alt="{$image->name}" width="150" height="80"/></a>
+			{/foreach}
+		<div class="pagination">
+			{control vp}
+		</div>
+	</div>
+
+
+{else}
+	Nejsou zde zatím žádné fotky
+{/if}
+
+
+
+
+
+
+<div>
