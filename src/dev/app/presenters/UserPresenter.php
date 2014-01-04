@@ -184,7 +184,8 @@ class UserPresenter extends BasePresenter
 				->setRequired("Je požadován e-mail");
 		$form->addText('name', 'Jméno:')
 				->setRequired("Je požadováno jméno");
-		$form->addTextArea('message', 'Zpráva:');
+		$form->addTextArea('message', 'Zpráva:')
+				->setRequired("Zadejte popis problému či návrhu.");
 		$form->addSubmit('save', 'Poslat')
 				->setAttribute("class", "btn");
 		$form->onSuccess[] = $this->onFeedbackFormSuccess;

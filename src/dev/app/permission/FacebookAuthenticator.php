@@ -23,6 +23,7 @@ class FacebookAuthenticator {
 
 		if ($user) {
 			$user = $this->updateMissingData($user, $fbUser);
+			return $this->userModel->createIdentity($user);
 		} else {
 			$catch = FALSE;
 			try {
@@ -36,7 +37,7 @@ class FacebookAuthenticator {
 			}
 		}
 
-		return $this->userModel->createIdentity($user);
+		return $this->userModel->createIdentityNew($user);
 	}
 
 	public function findUser(array $me) {
