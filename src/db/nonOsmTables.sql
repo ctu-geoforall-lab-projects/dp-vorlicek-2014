@@ -1,5 +1,5 @@
 --create table for news
-CREATE TABLE news
+CREATE TABLE IF NOT EXISTS news
 (
   id serial NOT NULL PRIMARY KEY,
   user_id integer NOT NULL,
@@ -11,7 +11,7 @@ WITH (
 );
 
 --create table for track_reviews
-CREATE TABLE track_reviews
+CREATE TABLE IF NOT EXISTS track_reviews
 (
   id serial NOT NULL,
   user_id integer NOT NULL, -- přidal
@@ -28,7 +28,7 @@ COMMENT ON COLUMN track_reviews.created IS 'přidáno';
 COMMENT ON COLUMN track_reviews.review IS 'článek';
 
 --create table for tracks
-CREATE TABLE tracks
+CREATE TABLE IF NOT EXISTS tracks
 (
   name character varying(255), -- označení trasy
   user_id integer NOT NULL, -- přidal
@@ -52,7 +52,7 @@ COMMENT ON COLUMN tracks.length IS 'délka prvku';
 COMMENT ON COLUMN tracks.created IS 'vytvořeno';
 
 -- create table for photos
-CREATE TABLE images
+CREATE TABLE IF NOT EXISTS images
 (
   id serial NOT NULL,
   name character varying(255),

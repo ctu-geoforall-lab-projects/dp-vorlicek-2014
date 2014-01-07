@@ -15,6 +15,16 @@
 {block content}
 </div>
 
+<script text="text/javascript">
+	$(document).ready(function() {
+		var galleryWidth = $("#gallery").width();
+		var galleryHeight= $("#gallery").height();
+		$(".gallery-image").width((galleryWidth-20)/2);
+		$(".gallery-image").height((galleryHeight-galleryHeight/3)/5);
+	});
+</script>
+
+
 <div class="pull-right">
 	{if (($user->isInRole('user') || $user->isInRole('admin')) && $visitingUser->fbuid != NULL)}
 		<a href="#"
@@ -27,7 +37,7 @@
 	<div id="image"><img src="{$basePath}/files/{$preview->filename}" height="80%"/></div>
 	<div id="gallery">
 		{foreach $images as $image}	
-			<a n:href="changeImage!, $image->id" title="{$image->name}"> <img src="{$basePath}/files/{$image->filename}" alt="{$image->name}" width="150" height="80"/></a>
+			<a n:href="changeImage!, $image->id" title="{$image->name}"> <img class="gallery-image" src="{$basePath}/files/{$image->filename}" alt="{$image->name}"/></a>
 			{/foreach}
 		<div class="pagination">
 			{control vp}

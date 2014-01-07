@@ -217,22 +217,27 @@
 	iD.data.load(function() {
 		var oauth_c_k = "eIILOozCg0DOp2EiZoHe8e5VUICmimQZoiSLqInJ";
 		var oauth_sec = "I9AmzBQruaMazbxSy2wTUroQ1nKWroFJmfuCeMtm";
-		id = iD().assetPath('/iD/dist/');
+		if (window.location.host === "geo102.fsv.cvut.cz")
+		{
+			id = iD().assetPath('/user/vorlichr/iD/dist');
+		} else {
+			id = iD().assetPath('/iD/dist/');
+		}
 		d3.select('#id-container')
-				.call(id.ui());
+			.call(id.ui());
 		d3.select('#about').insert('li', '.user-list')
-				.attr('class', 'source-switch')
-				.call(iD.ui.SourceSwitch(id)
-					.keys([
-	{
-		"url": "http://www.openstreetmap.org",
-		"oauth_consumer_key": oauth_c_k,
-		"oauth_secret": oauth_sec
-	}/*,{
-		"url": "http://api06.dev.openstreetmap.org",
-		"oauth_consumer_key": "zwQZFivccHkLs3a8Rq5CoS412fE5aPCXDw9DZj7R",
-		"oauth_secret": "aMnOOCwExO2XYtRVWJ1bI9QOdqh1cay2UgpbhA6p"
-	}*/
+			.attr('class', 'source-switch')
+			.call(iD.ui.SourceSwitch(id)
+			.keys([
+			{
+				"url": "http://www.openstreetmap.org",
+				"oauth_consumer_key": oauth_c_k,
+				"oauth_secret": oauth_sec
+			}/*,{
+				 "url": "http://api06.dev.openstreetmap.org",
+				 "oauth_consumer_key": "zwQZFivccHkLs3a8Rq5CoS412fE5aPCXDw9DZj7R",
+				 "oauth_secret": "aMnOOCwExO2XYtRVWJ1bI9QOdqh1cay2UgpbhA6p"
+			 }*/
 	]));
 			});
 		}
@@ -244,7 +249,7 @@
 <script type="text/javascript">
 	$('html').on('contextmenu', function(e) {
 		return false;
-	});
+			});
 </script>
 
 </div>

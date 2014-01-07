@@ -26,7 +26,7 @@ class Acl extends Permission
 		$this->allow("guest", "MapPresenter", array("default","about"));
 		$this->allow("guest", "ShoutboardPresenter", Permission::ALL);
 		$this->allow("guest", "UserPresenter",array("registration","passwdReset","feedback"));
-		$this->allow("guest", "TrackPresenter",array("default","galery","detail"));
+		$this->allow("guest", "TrackPresenter",array("default","gallery","detail"));
 		
 		$this->allow("user", "UserPresenter", array("setting","osmAssign"));
 		$this->allow("user", "MapPresenter", array("editMap"));

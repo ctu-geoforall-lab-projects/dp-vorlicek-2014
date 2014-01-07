@@ -33,7 +33,11 @@ class UserModel extends \BaseModel {
 	 * @param ActiveRow $user user with the data for the new identity
 	 * @return Identity
 	 */
-	public function createIdentity(ActiveRow $user) {
+	public function createIdentityNew($user) {
+		$user = $user->fetch();
+		return new Identity($user->id, $user->role, $user->toArray());
+	}
+	public function createIdentity($user) {
 		return new Identity($user->id, $user->role, $user->toArray());
 	}
 

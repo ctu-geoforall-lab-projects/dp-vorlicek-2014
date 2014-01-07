@@ -122,8 +122,7 @@ class TrackPresenter extends BasePresenter
 		$grid = new Grido\Grid($this, $name);
 		$grid->setFilterRenderType(\Grido\Components\Filters\Filter::RENDER_INNER);
 		$grid->setModel($this->context->createTrackModel()->getTable());
-		$users = array(null => '- Nerozhoduje -');
-		$users = array_merge($users, $this->context->userModel->getTable()->fetchPairs('id', 'name'));
+		$users = array_merge(array(null => '- Nerozhoduje -'), $this->context->userModel->getTable()->fetchPairs('id', 'name'));
 
 		$grid->addColumn('name', 'Trasa')
 				->setSortable()

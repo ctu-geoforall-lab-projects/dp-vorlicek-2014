@@ -18,6 +18,6 @@ class ImagesModel extends BaseModel
 	{
 		$data['the_geom'] = `ST_GeomFromText("` . $data->the_geom . `","900913")`;
 		$data['created'] = 'now()';
-		$this->insert($data);
+		return $this->insert($data);	
 	}
 }
