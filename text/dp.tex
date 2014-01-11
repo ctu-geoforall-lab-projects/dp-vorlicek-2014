@@ -1417,23 +1417,39 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 			\paragraph{}V úvodu jsou definovány vlastnosti, které by aplikace měla splňovat. Všechny hlavní znaky aplikace splňuje, ale současně je zde prostor pro jejich vylepšení. \ac{Fb} poskytuje rozsáhlé \ac{API}, jehož některé funkce by tuto aplikci obohatily. Jedná se zejména o~nahrávání fotografií na uživatelovu zeď či do soukromé zprávy a možnost \uv{dát like} fotkám, trasám či článkům. Jedním z~možných rozšíření je propojení této aplikace se skupinou na \ac{Fb} tak, aby novinky, které se propisují na domovskou stránku aplikace, byly odesílány na zeď této skupiny.
 			\paragraph{}\ac{Fb} není jediná sociální síť, tudíž je velice pravděpodobné, že budoucí verze budou podporovat i např. Twitter nebo Google+. Zvláště propojení s~Twitterem je velice pravděpodobné, protože užívá autorizaci přes oAuth stejně jako \acl{OSM}.
 			\paragraph{}V současné verzi mohou uživatelé přidat trasy a fotografie, ale už není možné je editovat. Tato funkce se velice hodí, pokud uživatel uloží špatné informace a chce je upravit. Uživatel by také měl mít možnost smazat nebo zneviditelnit fotografie a trasy jím nahrané. Tyto prvky by měly mít při dalším vývoji vysokou prioritu.
-			\paragraph{}Další možný vývoj je v~sekci diskuze. Zde by měla přibýt možnost reagovat na jiný příspěvek. Dále by bylo dobré mít možnost zobrazit si příspěvky tak, jak na sebe navazují dle reakcí.
+			\paragraph{}Další možný vývoj je uveden v~sekci diskuze. Zde by měla přibýt možnost reagovat na jiný příspěvek. Dále by bylo dobré mít možnost zobrazit si příspěvky tak, jak na sebe navazují dle reakcí.
 			\paragraph{}V úvodu též byly definovány další funkcionality. V~budoucích verzích programu by se mělo objevit vyhledávání objektů pomocí jejich adresy, vyhledání současné pozice, vyhledávání cest mezi zadanými body a vyhledávání objektů v~určité vzdálenosti od bodu či od cesty. 
-			\paragraph{}Rozšířením předchozího vyhledávání je zobrazení fotografií, které jsou podél plánované cesty. Kromě vyhledání cesty je plánováno, že aplikace též spočte výškový profil nalezené cesty. K~tomu bude třeba aplikaci propojit s~modelem terénu.
-			\paragraph{}V neposlední řadě je možné upravit zdrojové kódy pro přidávání tras a fotografií tak, aby využívaly co nejvíce společných funkcí.
+			\paragraph{}Rozšířením předchozího vyhledávání je zobrazení fotografií, které jsou podél plánované cesty. Kromě vyhledání cesty je plánováno, že aplikace též spočte výškový profil nalezené cesty. K~tomu bude třeba aplikaci propojit s~digitálním modelem terénu.
+			\paragraph{}V neposlední řadě je možné upravit zdrojové kódy pro přidávání tras a~fotografií tak, aby využívaly co nejvíce společných funkcí.
+
+                        %%% -> ML: "veci" ??? zkuste tuto cast jeste
+                        %%% prepsat, zaver by si v kazdem pripade
+                        %%% vyzadoval jeste Vasi pozornost, je videt,
+                        %%% ze neprosel tak dukladnou revizi jako
+                        %%% zbytek textu
+
 			\paragraph{}Kromě výše uvedených možností je zde dalších několik věcí, které by aplikaci mohli obohatit. Jedná se mimo jiné o~přidání dalších vrstev zájmových bodů a upravit mapový klíč aplikace v~souladu s~klíčem projektu \acl{OTM}. Také stojí za prozkoumání jak umožnit uživatelům, kteří nemají účet na \ac{OSM}, aby mohli editovat data \ac{OSM}, ale aby byla zachována bezpečnost a nehrozilo znehodnocení mapy \acl{OSM}.
                 %%% ML: TODO
 
+                        %%% -> ML: OK
+
 		\section{Známé problémy}
 		 %%% ML: TODO
+
+                %%% -> ML: OK
+
 			\paragraph{} Ačkoliv se během vývoje povedlo odstranit většinu chyb, aplikace stále nějaké obsahuje. Následující řádky představí ty, které jsou známé a na jejichž odstranění se pracuje.
 			\paragraph{} Největším problémem, který ovlivňuje chod celé aplikace, je v~současné době nestabilita Geoserveru na školním serveru geo102. Během vývoje se několikrát stalo, že Geoserver přestal poskytovat služby a nebylo možné přistoupit k~uživatelskému rozhraní. V~případě výpadku Geoserveru dojde k~přerušení všech poskytovaných služeb a místo mapy se na stránce zobrazí růžová plocha. Jedinou mapu, kterou výpadek školního Geoserveru neovlivní, je mapa v~editoru iD, která je připojena z~jiného zdroje.
 			\paragraph{} Dalším problémem, se kterým se lze občas setkat, je špatný symbol v~bodové vrstvě. Toto je dáno špatným nastavením VIEW, které vypisuje všechny atributy. U~některých prvků může tak dojít k~tomu, že dva atributy mají hodnotu, které odpovídá nějaké pravidlo, podle kterého se přiřazují symboly. V~tomto případě je objektu přiřazen symbol pravidla, které je jako poslední. Tato chyba bude brzy odstraněna.
 			\paragraph{} Spojení stylů editoru iD a aplikace způsobilo kolizi některých pravidel vykreslení prvků. U~většiny prvků se povedlo tyto chyby odstranit, ale stále se objevují nějaké chyby. Za chybu se dá též považovat zobrazení mapy v~iD editoru. Ta je zde velice světlá, takže je na ní občas problematické rozeznat objekty.
 
+                        %%% -> ML: nazev kapitoli "Porovnani s MTB ..." ??
+
 		\section{MTB mapa Evropy}
 
                 %%% ML: Mozna by bylo zahodno psat Toulej v uvozovkach
+
+
 			\paragraph{} V~kapitole \textit{Existující řešení}, viz kap. \ref{sec:Ex_reseni}, je popisována aplikace MTB mapa Evropy, která se věnuje cykloturistice a turistice. Ačkoliv aplikace zobrazují stejná data a jsou určeny pro dosti podobnou skupinu lidí, hlavní téma této práce leží v~jiné oblasti než je tvorba samotné mapy. Projekt \uv{Toulavej} je zaměřen hlavně na propojení se sociální sítí a s~editorem iD. Stránky  nabízí možnost registrace, která poskytuje další výhody, jako je editace dat, přidávání vlastních cest a fotografií. Tyto funkce odlišují obě aplikace a~nedělají z~projektu \uv{Toulavej} pouze další turistickou mapu. Aplikace MTB mapa Evropy byla objevena před odevzdáním této práce, a proto uvedené funkce nemohly být tvořeny jako doplňky pro stávající mapy.
 
 		\section{Výsledná aplikace}
@@ -1448,6 +1464,8 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 
 %%% ML: seznam zkratek se da generovat automatizovane, viz poznamky na
 %%% zacatku textu, vzhledem k casovemu tlaku to nechte takto
+
+%%% -> ML: OK
 
 \addcontentsline{toc}{chapter}{Seznam zkratek}
 	\begin{acronym}[WYSIWYG]
@@ -1490,24 +1508,29 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 %%% dejte do textu vice odkazu na literaturu, to tam velmi chybi, viz
 %%% poznamky v textu
 
+%%% -> ML: OK
+
 %%% ML: Pokud by zbyl cas tak pridejte do prace dodatek s doplnujicimi
 %%% informacemi, napr. podstatne casti konfigurace ci popis aplikace
 %%% se vice screenshoty, bohuzel ale neni prilis casu a stale vam
 %%% chybi zasadni casti prace...
 
+%%% -> ML: neni na to cas, prace i tak vypada kompaktne
+
 \newpage
 \addcontentsline{toc}{chapter}{Reference}
 \begin{thebibliography}{99}
-	\bibitem{OTM} BARTOŇ, Radek. Custom OpenStreetMap Rendering: OpenTrackMap Experience. In: [online]. 2009. vyd. [cit. 2013-11-12]. Dostupné z:  \url{http://geoinformatics.fsv.cvut.cz/gwiki/Custom_OpenStreetMap_Rendering_-_OpenTrackMap_Experience}
-	\bibitem{crockford}CROCKFORD, Douglas. JavaScript: The World's Most Misunderstood Programming Language. Douglas Crockford's Wrrrld Wide Web [online]. 2001 [cit. 2014-01-03]. Dostupné z: \url{http://javascript.crockford.com/javascript.html}
+	\bibitem{OTM} BARTOŇ, Radek. Custom OpenStreetMap Rendering: Open\-TrackMap Experience. In: [online]. 2009. vyd. [cit. 2013-11-12]. Dostupné z:  \url{http://geoinformatics.fsv.cvut.cz/gwiki/Custom_OpenStreetMap_Rendering_-_OpenTrackMap_Experience}
+	\bibitem{crockford}CROCKFORD, Douglas. JavaScript: The World's Most Misunderstood Programming Language. Douglas Crockford's World Wide Web [online]. 2001 [cit. 2014-01-03]. Dostupné z: \url{http://javascript.crockford.com/javascript.html}
 	\bibitem{dp_dolezal}DOLEŽAL, Jan. Datové formáty pro prezentaci map na webu [online]. Praha, 2005 [cit. 2014-01-03]. Dostupné z: \url{http://geo3.fsv.cvut.cz/~soukup/dip/dolezel/}. Diplomová práce. ČVÚt v~Praze. Vedoucí práce Ing. Petr Soukup, Ph.D.
 	\bibitem{rfc2616}FIELDING, Roy et al. RFC 2616: Hypertext Transfer Protocol HTTP/1.1. In: IETF [online]. Fremont(Kalifornie): IETF, June 1999 [cit. 2014-01-03]. Dostupné z: \url{http://tools.ietf.org/html/rfc2616}
         \bibitem{jakPsatWeb}JANOVSKÝ, Dušan. JavaScript: úvod. Jak psát web [online]. [cit. 2014-01-03]. Dostupné z: \url{http://www.jakpsatweb.cz/javascript/javascript-uvod.html}
 	\bibitem{nette20login}MAREK, Jakub: Přihlašování v~Nette Frameworku [online].  [cit. 2013-10-29]. Dostupné z: \url{http://github.com/janmarek/nette20login}
 	\bibitem{neis}NEIS, Pascal. The OpenStreetMap Contributors Map aka Who’s around me?. In: [online]. [cit. 2013-12-14]. Dostupné z: \url{http://neis-one.org/2013/01/oooc/}
 	\bibitem{FbTools} ŠULC, Milan: FbTools [online].  [cit. 2013-10-29]. Dostupné z: \url{http://addons.nette.org/cs/fb-tools}.
+          \newpage
 	\bibitem{tesar_bp}TESAŘ, Martin. Vykreslovací systém MTB map pro OpenStreetMap. Brno, 2010. Dostupné z: \url{http://is.muni.cz/th/256369/fi_b/bpfinal.pdf}. Bakalářská práce. Masarykova univerzita. Vedoucí práce RNDr. Petr Holub, Ph.D.
-	\bibitem{bootstrap}Bootstrap [online].  [cit. 2013-10-29]. Dostupné z: \url{http://getbootstrap.com}.
+	\bibitem{bootstrap}Bootstrap [online].  [cit. 2013-10-29]. Dostupné\newline z:~\url{http://getbootstrap.com}.
 	\bibitem{FbApiPrava} Facebook developers - Login Reference [online]. [cit. 2013-10-21]. Dostupné z: \url{https://developers.facebook.com/docs/reference/login/#permissions}.
 	\bibitem{geofabrik}Geofabrik [online]. [cit. 2013-12-14] Dostupné z: \url{http://download.geofabrik.de/}.
 	\bibitem{atlas}GeoPublishing: AtlasStyler SLD editor [online]. [cit. 2013-11-13]. Dostupné z: \url{http://en.geopublishing.org/AtlasStyler}
