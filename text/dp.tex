@@ -388,13 +388,17 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
 %%								     %%
 %									 %
 \chapter{OpenStreetMap}
+
+		\paragraph{} Cílem této kapitoly je čtenáře seznámit s~projektem \acl{OSM}. Zmíněna bude jeho historie, současný stav a jeho využití.
+
 	\section{O~Projektu}
 
         %%% ML: "a toto jméno se zde velice často objevuje" zni
         %%% opravdu spatne..., zduvodneni formulovane jako "Z toho
         %%% důvodu by bylo vhodné říci o co se jedná" je potreba
         %%% preformulovat, neco jako "cilem kapitoly je ...."
-		\paragraph{} Cílem této kapitoly je čtenáře seznámit s~projektem \acl{OSM}. Zmíněna bude jeho historie, současný stav a jeho využití.
+
+        %%% -> ML: OK (odstavec jsem presnul na zacatek kap
 
                 %%% ML: "OpenStreetMap je svobodná mapa" je
                 %%% zavadejici, nepresne a divne..., zkuste tuto cast
@@ -409,7 +413,11 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
                 %%% http://wiki.openstreetmap.org/wiki/Cs:ODbL/We_Are_Changing_The_License
                 %%% opet chyby jakakoliv reference ... (!!!)
 
-		\paragraph{} \acl{OSM} je mapa, kterou vytváří a spravují její uživatelé. Na rozdíl od jiných mapových aplikací\footnote{např. Google Mapy} \acl{OSM} poskytují uživatelům možnost stáhnout si data, která tvoří mapu, a v~rámci licence \ac{ODbL} s~nimi volně nakládat. Díky tomu vznikají různá mapová díla, která reflektují potřeby uživatelů (např. Waymarked Trails, viz kap. \ref{sec:waymarked}, nebo MTB mapa Evropy, viz kap. \ref{sec:MTB}). 
+        %%% -> ML: OK
+        
+        %%% -> ML: mapova dila jsem zmenil na mapove aplikace
+
+		\paragraph{} \acl{OSM} je mapa, kterou vytváří a spravují její uživatelé. Na rozdíl od jiných mapových aplikací\footnote{Např. Google Mapy.} \acl{OSM} poskytují uživatelům možnost stáhnout si data, která tvoří mapu, a v~rámci licence \ac{ODbL} s~nimi volně nakládat. Díky tomu vznikají různé mapové aplikace, která reflektují potřeby uživatelů (např. Waymarked Trails, viz kap. \ref{sec:waymarked}, nebo MTB mapa Evropy, viz kap. \ref{sec:MTB}). 
 		\paragraph{}Projekt vznikl ve Velké Británii v~roce 2004. O~jeho základy se postaral Steve Coast, který se nechal inspirovat jiným, komunitou řízeným projektem -- svobodnou encyklopedií Wikipedie. O~dva roky později vznikla OpenStreetMap Foundation, která projekt podporuje. V~průběhu let povolily některé společnosti používat své mapové podklady pro tvorbu OpenStreetMap. V~roce 2006 to byl Yahoo. O~rok později Automotive Navigation Data poskytla mapy silniční sítě Nizozemska, Indie a Číny\cite{osm_wikipedia_en}.
 		\paragraph{} Od vzniku aplikace vzrostl počet registrovaných uživatelů až na milion. V~srpnu 2008 měla aplikace 50 000 registrovaných uživatelů. Do konce násle\-dujícího roku narostlo toto číslo skoro na  200 000. V~roce 2012 služba registrovala 600 000 členů a 6. ledna 2013 překročil počet uživatelů 1 milion. Ze statistik vyplývá, že kolem 30\% uživatelů vytvořilo alespoň jednu sadu změn\cite{neis}.
 
@@ -417,6 +425,8 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
                 
                 %%% ML: obrazek ma nevhodny popisek - uzivatelu ceho?
                 %%% (je potreba uvest OSM), v seznamu obrazku to bude matouci
+
+                %%% -> ML: OK
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -427,6 +437,8 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
 		\end{figure}
 
                 %%% ML: jaka data? prilis obecne
+
+                %%% -> ML: OK
 
 	\section{Geodata}
 		\subsection{Typy geografických dat}
@@ -444,15 +456,19 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
                 %%% "Rozlisuje tri zakladni elementy datoveho modelu,
                 %%% ktery projekt OSM pouziva:" ci neco podobnebo
 
-		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velkou druhovou rozmanitost dat. Kromě obvyklých prvků, jako jsou silnice, vodstvo, budovy, zalesněné oblasti či turistické značky, jsou mapovány i věci, které na jiných\footnote{např. Mapy.cz či Google Mapy} mapách zobrazeny nejsou. Jedná se například o~bezpečnostní kamery na veřejných místech. Datový model pracuje se třemi základními elementy:
+                %%% -> ML: OK
+
+		\paragraph{} Jak už bylo řečeno, data pořizují samotní uživatelé mapy, což má za následek velkou druhovou rozmanitost dat. Kromě obvyklých prvků, jako jsou silnice, vodstvo, budovy, zalesněné oblasti či turistické značky, jsou mapovány i věci, které na jiných\footnote{Např. Mapy.cz či Google Mapy.} mapách zobrazeny nejsou. Jedná se například o~bezpečnostní kamery na veřejných místech. Datový model pracuje se třemi základními elementy:
 	\begin{itemize}
 		\item uzly (nodes) -- body se souřadnicemi,
 
                   %%% ML: nebo co?
+                  %%% -> ML: OK
 
 		\item cesty (ways) -- liniové prvky a hranice polygonů
 
                   %%% ML: jakymi dalsimi prvky?
+                  %%% -> ML: OK
 
 		\item relace (relations) -- popisují vztahy mezi jednotlivými prvky.
 	\end{itemize}
@@ -462,9 +478,13 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 %%% tvori lomove body cesty? nebo jenom pocatecni a koncovy bod cesty
 %%% (lomene cary) ?
 
-		\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou lomovými či koncovými body cesty. V~tom případě definují její tvar. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z~topologického hlediska o~křižovatku, ale mimoúrovňové křížení. Globální dataset obsahuje k~roku 2013 přes 2 x 10$^9$ uzlů\cite{osm_wiki_node}.
+%%% -> ML: OK
+
+		\paragraph{}Uzly mají přiřazeny zeměpisné souřadnice a identifikátor (id). Volitelně může být prvku přiřazena i výška. Uzly mohou být samostatné prvky (např. rozcestník či sloup) nebo jsou lomovými či koncovými body cesty. V~tom případě definují její tvar. Uzly musí být na spojnicích více cest -- např. když se protínají dvě cesty, tak součástí obou cest musí být stejný vrchol. Pokud by to tak nebylo, nejednalo by se z~topologického hlediska o~křižovatku, ale o~mimoúrovňové křížení. Globální dataset obsahuje k~roku 2013 přes 2 x 10$^9$ uzlů\cite{osm_wiki_node}.
 
 %%% ML: chybi zdroj, to musite uvest...
+
+%%% -> ML: OK
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -478,7 +498,9 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
                 %%% prilis staste, zkuste preformulovat, jedna se o
                 %%% text technickeho charakteru
 
-		\paragraph{} Cesty jsou tvořeny 2 až 2000 uzly spojenými liniovými segmenty. Z~grafu na obr. \ref{fig:elements} je vidět, že v~databázi je ke konci roku přes 200 000 000 cest.  Cesta je buď otevřená, nebo uzavřená. Otevřená cesta je taková, kde začátek a konec tvoří jiný uzel. Uzavřená cesta má identický počáteční a koncový uzel. V~tomto případě se může jednat o~uzavřenou polylinii či plošný prvek. Rozdíl lze stanovit pomocí tagu area -- pokud má hodnotu yes, jedná se o~plochu. V~některých případech může cesta tvořit polylinii a hranici polygonu zároveň -- toto je pak označeno odpovídajícím způsobem ve vlastnostech.
+                %%% -> ML: OK (doplil jsem jeste uvozovky u area a yes)
+
+		\paragraph{} Cesty jsou tvořeny 2 až 2000 uzly spojenými liniovými segmenty. Z~grafu na obr. \ref{fig:elements} je vidět, že v~databázi je ke konci roku 2013 přes 200 000 000 cest.  Cesta je buď otevřená, nebo uzavřená. Otevřená cesta je taková, kde začátek a konec tvoří jiný uzel. Uzavřená cesta má identický počáteční a koncový uzel. V~tomto případě se může jednat o~uzavřenou polylinii či plošný prvek. Rozdíl lze stanovit pomocí tagu \uv{area} -- pokud má hodnotu \uv{yes}, jedná se o~plochu. V~některých případech může cesta tvořit polylinii a hranici polygonu zároveň -- toto je pak označeno odpovídajícím způsobem ve vlastnostech.
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -499,9 +521,13 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 
                 %%% ML: Druhou "variantou" jako variantou, dalsim zdrojem dat ....
 
-		\paragraph{} Data ukládaná do databáze \acl{OSM} mohou vzniknout třemi cestami. První z~nich je přímý sběr v~terénu, kdy uživatel pomocí GPS přístroje získává souřadnice, které pak ve formátu \ac{GPX} nahraje do databáze. Dalším zdrojem dat je odvozování z~existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s~licencí, kterou užívá \ac{OSM}. V~případě, že nejsou vyjasněny licenční podmínky, materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes \ac{WMS} \ac{uhul} či \ac{WMS} katastrální mapy \ac{cuzk}\cite{freemap}. \ac{WMS} ortofotomapy \ac{cuzk} se jako zdroj použít nemůže, ale dá se s~ní ověřit přesnosti jiných zdrojů. Třetí možným zdrojem dat jsou komerční firmy, které poskytnou svá geodata k~dispozici.
+                %%% -> ML: OK
+
+		\paragraph{} Data ukládaná do databáze \acl{OSM} mohou vzniknout třemi ce\-stami. První z~nich je přímý sběr v~terénu, kdy uživatel pomocí GPS přístroje získává souřadnice, které pak ve formátu \ac{GPX} nahraje do databáze. Dalším zdrojem dat je odvozování z~existujících mapových děl. Zde je ovšem potřeba dávat pozor, aby podklady pro odvození  byly kompatibilní s~licencí, kterou užívá \ac{OSM}. V~případě, že nejsou vyjasněny licenční podmínky, materiály použity být nemohou. Pro odvozování na území České republiky se dá kupříkladu použít ortofoto poskytované přes \ac{WMS} \ac{uhul} či \ac{WMS} katastrální mapy \ac{cuzk}\cite{freemap}. \ac{WMS} ortofotomapy \ac{cuzk} se jako zdroj použít nemůže, ale dá se s~ní ověřit přesnosti jiných zdrojů. Třetí možným zdrojem dat jsou komerční firmy, které poskytnou svá geodata k~dispozici.
 
                 %%% ML: opet chybi zdroj
+
+                %%% -> ML: OK
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -518,7 +544,9 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
                 %%% plnohodnotnou mapou." je spatna formulace, obrazek
                 %%% muze byt tezkou mapou, 
 
-		\paragraph{} Graf vývoje počtu elementů\ref{fig:elements} ukazuje, že z~počátku přibývalo malé množství objektů a větší zvrat nastal spolu s~nárůstem počtu uživatelů. V~roce 2007 je vidět skokový narůst počtu bodových prvků -- jedná se o~data silniční sítě Nizozemska, Indie a Číny poskytnuté organizací Automotive Navigation Data. 
+                %%% -> ML: OK
+
+		\paragraph{} Graf vývoje počtu elementů \ref{fig:elements} ukazuje, že z~počátku přibývalo malé množství objektů a větší zvrat nastal spolu s~nárůstem počtu uživatelů. V~roce 2007 je vidět skokový narůst počtu bodových prvků -- jedná se o~data silniční sítě Nizozemska, Indie a Číny poskytnuté organizací Automotive Navigation Data. 
 		Přibývání počtu prvků v~mapě lze též dobře sledovat na malých plochách. Pro ilustraci jsou zde přiloženy obrázky, jak Praha byla zmapována v~roce 2006 \ref{fig:praha2006} a v~prosinci 2013 \ref{fig:praha2013}. V~prvním případě jsou zmapovány hlavní silnice a vodní toky, zatímco druhý obrázek zobrazuje mapu srovnatelnou s~mapou Prahy, kterou poskytují Mapy.cz nebo Google Mapy.
 	
 	\subsection{Uložení dat}
@@ -528,22 +556,30 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
                 %%% najit lepsi termin, dale pouzivate "vytahy" coz
                 %%% neni take uplne stastny termin
 
+                %%% -> ML: OK
+
 		\paragraph{} Data jsou distribuována v~XML souboru Planet.osm, který je vytvářen v~týdenních intervalech. V~současnosti je velikost nekomprimované sady přes 400 GB, při užití komprimace je možno se dostat k~29 GB. Protože dost často není potřeba mít data z~celého světa, dělají se i výběry, které pokrývají jednotlivé kontinenty, země nebo města. Tyto soubory jsou vytvářeny častěji -- \url{http://download.geofabrik.de} poskytuje data s~denním intervalem. Vytvoření obrazu databáze většinou zabere 12 hodin\cite{planet.osm}.
 
                 %%% ML: "mapova data" co to je? co je format GPX,
                 %%% nikde neni vystetleno
 
-	\paragraph{} Kromě dat tvořících mapu jsou k~dispozici i planet.gpx s~údaji z~nahraných \ac{GPX}\footnote{\ac{GPX} je výměnný formát založený na \ac{XML} pro data z~GPS přijímačů} souborů a soubor s~historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v~nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB\cite{osm_wiki_planet.gpx}. 
+                %%% -> ML: OK
+
+	\paragraph{} Kromě dat tvořících mapu jsou k~dispozici i planet.gpx s~údaji z~nahraných \ac{GPX}\footnote{\ac{GPX} je výměnný formát založený na \ac{XML} pro data z~GPS přijímačů.} souborů a soubor s~historií, který obsahuje každou revizi každého objektu. Planet.gpx obsahuje v~nekomprimovaném stavu 55 GB dat, historie změn kolem 500 GB\cite{osm_wiki_planet.gpx}. 
 
         %%% ML: odkud tyto informace jsou, jako vsude v textu CHYBI
         %%% REFERENCE!!!
+
+        %%% -> ML: OK
 
 	\paragraph{} Data jsou uložena na databázovém serveru, který má dostatečné prostředky pro správu těchto dat. Od dubna 2009 do dubna 2012 byl primárním serverem server Smaug\cite{osm_wiki_smaug}. Operační systém Ubuntu 12.04 LTS Server amd64 obsluhuje relační databázi PostgreSQL ve verzi 9.1. Pevné disky mají kapacitu přes 6 TB a operační paměť je 64 GB. V~současné době je primárním serverem server se jménem Ramoth\cite{osm_wiki_ramoth}, který je také obsluhován operačním systémem Ubuntu 12.04 LTS Server amd64, ovšem od svého kolegy se liší jak kapacitou disků (skoro 15 TB), tak operační pamětí (256 GB). Funkci databázového systému plní stále PostgreSQL 9.1.
 
         %%% ML: asi mate na mysli popisna data, vlastnosti jsou
         %%% zavadejici
 
-	\paragraph{}Každý záznam v~databázi má u~sebe uvedeny popisná data. Protože pro každý typ prvku je jedna tabulka, jsou některé sloupce s~popisnými daty prvku prázdné. Parametry, které se evidují např. u~silnice, jsou jiné než parametry, které nás zajímají u~řeky -- obojí lze najít v~tabulce s~liniovými prvky. Aby se běžný uživatel či vývojář vyznali v~databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechna popisná data (sloupce v~databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hledání v~databázi vůbec možné a~nepřipomíná hledání v~jehly v~kupce sena.
+        %%% -> ML: OK
+
+	\paragraph{}Každý záznam v~databázi má u~sebe uvedena popisná data. Protože pro každý typ prvku je jedna tabulka, jsou některé sloupce s~popisnými daty prvku prázdné. Parametry, které se evidují např. u~silnice, jsou jiné než parametry, které nás zajímají u~řeky -- obojí lze najít v~tabulce s~liniovými prvky. Aby se běžný uživatel či vývojář vyznali v~databázi, jsou vytvořeny na wiki projektu stránky, které popisují všechna popisná data (sloupce v~databázi) a hodnoty, kterých můžou nabývat. Díky tomu je hledání v~databázi vůbec možné a~nepřipomíná hledání v~jehly v~kupce sena.
 
 
 	\section{OSM editory} % id, Potlach 2, JOSM, Merkaator
@@ -554,6 +590,8 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
                 %%% ML: chybi odkaz na d3js, co znamena "práci v datech založených dokumentech" ?
 
                 %%% ML: jako nikde v textu nejsou vysvetleny zkratky -  HTML, CSS a dalsi
+
+                %%% -> ML: OK
 
 			\paragraph{}Editor iD je nejnovějším z~uvedených editorů. Pro užití na OpenStreetMap byl spuštěn v~květnu 2013. Jedná se o~javascriptovou aplikaci, která je šířena pod licencí \ac{WTFPL}\cite{wiki_wtfpl}, která umožňuje naprosto volně nakládat s~produktem. K~vykreslení je užívána javascriptová knihovna d3js\footnote{\url{http://d3js.org/}}, která slouží k~práci v~datech založených dokumentech. Knihovna užívá \ac{HTML}, \ac{CSS} a \ac{SVG} k~vykreslení požadovaných prvků. Podpora jiných vykreslovacích přístupů není zatím v~editoru iD implementována. Jedná se o~aplikaci vhodnou pro začátečníky, protože má jednoduché ovládání.
 
@@ -579,14 +617,14 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 				\label{fig:josm_osm}
 			\end{center}
 		\end{figure}
-			\paragraph{} Výhodou oproti online editorům je možnost pracovat i bez připojení k~internetu. Aplikace také poskytuje různá rozšíření, která z~ní dělají velmi silný editovací nástroj. Dle informací na OpenStreetMap Wiki\cite{wiki_josm} je práce s~tímto editorem jednoduchá. Některé pokročilejší funkce mohou mít složitější ovládání a jejich zvládnutí může zabrat čas.
+			\paragraph{} Výhodou oproti online editorům je možnost pracovat i bez připojení k~internetu. Aplikace také poskytuje různá rozšíření, která z~ní dělají velmi silný editovací nástroj. Dle informací na OpenStreetMap Wiki\cite{wiki_josm} je práce s~tímto editorem jednoduchá. Některé pokročilejší funkce mohou mít složitější ovlá\-dání a jejich zvládnutí může zabrat čas.
 
 		\subsection{Merkaator}
 			\paragraph{} Editor Merkaator je určen pro Unix, Mac OS i Windows a je distribuován pod licencí GNU \ac{GPL} v2. Editor je ve stádiu vývoje (dle OpenStreetMap Wiki je dostupná verze 0.18.1 vydaná v~červnu 2012), ovšem vývojářská komunita tohoto projektu není příliš aktivní\cite{wiki_merkaator}. Aplikace obsahuje prvky, které stojí za povšimnutí. Jedná se například o~průhledné zobrazení vrstev, editor stylů zobrazení mapy, přímé připojení k~GPS přijímači nebo vykreslení mapy do \ac{SVG} nebo bitmapového obrázku za použití momentálně užitých stylů. Vzhledem k~tomu, že je program ve vývoji, lze některé prvky získat pouze kompilací ze zdrojových souborů, což pro většinu uživatelů není vhodné.
 
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=12.5cm]{obrazky/merkaator_osm.png}
+				\includegraphics[width=10.5cm]{obrazky/merkaator_osm.png}
 				\caption{Editor Merkaator} (zdroj: OSM Wiki\cite{wiki_merkaator})
 			\end{center}
 		\end{figure}
@@ -596,9 +634,15 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 
                         %%% ML: zdroj nelze dohledat
 
+                        %%% -> ML: OK
+
+                        %%% -> ML: zmensil jsem obrazky tak aby se
+                        %%% vesly na jednu stranku a zbytecne text
+                        %%% nedrobily
+                        
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=12cm]{obrazky/p2_osm.png}
+				\includegraphics[width=10.5cm]{obrazky/p2_osm.png}
 				\caption{Editor Potlatch 2}(zdroj: OSM Wiki\cite{wiki_p2})
 			\end{center}
 		\end{figure}
