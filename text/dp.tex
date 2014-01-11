@@ -211,15 +211,23 @@
                 
                 %%% ML: jaka data lze napriklad sdilet
 
-		\paragraph{} V~globálním měřítku asi nejužívanější mapovou aplikací jsou Google Mapy spuštěné v~roce 2005. Ve stejném roce společnost Google uvedla k~mapám i \ac{API} pro jejich použití na webech třetích stran. Podle typu užití se jedná buď o~placenou, či volně dostupnou službu. Google má k~mapám velké množství doplňkových funkcí -- od vyhledávání míst přes vyhledávání cest autem, na kole či pěšky po Street View, které poskytuje panoramatické pohledy z~daného bodu, zobrazení 3D modelů budov a fotografií z~momentálně zobrazené oblasti. Též lze importovat data\footnote{body,linie a polygony} ve formátu \ac{KML}\footnote{formát založený na \ac{XML}, který je primárně určen pro sdílení geodat} a sdílet je s~jinými uživateli.
+                %%% -> ML: OK
+
+		\paragraph{} V~globálním měřítku asi nejužívanější mapovou aplikací jsou Google Mapy spuštěné v~roce 2005. Ve stejném roce společnost Google uvedla k~mapám i \ac{API} pro jejich použití na webech třetích stran. Podle typu užití se jedná buď o~placenou, či volně dostupnou službu. Google má k~mapám velké množství doplňkových funkcí -- od vyhledávání míst přes vyhledávání cest autem, na kole či pěšky po Street View, které poskytuje panoramatické pohledy z~daného bodu, zobrazení 3D modelů budov a fotografií z~momentálně zobrazené oblasti. Též lze importovat data\footnote{Body, linie a polygony.} ve formátu \ac{KML}\footnote{Formát založený na \ac{XML}, který je primárně určen pro sdílení geodat.} a sdílet je s~jinými uživateli.
 
                 %%% ML: "která je na s mapami provázána" ??? 
 
+                %%% -> ML: OK
+
 		\paragraph{} Google Mapy sice jsou užitečným pomocníkem při plánování cest a zobrazení prostorových dat, ovšem jejich užití je pro turisty dosti omezené. Aplikace nedisponuje údaji o~turistických stezkách. Důvodem, proč se mapy od Googlu dostaly do tohoto výběru, je aplikace Panoramio, která je s~Google Mapami provázána. Jedná se vrstvu lokalizovaných fotografií, které uživatelé nahráli do aplikace. Možnost nahrát fotografie do mapy sice poskytují i  Mapy.cz, ovšem aplikace Panoramio je starší -- vznikla v~roce 2005. Původně nebyla vlastněna Googlem, ten ji získal v~roce 2007 a v~roce 2008 byla propojena s~mapovou aplikací. 
 
-                %%% ML: chybi vystleni zkraek, WGS, EPSG a pod
+                %%% ML: chybi vystleni zkratek, WGS, EPSG a pod
 
-		\paragraph{}  Google vytvořil pro své mapy i nové zobrazení, které vychází z~Mercatorova zobrazení. Pro zobrazení jsou použity vzorce pro Mercatorovo zobrazení na kouli, ale objekty mají  souřadnice v~systému \ac{WGS 84}, což vede k~tomu,že zobrazení není konformní\cite{google_wiki}\label{google_mercator}. Toto zobrazení má několik kódů, kterými je označováno. Původně \ac{EPSG} odmítla zařadit Googlem vytvořené zobrazení do své databáze, proto bylo označeno jako 900913\footnote{jméno google zapsané v~jazyce leet, ve kterém se některá písmena nahrazují číslicemi}. Později byla tato projekce přidána do datasetu souřadnicových systémů \ac{EPSG} pod označením EPSG:3857\cite{sphericalMercator}.
+                %%% -> ML: OK
+
+                %%% -> ML: projekce je v češtině zavádějící, přepsal jsem to jako zobrazení
+
+		\paragraph{}  Google vytvořil pro své mapy i nové zobrazení, které vychází z~Mercatorova zobrazení. Pro zobrazení jsou použity vzorce pro Mercatorovo zobrazení na kouli, ale objekty mají  souřadnice v~systému \ac{WGS 84}, což vede k~tomu, že zobrazení není konformní\cite{google_wiki}\label{google_mercator}. Toto zobrazení má několik kódů, kterými je označováno. Původně \ac{EPSG} odmítla zařadit Googlem vytvořené zobrazení do své databáze, proto bylo označeno jako 900913\footnote{Název Google zapsaný v~jazyce leet, ve kterém se některá písmena nahrazují číslicemi.}. Později bylo toto zobrazení přidána do datasetu souřadnicových systémů \ac{EPSG} pod označením EPSG:3857\cite{sphericalMercator}.
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -243,6 +251,15 @@
 		\paragraph{} I~když je Google se svými mapami světově nejužívanější, v~českých pod\-mínkách mu může konkuruje mapová aplikace firmy Seznam. Mapy.cz mají oproti Googlu výhodu domácího prostředí a zaměření zejména na Českou republiku, což v~důsledku znamená rychlejší aktualizaci mapových podkladů. Mapy.cz poskytují tři různé podkladové mapy (leteckou, obecnou a turistickou) a různé tématické vrstvy (turistické trasy, cyklotrasy, dopravní informace, zastávky MHD a veřejné dopravy aj.). 
 		\paragraph{} Na Mapách.cz mohou řidiči, cyklisté a chodci vyhledat trasy z~bodu A~do bodu B přes libovolný počet mezilehlých bodů. V~závislosti na zvoleném dopravním prostředku bere vyhledávač v~potaz i lesní cesty a turistické trasy. Ve stejné záložce lze najít i ruční měření vzdálenosti. Vyhledaná či ručně zadaná cesta může být exportována. Též lze zobrazit její výškový profil. Do mapy lze přidat vlastní body a ty sdílet s~ostatními uživateli pomocí URL adresy. Stejně jako Google poskytuje i Seznam možnost vyhledávat místa podle souřadnic, ulice či názvu objektu. Mapy.cz podporují vkládání fotografií a jejich komentování, ale na rozdíl od Googlu to není řešené jinou aplikací, ale je to přímo součástí aplikace.
 
+	\section{Výletník}
+		\label{sec:vyletnik}
+		\url{http://mapy.vyletnik.cz/}
+
+		\paragraph{} Turistický portál Výletník.cz poskytuje informace o~možných cílech výletů, o~službách spojených s~turistikou (např. restaurace či ubytování)  či o~zají\-mavých akcích. Díky těmto datům je portál dobrým zdrojem nápadů, pokud připravujeme výlet. Registrovaným uživatelům poskytuje portál informace o~akcích probíhajících následující víkend. Též uživatelům umožňuje vkládat vlastní fotografie, místa a příspěvky. Při registraci je inzerována možnost registrace pomocí Facebooku, ale nikde na to nebyl nalezen odkaz. Nakonec se ukázalo, že Adblock, doplněk prohlížeče Firefox blokující reklamy, vyhodnotil přihlašovací nástroj pro Facebook jako reklamu a podle toho s~ním zacházel. Po vypnutí Adblocku propojení s~Facebookem bylo viditelné. Na druhou stranu se objevilo množství reklam, které kazí jinak dobrý pocit z~webu.
+
+                %%% -> ML: tento obrazek presunut ze sekce Mapy.cz,
+                %%% kde byl umisten ponekud nelogicky
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/vyletnik.png}
@@ -251,10 +268,7 @@
 			\end{center}
 		\end{figure}
 
-	\section{Výletník}
-		\label{sec:vyletnik}
-		\url{http://mapy.vyletnik.cz/}
-		\paragraph{} Turistický portál Výletník.cz poskytuje informace o~možných cílech výletů, o~službách spojených s~turistikou (např. restaurace či ubytování)  či o~zají\-mavých akcích. Díky těmto datům je portál dobrým zdrojem nápadů, pokud připravujeme výlet. Registrovaným uživatelům poskytuje portál informace o~akcích probíhajících následující víkend. Též uživatelům umožňuje vkládat vlastní fotografie, místa a příspěvky. Při registraci je inzerována možnost registrace pomocí Facebooku, ale nikde na to nebyl nalezen odkaz. Nakonec se ukázalo, že Adblock, doplněk prohlížeče Firefox blokující reklamy, vyhodnotil přihlašovací nástroj pro Facebook jako reklamu a podle toho s~ním zacházel. Po vypnutí Adblocku propojení s~Facebookem bylo viditelné. Na druhou stranu se objevilo množství reklam, které kazí jinak dobrý pocit z~webu.
+
 		\paragraph{} Pro mapovou aplikaci tohoto portálu platí to, co pro celý web -- všudy\-přítomné reklamy snižují přívětivost aplikace. Na několika místech se projevilo špatné nastavení stylů aplikace, kdy se prvky překrývaly. Nejzřetelněji je to vidět na možnosti přepínání map. V~nápovědě\cite{vyletnik} je napsáno, že aplikace poskytuje normální, satelitní a hybridní podkladovou mapu, ale možnost přepínání těchto map je překryta rozbalovacími seznamy zájmových bodů. Těch je k~dispozici velké množství a jsou rozděleny na dvě základní skupiny -- \textit{turistické cíle} a \textit{ubytování a služby}. Obě skupiny obsahují další možnosti, ze kterých lze zvolit jednu či více položek. Výletník.cz umožňuje uživatelům vyhledávat objekty ve třech kategoriích:
 			\begin{itemize}
 				\item rejstřík míst,
@@ -275,6 +289,8 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
                 %%% cykloturistickými stezkami" - zkuste cele
                 %%% preformulovat, nezni to prilis cesky
 
+                %%% -> ML: OK
+                
 		\paragraph{} Aktuální přehled stezek pro turistiku, cykloturistiku a jízdy na inline bruslích je možno najít na mapě Waymarked Trails\cite{Waymarked}. Tato aplikace je vytvořena nad daty \ac{OSM} a pokrývá celý svět. Nejvíce dat pokrývá území Evropy, zatímco zbylé kontinenty  obsahují jen malé množství dat. Většina dat zobrazuje turistické stezky a cyklostezky. Trasy pro horskou cyklistiku a inline bruslení pokrývají malou část mapy.
 
 		\begin{figure}[!h]
@@ -304,7 +320,7 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
                 %%% ML: chybi odkaz na Mapnik, slovo "zobrazeni" je v
                 %%% teto souvislosti zavadejici
 
-		\paragraph{} OpenTrackMap je projekt Ing. Radka Bartoně. Projekt běží na serveru geo102, který spravuje katedra Geomatiky na Fakultě stavební ČVUT v~Praze. Tvorba této aplikace byla motivována snahou poskytnout mapy pro aplikaci TangoGPS běžící na platformě Openmoko\cite{OTM}. Již existující mapy nemohly být z~licenčních důvodů či kvůli různým technickým omezením použity. Díky licenci \ac{ODbL} mohou být data \ac{OSM} použitas. Data jsou uložena v~databázi PostgreSQL a pro jejich vykreslení je použit software Mapnik (\url{http://mapnik.org/}). Ačkoliv mapy v~současné době nejsou aktualizovány, jejich přínos je ve vytvoření značkového klíče pro tras a objektů v~mapě\cite{otm_klic}. 
+		\paragraph{} OpenTrackMap je projekt Ing. Radka Bartoně. Projekt běží na serveru geo102, který spravuje Katedra geomatiky na Fakultě stavební ČVUT v~Praze. Tvorba této aplikace byla motivována snahou poskytnout mapy pro aplikaci TangoGPS běžící na platformě Openmoko\cite{OTM}. Již existující mapy nemohly být z~licenčních důvodů či kvůli různým technickým omezením použity. Díky licenci \ac{ODbL} mohou být data \ac{OSM} použita. Data jsou uložena v~databázi PostgreSQL a pro jejich vykreslení je použit software Mapnik (\url{http://mapnik.org/}). Ačkoliv mapy v~současné době nejsou aktualizovány, jejich přínos je ve vytvoření značkového klíče pro tras a objektů v~mapě\cite{otm_klic}. 
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -318,6 +334,8 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
                 %%% vubec chybi odkazy na literaturu, clanky ze
                 %%% kterych jste cerpal!!! zkuste jich par doplnit, to
                 %%% je celkem ZASADNI nedostatek...
+
+                %%% -> ML: v poradku, citaci jste doplnil v rozumne mire
 
 		\paragraph{}  Aplikace poskytuje vrstevnice, stínování terénu, podkladovou mapu a turistické trasy. Vzhledem k~tomu, že mapy byly určeny pro zobrazení v~mobilních zařízeních, bylo zapotřebí snížit množství dat přenášených k~uživateli. Toho bylo dosaženo pomocí dlaždic. Původní testování odhalilo, že pro malá měřítka je vykreslování pomalejší, protože je pro velkou oblast vykreslováno stínování kopců\cite{OTM}. Od určitého stupně přiblížení se rychlost vykreslení mírně zvýšila, protože byla vykreslována menší plocha a protože klesl počet vektorových prvků.
 
@@ -334,27 +352,32 @@ Vyhledávat lze i v~určitém okruhu od zvoleného bodu.
 
                 %%% ML: co je editor iD, vysvetlit...
 
-		\paragraph{} Aplikace obsahuje řadu nástrojů. K~dispozici je vyhledávání pomocí služby \ac{OSM} Nominatim\cite{nominatim}. Tento nástroj slouží k~vyhledávání objektů pomocí jejich adresy. Dále lze exportovat data v~souřadnicemi daném výřezu. Zde lze nastavit stupeň přiblížení, velikost výsledku v~pixelech a zobrazené mapové prvky -- tiráž, název mapy, trasu, legendu a měřítko. Kromě vyhledávání míst  pomocí Nominatim je k~dispozici i vyhledání cesty podle množství vstupních parametrů, které zahrnují například typ cesty, druh povrchu nebo obtížnost. Tyto parametry jde uložit na disk a později je znovu použít pro vyhledání stejné cesty. Lze též vložit vlastní cestu v~souboru \ac{GPX} nebo ručně a zobrazit k~ní výškový profil. Takto vytvořené stezky se zobrazí v~mapě, ale neukládají se pro pozdější zobrazení. Aplikace umožňuje vygenerovat permanentní odkaz na zobrazenou pozici či přesměruje uživatele na web \acl{OSM} a otevře online editor dat \ac{OSM} iD.
+                %%% -> ML: OK
 
-                %%% ML: co je EPSG:3857 nejde jenom o kartograficke
-                %%% zobrazeni, mluvil bych spise o souradnicovem
-                %%% systemu
-
-		\paragraph{} Tento projekt má svoji stránku na OpenStreetMap Wiki, kde jsou popsány úkoly, kterými by měl směřovat další vývoj aplikace. Mapa byla původně vytvořena v~OpenLayers\cite{tesar_bp}, ale v~současné době užívá javascriptovou knihovnu Leaflet. K~dispozici jsou 4 podkladové mapy (MTB mapa, OSM Mapnik, OpenCycleMap, Hike \& Bike Map), které jsou zobrazeny v~EPSG:3857. Tento souřadnicový systém je ekvivalentní s~EPSG:900913, které na svých mapách používá Google. Jak bylo uvedeno výše \ref{google_mercator}, toto zobrazení není přesně konformní, ovšem v~tiráži je uvedeno \uv{Zobrazení: Konformní válcové - Mercatorovo},viz obr. \ref{fig:MTB_tiraz}.
-		\begin{figure}[!h]
-			\begin{center}
-				\includegraphics[width=10cm]{obrazky/tiraz.png}
-				\caption{MTB mapa Evropy - tiráž}
-				(zdroj: \url{http://mtbmap.cz/})
-				\label{fig:MTB_tiraz}
-			\end{center}
-		\end{figure}
+                %%% -> ML: zmenil jsem poradi obrazku, tak aby oba
+                %%% nevychazeli na posledni stranku
 
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/mtb.png}
 				\caption{MTB mapa Evropy}
 				(zdroj: \url{http://mtbmap.cz/})
+			\end{center}
+		\end{figure}
+
+		\paragraph{} Aplikace obsahuje řadu nástrojů. K~dispozici je vyhledávání pomocí služby \ac{OSM} Nominatim\cite{nominatim}. Tento nástroj slouží k~vyhledávání objektů pomocí jejich adresy. Dále lze exportovat data v~souřadnicemi daném výřezu. Zde lze nastavit stupeň přiblížení, velikost výsledku v~pixelech a zobrazené mapové prvky -- tiráž, název mapy, trasu, legendu a měřítko. Kromě vyhledávání míst  pomocí Nominatim je k~dispozici i vyhledání cesty podle množství vstupních parametrů, které zahrnují například typ cesty, druh povrchu nebo obtížnost. Tyto parametry jde uložit na disk a později je znovu použít pro vyhledání stejné cesty. Lze též vložit vlastní cestu v~souboru \ac{GPX} nebo ručně a zobrazit k~ní výškový profil. Takto vytvořené stezky se zobrazí v~mapě, ale neukládají se pro pozdější zobrazení. Aplikace umožňuje vygenerovat permanentní odkaz na zobrazenou pozici či přesměruje uživatele na web \acl{OSM} a otevře online editor dat \ac{OSM} iD.
+
+                %%% ML: co je EPSG:3857 nejde jenom o kartograficke
+                %%% zobrazeni, mluvil bych spise o souradnicovem
+                %%% systemu
+
+		\paragraph{} Tento projekt má svoji stránku na OpenStreetMap Wiki, kde jsou popsány úkoly, kterými by měl směřovat další vývoj aplikace. Mapa byla původně vytvořena v~OpenLayers\cite{tesar_bp}, ale v~současné době užívá javascriptovou knihovnu Leaflet. K~dispozici jsou 4 podkladové mapy (MTB mapa, OSM Mapnik, OpenCycleMap, Hike \& Bike Map), které jsou zobrazeny v~EPSG:3857. Tento souřadnicový systém je ekvivalentní s~EPSG:900913, které na svých mapách používá Google. Jak bylo uvedeno výše \ref{google_mercator}, toto zobrazení není přesně konformní, ovšem v~tiráži je uvedeno \uv{Zobrazení: Konformní válcové - Mercatorovo}, viz obr. \ref{fig:MTB_tiraz}.
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=8cm]{obrazky/tiraz.png}
+				\caption{MTB mapa Evropy - tiráž}
+				(zdroj: \url{http://mtbmap.cz/})
+				\label{fig:MTB_tiraz}
 			\end{center}
 		\end{figure}
 
