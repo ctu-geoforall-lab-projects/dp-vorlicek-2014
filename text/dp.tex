@@ -667,8 +667,12 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
         %%% ML: v tomto textu michate dohromady specializovany
         %%% software "webovy server" s obecneji vmimanym pojmem
         %%% "server", zkuste tento odstavec prepsat
-		\paragraph{}\label{sec:server} V~souvislosti s~webovými aplikacemi se objevuje pojem server, který může odkazovat buď na hardware\footnote{počítač}, který poskytuje nějaké služby, nebo na software\footnote{program}, který tyto služby realizuje, např Apache HTTP Server nebo Geoserver. Aplikace, které se k~serveru připojují a požadují poskytované služby, se nazývají klienti\label{sec:klient}. Tím je např. webový prohlížeč.
-		\paragraph{} Při výběru webového serveru je možné si vybrat z~několika aplikací. Nejčastěji užívaným je Apache HTTP Server, viz kap. \ref{sec:marketShare}, poté je IIS od Microsoftu, nginx od NGINX, Inc. a GWS od Googlu. Protože při vývoji aplikace byl použit server Apache HTTP Server, budou následující řádky věnovány jemu.
+
+        %%% -> ML: OK (poznamky pod carou tady vypadaji divne, ale
+        %%% nechte to byt (pouze muj subjektivni dojem)
+
+		\paragraph{}\label{sec:server} V~souvislosti s~webovými aplikacemi se objevuje pojem server, který může odkazovat buď na hardware\footnote{Tj. počítač.}, který poskytuje nějaké služby, nebo na software\footnote{Tj. program.}, který tyto služby realizuje, např Apache HTTP Server nebo Geoserver. Aplikace, které se k~serveru připojují a požadují poskytované služby, se nazývají klienti\label{sec:klient}. Tím je např. webový prohlížeč.
+		\paragraph{} Při výběru webového serveru je možné si vybrat z~několika aplikací. Nej\-častěji užívaným je Apache HTTP Server, viz kap. \ref{sec:marketShare}, poté je IIS od Microsoftu, nginx od NGINX, Inc. a GWS od Googlu. Protože při vývoji aplikace byl použit server Apache HTTP Server, budou následující řádky věnovány jemu.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=5cm]{obrazky/apacheLogo.png}
@@ -681,13 +685,17 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
                 %%% potom chybi vysvetleni pojmu "server" a "klient"
                 %%% (viz odstavec vyse)
 
+                %%% -> ML: OK
+
 		\paragraph{} Apache HTTP Server častěji bývá označován pouze jako Apache. Jeho funkce spočívá v~přijímání požadavků od klienta, kterým je webový prohlížeč. Následně je zpracuje a zašle klientovi odpověď. Zpracováním se rozumí např. odeslání statické webové stránky nebo předání požadavku dalším aplikacím. Samotná komunikace je zajištěna přes \ac{HTTP}, který slouží pro přenos hypermedií\cite{rfc2616},např. \ac{HTML} stránek.
 		\paragraph{}Apache má velké množství modulů, které mohou a nemusí být spuštěny. Pokud jsou zapnuty, rozšiřují možnosti samotného jádra. Při vývoji aplikací je ovšem potřeba, aby na vývojovém a produkčním serveru byly povoleny stejné moduly. V~opačném případě může docházet k~problémům s~funkčností. Běžně užívané moduly jsou např. mod\_rewrite, který slouží k~přepisování URL adresy, mod\_php přidávající Apachi podporu pro zpracování PHP skriptů nebo mod\_ssl pro šifrovaná spojení. Ve srovnání s~celkovým počtem modulů je toto jen velmi malý vzorek.
 
                 %%% ML: CHYBI zdroj tohoto tvrzeni, musite ho doplnit,
                 %%% jinak je to jenom vykrik do tmy
 
-		\paragraph{}\label{sec:marketShare} Apache je nejrozšířenější webový server -- dle odhadů\cite{netcraft_survey} z~června 2013 obsluhovaly servery s~Apachem 54,2\% všech aktivních webových stránek a 53,3\% všech stránek. Toto postavení je pravděpodobně způsobeno několika faktory:
+                %%% -> ML: OK
+
+		\paragraph{}\label{sec:marketShare} Apache je nejrozšířenější webový server -- dle odhadů\cite{netcraft_survey} z~června 2013 obsluhovaly servery s~Apachem 54,2\% všech aktivních webových stránek a~53,3\% všech stránek. Toto postavení je pravděpodobně způsobeno několika faktory:
 		\begin{itemize}
 			\item užití Apache License, která umožňuje svobodné užívání softwaru,
 			\item veřejně přístupné zdrojové kódy,
@@ -696,6 +704,8 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 		\end{itemize}
 		
                 %%% ML: open chybi zdroj !!!
+
+                %%% -> ML: OK
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -711,6 +721,8 @@ Kromě těchto tří elementů mohou mít prvky své tagy, do kterých se zaznam
 		\paragraph{} V~předchozí části bylo uvedeno, že webový server může přesměrovat některé dotazy jiným aplikacím. Dotazy na prostorové informace lze přesměrovat na mapový server. Pokud se pohybujeme v~rovině svobodného softwaru, existují dvě možnosti -- Geoserver a UMN MapServer. V~komerční sféře lze najít servery od firem Esri, Intergraph a dalších. 
 
                 %%% ML: chybi zdroj
+
+                %%% -> ML: OK
 
 		\begin{figure}[!h]
 			\begin{center}
@@ -729,7 +741,9 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
                %%% ML: minimalne WMS zkratku by bylo dobre rozepsat...
 
-		\paragraph{} Geoserver je open source řešení s~podporou všech běžně užívaných webových služeb. Aplikace podporuje velké množství vstupních a výstupních formátů. Vstupem může být například PostGIS databáze, Esri Shapefile, GeoTIFF či \ac{WMS} služba. Výstup může být například ve formátu PNG, PDF, JPEG, KML, CSV nebo JSON.  Geoserver je napsán v~Javě a pro jeho nastavení a správu se používá webové rozhraní, které je normálně dostupné na portu 8080, ale tento port může být změněn. Zde lze nastavit poskytované vrstvy a služby. Správa uživatelů a uživatelských rolí se provádí také zde. 
+%%% -> ML: OK (mnohem lepsi)
+
+		\paragraph{} Geoserver je open source řešení s~podporou všech běžně užívaných webo\-vých služeb. Aplikace podporuje velké množství vstupních a výstupních formátů. Vstupem může být například PostGIS databáze, Esri Shapefile, GeoTIFF či \ac{WMS} služba. Výstup může být například ve formátu PNG, PDF, JPEG, KML, CSV nebo JSON.  Geoserver je napsán v~Javě a pro jeho nastavení a správu se používá webové rozhraní, které je normálně dostupné na portu 8080, ale tento port může být změněn. Zde lze nastavit poskytované vrstvy a služby. Správa uživatelů a uživatelských rolí se provádí také zde. 
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/geoserver.png}
@@ -742,12 +756,16 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
                 %%% neexistuje "typ" xml, SDL je odvozen ci zalozen na
                 %%% XML
 
+                %%% -> ML: OK
+
 		\paragraph{}Pro nastavení vzhledu publikovaných vrstev se používá \ac{SLD} schéma, které je založeno na  \ac{XML}. Pravidla lze zapsat do textového pole, což vyžaduje určité zkušenosti s~tímto formátem. Geoserver ale také poskytuje možnost importovat pravidla  vytvořená v~jiném programu. Takto lze úspěšně použít Quantum GIS\cite{qgis} či AtlasStyler\cite{atlas} pro tvorbu vzhledu prvků.
 
                 %%% ML: co je WMS-T a proc to bude potreba, vysvetlit
                 %%% ci uvest odkaz na kapitolu, kde to bude vysvetleno
 
                 %%% ML: proc nemohl byt pouzit MapServer, vysvetlit
+
+                %%% -> ML: OK
 
 		\paragraph{} Výběr Geoserveru byl dán zejména snahou využít svobodný software. Před začátkem tvorby se předpokládalo, že aplikace bude potřebovat zejména pro editaci dat \ac{OSM} službu \ac{WFS-T}, která umožňuje data upravovat a následně ukládat. MapServer nemá podporu \ac{WFS-T} a z~tohoto důvodu nemohl být použit. Výhodou Geoserveru je uživatelské rozhraní pro nastavení a publikování vrstev, protože MapServer se nastavuje pomocí konfiguračních souborů.
 
@@ -765,7 +783,9 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
         %%% ML: "PostgreSQL nabízí širší škálu funkcí" --- nezminujete
         %%% se vubec o PostGISu, aha, je zminka v dalsim odstavci
 
-		\paragraph{} Na obrázku \ref{fig:server_schema} je zobrazeno, že mapový server přistupuje k~datům,která jsou uložena buď v~samostatném souboru, např. Esri Shapefile, nebo v~databázi. Pro potřeby webových aplikací se spíše užívají databáze, ačkoliv využití jednotlivých souborů s~geodaty také není vyloučeno. Mnoho webových aplikací používá relační databázi MySQL, ale z~hlediska vhodnosti pro tuto aplikaci byla zvolena jiná relační databáze -- PostgreSQL. Ačkoliv MySQL má podporu pro prostorová data, PostgreSQL nabízí širší škálu funkcí, viz kap. \ref{par:rozsireni}. Navíc existují pro PostgreSQL programy, které usnadňují import dat \ac{OSM}. V~neposlední řadě k~této volbě přispěl i fakt, že projekt \ac{OSM} používá PostgreSQL.
+        %%% -> ML: OK
+
+		\paragraph{} Na obrázku \ref{fig:server_schema} je zobrazeno, že mapový server přistupuje k~datům, která jsou uložena buď v~samostatném souboru, např. Esri Shapefile, nebo v~databázi. Pro potřeby webových aplikací se spíše užívají databáze, ačkoliv využití jednotlivých souborů s~geodaty také není vyloučeno. Mnoho webových aplikací používá relační databázi MySQL, ale z~hlediska vhodnosti pro tuto aplikaci byla zvolena jiná relační databáze -- PostgreSQL. Ačkoliv MySQL má podporu pro prostorová data, PostgreSQL nabízí širší škálu funkcí, viz kap. \ref{par:rozsireni}. Navíc existují pro PostgreSQL programy, které usnadňují import dat \ac{OSM}. V~neposlední řadě k~této volbě přispěl i fakt, že projekt \ac{OSM} používá PostgreSQL.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/psql.png}
@@ -780,6 +800,8 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
                 %%% mist jsem opravil chyby jako "standart" a dalsi
 
                 %%% ML: "hashích" ??? to neni odborny termin
+
+                %%% -> ML: OK
 
 		\paragraph{}PostgreSQL je databázový systém napsaný v~jazyce C. Kromě Linuxu je možné s~ním pracovat i na počítačích s~operačními systémy Windows, Mac OS X, Solaris aj. PostgreSQL je licencován pod PostgreSQL License, která je podobná licenci MIT.  Implementace SQL v~PostgreSQL  odpovídá standardu ANSI--SQL:2008\cite{PostgreSQL} a také obsahuje většinu ze standardu SQL:2011\cite{wiki_postgresql}. Systém podporuje použití primárních (PRIMARY) a cizích klíčů (FOREIGN KEYS), triggerů, podmínek UNIQUE a NOT NULL. Indexy mohou být uloženy v~B-stromech, R-stromech, hashovacích tabulkách nebo GiST (Generalized search tree) vyhledávacích stromech. Současná stabilní verze PostgreSQL má číslo 9.3.2. PostgreSQL se dá přizpůsobit podle potřeb uživatelů, díky čemuž vznikla různá rozšíření. 
 		\begin{figure}[!h]
@@ -803,22 +825,29 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
                 %%% ML: co je shell, neni vysvetleno, ctenar bez
                 %%% hlubsi zkusenosti asi bude zmaten
 
-		\paragraph{}Samotná databáze musí být nějak spravována. V~operačním systému Linux lze použít program psql, viz obr. \ref{fig:psql}, využívající příkazový řádek, grafické rozhraní pgAdmin III, viz obr. \ref{fig:pgadmin}, nebo \ac{PHP} program Adminer\footnote{http://www.adminer.org/}, viz obr. \ref{fig:adminer}. Každá z~uvedených variant má své výhody. Pro práci s~databází v~rámci skriptu napsaného pro shell\footnote{textové uživatelské rozhraní v~Unixu a jemu podobných operačních systémech} najde uplatnění právě příkazový řádek, pro práci na vzdáleném počítači lze využít Adminer, který se spouští přes webové rozhraní a pro práci na lokálním počítači se dá použít pgAdmin3.
+                %%% -> ML: OK
+
+		\paragraph{}Samotná databáze musí být nějak spravována. V~operačním systému Linux lze použít program psql, viz obr. \ref{fig:psql}, využívající příkazový řádek, grafické rozhraní pgAdmin III, viz obr. \ref{fig:pgadmin}, nebo \ac{PHP} program Adminer\footnote{\url{http://www.adminer.org/}}, viz obr. \ref{fig:adminer}. Každá z~uvedených variant má své výhody. Pro práci s~databází v~rámci skriptu napsaného pro shell\footnote{Textové uživatelské rozhraní v~Unixu a jemu podobných operačních systémech.} najde uplatnění právě příkazový řádek, pro práci na vzdáleném počítači lze využít Adminer, který se spouští přes webové rozhraní a pro práci na lokálním počítači se dá použít pgAdmin3.
 
 %%%Programovací jazyky
 	\section{PHP}
-		\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C (při použití \ac{CGI} rozhraní), Java, Perl,\acs{PHP} a další. V~této aplikaci je použit poslední jmenovaný jazyk. \ac{PHP}\footnote{název je rekurzivní zkratka} je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se \ac{PHP} nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v~jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows)\cite{wiki_php}.
+		\paragraph{} Pro zpracování dynamických požadavků na serveru je potřeba použít nějaký programovací jazyk. Tyto jazyky bývají označovány jako server--side. Patří mezi ně ASP, ASP.NET, C (při použití \ac{CGI} rozhraní), Java, Perl,\acs{PHP} a další. V~této aplikaci je použit poslední jmenovaný jazyk. \ac{PHP}\footnote{Název je rekurzivní zkratka.} je určený především pro tvorbu dynamických webových aplikací, ale lze ho využít i pro tvorbu konzolových a desktopových aplikací. PHP je platformně nezávislý programovací jazyk, který lze rozšířit mnoha knihovnami. Pro tvorbu webových aplikací se \ac{PHP} nejčastěji užívá se serverem Apache a databází MySQL. Tyto tři aplikace lze stáhnout v~jednom balíku, který je podle platformy označován zkratkou LAMP(pro Linux) nebo WAMP(pro Windows)\cite{wiki_php}.
 
                 %%% ML: kde jsou pouzivany starsi verze, neni prilis jasne
 
-		\paragraph{} Současná verze PHP je 5.5, která byla vydána k~20.6.2013\cite{php_net}, ale na serverech jsou používány i starší verze jazyka. Při vývoji se užívá buď čisté PHP a nebo v~podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce vývojáře, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s~ním\cite{wiki_framework}. Pokud se framework používá na větších projektech, či počet projektů, kde je užit, je větší, tak čas, který práce s~frameworkem ušetří, je větší než doba, která je potřeba k~zvládnutí práce s~ním.
+                %%% -> ML: prepsal jsem to jako "řadě produkčích
+                %%% serverů", ciste jsem dal do uvozovek
+
+                %%% -> ML: posledni veta odstavce zni kostrbate, ale klidne ji nechte
+
+		\paragraph{} Současná verze PHP je 5.5 (vydána ~20.6.2013\cite{php_net}), ale na řadě produkčích serverů jsou používány i starší verze jazyka. Při vývoji se užívá buď \uv{čisté} PHP a nebo v~podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce vývojáře, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s~ním\cite{wiki_framework}. Pokud se framework používá na větších projektech, či počet projektů, kde je užit, je větší, tak čas, který práce s~frameworkem ušetří, je větší než doba, která je potřeba k~zvládnutí práce s~ním.
 		\subsection{Framework Nette}
 			\paragraph{} Jedná se o~open source framework českého původu, který je určený pro tvorbu aplikací v~PHP 5.  Autorem je David Grudl, ale v~současné době se o~vývoj stará organizace Nette Foundation. K~11.12.2013 byla uvolněna ke stažení verze 2.1.0 RC3, která je pod licencí NewBSD a GNU \ac{GPL}.  
 			\paragraph{} Hlavním cílem je tvorba bezpečných aplikací. Mimo jiné je zde implementována ochrana před Cross-site scripting (XSS), která ošetřuje data z~uživatelských vstupů a zabraňuje tak, aby útočník podstrčil svůj vlastní kód. Ačkoliv je otázka bezpečnosti první v~seznamu výhod, není zdaleka poslední. Velmi silným argumentem pro jeho užití je snadné tvoření formulářů. Nette formuláře poskytují velké množství validačních pravidel. Automaticky generovaný validační javascriptový kód může být brán jako bonus.
 
                         %%% ML: Laděnka? vysvetlit
 			\label{par:ladenka}
-			\paragraph{} Při práci s~Nette je možné, ale ne nutné nastavit vývojový nebo produkční režim. Výhodou nastavení takovéhoto rozdělení je možnost nakopírování aplikace z~vývojového serveru na produkční a aplikace podle adresy serveru bere požadované parametry, např. jméno databáze, přihlašovací jméno a heslo a další. Ve vývojovém prostředí je dostupná knihovna Nette\\Diagnostics\\Debugger označovaná jako \uv{Laděnka},viz obr. \ref{fig:ladenka}. Tato knihovna poskytuje množství nástrojů pro sledování aplikace. Její předností je přehledná vizualizace chyb, takže problémové pasáže není těžké najít a opravit.
+			\paragraph{} Při práci s~Nette je možné, ale ne nutné nastavit vývojový nebo produkční režim. Výhodou nastavení takovéhoto rozdělení je možnost nakopírování aplikace z~vývojového serveru na produkční a aplikace podle adresy serveru bere požadované parametry, např. jméno databáze, přihlašovací jméno a heslo a další. Ve vývojovém prostředí je dostupná knihovna Nette Diagnostics Debugger označovaná jako \uv{Laděnka}, viz obr. \ref{fig:ladenka}. Tato knihovna poskytuje množství nástrojů pro sledování aplikace. Její předností je přehledná vizualizace chyb, takže problémové pasáže není těžké najít a opravit.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/ladenka.png}
@@ -833,6 +862,9 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 				\paragraph{} Návrhovým vzorem rozumíme architekturu aplikace. Jinými slovy se jedná o~určité části (vrstvy) aplikace, které zajišťují různé funkcionality. V~Nette se užívá architektura MVP (Model -- View -- Presenter).
 
                                 %%% ML: zkuste odstavec prepsat (model)
+
+                                %%% -> ML: OK
+
 				\paragraph{Model} je vrstva, která se stará o~připojení k~databázi a která s~ní pracuje. Součástí modelu jsou funkce pro přístup k~databázi. Jedná se zejména o~výpis dat, jejich vkládání, změnu a mazání. Zbytek aplikace komunikuje s~model přes rozhraní, které model poskytuje. V~Nette obstarává funkce modelu knihovna Nette Database. Pro větší přehlednost se vytvářejí funkce, které vypisují potřebná data. Tím nedochází k~pokládání dotazů ve zdrojovém kódu Presenterů.
 
                                 %%% ML: "V Nette se o tuto funkci
@@ -840,6 +872,8 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
                                 %%% ???
 
                                 %%% ML: chybi vysvetleni pojmu "sablona"
+
+                                %%% -> ML: OK
 
 				\paragraph{View} je vrstva, která vykresluje výsledek zadaného požadavku. V~Nette se o~tuto funkci starají šablony napsané v~latte. Šablonou rozumíme část zdrojového kódu webové stránky, který kontroluje vykreslení dat a vzhledu. Latte je šablonovací systém napsaný v~\ac{PHP}, ovšem díky němu je psaní šablon jednodušší, přehlednější a bezpečnější než kdybychom je psali v~čistém PHP.
 				\paragraph{Presenter} je spojovací vrstva, která předává data z~modelu do view k~vykreslení a akce z~view zpracovává a předává modelu. Presenter je ekvivalentem Controlleru z~architektury MVC s~tím rozdílem, že Controller zpracovává i některé události uživatelského rozhraní.
@@ -849,6 +883,7 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
                 %%% ML: zdroj?
 
+                %%% -> ML: OK
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=5cm]{obrazky/klient_skript.png}
@@ -865,6 +900,8 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
                 %%% by chtela
                 %%% prepsat
 
+                %%% -> ML: OK
+
 		\paragraph{} Využití JavaScriptu je zejména v~tvorbě dynamických prvků na webových stránkách. Javascriptový kód je posílán ke klientovi na počítač, kde je zpracován, viz obr. \ref{fig:client}, interpreterem, který je součástí každého moderního prohlížeče. JavaScript je možné zapsat do \ac{HTML} souboru pomocí tagů \htmlTag{script}. Pokud se jedná o~delší skript, je lepší zapsat javascriptový kód do zvláštního souboru, pro který se standardně používá přípona js. Ve zdrojovém kódu stránky se zavolá pomocí \ac{HTML} tagu \htmlTag{script} s~tím, že se do vlastností přidá cesta k~souboru.
 		\paragraph{AJAX} Asynchronní JavaScript A~XML je jedno z~běžných užití Java\-Scriptu, které umožňuje posílat \ac{XML} dotazy na server bez znovunačtení stránky. Server tento dotaz obslouží, vrátí výsledek a ten se zobrazí na stránce. Tato technika obnovování stránky si získala oblibu díky službám společnosti Google. Tento přístup je též užíván v~knihovnách jako jsou OpenLayers nebo Leaflet pro získání a zobrazení mapy.
 
@@ -878,15 +915,17 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 		\end{figure}	
 
 		\subsection{OpenLayers} %v2 v3
-			\paragraph{} JavaScript lze využít pro tvorbu mnoha dynamických prvků stránek, ale pro složitější prvky je vhodnější použít nějaké existující nástroje. Pro tvorbu mapových aplikací existuje několik knihoven, které poskytují  API  pro usnadnění práce. Jednou z~takových knihoven je OpenLayers.
-			\paragraph{} Jedná se o~knihovnu s~otevřeným kódem, která je šířena pod licencí BSD. OpenLayers byly vytvořeny firmou MetaCarta mezi roky 2005 a 2006 a od listopadu 2007 se o~jejich vývoj stará Open Source Geospatial Foundation\cite{wiki_ol}. Aktuální stabilní verze je 2.13.1, ale souběžně s~OpenLayers verzí 2 se vyvíjí i verze 3, která je dostupná ve verzi 3.0.0-beta.1. OpenLayers~3 vzniká přepisováním původní verze a začleněním nových technologií, které umožňují využití HTML5 a CSS3\cite{ol}. Vytvoření mapy s~novou verzí je oproti minulé verzi rychlejší a výsledný kód je přehlednější.
+			\paragraph{} JavaScript lze využít pro tvorbu mnoha dynamických prvků stránek, ale pro složitější prvky je vhodnější použít nějaké existující nástroje. Pro tvorbu mapových aplikací existuje několik knihoven, které poskytují  API  pro usnad\-nění práce. Jednou z~takových knihoven je OpenLayers.
+			\paragraph{} Jedná se o~knihovnu s~otevřeným kódem, která je šířena pod licencí BSD. OpenLayers byly vytvořeny firmou MetaCarta mezi roky 2005 a 2006 a od listopadu 2007 se o~jejich vývoj stará Open Source Geospatial Foundation\cite{wiki_ol}. Aktuální stabilní verze je 2.13.1, ale souběžně s~OpenLayers verzí 2 se vyvíjí i verze 3, která je dostupná ve verzi 3.0.0-beta1. OpenLayers~3 vzniká přepisováním původní verze a začleněním nových technologií, které umožňují využití HTML5 a CSS3\cite{ol}. Vytvoření mapy s~novou verzí je oproti minulé verzi rychlejší a výsledný kód je přehlednější.
 			\paragraph{}OpenLayers jsou schopné zobrazit velké množství formátů -- od rastrových dat ve formátu JPEG nebo PNG až po vektorová data GeoJSON či GML. Data lze připojit přímo z~disku nebo je lze získat pomocí WMS nebo WFS služby. Velkým plus této knihovny je velice dobře zpracovaná dokumentace a vzorové příklady, které pomohou při tvorbě mapové aplikace. 
 		\subsection{Leaflet}
 			\paragraph{} Druhou knihovnou, kterou lze užít na tvorbu webové mapové aplikace, je javascriptová knihovna Leaflet. Jedná se o~moderní knihovnu srovnatelnou s~OpenLayers 3. Leaflet se dá též použít pro zobrazení aplikace na mobilních zařízeních. Stejně jako OpenLayers 3 je i Leaflet stále ve vývoji (od listopadu 2013 je dostupná verze 0.7.1)\cite{Leaflet}, takže některé prvky stále nejsou plně funkční či chybí úplně. Dobře zdokumentované API a návody pro začátečníky jsou velice dobrým pomocníkem při tvorbě map, stejně tak i různé zásuvné moduly, které vytvořili členové komunity.
-		\paragraph{} Ačkoliv Leaflet a OpenLayers 3 jsou modernější, pro vývoj aplikace byla použita stávající verze OpenLayers v2. Původně zvažovaný Leaflet byl zamítnut kvůli problémům s~připojením vektorových vrstev a kvůli tomu, že se stále jedná o~vývojovou verzi. Ze stejného důvodu nebyla použita ani knihovna OpenLayers 3.
+		\paragraph{} Ačkoliv Leaflet a OpenLayers 3 jsou modernější, pro vývoj aplikace byla použita stávající verze OpenLayers v2. Původně zvažovaný Leaflet byl zamít\-nut kvůli problémům s~připojením vektorových vrstev a kvůli tomu, že se stále jedná o~vývojovou verzi. Ze stejného důvodu nebyla použita ani knihovna OpenLayers 3.
 
                 %%% ML: najdete mene zavadejici nazev pro tuto
                 %%% kapitolu...
+
+                %%% -> ML: OK
 
 	\section{Vzhled aplikace}
 
@@ -895,11 +934,13 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
         %%% ML: "tvorba grafiky" ??? design ...
 
-		\paragraph{} Důležitým prvkem webové stránky je její grafické provedení, protože špatně vytvořený vzhled webu může odradit potenciální zákazníky. Důležitost návrhu \ac{UI} dokazuje i to, že dost firem vyvíjejících webové stránky a aplikace má ve svém týmu člověka, který se věnuje zejména tvorbě grafických návrhů aplikací.
+        %%% -> ML: OK
+
+		\paragraph{} Důležitým prvkem webové stránky je její grafické provedení, protože špatně vytvořený vzhled webu může odradit potenciální zákazníky. Důležitost návrhu \ac{UI} dokazuje i to, že dost firem vyvíjejících webové stránky a~aplikace má ve svém týmu člověka, který se věnuje zejména tvorbě grafických návrhů aplikací.
 
                 %%% ML: prvku ceho?
 
-		\paragraph{} Hlavním nástrojem pro určení pozice, barvy, velikosti a chování prvků aplikace při zmenšení/zvětšení okna jsou \ac{CSS}. Vzhled stránky může být definován v~sekci \htmlTag{head} souboru s~HTML kódem stránky nebo pomocí vlastnosti \textit{style} přímo u~prvku, ale častěji se kvůli přehlednosti využívá zapsání do samostatného souboru, který se do HTML dokumentu importuje podobně, jako javascriptový soubor. Kaskádovými styly lze modifikovat vzhled všech HTML prvků. 
+		\paragraph{} Hlavním nástrojem pro určení pozice, barvy, velikosti a chování prvků aplikace při zmenšení/zvětšení okna jsou \ac{CSS}. Vzhled stránky může být definován v~sekci \htmlTag{head} souboru s~HTML kódem stránky nebo pomocí vlastnosti \textit{style} přímo u~prvku, ale častěji se kvůli přehlednosti využívá zapsání do samostatného souboru, který se do HTML dokumentu importuje podobně jako javascriptový soubor. Kaskádovými styly lze modifikovat vzhled všech HTML prvků. 
 
                 %%% ML: "zapsani" ??
 
@@ -915,7 +956,9 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
                 %%% ML: "vrstvit" nezni moc pekne ...
 
-		\paragraph{} Aby bylo možno dosáhnout požadovaného výsledku, umožňují kaskádové styly kombinovat jednotlivá pravidla, jak je zobrazeno na příkladu webu Seznam.cz\ref{fig:seznam}. Ne všechny prohlížeče zobrazují všechny stránky stejně. U~Microsoft Internet Exploreru je interpretace CSS stylů odlišná od jiných prohlížečů, což vede vývojáře k~vytváření speciálních pravidel pro tento prohlížeč.
+                                %%% -> ML: OK
+
+		\paragraph{} Aby bylo možno dosáhnout požadovaného výsledku, umožňují kaskádové styly kombinovat jednotlivá pravidla, jak je zobrazeno na příkladu webu Seznam.cz (viz obr. \ref{fig:seznam}). Ne všechny prohlížeče zobrazují všechny stránky stejně. U~Microsoft Internet Exploreru je interpretace CSS stylů odlišná od jiných prohlížečů, což vede vývojáře k~vytváření speciálních pravidel pro tento prohlížeč.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/css_vrstvy.png}
@@ -927,7 +970,7 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
                 %%% ML: odkaz na Twitter, poznamka pod carou, vysvetleni...
 
-		\paragraph{} Pro usnadnění práce vývojářů vznikly různé šablony a frameworky. V~pří\-padě vyvíjené aplikace byl použit Bootstrap (v2.2.2) -- framework s~otevřeným zdrojovým kódem vytvořený pro Twitter\footnote{https://twitter.com/} v~polovině roku 2010. Ve verzi 2 byla přidána podpora responsivního designu, což zaručuje správné zobrazení aplikace i na mobilních zařízeních\footnote{Aplikace pozná, na jak velkém displeji je zobrazena, a podle toho vybere odpovídající design pro optimální zobrazení obsahu.}. Začátkem prosince 2013 byl vydán Bootstrap ve verzi 3.0.3, která má v~základu nastavený responzivní design a bere ohled na mobilní zařízení.
+		\paragraph{} Pro usnadnění práce vývojářů vznikly různé šablony a frameworky. V~pří\-padě vyvíjené aplikace byl použit Bootstrap (v2.2.2) -- framework s~otevřeným zdrojovým kódem vytvořený pro Twitter\footnote{\url{https://twitter.com/}} v~polovině roku 2010. Ve verzi 2 byla přidána podpora responsivního designu, což zaručuje správné zobrazení aplikace i na mobilních zařízeních\footnote{Aplikace pozná, na jak velkém displeji je zobrazena, a podle toho vybere odpovídající design pro optimální zobrazení obsahu.}. Začátkem prosince 2013 byl vydán Bootstrap ve verzi 3.0.3, která má v~základu nastavený responzivní design a bere ohled na mobilní zařízení.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%% 	VÝVOJ APLIKACE	   %%%%%
 %%%%						      %%%%
