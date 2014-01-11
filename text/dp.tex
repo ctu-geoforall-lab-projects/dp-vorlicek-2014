@@ -985,7 +985,7 @@ Databáze je důležitým prvkem aplikace \uv{Toulavej} -- jsou zde uloženi reg
 				\paragraph{}Tabulka \textit{news} je určena pro ukládání událostí, které jsou zveřejňovány jako novinky. Zde se evidují pouze položky \textbf{id} jako primární klíč, \textbf{user\_id} jako cizí klíč na tabulku \textit{users}, \textbf{note} s~novinkou a čas vytvoření (\textbf{created}).
 
 				%%%ChV: Tento odstavec  přibyl
-				\paragraph{}Pro ukládání informací o~obrázcích slouží tabulka \textit{images}. Primárním klíčem je sloupec \textbf{id}. Tabulka dále obsahuje cizí klíč \textbf{user\_id} odkazující na tabulku \textit{users}. Ten určuje, kdo daný obrázek nahrál. Pojmenování obrázku je v~sloupci \textbf{name}. Dalšími sloupci jsou čas vytvoření(\textbf{created}), poznámka(\textbf{note}) a jméno odpovídajícího souboru(\textbf{filename}).
+				\paragraph{}Pro ukládání informací o~obrázcích slouží tabulka \textit{images}. Primárním klíčem je sloupec \textbf{id}. Tabulka dále obsahuje cizí klíč \textbf{user\_id} odkazující na tabulku \textit{users}. Ten určuje, kdo daný obrázek nahrál. Pojmenování obrázku je v~sloupci \textbf{name}. Dalšími sloupci jsou čas vytvoření (\textbf{created}), poznámka (\textbf{note}) a jméno odpovídajícího souboru (\textbf{filename}).
 
                                 %%% ML: "Zde je velice častý výskyt
                                 %%% hodnoty NULL." proc neni
@@ -996,6 +996,8 @@ Databáze je důležitým prvkem aplikace \uv{Toulavej} -- jsou zde uloženi reg
                                 %%% odkaz na text, kde to bude
                                 %%% vysvetleno...
 
+                                %%% -> ML: OK
+
 				\paragraph{}Další v~pořadí je tabulka \textit{pois} odvozená od bodové vrstvy dat \ac{OSM}. Vznikla vybráním bodů, které by mohly být pro uživatele nějakým způsobem zajímavé. Hlavní sloupce jsou \textbf{osm\_id} pro primární klíč a \textbf{way} pro geometrii. Sloupce \textbf{amenity, historic, leisure, man\_made, name, natural, religion, shop a tourism} obsahují informaci o~typu prvku. Zde je velice častý výskyt hodnoty NULL, protože řada vlastností vylučuje existenci jiné hodnoty u~dalších atributů. Sloupec \textbf{tags} užívá rozšíření hstore, viz kap. \ref{par:rozsireni}, a jsou v~něm uvedeny další informace.
 		\begin{figure}[!h]
 			\begin{center}
@@ -1004,35 +1006,39 @@ Databáze je důležitým prvkem aplikace \uv{Toulavej} -- jsou zde uloženi reg
 				\label{fig:db}
 			\end{center}
 		\end{figure}
-                        \paragraph{} Další tabulkou odvozenou z~liniové vrstvy dat \ac{OSM} jsou \textit{tourist\_tracks}. Stejně jako \textit{pois} nese sloupec s~primárním klíčem označení \textbf{osm\_id}. Sloupec \textbf{kct\_color} určuje barvu turistické stezky bez ohledu na druh značky. Ten je zohledněn v~\textbf{kct\_symbol}. Možné cíle trasy(pokud jsou uvedeny) udává \textbf{kct\_destinations}. Pokud má trasa nějaké jméno, je uvedeno v~\textbf{kct\_name}. Zřizovatel trasy je uveden v~\textbf{operator}. V~poli \textbf{route} je uveden typ cesty. Geometrii lze nalézt ve sloupci \textbf{way}. Atribut \textbf{way\_area} určuje plochu ohraničenou uzavřeným liniovým prvkem.
+                        \paragraph{} Další tabulkou odvozenou z~liniové vrstvy dat \ac{OSM} jsou \textit{tourist\_tracks}. Stejně jako \textit{pois} nese sloupec s~primárním klíčem označení \textbf{osm\_id}. Sloupec \textbf{kct\_color} určuje barvu turistické stezky bez ohledu na druh značky. Ten je zohledněn v~\textbf{kct\_symbol}. Možné cíle trasy (pokud jsou uvedeny) udává \textbf{kct\_destinations}. Pokud má trasa nějaké jméno, je uvedeno v~\textbf{kct\_name}. Zřizovatel trasy je uveden v~\textbf{operator}. V~poli \textbf{route} je uveden typ cesty. Geo\-metrii lze nalézt ve sloupci \textbf{way}. Atribut \textbf{way\_area} určuje plochu ohrani\-čenou uzavřeným liniovým prvkem.
 
                         %%% "a délka je v \textbf{length}" delka ceho,
                         %%% nutno vysvetlit, a proc se uklada
                         %%% explicitne... ?
 
-			\paragraph{} Tabulka \textit{tracks} slouží k~ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje atribut \textbf{user\_id}. Geometrii lze najít v~sloupečku \textbf{the\_geom} a délka trasy je uložena v~\textbf{length}. Délka se ukládá explicitně, aby pro výpis v~\textit{Seznamu tras} nebo \textit{Detailu trasy} nebylo nutné vytvářet novou funkci a bylo možné použít dostupné řešení.  Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k~ukládání komentářů a hodnocení k~cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text (\textbf{review}) a časová známka, kdy byl příspěvek vložen (\textbf{created}).
+                        %%% -> ML: OK
+
+			\paragraph{} Tabulka \textit{tracks} slouží k~ukládání uživateli vloženými trasami. Na uživatele, který příspěvek vložil, odkazuje atribut \textbf{user\_id}. Geometrii lze najít v~slou\-pečku \textbf{the\_geom} a délka trasy je uložena v~\textbf{length}. Délka se ukládá explicitně, aby pro výpis v~\textit{Seznamu tras} nebo \textit{Detailu trasy} nebylo nutné vytvářet novou funkci a bylo možné použít dostupné řešení.  Do pole \textbf{note} se vkládají poznámky či možné cíle trasy. \textbf{Id} určuje primární klíč a \textbf{created} je čas uložení do databáze. Na tuto tabulku se váže přes cizí klíč \textbf{track\_id} tabulka \textit{track\_reviews}, která slouží k~ukládání komentářů a hodnocení k~cestám. \textit{Track\_reviews} se váží přes \textbf{user\_id} na tabulku \textit{users}. Dále je zde samotný text (\textbf{review}) a časová známka, kdy byl příspěvek vložen (\textbf{created}).
 			\paragraph{}\label{par:users}Tabulka \textit{users} slouží k~ukládání dat o~registrovaných uživatelích. Pole \textbf{id} je primární klíč, které má výchozí hodnotu nastavenou na další číslo v~pořadí. Pole \textbf{name} je jméno, které zadává uživatel při registraci nebo které se vezme z~profilu na Facebooku. Toto jméno lze v~nastavení změnit. Tabulka obsahuje pole s~emailem, který spolu s~heslem slouží k~přihlášení do aplikace. Pokud je uživatel připojen přes Facebook, uloží se jeho identifikace na Facebooku do pole \textbf{fbuid}. Pole \textbf{active} slouží k~případnému znemožnění přihlášení uživatele a pole \textbf{attempts} ukazuje počet neúspěšných pokusů o~přihlášení. Pokud dosáhne jejich počet určitého množství, tak se účet zablokuje. Sloupec \textbf{role} udává, jaká práva má daný uživatel. V~systému jsou tři typy rolí (guest, user a admin) ale pouze user a admin se ukládají do tabulky. Volitelné pole \textbf{about} umožňuje uživateli napsat o~sobě pár informací a \textbf{note} slouží k~zapsání poznámky pro administrátora. Sloupce \textbf{oauth\_key} a \textbf{oauth\_secret} jsou určeny pro přihlašování do \acl{OSM}.
 
                         %%% ML: tomuto odstavci nerozumim...
 			%%%ChV: odstavec měl být někde jinde
 
+                        %%% -> ML: OK
+
 			\subsection{Naplnění databáze}
-				\paragraph{} Před zahájením samotného naplnění databáze bylo potřeba aktivovat rozšíření. Jednalo se o~\textit{PostGIS} rozšíření pro práci s~geografickými daty, \textit{PgRouting} pro plánované vyhledávání cest mezi zadanými body a \textit{hstore} pro usnadnění práce s~daty ve sloupcích \textbf{tags}. Na tyto úkony je potřeba administrátorský přístup, takže potřebné modifikace v~databázi na serveru \textit{geo102} provedl Ing. Landa.
+				\paragraph{} Před zahájením samotného naplnění databáze bylo potřeba aktivovat rozší\-ření. Jednalo se o~\textit{PostGIS} rozšíření pro práci s~geografickými daty, \textit{PgRouting} pro plánované vyhledávání cest mezi zadanými body a \textit{hstore} pro usnadnění práce s~daty ve sloupcích \textbf{tags}. Na tyto úkony je potřeba administrátorský přístup, takže potřebné modifikace v~databázi na serveru \textit{geo102} provedl Ing. Landa.
 				\paragraph{} V~momentě, kdy byla databáze připravena, bylo možné vytvořit tabulky a nahrát data. Pro získání dat OpenStreetMap byla použita internetová stránka \url{http://download.geofabrik.de/europe/czech-republic.html}, kde jsou data Planet.osm rozdělena podle kontinentů a zemí. Tato data jsou každý den aktualizována. Nejjednodušším způsobem, jak nahrát data do databáze, je pomocí konzolové aplikace \textit{osm2pgsql}. Při importu dat může dojít k~tomu, že užívaný počítač nemá potřebnou operační paměť. Program \textit{osm2pgsql} tento problém řeší pomocí tzv. \textit{slim modu}, ve kterém jsou využita dočasná úložiště. Ta zmenší velikost potřebné operační paměti. Databáze České republiky zabírá zhruba 4 GB paměti, ovšem ne všechna data jsou pro projekt potřebná. V~případě turistických stezek byla potřebná data uložena do speciální tabulky, protože jejich výběr z~původní tabulky za pomoci SELECTu nebo VIEW byl zdlouhavý. Ze stejného důvodu byly vybrány i zájmové body. Při prvním nahrání databáze vznikl problém se získáním údajů z~pole \textbf{tags}. V~dokumentaci \textit{PostgreSQL} na stránkách aplikace byl uveden příklad, jak je získat. Tento problém poté odpadl s~aktivací rozšíření \textit{hstore}. Kvůli výsledné velikosti databáze je zvažováno, že po zprovoznění vyhledávání cest budou tabulky s~nepotřebnými daty odstraněny. Aby se k~datům dalo přistupovat z~webové aplikace, bylo potřeba správně nastavit přístupová práva.
 				\paragraph{} V~neposlední řadě bylo potřeba doplnit tabulky, které nevznikají z~dat \acl{OSM}:
 					\begin{itemize}
-						\item news -- novinky generované při některých akcích či zadané administrátorem
-						\item images -- fotografie vložené uživateli
-						\item shoutboard -- tabulka pro diskuzi
-						\item track\_reviews -- komentáře a články k~trase
-						\item tracks -- uživateli zadané trasy
-						\item users -- informace o~uživatelích včetně jejich přihlašovacích údajů
+						\item news -- novinky generované při některých akcích či zadané administrá\-torem,
+						\item images -- fotografie vložené uživateli,
+						\item shoutboard -- tabulka pro diskuzi,
+						\item track\_reviews -- komentáře a články k~trase,
+						\item tracks -- uživatelem zadané trasy,
+						\item users -- informace o~uživatelích včetně jejich přihlašovacích údajů.
 					\end{itemize}
 Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tracks} a \textit{images} mají geometrickou složku popisu geodat. Tyto tabulky jsou po vytvoření prázdné. Jen do tabulky \textit{users} byly vloženy administrátorovy přihlašovací údaje.
 			\subsection{Aktualizace databáze}
 				\paragraph{} Protože se data \acl{OSM} neustále vyvíjejí a zpřesňují, je potřeba je jednou za čas aktualizovat. Vzhledem k~tomu, že se jedná o~časově náročnou činnost (import dat OpenStreetMap trvá na serveru kolem 1 hodiny), byl vytvořen skript, který provede potřebné kroky automaticky poté, co je předchozí úkol hotov. Skript postupuje v~následujících krocích.
 		\begin{enumerate}
-			\item Stáhne aktuální data pomocí příkazu \textit{wget}  z~\url{http://download.geofabrik.de/europe/czech-republic-latest.osm.bz2}.
+			\item Stáhne aktuální data pomocí příkazu \textit{wget} \newline z~\url{http://download.geofabrik.de/europe/czech-republic-latest.osm.bz2}.
 			\item Rozbalí data pomocí programu \textit{bunzip2}.
 			\item Za užití \textit{osm2pgsql} s~parametry \textit{ -\--slim  -\--cache--strategy dense -\--hstore --d vorlichr\_dp} importuje data do databáze.
 			\item Program psql vytvoří tabulku \textit{tourist\_tracks} podle SELECTu ze souboru \textit{hiking\_routes.sql}.
@@ -1040,15 +1046,7 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
 			\item Spustí se skript, který správně nastaví přístupová práva k~databázi.
 			\item V~posledním kroku skript smaže stažený soubor.
 		\end{enumerate}
-			\paragraph{} V~momentě, kdy bude plně funkční vyhledávání tras pomocí pgRoutingu, do programu přibudou další kroky, které provedou potřebné úpravy. Jedná se o~vytvoření tabulky se silnicemi a cestami, vypočítání geometrie sítě a nastavení parametrů potřebných pro vyhledávání.
-
-		\begin{figure}[!h]
-			\begin{center}
-				\includegraphics[width=12cm]{obrazky/toulavej/menu_puv.png}
-				\caption{Původní menu}
-				\label{fig:menu_puv}
-			\end{center}
-		\end{figure}	
+			\paragraph{} V~momentě, kdy bude plně funkční vyhledávání tras pomocí pgRoutingu, do programu přibudou další kroky, které provedou potřebné úpravy. Jedná se o~vytvoření tabulky se silnicemi a cestami, vypočítání geometrie sítě a~nastavení parametrů potřebných pro vyhledávání.
 
 		\section{Vzhled a styly}
 
@@ -1056,6 +1054,19 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
                 %%% napr. (viz obr.~\ref{fig:menu_puv})
 
 			\paragraph{} Při tvorbě vzhledu byla snaha vytvořit jednoduché rozhraní. Z~hlediska lepšího využití prostoru bylo menu navrhnuto jako lišta. Původní navigační panel, viz obr.~\ref{fig:menu_puv}, obsahoval dvě rozbalovací menu, ale po konzultaci s~Ing. Landou bylo shledáno toto rozvržení nevhodným. Jednalo se např. o~zařazení stránky \textit{O~Projektu} pod záložku \textit{Mapa}. Předělané menu, viz obr.~\ref{fig:menu_nove}, je přehlednější.
+
+                        %%% -> ML: obrazek byl nelogicky pred zacatkem
+                        %%% teto podkapitoli, presunul jsem ho sem
+
+		\begin{figure}[!h]
+			\begin{center}
+				\includegraphics[width=12cm]{obrazky/toulavej/menu_puv.png}
+				\caption{Původní menu}
+				\label{fig:menu_puv}
+                                (zdroj: snímek obrazovky)
+			\end{center}
+		\end{figure}	
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/toulavej/menu_nove.png}
@@ -1065,9 +1076,12 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
 			\end{center}
 		\end{figure}	
 			\paragraph{} Ve frameworku Bootstrap jsou vytvořeny styly pro většinu běžných prvků -- navigační lišta je jedním z~nich. Díky tomu je snadné poskládat prvky do požadovaného vzhledu. Ačkoliv byl použit Bootstrap, tak pro některé prvky bylo potřeba vytvořit nové styly či upravit stávající, protože existující nevyhovovaly. Jedním z~příkladů je odsazení textů. V~původní verzi Bootstrapu začínal text přímo na kraji stránky, což není pro uživatele příliš příjemné. Nové styly byly většinou tvořeny pro unikátní prvky jako je např. mapové pole.
+
+                        %%% -> ML: zmensil jsem obrazky, tak aby se vesli na jednu stranu
+
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=9cm]{obrazky/toulavej/addTrack.png}
+				\includegraphics[width=8.5cm]{obrazky/toulavej/addTrack.png}
 				\caption{Styl mapového pole pro přidávání tras}
 				\label{fig:addTrack}
 				(zdroj: snímek obrazovky)
@@ -1077,7 +1091,7 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
 			\paragraph{}\label{par:grafikaId} Z~grafického hlediska bylo největším problémem propojení aplikace Toulavej s~editorem iD, protože tato aplikace má své vlastní styly. Některé třídy stylů měly stejné názvy a  styly editoru tak přepisovaly pravidla aplikace. Tento problém byl vyřešen přepsáním pravidel, která se vzájemně rušila, tak, aby byla stejná. Ačkoliv většina aplikace byla přepsána úspěšně, v~některých místech stále není úprava provedena, např. v~editoru iD chybí tlačítku lokalizovat popis po najetí myši, viz obr.~\ref{fig:error_locate}.
 		\begin{figure}[!h]
 			\begin{center}
-				\includegraphics[width=7cm]{obrazky/toulavej/chyba_locate.png}
+				\includegraphics[width=6cm]{obrazky/toulavej/chyba_locate.png}
 				\caption{Chyba stylů}
 				\label{fig:error_locate}
 			\end{center}
@@ -1089,6 +1103,8 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
 
 		%%% ChV: lepší název mě nenapadl, pokud mě něco napadne, změním to
 		%%% ChV: trochu jsem přepracoval následující text
+
+                %%% -> ML: myslim, ze je to v poradku
 
 		\section{Turistická mapa}
 			\paragraph{} Mapová okna mají nejen své vlastní styly, ale i své vlastní konfigurace, které bylo třeba vytvořit. Hlavní částí aplikace je mapa, která zobrazuje turistické stezky, zájmové body a fotografie. Mapy, které slouží k~vkládání fotografií a tras, jsou odvozeny od této mapy. Stejně tak i mapa pro zobrazení tras vložených uživateli. Jejich konfigurace vznikla odvozením od konfigurace hlavní mapy s~tím rozdílem, že je k~nim připojena rastrová vrstva turistických stezek.
@@ -1102,6 +1118,8 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
                         %%% kapitolu, kde je to vysvetlo, ctenar se
                         %%% bude ptat "proc je nacitani WFS tak
                         %%% zdlouhave", to je potreba vystetlit
+
+                        %%% -> ML: OK
 
 			\paragraph{}Protože služba \ac{WFS} přenáší vektorová data, načítání vrstvy turistických tras \ac{kct} bylo zdlouhavé. Z~toho důvodu byla vrstva turistických tras připojena ještě službou \ac{WMS}, která data poskytuje jako rastry, jejichž načítání je rychlejší. To je způsobeno tím, že \ac{WMS} přenáší obrazovou reprezentaci dat, zatímco \ac{WFS} přenáší samotná data. Mapa je nastavena tak, že do měřítka 1 : 250 000 zobrazuje rastry s~turistickými trasami  a při měřítkách větších než 1 : 250 000 jsou k~dispozici data vektorová.
 		\begin{figure}[!h]
@@ -1127,10 +1145,13 @@ Většina těchto tabulek neobsahuje geografická data, jenom tabulky \textit{tr
 						\item stromy
 						\item vrcholy
 					\end{itemize}	
-Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je uložen SQL dotaz. Slouží k~ukládání často volaných nebo složitých dotazů} z~tabulky \textit{pois}. Tímto bylo možno pro každý typ zájmového bodu získat ze sloupce \textbf{tags} potřebné informace.
+Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je uložen SQL dotaz. Slouží k~ukládání často volaných nebo složitých dotazů.} z~tabulky \textit{pois}. Tímto bylo možno pro každý typ zájmového bodu získat ze sloupce \textbf{tags} potřebné informace.
 
-			\paragraph{} Pro odlišení jednotlivých vrstev a prvků podle jejich atributů byla vytvořena pravidla, podle kterých se prvku přiřazuje příslušný symbol. Pro vrstvu turistických tras existují pravidla, která jednotlivým trasám přiřadí jednu ze čtyř barev: červenou,modrou,zelenou a žlutou. Pro bodové prvky byly vytvořeny symboly, viz obr. \ref{fig:symboly}.
+			\paragraph{} Pro odlišení jednotlivých vrstev a prvků podle jejich atributů byla vytvořena pravidla, podle kterých se prvku přiřazuje příslušný symbol. Pro vrstvu turistických tras existují pravidla, která jednotlivým trasám přiřadí jednu ze čtyř barev: červenou, modrou, zelenou a žlutou. Pro bodové prvky byly vytvořeny symboly, viz obr. \ref{fig:symboly}.
 			
+                        %%% -> ML: pokud jsou tyti symboly prevezate mel
+                        %%% by byt uveden zdroj
+
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=6cm]{obrazky/toulavej/symbols.png}
@@ -1142,6 +1163,9 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 			\paragraph{}Vzhledem k~množství prvků, které jsou takto zobrazeny, bylo nastaveno měřítko, od kterého se data zobrazují, na větší nebo rovno 1 : 54 000. Toto měřítko odpovídá na stupnici, kterou užívají OpenLayers jako výchozí, hodnotě přiblížení 13. Pro tyto vrstvy nelze pro malá měřítka použít \ac{WMS} verzi, protože to činí mapu nepřehlednou a v~některých místech vrstva úplně překryje podkladovou mapu, viz obr. \ref{fig:food}.
 		
 		\paragraph{}Pro zobrazení informací o~jednotlivých prvcích byly vytvořeny funkce podobné té, která vypisuje informace o~turistických trasách.
+
+                %%% -> ML: to nevypada z kratografickeho hlediska moc
+                %%% citelne...
 
 \begin{figure}[!h]
 			\begin{center}
@@ -1162,9 +1186,14 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
                         %%% ML: zde by mel byt odkaz na kapitolu, kde
                         %%% se mluvi o datovem modelu DB (low priority)
 
-				\paragraph{}K ukládání registrovaných uživatelů byla v~databázi vytvořena tabulka \textit{users},viz kap. \ref{par:users}). Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
+                        %%% -> ML: OK
+
+				\paragraph{}K ukládání registrovaných uživatelů byla v~databázi vytvořena tabulka \textit{users}, viz kap. \ref{par:users}). Tabulka ukládá data jak uživatelů registrovaných na stránkách, tak uživatelů přihlášených přes Facebook.
                                 %%% ML: "je potřeba se registrovat na
                                 %%% stránce" zkuste napsat jasneji
+
+                                %%% -> ML: OK
+
 					\paragraph{} Pokud uživatel chce využívat všechny služby, které aplikace poskytuje, musí mít na webu vytvořený svůj účet. Ten lze vytvořit dvěma způsoby.
 					\subsubsection{Bez Facebooku} 
 						\paragraph{}Pokud uživatel nemá účet na sociální síti Facebook nebo z~nějakého důvodu tento účet použít nechce, je na webu vytvořen formulář, který slouží k~registraci nových uživatelů, viz obr.  \ref{fig:regForm}.
@@ -1182,7 +1211,7 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=7cm]{obrazky/toulavej/login.png}
-				\caption[Přihlašovací formulář s~odkazem na přihlášení na Facebook]{Přihlašovací formulář s~odkazem na přihlášení na \ac{Fb}, registraci a obnovu zapomenutého hesla}
+				\caption[Přihlašovací formulář s~odkazem na přihlášení na Facebook]{Přihlašovací formulář s~odkazem na přihlášení na \ac{Fb}, \newline registraci a obnovu zapomenutého hesla}
 				\label{fig:login}
 				(zdroj: snímek obrazovky)
 			\end{center}
@@ -1190,18 +1219,26 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 
 				\subsubsection{S~Facebookem} 
                                 %%% ML: TODO
+                                
+                                %%% -> ML: OK
+
 					\paragraph{}Pro přihlášení přes \ac{Fb} je v~sekci \textit{Přihlásit} odkaz na přihlášení, viz obr. \ref{fig:login}. Ten přesměruje uživatele na stránky \acl{Fb}u, kde se uživatel přihlásí. Pokud je již na \ac{Fb} přihlášen, tento krok je vynechán. Dalším krokem při prvním přihlášení je udělení oprávnění pro přístup k~informacím a ke sdílení dat. V~momentě, kdy uživatel nastaví práva, je automaticky přihlášen. Data o~uživateli jsou uložena do databáze. Pro další přihlášení stačí uživateli aktivovat odkaz na přihlášení s~\acl{Fb}em a je automaticky přihlášen.
 
 			\subsection{Dostupné funkce}
 				\label{sec:funkce}
                                 %%% ML: TODO
-				\paragraph{} Nepřihlášeným uživatelům poskytuje aplikace malou škálu funkcí, která by se měla časem rozšířit, viz kap. \ref{sec:budoucnost}. V~současné době mohou uživatelé prohlížet trasy, detail jednotlivých tras, vkládat příspěvky do diskuze, prohlížet turistickou mapu a hlásit problémy se stránkami, pokud na nějaké narazí.
+
+                                %%% -> ML: OK
+
+				\paragraph{} Nepřihlášeným uživatelům poskytuje aplikace malou škálu funkcí, která by se měla časem rozšířit, viz kap. \ref{sec:budoucnost}. V~současné době mohou uživatelé prohlí\-žet trasy, detail jednotlivých tras, vkládat příspěvky do diskuze, prohlí\-žet turistickou mapu a hlásit problémy se stránkami, pokud na nějaké narazí.
 				\paragraph{} Přihlášení uživatelé mohou k~výše uvedenému přidávat trasy, komentovat je, přidávat fotografie, upravovat data \acl{OSM}. Také si mohou nastavit popis ke svému profilu, změnit heslo či si ho v~případě zapomenutí nechat poslat znovu. Uživatelé přihlášení přes Facebook mohou dále sdílet trasy, fotografie či body v~mapě s~přáteli.
 
 		\section{Propojení s~Facebookem}
 			\subsection{Použité pluginy}
 
                         %%% ML: tvorba prihlasovani ?
+
+                        %%% -> ML: OK (opraveno)
 
 				\paragraph{} Pro propojení sociální sítě Facebook s~vyvíjenou aplikací byl použit plugin pro Nette\cite{nette20login} od Jakuba Marka. Tento plugin značně usnadnil vytvoření rozhraní pro přihlášení pomocí \acl{Fb}u. Dalším pluginem, který byl použit, je FbTools\cite{FbTools} od Milana Šulce. Tento plugin poskytuje funkcionality běžně dostupné na Facebooku, např. tlačítko \textit{Líbí se mi} nebo vlákno s~\textit{komentáři}, ačkoliv zatím z~něj bylo použito jenom \textit{Sdílení}, viz kap. \ref{sec:sdileni}.
 			\subsection{Práva}
@@ -1210,6 +1247,9 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 				\label{sec:sdileni}
                       %%% ML: TODO
 			%%% ML: pridat nejaky screenshot ?
+
+                                %%% -> ML: OK
+
 				\paragraph{}Tato aplikace nabízí uživatelům, kteří použili pro přihlášení \acl{Fb}, možnost sdílet se svými přáteli lokace, trasy či fotografie, které je zaujaly. Pokud je uživatel pomocí \acl{Fb}u, ve výpisu funkcí přibude tlačítko \textit{Sdílet na Fb}, které po aktivování vytvoří okno, viz obr. \ref{fig:fbShare1}, kam je možné napsat zprávu.
 		\begin{figure}[!h]
 			\begin{center}
@@ -1239,6 +1279,8 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
                 %%% ML: zde by se hodil odkaz na kapitolu o iD
 		%%% ChV: doplněn do textu k první zmínce
 
+                %%% -> ML: OK
+
 				\paragraph{} Pro umožnění editace dat existovala dvě možná řešení. První řešení zahrnuje vytvoření vlastního rozhraní, druhé pak použití existujícího řešení a připojení k~vlastní webové aplikaci. U~druhého řešení byla od začátku zvažována možnost použití HTML5 editoru \textit{iD}, viz kap. \ref{sec:editory}. Protože obě řešení mají své výhody a nevýhody, budou zde vypsány obě.
 			\subsection{Tvorba vlastního rozhraní}
 				\paragraph{} První řešení, jak už bylo řečeno, zahrnuje vytvoření jednoduchého rozhraní. Prvky by se editovaly a  ukládaly do databáze projektu a v~určitých intervalech by byl prováděn import těchto dat do OpenStreetMap. Výhoda této metody spočívá v~tom, že data by mohla být kontrolována, zda jsou fakticky správně, aby nedocházelo k~znehodnocení dat OpenStreetMap. Také by bylo možno tuto funkci implementovat s~minimálními změnami pro přidávání vlastních cest. Na druhou stranu by toto řešení znamenalo množství programování, protože by bylo potřeba zajistit nástroj pro import do OpenStreetMap, popřípadně data importovat ručně. V~začátcích by to pravdě\-podobně nebyl problém, ovšem po překročení určitého počtu editací by se mohl stát ruční import nemožným nebo alespoň velice náročným na čas.
@@ -1257,6 +1299,9 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 
                  %%% ML: proc zmena velikosti fontu ???
 		  %%% ChV: pouze aby mi v textu neuniklo, že je to nekompletní či spíše na přepsání
+
+                %%% -> ML: OK :-)
+
 				\paragraph{} Dle původního plánu měla aplikace umožnit editaci i uživatelům, kteří nemají účet na \acl{OSM}. Tento záměr byl ale opuštěn, protože by mohlo dojít k~zneužití účtu aplikace pro znehodnocení dat \acl{OSM}. Z~toho důvodu mohou data editovat jen uživatelé, kteří mají na \ac{OSM} účet.
 				\paragraph{} Při autentizaci přes oAuth docházelo k~chybě při zpětném přesměrování. Tento problém byl vyřešen nastavením zpětné adresy do šablony s~javascriptovým kódem, který vykonal dokončení autentizace a přesměroval uživatele na správnou adresu.
 
@@ -1266,8 +1311,11 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 
 		\section{Trasy a fotografie}
                 %%% ML: TODO
+
+                %%% -> ML: OK
+
 			\subsection{Trasy}
-			\paragraph{} V~sekci \textit{Dostupné funkce},viz kap. \ref{sec:funkce}, bylo řečeno, že si uživatel může prohlížet trasy a v~případě, že je přihlášený, může je sám přidávat. Tato funkcionalita by měla sloužit jako zdroj inspirace pro ostatní uživatele. Z~toho důvodu je možné psát k~jednotlivým trasám i komentáře ohledně obtížnosti trasy, celkového pocitu z~ní a dalších postřehů. Tyto informace se pak zobrazí v~detailních informacích o~trase, viz obr. \ref{fig:tDetail}. Kromě nich je zde i odkaz na zobrazení trasy na mapě.
+			\paragraph{} V~sekci \textit{Dostupné funkce}, viz kap. \ref{sec:funkce}, bylo řečeno, že si uživatel může prohlížet trasy a v~případě, že je přihlášený, může je sám přidávat. Tato funkcionalita by měla sloužit jako zdroj inspirace pro ostatní uživatele. Z~toho důvodu je možné psát k~jednotlivým trasám i komentáře ohledně obtížnosti trasy, celkového pocitu z~ní a dalších postřehů. Tyto informace se pak zobrazí v~detailních informacích o~trase, viz obr. \ref{fig:tDetail}. Kromě nich je zde i odkaz na zobrazení trasy na mapě.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/toulavej/trackDefault.png}
@@ -1293,7 +1341,7 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 				(zdroj: snímek obrazovky)
 			\end{center}
 		\end{figure}
-			\paragraph{} Pro uložení trasy do databáze slouží mapa, která obsahuje funkce umožňující přidávat polylinie, viz obr. \ref{fig:tAdd}. Tato funkce vznikla upravením funkce, kterou využívá ukázkový příklad textit{Modify Feature} na webu OpenLayers.org\cite{ol}. Hlavní rozdíly jsou v~automatickém přepnutí z~vkládání bodů na úpravu trasy po přidání jedné polylinie a předávání geometrie do formuláře (bude zmíněno níže).
+			\paragraph{} Pro uložení trasy do databáze slouží mapa, která obsahuje funkce umožňu\-jící přidávat polylinie, viz obr. \ref{fig:tAdd}. Tato funkce vznikla upravením funkce, kterou využívá ukázkový příklad \textit{Modify Feature} na webu OpenLayers.org\cite{ol}. Hlavní rozdíly jsou v~automatickém přepnutí z~vkládání bodů na úpravu trasy po přidání jedné polylinie a předávání geometrie do formuláře (bude zmíněno níže).
 			\paragraph{} Po nahrání stránky je uživatel informován, že je editace aktivní a že může začít vkládat body trasy. V~momentě, kdy skončí s~přidáváním bodů, aktivuje se možnost modifikace trasy. Ta umožňuje po kliknutí na trasu mazat a přidávat body a měnit jejich polohu. Před uložením je potřeba trasu pojmenovat. Je možné i vypsat body, kterými trasa prochází. 
 			\paragraph{} Na začátku vývoje aplikace se předpokládalo, že na přidání trasy uživatelem bude potřeba použít službu \ac{WFS-T}. Tato strategie je sice možná, ale jednodušším řešením je předání geometrie trasy  formuláři a uložit ji společně s~ostatními daty  do databáze pomocí funkce INSERT.
 		\begin{figure}[!h]
@@ -1306,7 +1354,7 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 		\end{figure}
 
 		\subsection{Galerie}
-			\paragraph{} Aplikace kromě vkládání a zobrazení tras podporuje i vložení a zobrazení fotografií. Pro jejich zobrazení bylo zvažováno použití javascriptové knihovny. Zde ale vznikl problém s~předáváním parametrů pro sdílení obrázků na \acl{Fb}u. Z~toho důvodu byla galerie vytvořena v~PHP tak, aby docházelo k~vypsání \textit{id} v~URL adrese. Další výhodou tohoto řešení byla i lepší kontrola nad vykreslením celé galerie, viz obr. \ref{fig:gallery}.
+			\paragraph{} Aplikace kromě vkládání a zobrazení tras podporuje i vložení a zobrazení fotografií. Pro jejich zobrazení bylo zvažováno použití javascriptové knihovny. Zde ale vznikl problém s~předáváním parametrů pro sdílení obrázků na \acl{Fb}u. Z~toho důvodu byla galerie vytvořena v~PHP tak, aby dochá\-zelo k~vypsání \textit{id} v~URL adrese. Další výhodou tohoto řešení byla i lepší kontrola nad vykreslením celé galerie, viz obr. \ref{fig:gallery}.
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=12cm]{obrazky/toulavej/gallery.png}
@@ -1340,8 +1388,11 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 
 		\section{Testování}
                 %%% ML: TODO
-		\paragraph{} Tvorba jakékoliv aplikace se neobejde bez chyb. Z~toho důvodu je velice důležité všechny části aplikace testovat a kontrolovat, zda vše v~pořádku funguje. Aplikace \uv{Toulavej} byla testována při vývoji. Kromě zobrazení výpisů jednotlivých proměnných, byly kontrolovány i dotazy na server a jeho odpovědi. V~případě závažných chyb pomohl Nette Debugger, viz kap. \ref{par:ladenka}.
-		\paragraph{}I přes to, že aplikace byla několikrát kontrolována a funkce byly testovány, mohou běžní uživatelé  nějaké chyby zaznamenat. Z~toho důvodu byl vytvořen formulář,viz obr. \ref{fig:error}, který odešle administrátorovi mail s~textem. Tento formulář je možné použít i pro zaslání návrhů na vylepšení aplikace. 
+                
+                %%% -> ML: OK
+
+		\paragraph{} Tvorba jakékoliv aplikace se neobejde bez chyb. Z~toho důvodu je velice důležité všechny části aplikace testovat a kontrolovat, zda vše v~pořádku funguje. Aplikace \uv{Toulavej} byla testována při vývoji. Kromě zobrazení výpisů jednotlivých proměnných, byly kontrolovány i dotazy na server a~jeho odpovědi. V~případě závažných chyb pomohl Nette Debugger, viz kap. \ref{par:ladenka}.
+		\paragraph{}I přes to, že aplikace byla několikrát kontrolována a funkce byly testovány, mohou běžní uživatelé  nějaké chyby zaznamenat. Z~toho důvodu byl vytvořen formulář, viz obr. \ref{fig:error}, který odešle administrátorovi mail s~textem. Tento formulář je možné použít i pro zaslání návrhů na vylepšení aplikace. 
 		\begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=10cm]{obrazky/toulavej/error.png}
@@ -1350,7 +1401,7 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 				(zdroj: snímek obrazovky)
 			\end{center}
 		\end{figure}	
-		\paragraph{}Tento formulář je stejně jako všechny ostatní chráněn proti spamu. Zejména u~tohoto formuláře je to důležitá funkce, protože k~němu mají přístup přihlášení i nepřihlášení uživatelé. Navíc je napojen na mail, který odesílá zprávy administrátorovi. Pokud by nebyl chráněn a byl napaden robotem rozesílajícím spam, zahltil by administrátorův mail.
+		\paragraph{}Tento formulář je stejně jako všechny ostatní chráněn proti spamu. Ze\-jména u~tohoto formuláře je to důležitá funkce, protože k~němu mají přístup přihlášení i nepřihlášení uživatelé. Navíc je napojen na mail, který odesílá zprávy administrátorovi. Pokud by nebyl chráněn a byl napaden robotem rozesílajícím spam, zahltil by administrátorův mail.
 
 		
 
