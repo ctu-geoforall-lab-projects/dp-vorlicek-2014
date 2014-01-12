@@ -840,7 +840,7 @@ Mapový server podle určitých pravidel vygeneruje obraz požadovaného výřez
 
                 %%% -> ML: posledni veta odstavce zni kostrbate, ale klidne ji nechte
 
-		\paragraph{} Současná verze PHP je 5.5 (vydána ~20.6.2013\cite{php_net}), ale na řadě produkčích serverů jsou používány i starší verze jazyka. Při vývoji se užívá buď \uv{čisté} PHP a nebo v~podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce vývojáře, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s~ním\cite{wiki_framework}. Pokud se framework používá na větších projektech, či počet projektů, kde je užit, je větší, tak čas, který práce s~frameworkem ušetří, je větší než doba, která je potřeba k~zvládnutí práce s~ním.
+		\paragraph{} Současná verze PHP je 5.5 (vydána ~20.6.2013\cite{php_net}), ale na řadě produkčích serverů jsou používány i starší verze jazyka. Při vývoji se užívá buď \uv{čisté} PHP a nebo v~podobě frameworků, které mají už naprogramované často užívané prvky. Tímto je usnadněna práce vývojáře, protože se může plně věnovat úkolu, který řeší. Frameworky také zajišťují větší bezpečnost, protože úkony jako přístup do databáze jsou již ošetřeny proti chybám a programátorovi stačí zavolat potřebnou funkci. Argumentem proti frameworkům je nižší rychlost zpracování požadavků a potřeba se naučit práci s~ním\cite{wiki_framework}. Nasazení frameworků se vyplatí v momentě, kdy je používán na větším množství projektů. V tomto případě framework ušetří více času než kolik je potřeba na jeho ovládnutí.
 		\subsection{Framework Nette}
 			\paragraph{} Jedná se o~open source framework českého původu, který je určený pro tvorbu aplikací v~PHP 5.  Autorem je David Grudl, ale v~současné době se o~vývoj stará organizace Nette Foundation. K~11.12.2013 byla uvolněna ke stažení verze 2.1.0 RC3, která je pod licencí NewBSD a GNU \ac{GPL}.  
 			\paragraph{} Hlavním cílem je tvorba bezpečných aplikací. Mimo jiné je zde implementována ochrana před Cross-site scripting (XSS), která ošetřuje data z~uživatelských vstupů a zabraňuje tak, aby útočník podstrčil svůj vlastní kód. Ačkoliv je otázka bezpečnosti první v~seznamu výhod, není zdaleka poslední. Velmi silným argumentem pro jeho užití je snadné tvoření formulářů. Nette formuláře poskytují velké množství validačních pravidel. Automaticky generovaný validační javascriptový kód může být brán jako bonus.
@@ -1167,10 +1167,12 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
                 %%% -> ML: to nevypada z kartografickeho hlediska moc
                 %%% citelne...
 
+				%%% -> ChV: opravil jsem popisek tak, aby vystihoval podstatu obrázku
+
 \begin{figure}[!h]
 			\begin{center}
 				\includegraphics[width=6.7cm]{obrazky/toulavej/food.png}
-				\caption{Překrytí podkladové mapy vrstvou  \textit{Občerstvení} na území Prahy}
+				\caption{Nežádoucí překrytí podkladové mapy vrstvou \textit{Občerstvení} na území Prahy}
 				\label{fig:food}
 				(zdroj: snímek obrazovky)
 			\end{center}
@@ -1415,10 +1417,10 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 		\section{Budoucí rozšíření}
 			\label{sec:budoucnost}
 			\paragraph{}V úvodu jsou definovány vlastnosti, které by aplikace měla splňovat. Všechny hlavní znaky aplikace splňuje, ale současně je zde prostor pro jejich vylepšení. \ac{Fb} poskytuje rozsáhlé \ac{API}, jehož některé funkce by tuto aplikci obohatily. Jedná se zejména o~nahrávání fotografií na uživatelovu zeď či do soukromé zprávy a možnost \uv{dát like} fotkám, trasám či článkům. Jedním z~možných rozšíření je propojení této aplikace se skupinou na \ac{Fb} tak, aby novinky, které se propisují na domovskou stránku aplikace, byly odesílány na zeď této skupiny.
-			\paragraph{}\ac{Fb} není jediná sociální síť, tudíž je velice pravděpodobné, že budoucí verze budou podporovat i např. Twitter nebo Google+. Zvláště propojení s~Twitterem je velice pravděpodobné, protože užívá autorizaci přes oAuth stejně jako \acl{OSM}.
-			\paragraph{}V současné verzi mohou uživatelé přidat trasy a fotografie, ale už není možné je editovat. Tato funkce se velice hodí, pokud uživatel uloží špatné informace a chce je upravit. Uživatel by také měl mít možnost smazat nebo zneviditelnit fotografie a trasy jím nahrané. Tyto prvky by měly mít při dalším vývoji vysokou prioritu.
-			\paragraph{}Další možný vývoj je uveden v~sekci diskuze. Zde by měla přibýt možnost reagovat na jiný příspěvek. Dále by bylo dobré mít možnost zobrazit si příspěvky tak, jak na sebe navazují dle reakcí.
-			\paragraph{}V úvodu též byly definovány další funkcionality. V~budoucích verzích programu by se mělo objevit vyhledávání objektů pomocí jejich adresy, vyhledání současné pozice, vyhledávání cest mezi zadanými body a vyhledávání objektů v~určité vzdálenosti od bodu či od cesty. 
+			\paragraph{}\ac{Fb} není jediná sociální síť, tudíž je možné, že budoucí verze budou podporovat i např. Twitter nebo Google+. Zvláště propojení s~Twitterem je velice pravděpodobné, protože užívá autorizaci přes oAuth stejně jako \acl{OSM}.
+			\paragraph{}V současné verzi mohou uživatelé přidat trasy a fotografie, ale už není možné je editovat. Tato funkce se velice hodí, pokud uživatel uloží špatné informace a chce je upravit. Uživatel by také měl mít možnost smazat nebo zneviditelnit fotografie a trasy jím nahrané. Přidání těchto funkcí by mělo mít při dalším vývoji vysokou prioritu.
+			\paragraph{}Též by mělo dojít k přidání funkcí v sekci \textit{Diskuze}. Zde by měla přibýt možnost reagovat na jiný příspěvek. Dále by bylo dobré mít možnost zobrazit si příspěvky tak, jak na sebe navazují dle reakcí.
+			\paragraph{}V úvodu též byly definovány funkcionality, které z časových důvodů nebyly implementovány. V~budoucích verzích programu by se mělo objevit vyhledávání objektů pomocí jejich adresy, vyhledání současné pozice, vyhledávání cest mezi zadanými body a vyhledávání objektů v~určité vzdálenosti od bodu či od cesty. 
 			\paragraph{}Rozšířením předchozího vyhledávání je zobrazení fotografií, které jsou podél plánované cesty. Kromě vyhledání cesty je plánováno, že aplikace též spočte výškový profil nalezené cesty. K~tomu bude třeba aplikaci propojit s~digitálním modelem terénu.
 			\paragraph{}V neposlední řadě je možné upravit zdrojové kódy pro přidávání tras a~fotografií tak, aby využívaly co nejvíce společných funkcí.
 
@@ -1427,8 +1429,8 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
                         %%% vyzadoval jeste Vasi pozornost, je videt,
                         %%% ze neprosel tak dukladnou revizi jako
                         %%% zbytek textu
+			\paragraph{}Výše uvedená rozšíření nejsou konečným výčtem. Aplikaci by mohlo obohatit i přidání dalších vrstev zájmových bodů či upravení mapového klíče aplikace v souladu s klíčem projektu \acl{OTM}. V dalším zkoumání možností editoru iD by bylo dobré se zaměřit na umožnění editace dat \ac{OSM} i uživatelům, kteří na \acl{OSM} nemají vytvořený účet. Tato funkcionalita musí být rozvýjena s ohledem na minimalizaci rizika znehodnocení mapy \ac{OSM}.
 
-			\paragraph{}Kromě výše uvedených možností je zde dalších několik věcí, které by aplikaci mohli obohatit. Jedná se mimo jiné o~přidání dalších vrstev zájmových bodů a upravit mapový klíč aplikace v~souladu s~klíčem projektu \acl{OTM}. Také stojí za prozkoumání jak umožnit uživatelům, kteří nemají účet na \ac{OSM}, aby mohli editovat data \ac{OSM}, ale aby byla zachována bezpečnost a nehrozilo znehodnocení mapy \acl{OSM}.
                 %%% ML: TODO
 
                         %%% -> ML: OK
@@ -1445,7 +1447,7 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 
                         %%% -> ML: nazev kapitoli "Porovnani s MTB ..." ??
 
-		\section{MTB mapa Evropy}
+		\section{Porovnání s MTB mapou Evropy}
 
                 %%% ML: Mozna by bylo zahodno psat Toulej v uvozovkach
 
@@ -1453,8 +1455,11 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 			\paragraph{} V~kapitole \textit{Existující řešení}, viz kap. \ref{sec:Ex_reseni}, je popisována aplikace MTB mapa Evropy, která se věnuje cykloturistice a turistice. Ačkoliv aplikace zobrazují stejná data a jsou určeny pro dosti podobnou skupinu lidí, hlavní téma této práce leží v~jiné oblasti než je tvorba samotné mapy. Projekt \uv{Toulavej} je zaměřen hlavně na propojení se sociální sítí a s~editorem iD. Stránky  nabízí možnost registrace, která poskytuje další výhody, jako je editace dat, přidávání vlastních cest a fotografií. Tyto funkce odlišují obě aplikace a~nedělají z~projektu \uv{Toulavej} pouze další turistickou mapu. Aplikace MTB mapa Evropy byla objevena před odevzdáním této práce, a proto uvedené funkce nemohly být tvořeny jako doplňky pro stávající mapy.
 
 		\section{Výsledná aplikace}
+			\paragraph{} V současné době běží aplikace na školním serveru \textit{Geo102} (\url{http://geo102.fsv.cvut.cz/user/vorlichr/www/}). Na stejném serveru je i databáze, ve které jsou uložena zobrazovaná data, a Geoserver, který poskytuje služby \ac{WMS} a \ac{WFS}. 
 			\paragraph{} Ačkoliv práce na aplikaci budou pokračovat a bude dále vyvíjena, už nyní splňuje vlastnosti, které byly definovány v~\textit{Úvodu}. 
-			\paragraph {}Účet na sociální síti se dá použít k~přihlášení, takže si uživatel nemusí pamatovat další heslo a uživatelské jméno. Díky tomuto propojení lze i sdílet s~přáteli zajímavá místa, trasy a fotografie. Dalším bodem bylo umožnění editace dat \ac{OSM}. Tento bod byl asi nejproblematičtější, protože zkoumání a pochopení zdrojových kódů editoru iD zabralo mnoho času. Díky tomu ale bylo možno propojení s~\acl{OSM} realizovat. Vkládání tras a fotografií bylo také realizováno.
+			\paragraph {}Účet na sociální síti se dá použít k~přihlášení, takže si uživatel nemusí pamatovat další heslo a uživatelské jméno. Díky tomuto propojení lze sdílet s~přáteli zajímavá místa, trasy a fotografie. Jak bylo naznačeno v kapitole \textit{Budoucí rozšíření},viz kap. \ref{sec:budoucnost}, tato funkcionalita lze rozšířit, ale hlavním problémem zde bylo vytvoření samotného propojení se sociální sítí \acl{Fb}.
+			\paragraph{}Další požadovanou vlastností bylo umožnění editace dat \ac{OSM}. Tento bod byl asi nejproblematičtější, protože zkoumání a pochopení zdrojových kódů editoru iD bylo vzhledem ke složitosti celé aplikace časově náročné. Zkoumání zdrojových kódů bylo nezbytné pro realizaci propojení s \acl{OSM}. V současné době je propojení editoru iD s \acl{OSM} funkční a umožňuje uživatelům registrovaným na \ac{OSM} editovat a přidávat data.
+			\paragraph{} Poslední dvě vlastnosti aplikace -- vkládání tras a vkládání fotografií -- byly též vytvořeny. Díky tomu může aplikace sloužit jako zdroj inspirace pro plánování výletů do přírody či za zajímavými historickými objekty. Fotografie je možné zobrazit buď v \textit{Galerii} nebo v mapové aplikaci na souřadnicích, které jí přiřadil uživatel. Přidané trasy se zobrazují z \textit{Detailu trasy} ve zvlášní mapovém okně.
 			\paragraph{} Funkce a vzhled aplikace byly vyvíjeny s~ohledem na budoucí rozvoj aplikace. V~ideálním příbadě by to znamenalo, že se ve stávajících zdrojových kódech nebude nic měnit, ale využije se z~nich maximum použitelných funkcí.
 
 
@@ -1473,7 +1478,7 @@ Jednotlivé vrstvy vznikly jako VIEW\footnote{VIEW je struktura, ve které je ul
 		\acro{CGI}{Common Gateway Interface}
 		\acro{CSS}{Cascading Style Sheets}
 		\acro{cuzk}[ČÚZK]{Český úřad zeměměřický a katastrální}
-		\acro{EPSG}{ European Petroleum Survey Group}
+		\acro{EPSG}{European Petroleum Survey Group}
 		\acro{Fb}{Facebook}
 		\acro{GNSS}{Global Navigation Satellite System}
 		\acro{GPL}{General Public Licence}
