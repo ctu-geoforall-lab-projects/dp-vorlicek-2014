@@ -25,8 +25,9 @@ class TrackPresenter extends BasePresenter
 	//change pictures in gallery
 	public function handleChangeImage($id)
 	{
-		if ($id == null)
+		if ($id == null) {
 			$this->redirect('Track:gallery');
+		}
 		$this->template->preview = $this->context->createImagesModel()->get($id);
 	}
 
@@ -247,10 +248,11 @@ class TrackPresenter extends BasePresenter
 				if ($data["name"] == NULL) {
 					$data["name"] = $data->filename;
 				}
-				$data->photo->move($basePath . "/files/" . $data->filename);
+				$photo = $data->photo;
 				unset($data->photo);
-				$this->context->createImagesModel()->saveImage($data);
-
+				$picture = $this->context->createImagesModel()->saveImage($data);
+				$photo->move($basePath . "/files/" . $picture->id . " - " .$data->filename);
+				$this->context->createImagesModel()->update(array("filename"=>$picture->id . " - " .$data->filename),$picture->id);
 				$notice = array('user_id' => $data->user_id,
 					'note' => 'Byla přidána nová fotka (' . $data->name . ').',
 					'created' => 'now()');
