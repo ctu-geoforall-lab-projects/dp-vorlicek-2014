@@ -2,7 +2,7 @@
 
 ## Název
 
-Prototyp turistického systému založeného na datech OpenStreetMap
+**Prototyp turistického systému založeného na datech OpenStreetMap**
 
 ## Student
 
